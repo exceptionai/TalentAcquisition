@@ -1,11 +1,13 @@
-from pontuador import Pontuador
+from pontuadores.pontuador import Pontuador
 import nltk
 
 
 class PontuadorRadicais(Pontuador):
 
-    def __init(self, pontos, palavra_chave):
+    def __init__(self, pontos, palavra_chave, pontos_a_incrementar, pontos_a_decrementar):
         super().__init__(pontos, palavra_chave)
+        self._pontos_a_incrementar = pontos_a_incrementar
+        self._pontos_a_decrementar = pontos_a_decrementar
 
     def pontuar(self, radicais_lista):
         lista_radicais_palavras = []
@@ -20,14 +22,13 @@ class PontuadorRadicais(Pontuador):
 
             sinonimos = palavra['sinonimos']
             self._adiciona_radicais_sinonimos(lista_radicais_palavras, sinonimos)
-
             if (radical_palavra_chave in radicais_lista) or (self._radicais_chaves_em_sinonimos(radicais_lista, sinonimos)):
-                self.pontos += 20 * palavra['relevancia']
+                self.pontos += self._pontos_a_incrementar * palavra['relevancia']
 
     def _diminui_por_nao_existentes(self, radicais_lista, lista_radicais_palavras):
         for radical in radicais_lista:
             if radical not in lista_radicais_palavras:
-                self.pontos -= 40
+                self.pontos -= self._pontos_a_decrementar
 
     def _adiciona_radicais_sinonimos(self, radicais_lista, sinonimos):
         for sinonimo in sinonimos:
@@ -41,16 +42,7 @@ class PontuadorRadicais(Pontuador):
                 return True
         return False
 
-    def radicais_na_lista(self, list_palavras, radicais):
-        for radical in radicais:
-            for palavra in list_palavras:
-                radical_palavra = self._get_radical(palavra)
-                if radical == radical_palavra:
-                    return True
-        return False
-
     def _get_radical(self, palavra):
-        # Objeto para pegar os radicais
         radicalizador = nltk.RSLPStemmer()
         radical = radicalizador.stem(palavra)
 
