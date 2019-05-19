@@ -30,7 +30,8 @@ def inserir():
     cursos_complementares = [
         CursoExtraCurricular(request.form['nome'], request.form['cursosComplementares'], request.form['instiruicao'])
     ]
-    curriculo = Curriculo(nome, idade, email, endereco, objetivo, experiencias_anteriores, cursos_complementares)
+    idiomas = []
+    curriculo = Curriculo(nome, idade, email, endereco, objetivo, experiencias_anteriores, cursos_complementares, idiomas)
     curriculoDAO = CurriculoDAO(curriculo)
     sucesso = curriculoDAO.insere()
     if sucesso:
