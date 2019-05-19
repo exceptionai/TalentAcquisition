@@ -91,10 +91,10 @@
                 </div>
                 <br><br>
                 <div>
-                    <label>Data de saída *</label>
-                    <input type="date" name="dataEntrada1" value="dataEntrada" required>
                     <label>Data de entrada *</label>
-                    <input type="date" name="dataSaida1" value="dataSaida" required>
+                    <input type="date" name="dataEntrada1" id="dataEntrada1" value="dataEntrada" required>
+                    <label>Data de saída *</label>
+                    <input type="date" name="dataSaida1" id="dataSaida1" value="dataSaida" required>
                 </div>
                 <br><br>
                 <div>
@@ -122,19 +122,15 @@
                 <br>
                 <div>
                     <label>Nome do curso *</label>
-                    <br>
                     <input type="text" name="nomeCurso1" id="nomeCurso1" placeholder="Ex: Excel" required>
-                </div>
-                <br>
-                <div>
                     <label>Nome da instituição *</label>
-                    <br>
                     <input type="text" id="respostaInstituicao" name="instituicao1" placeholder="Ex: Alura" required>
                 </div>
                 <br>
-                <div>
+                <div><label for="dataCursoInicio1">Data Inicial *</label>
+                    <input type="date" data-date="" data-date-format="DD MMMM YYYY"  name="dataCursoInicio1" id="dataCursoInicio1" max="today" value="dataEntrada" required>
+
                     <label>Duração</label>
-                    <br>
                     <select name="duracao1">
                         <option value="curta">Curta (até 40 horas)</option>
                         <option value="media">Média (de 41 a 360 horas)</option>
@@ -142,6 +138,9 @@
                     </select>
                 </div>
                 <br>
+                <br>
+                    <label for="descricaoCursoExtraCurricular1">Descrição do curso</label><br>
+                    <textarea id="descricaoCursoExtraCurricular1" name="descricaoCursoExtraCurricular1" cols="76" rows="8"></textarea>
                 <div>
                     <button id="salvar">Salvar</button>
                 </div>
