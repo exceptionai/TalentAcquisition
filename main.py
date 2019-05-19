@@ -2,6 +2,7 @@ from flask import Flask, render_template, request
 
 from DAO.curriculoDAO import CurriculoDAO
 from models.curriculo import Curriculo
+from models.cursoExtraCurricular import CursoExtraCurricular
 
 app = Flask(__name__)
 
@@ -26,7 +27,9 @@ def inserir():
     endereco = request.form['endereco']
     objetivo = request.form['objetivo']
     experiencias_anteriores = []
-    cursos_complementares = []
+    cursos_complementares = [
+        CursoExtraCurricular(request.form['nome'], request.form['cursosComplementares'], request.form['instiruicao'])
+    ]
     curriculo = Curriculo(nome, idade, email, endereco, objetivo, experiencias_anteriores, cursos_complementares)
     curriculoDAO = CurriculoDAO(curriculo)
     sucesso = curriculoDAO.insere()
