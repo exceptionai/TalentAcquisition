@@ -4,9 +4,9 @@ from analises.analiseObjetivo import AnaliseObjetivo
 
 class AnaliseCurriculo:
 
-    def __init__(self, objetivo, tags, curso_extra_curricular=None):
-        self.analiseObjetivo = AnaliseObjetivo(objetivo, tags)
-        self.analiseCursosExtraCurriculares = AnaliseCursosExtraCurriculares(curso_extra_curricular, tags)
+    def __init__(self, curriculo, tags):
+        self.analiseObjetivo = AnaliseObjetivo(curriculo.objetivo_profissional, tags)
+        self.analiseCursosExtraCurriculares = AnaliseCursosExtraCurriculares(curriculo.cursos_complementares, tags)
 
     @property
     def pontuacao(self):

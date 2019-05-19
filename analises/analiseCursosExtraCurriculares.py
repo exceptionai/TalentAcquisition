@@ -9,7 +9,7 @@ class AnaliseCursosExtraCurriculares:
     def pontuar_titulos(self):
         pontuacao = 0
         for curso in self._lista_cursos:
-            analise_titulo = AnaliseTituloCursoExtraCurricular(curso["titulo"], self._tags)
+            analise_titulo = AnaliseTituloCursoExtraCurricular(curso.nome, self._tags)
             pontuacao += analise_titulo.pontuacao
         return pontuacao
 
