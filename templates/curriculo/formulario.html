@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Formulario de Cadastro</title>
+</head>
+
+<body>
+    <div id="corpo">
+        <h1>Cadastro de estágio</h1>
+        <p>
+            Olá, Futuro Estagiário! <br>
+            Seja muito Bem Vindo. Você deve estar se perguntando “Quem é a Bayer e por que trabalhar nela?”
+        </p>
+        <p>
+            A Bayer é uma organização global com competências centrais nas áreas de saúde e agricultura.<br>
+            Os produtos e serviços da Bayer são projetados para beneficiar a população e melhorar sua qualidade de vida.
+            <br>
+            Ao mesmo tempo, o Grupo tem como objetivo criar valor através da inovação e crescimento.
+        </p>
+        <p>
+            - A Bayer conta com o Programa Qualidade de Vida. <br>
+            - A Bayer está comprometida em oferecer excelentes benefícios a seus colaboradores. <br>
+            - Acreditamos em novos talentos a serem descobertos! <br>
+            - A Bayer é uma empresa que pensa à frente, por isso, quer caminhar junto de seus colaboradores para ter um
+            presente e um futuro mais tranquilo.<br>
+            <br>
+        </p>
+        <p>
+            Não perca esta oportunidade, adoraríamos te conhecer melhor! Para iniciar seu processo de seleção preencha
+            <br>
+            este cadastro. <br>
+            <br>
+            Obrigado,<br>
+            Se é Bayer é bom.
+        </p>
+        <form class="respostas" method="POST" action="/inserir/curriculo">
+            <p>Os campos marcados com * são obrigatório</p>
+            <div>
+                <label>
+                    <h3>NOME COMPLETO*</h3>
+                </label>
+                <input type="text" name="nome" id="resposta1" required>
+            </div>
+            <div>
+                <label>
+                    <h3>IDADE</h3>
+                </label>
+                <input type="number" min="10" max="200" name="idade" id="resposta2">
+            </div>
+            <div>
+                <label>
+                    <h3>E-MAIL*</h3>
+                </label>
+                <input type="email" name="email" id="resposta3" placeholder="usuario@email.com" equired>
+            </div>
+            <div>
+                <label>
+                    <h3>ENDEREÇO*</h3>
+                </label>
+                <input type="text" id="resposta4" name="endereco" required>
+            </div>
+            <div>
+                <label>
+                    <h3>OBJETIVO PROFISSIONAL*</h3>
+                </label>
+                <input type="text" id="resposta5" name="objetivo" required>
+            </div>
+            <br>
+            <div>
+                <label>
+                    <h3>EXPERIÊNCIAS ANTERIORES</h3>
+                </label>
+                <br>
+                <div>
+                    <label>Cargo *</label>
+                    <br>
+                    <input type="text" id="resposta6" name="experiencia" placeholder="Ex: Engenheiro Elétrico" required>
+                </div>
+                <br><br>
+                <div>
+                    <label>Nome da empresa *</label>
+                    <br>
+                    <input type="text" id="resposta7" name="experiencia" placeholder="Ex: Bayer" required>
+                </div>
+                <br><br>
+                <div>
+                    <label>É meu trabalho atual?</label>
+                    <input type="checkbox" name="resposta8" value="resposta8">
+                </div>
+                <br><br>
+                <div>
+                    <label>Data de saída *</label>
+                    <input type="date" name="dataEntrada" value="dataEntrada" required>
+                    <label>Data de entrada *</label>
+                    <input type="date" name="dataSaida" value="dataSaida" required>
+                </div>
+                <br><br>
+                <div>
+                    <label>Principais atividades</label>
+                    <br>
+                    <textarea id="story" name="story" rows="15" cols="70"></textarea>
+                    <label>3000</label>
+                </div>
+                <br><br>
+                <div>
+                    <label>Salário</label>
+                    <br>
+                    <input type="number" id="salario" class="experiencias" placeholder="Ex: R$ 1.500,00">
+                </div>
+                <br>
+                <div>
+                    <button type="submit" id="salvar">Salvar</button>
+                </div>
+            </div>
+            <br>
+            <div>
+                <label>
+                    <h3>CURSOS COMPLEMENTARES</h3>
+                </label>
+                <br>
+                <div>
+                    <label>Nome do curso *</label>
+                    <br>
+                    <input type="text" id="resposta7" name="cursosComplementares" placeholder="Ex: Excel" required>
+                </div>
+                <br>
+                <div>
+                    <label>Nome da instituição *</label>
+                    <br>
+                    <input type="text" id="respostaInstituicao" name="instiruicao" placeholder="Ex: Alura" required>
+                </div>
+                <br>
+                <div>
+                    <label>Duração</label>
+                    <br>
+                    <select>
+                        <option value="curta">Curta (até 40 horas)</option>
+                        <option value="media">Média (de 41 a 360 horas)</option>
+                        <option value="longa">Longa (acima de 360 horas</option>
+                    </select>
+                </div>
+                <br>
+                <div>
+                    <button type="submit" id="salvar">Salvar</button>
+                </div>
+            </div>
+    </div>
+    <br>
+    <div>
+        <button id="enviar" type="submit">ENVIAR</button>
+    </div>
+    </form>
+    <br>
+    <footer>
+        <tr>
+            <td colspan="2">
+                <span>Excepition &reg; - 2019</span><br>
+                <span>Formulário de Cadastro</span><br>
+                <span>Bayer</span><br>
+            </td>
+        </tr>
+    </footer>
+</body>
+
+</html>
