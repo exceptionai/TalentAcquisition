@@ -53,7 +53,7 @@
                 <label>
                     <h3>E-MAIL*</h3>
                 </label>
-                <input type="email" name="email" id="resposta3" placeholder="usuario@email.com" equired>
+                <input type="email" name="email" id="resposta3" placeholder="usuario@email.com" required>
             </div>
             <div>
                 <label>
@@ -107,11 +107,11 @@
                 <div>
                     <label>Salário</label>
                     <br>
-                    <input type="number" name="salario1" id="salario" class="experiencias" placeholder="Ex: R$ 1.500,00">
+                    <input type="text" step="any" min="0" name="salario1" id="salario" pattern="\d+,\d+" class="experiencias" placeholder="Ex: 1500,00 (Sem pontos)">
                 </div>
                 <br>
                 <div>
-                    <button type="submit" id="salvar">Salvar</button>
+                    <button id="salvarExperiencia1">Salvar</button>
                 </div>
             </div>
             <br>
@@ -123,7 +123,7 @@
                 <div>
                     <label>Nome do curso *</label>
                     <br>
-                    <input type="text" name="nomeCurso1" id="resposta7" placeholder="Ex: Excel" required>
+                    <input type="text" name="nomeCurso1" id="nomeCurso1" placeholder="Ex: Excel" required>
                 </div>
                 <br>
                 <div>
@@ -143,7 +143,7 @@
                 </div>
                 <br>
                 <div>
-                    <button type="submit" id="salvar">Salvar</button>
+                    <button id="salvar">Salvar</button>
                 </div>
             </div>
     </div>
@@ -162,6 +162,9 @@
             </td>
         </tr>
     </footer>
+    <script src="../../static/js/ValidacaoFormulario.js"></script>
+    <script src="../../static/js/jquery-1.11.3.min.js"></script>
+    <script>new ValidacaoFormulario()</script>
 </body>
 
 </html>
