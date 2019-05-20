@@ -1,5 +1,5 @@
 class CursoExtraCurricular:
-    def __init__(self, nome, instituicao, duracao, cursando, data_inicial, descricao=''):
+    def __init__(self, nome, instituicao, duracao, data_inicial, descricao, cursando):
         self.nome = nome
         self.instituicao = instituicao
         self.duracao = duracao
