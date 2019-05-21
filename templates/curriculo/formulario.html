@@ -54,6 +54,15 @@
                     <h3>E-MAIL*</h3>
                 </label>
                 <input type="email" name="email" id="resposta3" placeholder="usuario@email.com" required>
+                <br>
+                <label for="telefone">
+                    <h3>TELEFONE RESIDENCIAL</h3>
+                </label>
+                <input type="text" id="telefone"/>
+                <label for="telefoneCelular">
+                    <h3>TELEFONE CELULAR</h3>
+                </label>
+                <input type="text" id="telefoneCelular"/>
             </div>
             <div>
                 <label>
@@ -67,6 +76,13 @@
                 </label>
                 <input type="text" id="resposta5" name="objetivo" required>
             </div>
+            <br>
+
+                <div>
+                    <label for="salarioExpectativa"><h3>EXPECTATIVA DE SALÁRIO<h3></label>
+                    <input type="text" id="salarioExpectativa" name="salarioExpectativa" data-thousands="." data-decimal="," data-prefix="R$ " placeholder="Ex: R$ XXXX,XX" />
+
+                </div>
             <br>
             <div>
                 <label>
@@ -107,7 +123,7 @@
                 <div>
                     <label>Salário</label>
                     <br>
-                    <input type="text" step="any" min="0" name="salario1" id="salario" pattern="\d+,\d+" class="experiencias" placeholder="Ex: 1500,00 (Sem pontos)">
+                    <input type="text" step="any" min="0" name="salario1" data-thousands="." data-decimal="," data-prefix="R$ "  id="salario1" class="experiencias" placeholder="Ex: R$ 1500,00">
                 </div>
                 <br>
                 <div>
@@ -166,9 +182,13 @@
             </td>
         </tr>
     </footer>
-    <script src="../../static/js/ValidacaoFormulario.js"></script>
+
     <script src="../../static/js/libs/jquery-1.11.3.min.js"></script>
-    <script>new ValidacaoFormulario()</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-maskmoney/3.0.2/jquery.maskMoney.min.js"></script>
+    <script src="../../static/js/ValidacaoFormulario.js"></script>
+    <script>new ValidacaoFormulario();
+
+        $("#salarioAtual").maskMoney();</script>
 </body>
 
 </html>

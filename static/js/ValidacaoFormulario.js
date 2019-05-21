@@ -2,8 +2,8 @@ class ValidacaoFormulario {
     constructor() {
         let $ = document.querySelector.bind(document);
         this._salario = $("#salario");
-        this._valida_ao_mudar()
-        this._valida_data()
+        this._valida_ao_mudar();
+        this._valida_data();
 
     }
 
@@ -55,25 +55,25 @@ class ValidacaoFormulario {
 
         input_entrada.on("change", function () {
             if (new Date(input_entrada.val()).getTime() > new Date(input_saida.val()).getTime()) {
-                input_entrada.val(input_saida.val())
+                input_entrada.val(input_saida.val());
             }
             if (new Date(input_entrada.val()).getTime() > new Date().getTime()) {
-                input_entrada.val(new Date().toISOString().substr(0, 10))
+                input_entrada.val(new Date().toISOString().substr(0, 10));
             }
         });
 
         input_saida.on("change", function () {
             if (new Date(input_entrada.val()).getTime() > new Date(input_saida.val()).getTime()) {
-                input_entrada.val(input_saida.val())
+                input_entrada.val(input_saida.val());
             }
             if (new Date(input_saida.val()).getTime() > new Date().getTime()) {
-                input_saida.val(new Date().toISOString().substr(0, 10))
+                input_saida.val(new Date().toISOString().substr(0, 10));
             }
         });
 
         input_cursoinicio.on("change",function(){
               if (new Date(input_cursoinicio.val()).getTime() > new Date().getTime()) {
-                input_cursoinicio.val(new Date().toISOString().substr(0, 10))
+                input_cursoinicio.val(new Date().toISOString().substr(0, 10));
             }
         })
     }
