@@ -1,6 +1,6 @@
 import json
 
-from flask import Flask, render_template, request, redirect
+from flask import Flask, render_template, request
 
 from DAO.curriculoDAO import CurriculoDAO
 from analises.analiseCurriculo import AnaliseCurriculo
@@ -8,7 +8,6 @@ from models.curriculo import Curriculo
 from models.cursoExtraCurricular import CursoExtraCurricular
 
 app = Flask(__name__)
-curriculoDAO = CurriculoDAO(None)
 
 
 @app.route('/')
@@ -31,6 +30,7 @@ def formulario_curriculo():
 
 @app.route('/analises/curriculo')
 def analise_curriculo():
+    curriculoDAO = CurriculoDAO(None)
     lista_curriculos = curriculoDAO.listar()
     tags = [{"texto": 'desenvolvedor', "relevancia": 7, "sinonimos": ["programador", "codificador"]},
             {"texto": 'software', "relevancia": 5, "sinonimos": []},
@@ -53,6 +53,8 @@ def inserir():
     email = request.form['email']
     endereco = request.form['endereco']
     objetivo = request.form['objetivo']
+    telefone_residencial = request.form['telefoneResidencial']
+    telefone_celular = request.form['telefoneCelular']
     experiencias_anteriores = []
     cursos_complementares = [
         CursoExtraCurricular(request.form['nomeCurso1'], request.form['instituicao1'], request.form['duracao1'],
@@ -62,7 +64,7 @@ def inserir():
 
     idiomas = []
     curriculo = Curriculo(nome, idade, email, endereco, objetivo, experiencias_anteriores, cursos_complementares,
-                          idiomas)
+                          idiomas, telefone_residencial, telefone_celular)
 
     curriculoDAO = CurriculoDAO(curriculo)
     sucesso = curriculoDAO.insere()
