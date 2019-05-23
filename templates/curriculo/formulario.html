@@ -68,7 +68,16 @@
                 <label>
                     <h3>ENDEREÇO*</h3>
                 </label>
-                <input type="text" id="resposta4" name="endereco" required>
+                <label for="ruaEndereco"></label>Endereço <input type="text" id="ruaEndereco" name="endereco" placeholder="Rua/Avenida,123" required>
+               <br><br>
+                <label for="uf">Estado</label>
+                <select id="uf" name="uf" disabled data-target="#cidade">
+                    <option value="">Estado</option>
+                </select>
+                <label for="cidade">Cidade</label>
+                <select id="cidade" name="cidade">
+                    <option>Cidade</option>
+                </select>
             </div>
             <div>
                 <label>
@@ -186,6 +195,9 @@
     <script src="../../static/js/libs/jquery-1.11.3.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-maskmoney/3.0.2/jquery.maskMoney.min.js"></script>
     <script src="../../static/js/ValidacaoFormulario.js"></script>
+     <script src="../../static/js/CurriculoService.js"></script>
+     <script src="../../static/js/CurriculoController.js"></script>
+    <script>new CurriculoController("#uf","#cidade")</script>
     <script>new ValidacaoFormulario();
 
         $("#salarioAtual").maskMoney();</script>
