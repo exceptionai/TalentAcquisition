@@ -56,6 +56,8 @@ def inserir():
     telefone_residencial = request.form['telefoneResidencial']
     telefone_celular = request.form['telefoneCelular']
     experiencias_anteriores = []
+    estado = request.form['uf']
+    cidade = request.form['cidade']
     cursos_complementares = [
         CursoExtraCurricular(request.form['nomeCurso1'], request.form['instituicao1'], request.form['duracao1'],
                              request.form['dataCursoInicio1'], request.form['descricaoCursoExtraCurricular1'],
@@ -63,8 +65,8 @@ def inserir():
     ]
 
     idiomas = []
-    curriculo = Curriculo(nome, idade, email, endereco, objetivo, experiencias_anteriores, cursos_complementares,
-                          idiomas, telefone_residencial, telefone_celular)
+    curriculo = Curriculo(nome, idade, email, endereco, estado, cidade, objetivo, experiencias_anteriores,
+                          cursos_complementares, idiomas, telefone_residencial, telefone_celular)
 
     curriculoDAO = CurriculoDAO(curriculo)
     sucesso = curriculoDAO.insere()
