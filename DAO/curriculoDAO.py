@@ -18,7 +18,9 @@ class CurriculoDAO:
             endereco='rua123',
             experiencias_anteriores=[],
             idade=22,
-            idiomas=[]
+            idiomas=[],
+            telefone_residencial='',
+            telefone_celular=''
         ), Curriculo(
             objetivo_profissional='eu quero ser um desenvolvedor',
             cursos_complementares=[],
@@ -27,7 +29,9 @@ class CurriculoDAO:
             endereco='rua312',
             experiencias_anteriores=[],
             idade=19,
-            idiomas=[]
+            idiomas=[],
+            telefone_residencial='',
+            telefone_celular=''
         ), Curriculo(
             objetivo_profissional='eu quero ser uma programadora Ruby',
             cursos_complementares=[
@@ -39,7 +43,9 @@ class CurriculoDAO:
             endereco='rua231',
             experiencias_anteriores=[],
             idade=19,
-            idiomas=[]
+            idiomas=[],
+            telefone_residencial='',
+            telefone_celular=''
         ), Curriculo(
             objetivo_profissional='eu quero ver um programa de tv',
             cursos_complementares=[],
@@ -48,5 +54,7 @@ class CurriculoDAO:
             endereco='rua3123',
             experiencias_anteriores=[],
             idade=21,
-            idiomas=[]
+            idiomas=[],
+            telefone_residencial='',
+            telefone_celular=''
         )]
