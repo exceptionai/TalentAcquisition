@@ -3,9 +3,9 @@ class PontuacaoView {
         let linha_candidato = $(`
             <tr>
                 <td>${candidato.nome}</td>
-                <td>${candidato.pontuacao_total}</td>
-                <td>${candidato.pontuacao_cursos_extra_curriculares}</td>
                 <td>${candidato.pontuacao_objetivo}</td>
+                <td>${candidato.pontuacao_cursos_extra_curriculares}</td>
+                <td>${candidato.pontuacao_total}</td>
             </tr>
         `);
         let tabela = $("tbody");
