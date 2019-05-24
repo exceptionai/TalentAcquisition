@@ -1,7 +1,7 @@
 # BayerChallenge
 Sistema de filtragem de currículos por meio de uma plataforma baseada em pontos, 
-na qual por meio de Machine Learning e Processamento de Linguagem natural, os candidatos 
-tem seus currículos avaliados de acordo com a vaga proposta.
+e através de Machine Learning e Processamento de Linguagem natural, os candidatos 
+terão seus currículos avaliados de acordo com a vaga proposta.
 
 <h2> Como Executar? </h2>
 Para utilizar será necessário a instalação do Python3 
