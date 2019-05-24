@@ -4,8 +4,7 @@ from flask import Flask, render_template, request
 
 from DAO.curriculoDAO import CurriculoDAO
 from analises.analiseCurriculo import AnaliseCurriculo
-from models.curriculo import Curriculo
-from models.cursoExtraCurricular import CursoExtraCurricular
+from controllers.curriculoController import CurriculoController
 
 app = Flask(__name__)
 
@@ -32,9 +31,9 @@ def formulario_curriculo():
 def analise_curriculo():
     curriculoDAO = CurriculoDAO(None)
     lista_curriculos = curriculoDAO.listar()
-    tags = [{"texto": 'desenvolvedor', "relevancia": 7, "sinonimos": ["programador", "codificador"]},
-            {"texto": 'software', "relevancia": 5, "sinonimos": []},
-            {"texto": 'java', "relevancia": 10, "sinonimos": []}]
+    tags = [{"texto": 'biologia', "relevancia": 7, "sinonimos": ["programador", "codificador"]},
+            {"texto": 'marinha', "relevancia": 5, "sinonimos": []},
+            {"texto": 'vida', "relevancia": 10, "sinonimos": []}]
 
     lista_analises = []
     for curriculo in lista_curriculos:
@@ -48,31 +47,13 @@ def analise_curriculo():
 
 @app.route('/inserir/curriculo', methods=['POST', ])
 def inserir():
-    nome = request.form['nome']
-    idade = request.form['idade']
-    email = request.form['email']
-    endereco = request.form['endereco']
-    objetivo = request.form['objetivo']
-    telefone_residencial = request.form['telefoneResidencial']
-    telefone_celular = request.form['telefoneCelular']
-    experiencias_anteriores = []
-    estado = request.form['uf']
-    cidade = request.form['cidade']
-    cursos_complementares = [
-        CursoExtraCurricular(request.form['nomeCurso1'], request.form['instituicao1'], request.form['duracao1'],
-                             request.form['dataCursoInicio1'], request.form['descricaoCursoExtraCurricular1'],
-                             True if 'cursando' in request.form else False)
-    ]
-
-    idiomas = []
-    curriculo = Curriculo(nome, idade, email, endereco, estado, cidade, objetivo, experiencias_anteriores,
-                          cursos_complementares, idiomas, telefone_residencial, telefone_celular)
-
-    curriculoDAO = CurriculoDAO(curriculo)
-    sucesso = curriculoDAO.insere()
-    if sucesso:
+    try:
+        curriculo = CurriculoController.load_por_form(request.form)
+        curriculoDAO = CurriculoDAO(curriculo)
+        curriculoDAO.insere()
         return render_template('curriculo/sucesso.html')
-    else:
+    except Exception as error:
+        print(f'erro: {error}')
         return render_template('curriculo/erro.html')
 
 
