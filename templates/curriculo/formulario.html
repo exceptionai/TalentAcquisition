@@ -38,23 +38,20 @@
         <form class="respostas" method="POST" action="/inserir/curriculo">
             <p>Os campos marcados com * são obrigatório</p>
             <div>
-                <label>
+                <label for="nome">
                     <h3>NOME COMPLETO*</h3>
                 </label>
-                <input type="text" name="nome" id="resposta1" required>
-            </div>
-            <div>
-                <label>
+                <input type="text" name="nome" id="nome" required>
+                <label for="idade">
                     <h3>IDADE</h3>
                 </label>
-                <input type="number" min="10" max="200" name="idade" id="resposta2">
-            </div>
-            <div>
-                <label>
+                <input type="number" min="10" max="200" name="idade" id="idade">
+                <label for="email">
                     <h3>E-MAIL*</h3>
                 </label>
-                <input type="email" name="email" id="resposta3" placeholder="usuario@email.com" required>
+                <input type="email" name="email" id="email" placeholder="usuario@email.com" required>
                 <br>
+
                 <label for="telefoneResidencial">
                     <h3>TELEFONE RESIDENCIAL</h3>
                 </label>
@@ -63,40 +60,32 @@
                     <h3>TELEFONE CELULAR</h3>
                 </label>
                 <input type="text" name="telefoneCelular" id="telefoneCelular"/>
-            </div>
-            <div>
-                <label>
+                <div>
                     <h3>ENDEREÇO*</h3>
-                </label>
-                <label for="ruaEndereco"></label>Endereço <input type="text" id="ruaEndereco" name="endereco" placeholder="Rua/Avenida,123" required>
-               <br><br>
-                <label for="uf">Estado</label>
-                <select id="uf" name="uf" disabled data-target="#cidade">
-                    <option value="">Estado</option>
-                </select>
-                <label for="cidade">Cidade</label>
-                <select id="cidade" name="cidade">
-                    <option>Cidade</option>
-                </select>
+                    <label for="ruaEndereco"></label>Endereço <input type="text" id="ruaEndereco" name="endereco" placeholder="Rua/Avenida,123" required>
+                   <br><br>
+                    <label for="uf">Estado</label>
+                    <select id="uf" name="uf" disabled data-target="#cidade">
+                        <option value="">Estado</option>
+                    </select>
+                    <label for="cidade">Cidade</label>
+                    <select id="cidade" name="cidade">
+                        <option>Cidade</option>
+                    </select>
+                </div>
             </div>
             <div>
-                <label>
+                <label for="objetivo">
                     <h3>OBJETIVO PROFISSIONAL*</h3>
                 </label>
-                <input type="text" id="resposta5" name="objetivo" required>
-            </div>
-            <br>
+                <input type="text" id="objetivo" name="objetivo" required>
+                <label for="salarioExpectativa"><h3>EXPECTATIVA DE SALÁRIO</h3></label>
+                <input type="text" id="salarioExpectativa" name="salarioExpectativa" data-thousands="." data-decimal="," data-prefix="R$ " placeholder="Ex: R$ XXXX,XX" />
 
-                <div>
-                    <label for="salarioExpectativa"><h3>EXPECTATIVA DE SALÁRIO<h3></label>
-                    <input type="text" id="salarioExpectativa" name="salarioExpectativa" data-thousands="." data-decimal="," data-prefix="R$ " placeholder="Ex: R$ XXXX,XX" />
-
-                </div>
             <br>
             <div>
-                <label>
-                    <h3>EXPERIÊNCIAS ANTERIORES</h3>
-                </label>
+                <h3>EXPERIÊNCIAS ANTERIORES</h3>
+                <!--
                 <br>
                 <div>
                     <label>Cargo *</label>
@@ -134,16 +123,13 @@
                     <br>
                     <input type="text" step="any" min="0" name="salario1" data-thousands="." data-decimal="," data-prefix="R$ "  id="salario1" class="experiencias" placeholder="Ex: R$ 1500,00">
                 </div>
-                <br>
-                <div>
-                    <button id="salvarExperiencia1">Salvar</button>
-                </div>
+                <br> -->
+                <button id="salvarExperiencia" type="button">Cadastrar Experiência Anterior</button>
             </div>
             <br>
             <div>
-                <label>
-                    <h3>CURSOS COMPLEMENTARES</h3>
-                </label>
+                <h3>FORMAÇÕES / CURSOS COMPLEMENTARES</h3>
+                <!--
                 <br>
                 <div>
                     <label>Nome do curso *</label>
@@ -171,33 +157,29 @@
                 <br>
                     <label for="descricaoCursoExtraCurricular1">Descrição do curso</label><br>
                     <textarea id="descricaoCursoExtraCurricular1" name="descricaoCursoExtraCurricular1" cols="76" rows="8"></textarea>
-                <div>
-                    <button id="salvar">Salvar</button>
-                </div>
+                -->
+                <button id="salvarCurso" type="button">Cadastrar Formação / ExtraCurricular</button>
             </div>
+        </div>
+            <br>
+            <button id="enviar" type="submit">ENVIAR</button>
+        </form>
     </div>
-    <br>
-    <div>
-        <button id="enviar" type="submit">ENVIAR</button>
-    </div>
-    </form>
     <br>
     <footer>
-        <tr>
-            <td colspan="2">
-                <span>Exception &reg; - 2019</span><br>
-                <span>Formulário de Cadastro</span><br>
-                <span>Bayer</span><br>
-            </td>
-        </tr>
+        <span>Exception &reg; - 2019</span><br>
+        <span>Formulário de Cadastro</span><br>
+        <span>Bayer</span><br>
     </footer>
 
     <script src="../../static/js/libs/jquery-1.11.3.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-maskmoney/3.0.2/jquery.maskMoney.min.js"></script>
     <script src="../../static/js/ValidacaoFormulario.js"></script>
-     <script src="../../static/js/CurriculoService.js"></script>
-     <script src="../../static/js/CurriculoController.js"></script>
-    <script>new CurriculoController("#uf","#cidade")</script>
+    <script src="../../static/js/VagaService.js"></script>
+    <script src="../../static/js/CurriculoService.js"></script>
+    <script src="../../static/js/CurriculoController.js"></script>
+    <script>new CurriculoController("#uf","#cidade").init()</script>
+
     <script>new ValidacaoFormulario();
 
         $("#salarioAtual").maskMoney();</script>
