@@ -150,20 +150,43 @@
                 </div>
                 <br>
                 <div>
-                    <label for="cursando">Status</label>
-                    <select id="cursando" name="cursando">
-                        <option value="True"> Cursando </option>
-                        <option value="False"> Concluído </option>
-                    </select>
+                    <label for="cursando">Cursando</label>
+                    <input type="checkbox" id="cursando" value="True"s name="cursando">
                 </div>
                 <br>
                 <br>
-                    <label for="descricaoCursoExtraCurricular1">Descrição das atividades desenvolvidas no curso</label><br>
+                    <label for="descricaoCursoExtraCurricular1">Descrição do curso</label><br>
                     <textarea id="descricaoCursoExtraCurricular1" name="descricaoCursoExtraCurricular1" cols="76" rows="8"></textarea>
                 -->
                 <button id="salvarCurso" type="button">Cadastrar Formação / ExtraCurricular</button>
             </div>
         </div>
+            <div>
+                <label>
+                    <h3>Idiomas</h3>
+                </label>
+                <label for="idioma">Idioma:</label>
+                <select id="idioma" name="idioma">
+                    <option value="">Idioma</option>
+                    <option value="">Inglês</option>
+                    <option value="">Espanhol</option>
+                    <option value="">Francês</option>
+                    <option value="">Mandarim</option>
+                    <option value="">Japonês</option>
+                    <option value="">Alemão</option>
+                    <option value="">Russo</option>
+                </select>
+                <label for="nivelIdioma">Nível de proficiência</label>
+                <select id="nivelIdioma" name="nivelIdioma">
+                    <option>Nível</option>
+                    <option>Básico</option>
+                    <option>Intermediário</option>
+                    <option>Avançado</option>
+                    <option>Técnico</option>
+                    <option>Fluente</option>
+                </select>
+            </div>
+            <br>
             <br>
             <button id="enviar" type="submit">ENVIAR</button>
         </form>
