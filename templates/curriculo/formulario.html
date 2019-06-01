@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8" />
     <title>Formulario de Cadastro</title>
+    <link rel="stylesheet" href="../../static/css/curriculoForm.css">
 </head>
 
 <body>
@@ -72,6 +73,14 @@
                     <select id="cidade" name="cidade">
                         <option>Cidade</option>
                     </select>
+                    <br><br>
+                    <div id="dispostoMudarEstado" class="escondido">
+                        <label for="dispostoSeMudar">Disposto a se mudar? </label>
+                        <select id="dispostoSeMudar" name="dispostoSeMudar">
+                            <option value="True">Sim</option>
+                            <option value="False">Não</option>
+                        </select>
+                    </div>
                 </div>
             </div>
             <div>
@@ -202,12 +211,13 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-maskmoney/3.0.2/jquery.maskMoney.min.js"></script>
     <script src="../../static/js/ValidacaoFormulario.js"></script>
     <script src="../../static/js/VagaService.js"></script>
+    <script src="../../static/js/VagaController.js"></script>
     <script src="../../static/js/CurriculoService.js"></script>
     <script src="../../static/js/CurriculoController.js"></script>
-    <script>new CurriculoController("#uf","#cidade").init()</script>
-
-    <script>new ValidacaoFormulario();
-
+    <script>
+        vaga = new VagaController().get_vaga();
+        new CurriculoController(vaga,"#uf","#cidade", "#dispostoMudarEstado");
+        new ValidacaoFormulario();
         $("#salarioAtual").maskMoney();</script>
 </body>
 
