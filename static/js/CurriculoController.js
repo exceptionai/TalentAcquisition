@@ -1,5 +1,5 @@
 class CurriculoController{
-    constructor(vaga, estadoID, cidadeID, dispostoMudarEstadoID) {
+    constructor(vaga, cidadeID, estadoID, dispostoMudarEstadoID) {
         this._estadoID = estadoID;
         this._cidadeID = cidadeID;
         this._control_endereco();
@@ -7,20 +7,20 @@ class CurriculoController{
         this._dispostoMudarEstadoID = dispostoMudarEstadoID;
         this._contadorIdiomas = 0;
         this._contadorExperiencias = 0;
+        this._vaga = vaga;
     }
 
     _control_endereco(){
         const self = this;
         document.addEventListener('DOMContentLoaded',  async () =>{
-            let curriculoService = new CurriculoService();
-
+            const curriculoService = new CurriculoService();
                 $(this._estadoID).removeAttr('disabled');
                 this._estados = await curriculoService.loadEstados('#uf');
                 this.atualizaEstados(this._estadoID);
 
                 $(document).on('change', '#uf', async function(e) {
-                    self._valida_estado(vaga.estado);
-                    var target = $(this).data('target');
+                    self._valida_estado(this.value);
+                    const target = $(this).data('target');
                     if (target) {
                         self.atualizaCidades(self._cidadeID,$(self._estadoID).val());
                     }
@@ -163,7 +163,9 @@ class CurriculoController{
 
 
     _valida_estado(estado) {
-        if (estado !== $(this._estadoID).val()){
+        console.log(estado);
+        console.log(this._vaga.estado);
+        if (estado !== this._vaga.estado){
             $(this._dispostoMudarEstadoID).show();
         }else{
             $(this._dispostoMudarEstadoID).hide();

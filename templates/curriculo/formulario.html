@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8" />
     <title>Formulario de Cadastro</title>
+    <link rel="stylesheet" type="text/css" href="../../static/css/curriculoForm.css">
 </head>
 
 <body>
@@ -72,6 +73,13 @@
                     <select id="cidade" name="cidade">
                         <option>Cidade</option>
                     </select>
+                    <div id="campoDispostoSeMudar" class="escondido">
+                        <label for="dispostoSeMudar">Disposto a se mudar </label>
+                        <select id="dispostoSeMudar" name="dispostoSeMudar">
+                            <option value="True">Sim</option>
+                            <option value="False">Não</option>
+                        </select>
+                    </div>
                 </div>
             </div>
             <div>
@@ -149,14 +157,15 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-maskmoney/3.0.2/jquery.maskMoney.min.js"></script>
     <script src="../../static/js/ValidacaoFormulario.js"></script>
     <script src="../../static/js/VagaService.js"></script>
+    <script src="../../static/js/VagaController.js"></script>
     <script src="../../static/js/CurriculoService.js"></script>
     <script src="../../static/js/CurriculoController.js"></script>
     <script>
-        const controller = new CurriculoController("#uf","#cidade");
+        const vaga = new VagaController().get_vaga();
+        const controller = new CurriculoController(vaga,"#cidade",'#uf','#campoDispostoSeMudar');
         controller.geraIdiomasDinamicamente('campoIdiomas','adicionarIdioma');
-        controller.geraExperienciasDinamicamente('campoExperiencias','adicionarExperiencia');</script>
-
-    <script>new ValidacaoFormulario();
+        controller.geraExperienciasDinamicamente('campoExperiencias','adicionarExperiencia');
+        new ValidacaoFormulario();
 
         $("#salarioAtual").maskMoney();</script>
 </body>
