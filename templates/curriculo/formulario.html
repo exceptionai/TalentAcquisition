@@ -4,7 +4,6 @@
 <head>
     <meta charset="UTF-8" />
     <title>Formulario de Cadastro</title>
-    <link rel="stylesheet" href="../../static/css/curriculoForm.css">
 </head>
 
 <body>
@@ -73,14 +72,6 @@
                     <select id="cidade" name="cidade">
                         <option>Cidade</option>
                     </select>
-                    <br><br>
-                    <div id="dispostoMudarEstado" class="escondido">
-                        <label for="dispostoSeMudar">Disposto a se mudar? </label>
-                        <select id="dispostoSeMudar" name="dispostoSeMudar">
-                            <option value="True">Sim</option>
-                            <option value="False">Não</option>
-                        </select>
-                    </div>
                 </div>
             </div>
             <div>
@@ -138,7 +129,7 @@
             <br>
             <div>
                 <h3>FORMAÇÕES / CURSOS COMPLEMENTARES</h3>
-
+                <!--
                 <br>
                 <div>
                     <label>Nome do curso *</label>
@@ -148,7 +139,7 @@
                 </div>
                 <br>
                 <div><label for="dataCursoInicio1">Data Inicial *</label>
-                    <input type="date" data-date="" data-date-format="DD MMMM YYYY"  name="dataCursoInicio1" id="dataCursoInicio1" min="1900-01-01" max="today" required>
+                    <input type="date" data-date="" data-date-format="DD MMMM YYYY"  name="dataCursoInicio1" id="dataCursoInicio1" max="today" value="dataEntrada" required>
 
                     <label>Duração</label>
                     <select name="duracao1">
@@ -166,34 +157,17 @@
                 <br>
                     <label for="descricaoCursoExtraCurricular1">Descrição do curso</label><br>
                     <textarea id="descricaoCursoExtraCurricular1" name="descricaoCursoExtraCurricular1" cols="76" rows="8"></textarea>
-
+                -->
                 <button id="salvarCurso" type="button">Cadastrar Formação / ExtraCurricular</button>
             </div>
         </div>
             <div>
                 <label>
-                    <h3>Idiomas</h3>
+                    <h3>IDIOMAS</h3>
                 </label>
                 <label for="idioma">Idioma:</label>
-                <select id="idioma" name="idioma">
-                    <option value="">Idioma</option>
-                    <option value="">Inglês</option>
-                    <option value="">Espanhol</option>
-                    <option value="">Francês</option>
-                    <option value="">Mandarim</option>
-                    <option value="">Japonês</option>
-                    <option value="">Alemão</option>
-                    <option value="">Russo</option>
-                </select>
-                <label for="nivelIdioma">Nível de proficiência</label>
-                <select id="nivelIdioma" name="nivelIdioma">
-                    <option>Nível</option>
-                    <option>Básico</option>
-                    <option>Intermediário</option>
-                    <option>Avançado</option>
-                    <option>Técnico</option>
-                    <option>Fluente</option>
-                </select>
+                <div id="campoIdiomas"></div>
+                <button id="adicionarIdioma" type="button">Adicionar Idioma</button>
             </div>
             <br>
             <br>
@@ -211,13 +185,12 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-maskmoney/3.0.2/jquery.maskMoney.min.js"></script>
     <script src="../../static/js/ValidacaoFormulario.js"></script>
     <script src="../../static/js/VagaService.js"></script>
-    <script src="../../static/js/VagaController.js"></script>
     <script src="../../static/js/CurriculoService.js"></script>
     <script src="../../static/js/CurriculoController.js"></script>
-    <script>
-        vaga = new VagaController().get_vaga();
-        new CurriculoController(vaga,"#uf","#cidade", "#dispostoMudarEstado");
-        new ValidacaoFormulario();
+    <script>const controller = new CurriculoController("#uf","#cidade"); controller.geraIdiomasDinamicamente('campoIdiomas','adicionarIdioma')</script>
+
+    <script>new ValidacaoFormulario();
+
         $("#salarioAtual").maskMoney();</script>
 </body>
 
