@@ -6,6 +6,7 @@ class CurriculoController{
         this._estados = [];
         this._dispostoMudarEstadoID = dispostoMudarEstadoID;
         this._contadorIdiomas = 0;
+        this._contadorExperiencias = 0;
     }
 
     _control_endereco(){
@@ -98,6 +99,68 @@ class CurriculoController{
 
         })
     }
+
+    geraExperienciasDinamicamente(experiencia_ID, botao_experiencia_ID){
+        const botao_experiencias = $(`#${botao_experiencia_ID}`);
+        const campo_experiencias = $(`#${experiencia_ID}`);
+        botao_experiencias.click(()=>{
+            this._contadorExperiencias++;
+            const experiencia = $(`
+                <div>
+                    <label>Cargo *</label>
+                    <br>
+                    <input type="text" id="resposta6" name="cargo${this._contadorExperiencias}" placeholder="Ex: Engenheiro Elétrico" required>
+                </div>
+                <br><br>
+                <div>
+                    <label>Nome da empresa *</label>
+                    <br>
+                    <input type="text" id="resposta7" name="nomeEmpresa${this._contadorExperiencias}" placeholder="Ex: Bayer" required>
+                </div>
+                <br><br>
+                <div>
+                    <label>É meu trabalho atual?</label>
+                    <input type="checkbox" name="trabalhoAtual${this._contadorExperiencias}" value="resposta8">
+                </div>
+                <br><br>
+                <div>
+                    <label>Data de entrada *</label>
+                    <input type="date" name="dataEntrada1" id="dataEntrada${this._contadorExperiencias}"  required>
+                    <label>Data de saída *</label>
+                    <input type="date" name="dataSaida1" id="dataSaida${this._contadorExperiencias}" required>
+                </div>
+                <br><br>
+                <div>
+                    <label>Principais atividades</label>
+                    <br>
+                    <textarea id="story" name="principaisAtividades${this._contadorExperiencias}" rows="15" cols="70"></textarea>
+                    <label>3000</label>
+                </div>
+                <br><br>
+                <div>
+                    <label>Salário</label>
+                    <br>
+                    <input type="text" step="any" min="0" name="salario${this._contadorExperiencias}" data-thousands="." data-decimal="," data-prefix="R$ "  id="salario${this._contadorExperiencias}" class="experiencias" placeholder="Ex: R$ 1500,00">
+                </div>
+                <br>
+                <button type="button" id="experienciaRemover${this._contadorExperiencias}">Remover Experiencia Anterior</button>
+                <hr>
+                <br>
+            `);
+
+            campo_experiencias.append(experiencia);
+            const linkRemover = $(`#experienciaRemover${this._contadorExperiencias}`);
+
+            linkRemover.click((event)=>{
+                event.preventDefault();
+                experiencia.fadeOut(500);
+                setTimeout(()=> experiencia.remove(),500);
+            });
+
+        })
+    }
+
+
 
     _valida_estado(estado) {
         if (estado !== $(this._estadoID).val()){

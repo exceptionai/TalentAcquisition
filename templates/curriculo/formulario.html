@@ -86,45 +86,9 @@
             <div>
                 <h3>EXPERIÊNCIAS ANTERIORES</h3>
                 <!--
-                <br>
-                <div>
-                    <label>Cargo *</label>
-                    <br>
-                    <input type="text" id="resposta6" name="cargo1" placeholder="Ex: Engenheiro Elétrico" required>
-                </div>
-                <br><br>
-                <div>
-                    <label>Nome da empresa *</label>
-                    <br>
-                    <input type="text" id="resposta7" name="nomeEmpresa1" placeholder="Ex: Bayer" required>
-                </div>
-                <br><br>
-                <div>
-                    <label>É meu trabalho atual?</label>
-                    <input type="checkbox" name="trabalhoAtual1" value="resposta8">
-                </div>
-                <br><br>
-                <div>
-                    <label>Data de entrada *</label>
-                    <input type="date" name="dataEntrada1" id="dataEntrada1" value="dataEntrada" required>
-                    <label>Data de saída *</label>
-                    <input type="date" name="dataSaida1" id="dataSaida1" value="dataSaida" required>
-                </div>
-                <br><br>
-                <div>
-                    <label>Principais atividades</label>
-                    <br>
-                    <textarea id="story" name="principaisAtividades1" rows="15" cols="70"></textarea>
-                    <label>3000</label>
-                </div>
-                <br><br>
-                <div>
-                    <label>Salário</label>
-                    <br>
-                    <input type="text" step="any" min="0" name="salario1" data-thousands="." data-decimal="," data-prefix="R$ "  id="salario1" class="experiencias" placeholder="Ex: R$ 1500,00">
-                </div>
-                <br> -->
-                <button id="salvarExperiencia" type="button">Cadastrar Experiência Anterior</button>
+                 -->
+                <div id="campoExperiencias"></div>
+                <button id="adicionarExperiencia" type="button">Cadastrar Experiência Anterior</button>
             </div>
             <br>
             <div>
@@ -187,7 +151,10 @@
     <script src="../../static/js/VagaService.js"></script>
     <script src="../../static/js/CurriculoService.js"></script>
     <script src="../../static/js/CurriculoController.js"></script>
-    <script>const controller = new CurriculoController("#uf","#cidade"); controller.geraIdiomasDinamicamente('campoIdiomas','adicionarIdioma')</script>
+    <script>
+        const controller = new CurriculoController("#uf","#cidade");
+        controller.geraIdiomasDinamicamente('campoIdiomas','adicionarIdioma');
+        controller.geraExperienciasDinamicamente('campoExperiencias','adicionarExperiencia');</script>
 
     <script>new ValidacaoFormulario();
 
