@@ -1,0 +1,11 @@
+div{
+    margin-bottom:10px;
+}
+
+.caixaDeTexto{
+    display:flex;
+}
+
+button{
+    margin-top:10px;
+}
