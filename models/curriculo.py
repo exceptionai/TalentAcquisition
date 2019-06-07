@@ -1,11 +1,17 @@
-class Curriculo:
-    def __init__(self, nome_completo, idade, email, endereco, objetivo_profissional, experiencias_anteriores,
-                 cursos_complementares, idiomas):
-        self.nome_completo = nome_completo
+class Candidato:
+    def __init__(self,nome,sobrenome,idade,email,tel_fixo,celular,salario,objetivo,id_endereco,id_curso_formacao,id_grau_formacao,
+                 id_idioma,id_experiencia_anterior,id_curso_complementar):
+        self.nome = nome
+        self.sobrenome = sobrenome
         self.idade = idade
         self.email = email
-        self.endereco = endereco
-        self.objetivo_profissional = objetivo_profissional
-        self.experiencias_anteriores = experiencias_anteriores
-        self.cursos_complementares = cursos_complementares
-        self.idiomas = idiomas
+        self.tel_fixo = tel_fixo
+        self.celular = celular
+        self.salario = salario
+        self.objetivo = objetivo
+        self.endereco = id_endereco
+        self.curso_formacao = id_curso_formacao
+        self.grau_formacao = id_grau_formacao
+        self.idioma = id_idioma
+        self.experiencia_anterior = id_experiencia_anterior
+        self.curso_complementar = id_curso_complementar
