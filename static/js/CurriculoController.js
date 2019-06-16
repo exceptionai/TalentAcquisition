@@ -174,7 +174,8 @@ class CurriculoController{
     }
 
 		status_cadastro() {
-			if(true) {
+			let requisicao = true;
+			if(requisicao) {
 				alert("Cadastro concluído com sucesso!");
 			}else {
 				alert("Não foi possível registrar suas informações. Tente novamente.");
