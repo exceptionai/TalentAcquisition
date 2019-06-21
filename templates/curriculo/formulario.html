@@ -125,76 +125,13 @@
             </div>
             <br>
             <h3>FORMAÇÕES</h3>
-            <!--
-            <label for="nivelCurso1">Nível *</label>
-            <select id="nivelCurso1" name="nivelCurso1">
-                <option value="ensinoMedio">Ensino Médio</option>
-                <option value="tecnico">Técnico</option>
-                <option value="graduacao">Graduação</option>
-                <option value="posGraduacao">Pós Graduação</option>
-                <option value="mba">MBA</option>
-                <option value="mestrado">Mestrado</option>
-                <option value="doutorado">Doutorado</option>
-                <option value="posDoutorado">Pós Doutorado</option>
-                <option value="livreDocencia">Livre Docência</option>
-            </select>
-            <br>
-            <label for="nomeCurso1">Nome do Curso*</label>
-            <input type="text" id="nomeFormacao1" name="nomeFormacao1" placeholder="Ex: Analista de Sistemas" required>
-                
-            <br>
-            <label for="nomeCurso1">Nome da Instituição*</label>
-            <input type="text" id="nomeInstituicao1" name="nomeInstituicao1" placeholder="Ex: Faculdade Bayer" required>
-                
-            <br>
-            <label for="cursando">Situação da Formação*:</label>
-            <select id="situacaoFormacao1">
-                <option value="cursando">Cursando</option>
-                <option value="concluido">Concluído</option>
-                <option value="interrompido">Interrompido</option>
-            </select>
-
-            <br>
-            -->
+            <div id="campoFormacoes"></div>
             <button id="salvarFormacao" type="button">Cadastrar Formação</button>
 
 
             <div>
                 <h3>CURSOS COMPLEMENTARES</h3>
-                <!--
-                <br>
-                <div>
-                    <label>Nome do curso *</label>
-                    <input type="text" name="nomeCurso1" id="nomeCurso1" placeholder="Ex: Excel" required>
-                    <label>Nome da instituição *</label>
-                    <input type="text" id="respostaInstituicao" name="instituicao1" placeholder="Ex: Alura" required>
-                </div>
-                <br>
-                <div><label for="dataCursoInicio1">Data Inicial *</label>
-                    <input type="date" data-date="" data-date-format="DD MM YYYY"  name="dataCursoInicio1" id="dataCursoInicio1" max="today" required>
-
-                    <label>Duração</label>
-                    <select name="duracao1">
-                        <option value="curta">Curta (até 40 horas)</option>
-                        <option value="media">Média (de 41 a 360 horas)</option>
-                        <option value="longa">Longa (acima de 360 horas</option>
-                    </select>
-                </div>
-                <br>
-                <div>
-                    <label for="cursando">Situação:</label>
-					<select id="situacao">
-                        <option value="cursando">Cursando</option>
-                        <option value="concluido">Concluído</option>
-                        <option value="interrompido">Interrompido</option>
-					</select>
-                </div>
-                <br>
-                <br>
-                    <label for="descricaoCursoExtraCurricular1">Descrição do curso</label><br>
-                    <textarea id="descricaoCursoExtraCurricular1" name="descricaoCursoExtraCurricular1" cols="76" rows="8"></textarea>
-                -->
-
+                <div id="campoCursos"></div>
                 <button id="salvarCurso" type="button">Cadastrar Curso ExtraCurricular</button>
             </div>
         </div>
@@ -223,6 +160,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-maskmoney/3.0.2/jquery.maskMoney.min.js"></script>
     <script src="../../static/js/ValidacaoFormulario.js"></script>
     <script src="../../static/js/VagaService.js"></script>
+    <script src="../../static/js/CurriculoView.js"></script>
     <script src="../../static/js/VagaController.js"></script>
     <script src="../../static/js/CurriculoService.js"></script>
     <script src="../../static/js/CurriculoController.js"></script>
@@ -231,6 +169,9 @@
         const controller = new CurriculoController(vaga,"#cidade",'#uf','#campoDispostoSeMudar');
         controller.geraIdiomasDinamicamente('campoIdiomas','adicionarIdioma');
         controller.geraExperienciasDinamicamente('campoExperiencias','adicionarExperiencia');
+        controller.geraCursosDinamicamente('campoCursos','salvarCurso');
+        controller.geraFormacaoDinamicamente('campoFormacoes','salvarFormacao');
+        
         new ValidacaoFormulario();
 
         $("#salarioAtual").maskMoney();</script>
