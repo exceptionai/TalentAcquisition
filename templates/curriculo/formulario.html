@@ -1,159 +1,180 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
-    <meta charset="UTF-8" />
-    <title>Formulario de Cadastro</title>
-    <link rel="stylesheet" type="text/css" href="../../static/css/curriculoForm.css">
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <title>
+        Material Dashboard by Creative Tim
+    </title>
+    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
+
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
+
+    <link href="../../static/css/libs/material-dashboard.css" rel="stylesheet" />
+    <link rel="stylesheet" href="../../static/css/curriculoForm.css">
 </head>
 
-<body>
-    <div id="corpo">
-        <h1>Cadastro de Currículo</h1>
-        <button type="button" class="btn" data-toggle="modal" data-target=".modal-sobre">Sobre a vaga</button>
-        <div class="modal fade modal-sobre" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-lg">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h3 class="modal-title">Saiba mais sobre nós</h3>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
-                        <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <p>
-                            Olá, Candidato! <br>
-                            Seja muito Bem Vindo. Você deve estar se perguntando “Quem é a Bayer e por que trabalhar nela?”
-                        </p>
-                        <p>
-                            A Bayer é uma organização global com competências centrais nas áreas de saúde e agricultura.<br>
-                            Os produtos e serviços da Bayer são projetados para beneficiar a população e melhorar sua qualidade de vida.
-                            
-                            Ao mesmo tempo, o Grupo tem como objetivo criar valor através da inovação e crescimento.
-                        </p>
-                        <p>
-                            - A Bayer conta com o Programa Qualidade de Vida. <br>
-                            - A Bayer está comprometida em oferecer excelentes benefícios a seus colaboradores. <br>
-                            - Acreditamos em novos talentos a serem descobertos! <br>
-                            - A Bayer é uma empresa que pensa à frente, por isso, quer caminhar junto de seus colaboradores para ter um
-                            presente e um futuro mais tranquilo.
-                        </p>
-                        <p>
-                            Não perca esta oportunidade, adoraríamos te conhecer melhor! 
-                            Para iniciar seu processo de seleção preencha este cadastro. 
-                        </p>
-                        Se é Bayer é bom.
-                        
-                    </div>
-                    <div class="modal-footer">
-                        
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-                        <button type="button" class="btn btn-primary">Salvar mudanças</button>
+<body onload="controller.esconderHeader()">
+    <div class="wrapper">
+        <div class="main-panel" style="width:100%">
+            <div class="content">
+                <div class="header-logo">
+                    <div class="escondido" id="logo">
+                        <div class="item"><img src="./logo.png" class="img-thumbnail" style="width:80px"></div>
+                        <div class="item">
+                            <h3><span style='color:#03588C'>Bayer</span> <span style='color:#86A612'>Carreiras</span></h3>
+                        </div>
                     </div>
                 </div>
-                    
-            </div>
-        </div>
-        <form class="curriculo" method="POST" action="/inserir/curriculo">
-            <p>Os campos marcados com * são obrigatório</p>
-            <div>
-                <label for="nome">
-                    <h3>NOME COMPLETO*</h3>
-                </label>
-                <input type="text" name="nome" id="nome" required>
-                <label for="idade">
-                    <h3>IDADE</h3>
-                </label>
-                <input type="number" min="10" max="200" step="1" name="idade" id="idade">
-                <label for="email">
-                    <h3>E-MAIL*</h3>
-                </label>
-                <input type="email" name="email" id="email" placeholder="usuario@email.com" required>
-                <br>
+                <div class="container-fluid">
+                    <div class="col-md-11 m-auto">
+                        <div class="card" id="conteudoCard">
+                            <div id="fotoCarreiras">
+                                <img src="./carreiras.jpg" class='img-thumbnail'>
+                            </div>
+                            <form class="m-3">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="bmd-label-floating">Nome Completo</label>
+                                            <input type="text" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="bmd-label-floating">Idade</label>
+                                            <input type="number" class="form-control">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="bmd-label-floating">Email</label>
+                                            <input type="email" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label class="bmd-label-floating">Telefone Residêncial</label>
+                                            <input type="text" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label class="bmd-label-floating">Telefone Celular</label>
+                                            <input type="text" class="form-control">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="bmd-label-floating">Endereço</label>
+                                            <input type="text" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label class="bmd-label-floating">Estado</label>
+                                            <select class="form-control" data-style="btn btn-link">
+                                              <option>São Paulo</option>
+                                              <option>Rio de Janeiro</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label class="bmd-label-floating">Cidade</label>
+                                            <select class="form-control" data-style="btn btn-link">
+                                              <option>São Paulo</option>
+                                              <option>Rio de Janeiro</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label>Resumo</label>
+                                            <div class="form-group">
+                                                <label class="bmd-label-floating"> 
+                                                  Conte mais sobre sua carreira, experiências e conhecimentos
+                                                </label>
+                                                <textarea id="resumoCandidato" name="resumoCandidato" class="form-control" rows="5"></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label id="objetivo" name="objetivo" class="bmd-label-floating">Objetivo Profissional</label>
+                                            <input type="text" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="bmd-label-floating">Expectativa de salário</label>
+                                            <input type="text" id="salarioExpectativa" name="salarioExpectativa" class="form-control">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="campoExperiencias"></div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <button type="button" id="botaoExperiencias" class="btn btn-dark">
+                                          Cadastrar Experiência Anterior
+                                        </button>
+                                    </div>
+                                </div>
+                                <div id="campoFormacoes"></div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <button type="button" id="botaoFormacoes" class="btn btn-dark">
+                                              Cadastrar Formação Acadêmica
+                                            </button>
+                                    </div>
+                                </div>
+                                <div id="campoCursos"></div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <button type="button" id="botaoCursos" class="btn btn-dark">
+                                              Cadastrar Curso Complementar
+                                            </button>
+                                    </div>
+                                </div>
+                                <div id="campoIdiomas"></div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <button type="button" id="botaoIdiomas" class="btn btn-dark">Cadastrar Idioma</button>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="enviar col-md-12">
+                                        <button type="submit" class="btn btn-primary pull-right ">Enviar</button>
+                                    </div>
+                                </div>
+                                <div class="clearfix"></div>
+                            </form>
 
-                <label for="telefoneResidencial">
-                    <h3>TELEFONE RESIDENCIAL</h3>
-                </label>
-                <input type="text" name="telefoneResidencial" id="telefoneResidencial"/>
-                <label for="telefoneCelular">
-                    <h3>TELEFONE CELULAR</h3>
-                </label>
-                <input type="text" name="telefoneCelular" id="telefoneCelular"/>
-                <div>
-                    <h3>ENDEREÇO*</h3>
-                    <label for="ruaEndereco"></label>Endereço <input type="text" id="ruaEndereco" name="endereco" placeholder="Rua/Avenida,123" required>
-                   <br><br>
-                    <label for="uf">Estado</label>
-                    <select id="uf" name="uf" disabled data-target="#cidade">
-                        <option>Estado</option>
-                    </select>
-                    <label for="cidade">Cidade</label>
-                    <select id="cidade" name="cidade">
-                        <option>Cidade</option>
-                    </select>
-                    <div id="campoDispostoSeMudar" class="escondido">
-                        <label for="dispostoSeMudar">Disposto a se mudar </label>
-                        <select id="dispostoSeMudar" name="dispostoSeMudar">
-                            <option value="True">Sim</option>
-                            <option value="False">Não</option>
-                        </select>
+                        </div>
                     </div>
+
                 </div>
             </div>
+            <footer class="footer">
+                <div class="container-fluid">
+                    <nav class="float-left">
 
-            <label for="resumo">
-                <h3>RESUMO*</h3>
-            </label>
-            <textarea id="resumoCandidato" name="resumoCandidato" cols="76" rows="8"></textarea>
-          
-            
-            <div>
-                <label for="objetivo">
-                    <h3>OBJETIVO PROFISSIONAL*</h3>
-                </label>
-                <input type="text" id="objetivo" name="objetivo" required>
-                <label for="salarioExpectativa"><h3>EXPECTATIVA DE SALÁRIO</h3></label>
-                <input type="text" id="salarioExpectativa" name="salarioExpectativa" data-thousands="." data-decimal="," data-prefix="R$ " placeholder="Ex: R$ XXXX,XX" />
-
-            <br>
-            <div>
-                <h3>EXPERIÊNCIAS ANTERIORES</h3>
-                <!--
-                 -->
-                <div id="campoExperiencias"></div>
-                <button id="adicionarExperiencia" type="button">Cadastrar Experiência Anterior</button>
-            </div>
-            <br>
-            <h3>FORMAÇÕES</h3>
-            <div id="campoFormacoes"></div>
-            <button id="salvarFormacao" type="button">Cadastrar Formação</button>
-
-
-            <div>
-                <h3>CURSOS COMPLEMENTARES</h3>
-                <div id="campoCursos"></div>
-                <button id="salvarCurso" type="button">Cadastrar Curso ExtraCurricular</button>
-            </div>
+                    </nav>
+                </div>
+            </footer>
         </div>
-            <div>
-                <label>
-                    <h3>IDIOMAS</h3>
-                </label>
-                <label for="idioma">Idioma:</label>
-                <div id="campoIdiomas"></div>
-                <button id="adicionarIdioma" type="button">Adicionar Idioma</button>
-            </div>
-            <br>
-            <br>
-            <button id="enviar" type="submit" onclick="controller.status_cadastro()">ENVIAR</button>
-        </form>
     </div>
-    <br>
-    <footer>
-        <span>Exception &reg; - 2019</span><br>
-        <span>Formulário de Cadastro</span><br>
-        <span>Bayer</span><br>
-    </footer>
+
+
     <script src="../../static/js/libs/jquery-1.11.3.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
@@ -166,15 +187,13 @@
     <script src="../../static/js/CurriculoController.js"></script>
     <script>
         const vaga = new VagaController().get_vaga();
-        const controller = new CurriculoController(vaga,"#cidade",'#uf','#campoDispostoSeMudar');
-        controller.geraIdiomasDinamicamente('campoIdiomas','adicionarIdioma');
-        controller.geraExperienciasDinamicamente('campoExperiencias','adicionarExperiencia');
-        controller.geraCursosDinamicamente('campoCursos','salvarCurso');
-        controller.geraFormacaoDinamicamente('campoFormacoes','salvarFormacao');
-        
-        new ValidacaoFormulario();
-
-        $("#salarioAtual").maskMoney();</script>
+        const controller = new CurriculoController(vaga, "#cidade", '#uf', '#campoDispostoSeMudar');
+        controller.geraIdiomasDinamicamente('campoIdiomas', 'botaoIdiomas');
+        controller.geraExperienciasDinamicamente('campoExperiencias', 'botaoExperiencias');
+        controller.geraCursosDinamicamente('campoCursos', 'botaoCursos');
+        controller.geraFormacaoDinamicamente('campoFormacoes', 'botaoFormacoes');
+        ValidacaoFormulario.mascara_salarios("salarioExpectativa")
+    </script>
 </body>
 
 </html>

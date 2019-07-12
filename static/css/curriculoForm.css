@@ -1,8 +1,121 @@
-.escondido{
-    display:none;
+.escondido {
+    display: none;
 }
 
-.campoIdiomaAdicional{
-    display:block;
-    margin-bottom:10px;
+.campoIdiomaAdicional {
+    display: block;
+    margin-bottom: 10px;
+}
+
+.card {
+    background-color: rgba(0, 0, 0, 0);
+    box-shadow: none;
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.col-md-10 {
+    padding-right: 0;
+    padding-left: 0;
+}
+
+.form-control {
+    background-color: #86A612;
+    color: #fff;
+}
+
+.bmd-label-floating,
+.form-group label {
+    color: #03588C;
+}
+
+.form-control {
+    background-image: linear-gradient(to top, #03588C 2px, rgba(156, 39, 176, 0) 2px), linear-gradient(to top, #d2d2d2 1px, rgba(210, 210, 210, 0) 1px)
+}
+
+#logo {
+    display: none;
+}
+
+@media(min-width:800px) {
+    #logo {
+        display: flex;
+        background-color: #fff;
+        padding: 10px;
+        position: fixed;
+        z-index: 2;
+        width: 100%;
+    }
+}
+
+#logo img {
+    border-radius: 50;
+    border: none;
+    background-color: rgba(0, 0, 0, 0);
+    box-shadow: none
+}
+
+.item {
+    order: 1;
+}
+
+.item h3 {
+    padding-left: 25px;
+    align-content: center;
+}
+
+@media(min-width:1200px) {
+    .item h2 {}
+}
+
+.content {
+    margin-top: 0!important;
+    padding: 0!important;
+}
+
+.enviar button {
+    background-color: #03588C!important
+}
+
+.btn-dark {
+    background-color: #444;
+}
+
+#fotoCarreiras img {
+    border: none;
+    border-radius: 0;
+    padding: 0;
+    margin: 0 auto;
+}
+
+.enviar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.header-logo {
+    display: none;
+}
+
+.form-check .form-check-input:checked+.form-check-sign .check {
+    background: #03588C;
+}
+
+.form-check {
+    margin-top: 47px!important;
+}
+
+.form-control::placeholder {
+    color: #fff;
+}
+
+.form-check-input {
+    padding-top: 10px;
+    position: absolute;
+}
+
+#conteudoCard {
+    margin-top: 0px;
 }
