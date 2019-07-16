@@ -153,7 +153,7 @@
                                 </div>
                                 <div class="row">
                                     <div class="enviar col-md-12">
-                                        <button type="submit" class="btn btn-primary pull-right ">Enviar</button>
+                                        <button type="button" class="btn btn-primary pull-right" onclick="controller.enviarCurriculo()">Enviar</button>
                                     </div>
                                 </div>
                                 <div class="clearfix"></div>
@@ -184,7 +184,9 @@
     <script src="../../static/js/CurriculoView.js"></script>
     <script src="../../static/js/VagaController.js"></script>
     <script src="../../static/js/CurriculoService.js"></script>
+    <script src="../../static/js/HttpService.js"></script>
     <script src="../../static/js/CurriculoController.js"></script>
+
     <script>
         const vaga = new VagaController().get_vaga();
         const controller = new CurriculoController(vaga, "#cidade", '#uf', '#campoDispostoSeMudar');

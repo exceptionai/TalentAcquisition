@@ -9,6 +9,7 @@ class CurriculoController {
         this._contadorExperiencias = 0;
         this._vaga = vaga;
         this._view = new CurriculoView();
+        this._http = new HttpService();
     }
 
     _control_endereco() {
@@ -138,5 +139,12 @@ class CurriculoController {
         } else {
             alert("Não foi possível registrar suas informações. Tente novamente.");
         }
+    }
+
+    enviarCurriculo(){
+        this._http.post("http://localhost:3000/curriculo",{})
+            .then(resposta=>{
+                console.log(resposta)
+            })
     }
 }

@@ -1,0 +1,18 @@
+{
+  "curriculo": [
+    {
+      "id": 1,
+      "nome": "",
+      "idade": 0,
+      "email": "",
+      "telefoneResidencial": "",
+      "telefoneCelular": "",
+      "endereco": "",
+      "estado": "",
+      "cidade": "",
+      "resumo": "",
+      "objetivoProfissional": "",
+      "expectativaSalario": 0
+    }
+  ]
+}
