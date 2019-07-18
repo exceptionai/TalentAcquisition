@@ -2,17 +2,21 @@
   "curriculo": [
     {
       "id": 1,
-      "nome": "",
-      "idade": 0,
-      "email": "",
-      "telefoneResidencial": "",
-      "telefoneCelular": "",
-      "endereco": "",
-      "estado": "",
-      "cidade": "",
-      "resumo": "",
-      "objetivoProfissional": "",
-      "expectativaSalario": 0
+      "nome": "rENAN",
+      "resumoCandidato": "",
+      "salarioExpectativa": ""
+    },
+    {
+      "nome": "Renan do Nascimento Sanches",
+      "resumoCandidato": "Testar tudo",
+      "salarioExpectativa": "",
+      "id": 2
+    },
+    {
+      "nome": "Renan Testador",
+      "resumoCandidato": "Testar absolutamente tudo",
+      "salarioExpectativa": "R$ 12,50",
+      "id": 3
     }
   ]
 }

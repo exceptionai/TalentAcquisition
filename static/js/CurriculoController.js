@@ -1,15 +1,17 @@
 class CurriculoController {
     constructor(vaga, cidadeID, estadoID, dispostoMudarEstadoID) {
-        this._estadoID = estadoID;
+        this._vaga = vaga;
         this._cidadeID = cidadeID;
+        this._estadoID = estadoID;
+        this._dispostoMudarEstadoID = dispostoMudarEstadoID;
         this._control_endereco();
         this._estados = [];
-        this._dispostoMudarEstadoID = dispostoMudarEstadoID;
         this._contadorIdiomas = 0;
         this._contadorExperiencias = 0;
-        this._vaga = vaga;
         this._view = new CurriculoView();
         this._http = new HttpService();
+        
+        
     }
 
     _control_endereco() {
@@ -142,7 +144,12 @@ class CurriculoController {
     }
 
     enviarCurriculo(){
-        this._http.post("http://localhost:3000/curriculo",{})
+
+        let form = document.querySelector("#formularioCurriculo");
+        
+        let curriculo = FormHelper.toJSONString(form)
+        console.log(curriculo)
+        this._http.post("http://localhost:3000/curriculo",curriculo)
             .then(resposta=>{
                 console.log(resposta)
             })

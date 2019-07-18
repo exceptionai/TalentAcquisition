@@ -33,18 +33,19 @@
                             <div id="fotoCarreiras">
                                 <img src="./carreiras.jpg" class='img-thumbnail'>
                             </div>
-                            <form class="m-3">
+                            <form class="m-3" id="formularioCurriculo">
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label class="bmd-label-floating">Nome Completo</label>
-                                            <input type="text" class="form-control">
+                                            <input type="text" name="nome" class="form-control" id="nome">
+                                            
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label class="bmd-label-floating">Idade</label>
-                                            <input type="number" class="form-control">
+                                            <input type="number" class="form-control" id="idade">
                                         </div>
                                     </div>
                                 </div>
@@ -52,19 +53,19 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label class="bmd-label-floating">Email</label>
-                                            <input type="email" class="form-control">
+                                            <input type="email" class="form-control" id="email">
                                         </div>
                                     </div>
                                     <div class="col-md-3">
                                         <div class="form-group">
                                             <label class="bmd-label-floating">Telefone Residêncial</label>
-                                            <input type="text" class="form-control">
+                                            <input type="text" class="form-control" id="telefoneResidencial">
                                         </div>
                                     </div>
                                     <div class="col-md-3">
                                         <div class="form-group">
                                             <label class="bmd-label-floating">Telefone Celular</label>
-                                            <input type="text" class="form-control">
+                                            <input type="text" class="form-control" id="telefoneCelular">
                                         </div>
                                     </div>
                                 </div>
@@ -175,6 +176,7 @@
     </div>
 
 
+    <script src="../../static/js/FormHelper.js"></script>
     <script src="../../static/js/libs/jquery-1.11.3.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
@@ -186,7 +188,6 @@
     <script src="../../static/js/CurriculoService.js"></script>
     <script src="../../static/js/HttpService.js"></script>
     <script src="../../static/js/CurriculoController.js"></script>
-
     <script>
         const vaga = new VagaController().get_vaga();
         const controller = new CurriculoController(vaga, "#cidade", '#uf', '#campoDispostoSeMudar');
