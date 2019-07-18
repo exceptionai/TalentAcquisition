@@ -148,7 +148,6 @@ class CurriculoController {
         let form = document.querySelector("#formularioCurriculo");
         
         let curriculo = FormHelper.toJSONString(form)
-        console.log(curriculo)
         this._http.post("http://localhost:3000/curriculo",curriculo)
             .then(resposta=>{
                 console.log(resposta)

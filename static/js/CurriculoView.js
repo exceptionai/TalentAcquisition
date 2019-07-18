@@ -188,8 +188,15 @@ class CurriculoView {
                     <div class="form-group">
                         <div class="form-check">
                             <label class="form-check-label">
-                                <input class="form-check-input" type="checkbox" name="trabalhoAtual${this._contadorExperiencias}" value="">
+                                <input class="form-check-input" type="radio" name="trabalhoAtual${this._contadorExperiencias}" value="teste1">
                                 É meu emprego atual
+                                <span class="form-check-sign">
+                                    <span class="check"></span>
+                                </span>
+                            </label>
+                            <label class="form-check-label">
+                                <input class="form-check-input" type="radio" name="trabalhoAtual${this._contadorExperiencias}" value="teste2">
+                                É meu emprego atuald
                                 <span class="form-check-sign">
                                     <span class="check"></span>
                                 </span>
