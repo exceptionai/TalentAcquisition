@@ -148,26 +148,26 @@ class CurriculoView {
     experienciaAnterior() {
         this._contadorExperiencias++;
         const campoExperienciaAnterior = $(`
-        <div id="experienciaAnterior${this._contadorExperiencias}">
+        <div id="experienciaAnterior${this._contadorExperiencias}" data-group="true">
             <hr>
             Experiências Anteriores
             <div class="row">
                 <div class="col-md-4">
                     <div class="form-group">
                         <label class="bmd-label-floating">Nome da empresa</label>
-                        <input type="text" class="form-control" name="nomeEmpresa${this._contadorExperiencias}" placeholder="Ex: Bayer" required>
+                        <input type="text" data-parent="experienciasAnteriores" class="form-control" name="nomeEmpresa${this._contadorExperiencias}" placeholder="Ex: Bayer" required>
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="form-group">
                         <label class="bmd-label-floating">Cargo</label>
-                        <input type="number" class="form-control"  name="cargo${this._contadorExperiencias}"  placeholder="Ex: Engenheiro Elétrico" required>
+                        <input type="number" data-parent="experienciasAnteriores" class="form-control"  name="cargo${this._contadorExperiencias}"  placeholder="Ex: Engenheiro Elétrico" required>
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="form-group">
                         <label class="bmd-label-floating">Salário</label>
-                        <input type="text" class="form-control" name="salario${this._contadorExperiencias}" id="salario${this._contadorExperiencias}">
+                        <input type="text" data-parent="experienciasAnteriores" class="form-control" name="salario${this._contadorExperiencias}" id="salario${this._contadorExperiencias}">
                     </div>
                 </div>
             </div>
@@ -175,27 +175,27 @@ class CurriculoView {
                 <div class="col-md-4">
                     <div class="form-group">
                         <label class="bmd-label-floating">Data de entrada *</label>
-                        <input type="date" class="form-control" name="dataEntrada${this._contadorExperiencias}" id="dataEntrada${this._contadorExperiencias}"  required>
+                        <input type="date" data-parent="experienciasAnteriores" class="form-control" name="dataEntrada${this._contadorExperiencias}" id="dataEntrada${this._contadorExperiencias}"  required>
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="form-group">
                         <label class="bmd-label-floating">Data de saída *</label>
-                        <input type="date" class="form-control" name="dataSaida${this._contadorExperiencias}" id="dataSaida${this._contadorExperiencias}" required>
+                        <input type="date" data-parent="experienciasAnteriores" class="form-control" name="dataSaida${this._contadorExperiencias}" id="dataSaida${this._contadorExperiencias}" required>
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="form-group">
                         <div class="form-check">
                             <label class="form-check-label">
-                                <input class="form-check-input" type="radio" name="trabalhoAtual${this._contadorExperiencias}" value="teste1">
+                                <input class="form-check-input" data-parent="experienciasAnteriores" type="radio" name="trabalhoAtual${this._contadorExperiencias}" value="teste1">
                                 É meu emprego atual
                                 <span class="form-check-sign">
                                     <span class="check"></span>
                                 </span>
                             </label>
                             <label class="form-check-label">
-                                <input class="form-check-input" type="radio" name="trabalhoAtual${this._contadorExperiencias}" value="teste2">
+                                <input class="form-check-input" data-parent="experienciasAnteriores" type="radio" name="trabalhoAtual${this._contadorExperiencias}" value="teste2">
                                 É meu emprego atuald
                                 <span class="form-check-sign">
                                     <span class="check"></span>
@@ -210,7 +210,7 @@ class CurriculoView {
                     <div class="form-group">
                         <div class="form-group">
                             <label class="bmd-label-floating">Principais atividades</label>
-                            <textarea class="form-control" name="principaisAtividades${this._contadorExperiencias}" rows="5"></textarea>
+                            <textarea  data-parent="experienciasAnteriores" class="form-control" name="principaisAtividades${this._contadorExperiencias}" rows="5"></textarea>
                         </div>
                     </div>
                 </div>
