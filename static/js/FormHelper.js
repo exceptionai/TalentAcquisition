@@ -2,21 +2,29 @@ class FormHelper{
 	static toJSONString( form ) {
 		let obj = {};
 		let elements = form.querySelectorAll( "input, select, textarea" );
+		
 		let newObj = {};
-		for( let i = 0; i < elements.length; ++i ) {
-			let element = elements[i];
-			let name = element.name;
-			let value = element.value;
-			let id = element.id;
-
+		elements.forEach( element =>{
+			let {name, value, id} = element;
 			const parent = element.getAttribute("data-parent")
+
 			if(parent){
+				let contem = false;
 				newObj[name] = value
-				if(obj[parent]) obj[parent].push(newObj)
-				else obj[parent] = [newObj]
-			}
-			
-			if(element.type == "checkbox" && name){
+				if(!obj[parent]) obj[parent] = [{}]
+				let newObjeto = {};
+				for(let objeto of obj[parent]){
+					if(Object.keys(objeto).includes(name)){
+						newObjeto[name] = value;
+					}else{
+						objeto[name] = value;
+					}
+					if(objeto[name] == value) contem = true;
+				}
+				
+				if(Object.keys(newObjeto).length && !contem) obj[parent].push(newObjeto)
+
+			}else if(element.type == "checkbox" && name){
 				if(element.checked) obj[ name ] = true;
 				else obj[name] = false;
 			}else if(element.type == "radio"){
@@ -26,8 +34,9 @@ class FormHelper{
 			}else if(id){
 				obj[ id ] = value;
 			}
-		}
+		})
 
 		return JSON.stringify( obj );
 	}
+
 }

@@ -112,7 +112,7 @@ class CurriculoView {
                     <div class="col-md-6">
                         <div class="form-group">
                             <label class="bmd-label-floating">Idioma</label>
-                            <select class="form-control" data-style="btn btn-link">
+                            <select class="form-control" data-style="btn btn-link" name="idioma" data-parent="idiomas">
                                 <option value="" selected disabled>Idioma</option>
                                 <option value="ingles">Inglês</option>
                                 <option value="espanhol">Espanhol</option>
@@ -127,7 +127,7 @@ class CurriculoView {
                     <div class="col-md-6">
                         <div class="form-group">
                             <label class="bmd-label-floating">Nível</label>
-                            <select class="form-control" data-style="btn btn-link" >
+                            <select class="form-control" data-style="btn btn-link" name="nivelIdioma" data-parent="idiomas" >
                                 <option value="" selected disabled>Nível</option>
                                 <option value="basico">Básico</option>
                                 <option value="intermediario">Intermediário</option>
@@ -194,13 +194,6 @@ class CurriculoView {
                                     <span class="check"></span>
                                 </span>
                             </label>
-                            <label class="form-check-label">
-                                <input class="form-check-input" data-parent="experienciasAnteriores" type="radio" name="trabalhoAtual${this._contadorExperiencias}" value="teste2">
-                                É meu emprego atuald
-                                <span class="form-check-sign">
-                                    <span class="check"></span>
-                                </span>
-                            </label>
                         </div>
                     </div>
                 </div>
@@ -234,13 +227,13 @@ class CurriculoView {
                     <div class="col-md-6">
                         <div class="form-group">
                             <label class="bmd-label-floating">Nome do Curso</label>
-                            <input type="text" class="form-control" id="nomeFormacao${this._contadorFormacao}" name="nomeFormacao${this._contadorFormacao}">
+                            <input type="text" data-parent="formacaoAcademica" class="form-control" id="nomeFormacao${this._contadorFormacao}" name="curso">
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
                             <label class="bmd-label-floating">Nível</label>
-                            <select class="form-control" data-style="btn btn-link" name="nivelCurso${this._contadorFormacao}" >
+                            <select class="form-control" data-parent="formacaoAcademica" data-style="btn btn-link" name="nivelCurso" >
                                 <option value="ensinoMedio">Ensino Médio</option>
                                 <option value="tecnico">Técnico</option>
                                 <option value="graduacao">Graduação</option>
@@ -258,13 +251,13 @@ class CurriculoView {
                     <div class="col-md-6">
                         <div class="form-group">
                             <label class="bmd-label-floating">Nome da Instituição</label>
-                            <input type="text" class="form-control" id="nomeInstituicao${this._contadorFormacao}" name="nomeInstituicao${this._contadorFormacao}">
+                            <input type="text" data-parent="formacaoAcademica" class="form-control" id="nomeInstituicao" name="nomeInstituicao${this._contadorFormacao}">
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
                             <label class="bmd-label-floating">Situação</label>
-                            <select class="form-control" data-style="btn btn-link" id="situacaoFormacao${this._contadorFormacao}" name="situacaoFormacao${this._contadorFormacao}">
+                            <select class="form-control" data-parent="formacaoAcademica" data-style="btn btn-link" id="situacaoFormacao${this._contadorFormacao}" name="situacaoFormacao">
                                 <option>Cursando</option>
                                 <option>Concluído</option>
                                 <option>Interrompido</option>
