@@ -46,8 +46,8 @@
         left:0;
         z-index: 2;
         width: 100%;
+      }
     }
-}
 
 #logo img {
     border-radius: 50;
@@ -75,11 +75,15 @@
 }
 
 .enviar button {
-    background-color: #03588C!important
+    background-color: #03588C!important;
 }
 
 .btn-dark {
     background-color: #444;
+}
+
+.btn-danger {
+    background-color: #84008A!important;
 }
 
 #fotoCarreiras img {
