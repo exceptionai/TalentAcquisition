@@ -1,7 +1,7 @@
 class ValidacaoFormulario {
 
 
-    static _mascara_salarios(...salariosID) {
+    static mascara_salarios(...salariosID) {
         for (let salarioID of salariosID) {
             $("#" + salarioID).maskMoney({ prefix: 'R$ ', thousands: '.', decimal: ',' });
         }

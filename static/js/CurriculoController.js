@@ -107,7 +107,7 @@ class CurriculoController {
                 event.preventDefault();
                 curriculoView.removerCampo(campoAdicionalID, campoID)
             });
-            ValidacaoFormulario.valida(campoAdicionalID+campoIDS);
+            ValidacaoFormulario.valida(campoAdicionalID+campoID);
         })
     }
 
