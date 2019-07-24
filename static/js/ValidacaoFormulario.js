@@ -47,6 +47,9 @@ class ValidacaoFormulario {
                     case "data":
                         validaDatas.push(element.id);
                         break;
+                    case "salario":
+                        this.mascara_salarios(element.id);
+                        break;
                 }
             }
         });
