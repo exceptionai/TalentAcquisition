@@ -91,6 +91,7 @@ class CurriculoView {
                             <div class="form-group">
                                 <label class="bmd-label-floating">Descrição do curso</label>
                                 <textarea class="form-control" rows="5"></textarea>
+                                <p class="text-muted"><small><span name="txtArea">100</span></small> caracteres restantes</p>
                             </div>
                         </div>
                     </div>
@@ -175,13 +176,13 @@ class CurriculoView {
                 <div class="col-md-4">
                     <div class="form-group">
                         <label class="bmd-label-floating">Data de entrada *</label>
-                        <input type="date" data-parent="experienciasAnteriores" class="form-control" name="dataEntrada${this._contadorExperiencias}" id="dataEntrada${this._contadorExperiencias}"  required>
+                        <input type="date" data-parent="experienciasAnteriores" class="form-control" name="dataEntrada${this._contadorExperiencias}" id="dataEntrada${this._contadorExperiencias}" data-valida="data" required>
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="form-group">
                         <label class="bmd-label-floating">Data de saída *</label>
-                        <input type="date" data-parent="experienciasAnteriores" class="form-control" name="dataSaida${this._contadorExperiencias}" id="dataSaida${this._contadorExperiencias}" required>
+                        <input type="date" data-parent="experienciasAnteriores" class="form-control" name="dataSaida${this._contadorExperiencias}" id="dataSaida${this._contadorExperiencias}" data-valida="data" required>
                     </div>
                 </div>
                 <div class="col-md-4">
@@ -204,6 +205,7 @@ class CurriculoView {
                         <div class="form-group">
                             <label class="bmd-label-floating">Principais atividades</label>
                             <textarea  data-parent="experienciasAnteriores" class="form-control" name="principaisAtividades${this._contadorExperiencias}" rows="5"></textarea>
+                            <p class="text-muted"><small><span name="txtArea">1000</span></small> caracteres restantes</p>
                         </div>
                     </div>
                 </div>

@@ -5,11 +5,13 @@
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <title>
-        Material Dashboard by Creative Tim
+        Formulário de Cadastro
     </title>
-    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no"
+        name="viewport" />
 
-    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
+    <link rel="stylesheet" type="text/css"
+        href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
 
     <link href="../../static/css/libs/material-dashboard.css" rel="stylesheet" />
     <link rel="stylesheet" href="../../static/css/curriculoForm.css">
@@ -24,22 +26,24 @@
                         <div class="card" id="conteudoCard">
                             <div class="header-logo">
                                 <div class="escondido" id="logo">
-                                    <div class="item"><img src="./logo.png" class="img-thumbnail" style="width:80px"></div>
+                                    <div class="item"><img src="./logo.png" class="img-thumbnail" style="width:80px">
+                                    </div>
                                     <div class="item">
-                                        <h3><span style='color:#03588C'>Bayer</span> <span style='color:#86A612'>Carreiras</span></h3>
+                                        <h3><span style="color:#03588C">Bayer</span> <span
+                                                style="color:#86A612">Carreiras</span></h3>
                                     </div>
                                 </div>
                             </div>
                             <div id="fotoCarreiras">
-                                <img src="./carreiras.jpg" class='img-thumbnail'>
+                                <img src="./carreiras.jpg" class="img-thumbnail">
                             </div>
                             <form class="m-3" id="formularioCurriculo">
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label class="bmd-label-floating">Nome Completo</label>
-                                            <input type="text" name="nome" class="form-control" id="nome">
-                                            
+                                            <input type="text" name="nome" class="form-control" id="nome" maxlength="50">
+
                                         </div>
                                     </div>
                                     <div class="col-md-6">
@@ -52,8 +56,8 @@
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label class="bmd-label-floating">Email</label>
-                                            <input type="email" class="form-control" id="email">
+                                            <label class="bmd-label-floating">E-mail</label>
+                                            <input type="email" class="form-control" id="email" maxlength="100">
                                         </div>
                                     </div>
                                     <div class="col-md-3">
@@ -80,8 +84,9 @@
                                         <div class="form-group">
                                             <label class="bmd-label-floating">Estado</label>
                                             <select class="form-control" name="estado" data-style="btn btn-link">
-                                              <option>São Paulo</option>
-                                              <option>Rio de Janeiro</option>
+                                                <option selected disabled>Escolha o Estado</option>
+                                                <option>São Paulo</option>
+                                                <option>Rio de Janeiro</option>
                                             </select>
                                         </div>
                                     </div>
@@ -89,8 +94,9 @@
                                         <div class="form-group">
                                             <label class="bmd-label-floating">Cidade</label>
                                             <select class="form-control" name="cidade" data-style="btn btn-link">
-                                              <option>São Paulo</option>
-                                              <option>Rio de Janeiro</option>
+                                                <option selected disabled>Escolha a Cidade</option>
+                                                <option>São Paulo</option>
+                                                <option>Rio de Janeiro</option>
                                             </select>
                                         </div>
                                     </div>
@@ -100,10 +106,11 @@
                                         <div class="form-group">
                                             <label>Resumo</label>
                                             <div class="form-group">
-                                                <label class="bmd-label-floating"> 
-                                                  Conte mais sobre sua carreira, experiências e conhecimentos
+                                                <label class="bmd-label-floating">
+                                                    Conte mais sobre sua carreira, experiências e conhecimentos
                                                 </label>
-                                                <textarea id="resumoCandidato" name="resumoCandidato" class="form-control" rows="5"></textarea>
+                                                <textarea id="resumoCandidato" name="resumoCandidato"class="form-control textarea" rows="7" maxlength="1000"></textarea>
+                                                <p class="text-muted"><small><span name="txtArea">1000</span></small> caracteres restantes</p>
                                             </div>
                                         </div>
                                     </div>
@@ -111,14 +118,16 @@
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label id="objetivo" name="objetivo" class="bmd-label-floating">Objetivo Profissional</label>
+                                            <label id="objetivo" name="objetivo" class="bmd-label-floating">Objetivo
+                                                Profissional</label>
                                             <input type="text" class="form-control">
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label class="bmd-label-floating">Expectativa de salário</label>
-                                            <input type="text" id="salarioExpectativa" name="salarioExpectativa" class="form-control">
+                                            <input type="text" id="salarioExpectativa" name="salarioExpectativa"
+                                                class="form-control">
                                         </div>
                                     </div>
                                 </div>
@@ -126,7 +135,7 @@
                                 <div class="row">
                                     <div class="col-md-6">
                                         <button type="button" id="botaoExperiencias" class="btn btn-dark">
-                                          Cadastrar Experiência Anterior
+                                            Cadastrar Experiência Anterior
                                         </button>
                                     </div>
                                 </div>
@@ -134,27 +143,31 @@
                                 <div class="row">
                                     <div class="col-md-6">
                                         <button type="button" id="botaoFormacoes" class="btn btn-dark">
-                                              Cadastrar Formação Acadêmica
-                                            </button>
+                                            Cadastrar Formação Acadêmica
+                                        </button>
                                     </div>
                                 </div>
                                 <div id="campoCursos"></div>
                                 <div class="row">
                                     <div class="col-md-6">
                                         <button type="button" id="botaoCursos" class="btn btn-dark">
-                                              Cadastrar Curso Complementar
-                                            </button>
+                                            Cadastrar Curso Complementar
+                                        </button>
                                     </div>
                                 </div>
                                 <div id="campoIdiomas"></div>
                                 <div class="row">
                                     <div class="col-md-6">
-                                        <button type="button" id="botaoIdiomas" class="btn btn-dark">Cadastrar Idioma</button>
+                                        <button type="button" id="botaoIdiomas" class="btn btn-dark">Cadastrar
+                                            Idioma
+                                        </button>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="enviar col-md-12">
-                                        <button type="button" class="btn btn-primary pull-right" onclick="controller.enviarCurriculo()">Enviar</button>
+                                        <button type="button" class="btn btn-primary pull-right" onclick="controller.enviarCurriculo()">
+                                            Enviar
+                                        </button>
                                     </div>
                                 </div>
                                 <div class="clearfix"></div>
@@ -174,12 +187,14 @@
             </footer>
         </div>
     </div>
-
-
     <script src="../../static/js/FormHelper.js"></script>
     <script src="../../static/js/libs/jquery-1.11.3.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+        integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+        integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+        crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-maskmoney/3.0.2/jquery.maskMoney.min.js"></script>
     <script src="../../static/js/ValidacaoFormulario.js"></script>
     <script src="../../static/js/VagaService.js"></script>
@@ -190,12 +205,12 @@
     <script src="../../static/js/CurriculoController.js"></script>
     <script>
         const vaga = new VagaController().get_vaga();
-        const controller = new CurriculoController(vaga, "#cidade", '#uf', '#campoDispostoSeMudar');
-        controller.geraIdiomasDinamicamente('campoIdiomas', 'botaoIdiomas');
-        controller.geraExperienciasDinamicamente('campoExperiencias', 'botaoExperiencias');
-        controller.geraCursosDinamicamente('campoCursos', 'botaoCursos');
-        controller.geraFormacaoDinamicamente('campoFormacoes', 'botaoFormacoes');
-        ValidacaoFormulario.mascara_salarios("salarioExpectativa")
+        const controller = new CurriculoController(vaga, "#cidade", "#uf", "#campoDispostoSeMudar");
+        controller.geraIdiomasDinamicamente("campoIdiomas", "botaoIdiomas");
+        controller.geraExperienciasDinamicamente("campoExperiencias", "botaoExperiencias");
+        controller.geraCursosDinamicamente("campoCursos", "botaoCursos");
+        controller.geraFormacaoDinamicamente("campoFormacoes", "botaoFormacoes");
+        ValidacaoFormulario.mascara_salarios("salarioExpectativa");
     </script>
 </body>
 
