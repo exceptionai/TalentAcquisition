@@ -166,7 +166,7 @@ class CurriculoView {
                 <div class="col-md-4">
                     <div class="form-group">
                         <label class="bmd-label-floating">Salário</label>
-                        <input type="text" data-parent="experienciasAnteriores" class="form-control" name="salario${this._contadorExperiencias}" id="salario${this._contadorExperiencias}">
+                        <input type="text" data-parent="experienciasAnteriores" class="form-control" name="salario${this._contadorExperiencias}" id="salario${this._contadorExperiencias}" data-valida="salario">
                     </div>
                 </div>
             </div>
