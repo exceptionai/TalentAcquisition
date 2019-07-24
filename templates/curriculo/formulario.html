@@ -15,14 +15,7 @@
 
     <link href="../../static/css/libs/material-dashboard.css" rel="stylesheet" />
     <link rel="stylesheet" href="../../static/css/curriculoForm.css">
-    <script text="javascript">
-            $(document).on("keydown", "#TxtObservacoes", function () {
-            var caracteresRestantes = 255;
-            var caracteresDigitados = parseInt($(this).val().length);
-            var caracteresRestantes = caracteresRestantes - caracteresDigitados;
-        
-            $(".caracteres").text(caracteresRestantes);
-        });</script>
+ 
 </head>
 
 <body onload="controller.esconderHeader()">
@@ -116,8 +109,8 @@
                                                 <label class="bmd-label-floating">
                                                     Conte mais sobre sua carreira, experiências e conhecimentos
                                                 </label>
-                                                <textarea id="resumoCandidato" name="resumoCandidato"class="form-control textarea" rows="7" maxlength="100"></textarea>
-                                                <p class="text-muted"><small><span name="txtArea">1000</span></small> caracteres restantes</p>
+                                                <textarea id="resumoCandidato" name="resumoCandidato"class="form-control textarea" rows="7" maxlength="1000" data-valida="caracteres"></textarea>
+                                                <p class="text-muted"><small><span class="caracteres" name="txtArea">1000</span></small> caracteres restantes</p>
                                             </div>
                                         </div>
                                     </div>

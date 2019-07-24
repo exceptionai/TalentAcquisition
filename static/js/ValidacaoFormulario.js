@@ -37,6 +37,16 @@ class ValidacaoFormulario {
         })
     }
 
+    static contador_caracteres(){
+        $(document).on("keydown", "#resumoCandidato, #descricaoCurso", function () {
+            let caracteresRestantes = 1000;
+            let caracteresDigitados = parseInt($(this).val().length);
+            let caracteresRestantes = caracteresRestantes - caracteresDigitados;
+        
+            $(".caracteres").text(caracteresRestantes);
+        });
+    }
+
     static valida(idCampo) {
         let elementos = document.querySelectorAll("input, textarea, select");
         let validaDatas = [];
@@ -50,8 +60,12 @@ class ValidacaoFormulario {
                     case "salario":
                         this.mascara_salarios(element.id);
                         break;
+                    case "caracteres":
+                        this.contador_caracteres(element.id);
+                        break;
                 }
             }
+            
         });
         let [idDataEntrada, idDataSaida] = validaDatas;
         this._valida_data(idDataEntrada, idDataSaida);
