@@ -78,7 +78,7 @@ class ValidacaoFormulario {
 		elementos.filter = Array.prototype.filter;
 		let obrigatorioNaoPreenchido = elementos.filter(elemento => elemento.required && !elemento.value)
 		if(obrigatorioNaoPreenchido.length){
-			toastr.error('Por favor, preencha os campos Obrigatórios','Campos Obrigatórios')
+			Notificacao.invalido('Por favor, preencha os campos Obrigatórios','Campos Obrigatórios')
 			obrigatorioNaoPreenchido.forEach(naoPreenchido =>{
 				naoPreenchido.classList.add("inputError")
 				

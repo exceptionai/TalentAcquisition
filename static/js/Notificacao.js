@@ -1,5 +1,5 @@
 class Notificacao{
-    invalido(mensagem,titulo){
+    static invalido(mensagem,titulo){
         toastr.options = {
             "closeButton":true,
             "progressBar":true
