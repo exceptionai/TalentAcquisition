@@ -44,13 +44,13 @@ class CurriculoView {
                     <div class="col-md-6">
                         <div class="form-group">
                             <label class="bmd-label-floating">Nome do Curso</label>
-                            <input type="text" class="form-control">
+                            <input type="text" class="form-control" required>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
                             <label class="bmd-label-floating">Nome da Instituição</label>
-                            <input type="text" class="form-control">
+                            <input type="text" class="form-control" required>
                         </div>
                     </div>
                 </div>  
@@ -75,7 +75,6 @@ class CurriculoView {
                         <div class="form-group">
                             <label class="bmd-label-floating">Situação</label>
                             <select class="form-control" data-style="btn btn-link">
-                                    
                                 <option selected disabled>Cursando</option> 
                                 <option value="cursando">Cursando</option>
                                 <option value="concluido">Concluído</option>
@@ -84,7 +83,6 @@ class CurriculoView {
                         </div>
                     </div>
                 </div>  
-                
                 <div class="row">
                     <div class="col-md-12">
                         <div class="form-group">
