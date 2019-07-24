@@ -52,5 +52,6 @@ class ValidacaoFormulario {
         });
         let [idDataEntrada, idDataSaida] = validaDatas;
         this._valida_data(idDataEntrada, idDataSaida);
+        
     }
 }

@@ -15,6 +15,14 @@
 
     <link href="../../static/css/libs/material-dashboard.css" rel="stylesheet" />
     <link rel="stylesheet" href="../../static/css/curriculoForm.css">
+    <script text="javascript">
+            $(document).on("keydown", "#TxtObservacoes", function () {
+            var caracteresRestantes = 255;
+            var caracteresDigitados = parseInt($(this).val().length);
+            var caracteresRestantes = caracteresRestantes - caracteresDigitados;
+        
+            $(".caracteres").text(caracteresRestantes);
+        });</script>
 </head>
 
 <body onload="controller.esconderHeader()">
@@ -42,14 +50,13 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label class="bmd-label-floating">Nome Completo</label>
-                                            <input type="text" name="nome" class="form-control" id="nome" maxlength="50">
-
+                                            <input type="text" name="nome" class="form-control" id="nome" maxlength="50" required>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label class="bmd-label-floating">Idade</label>
-                                            <input type="number" class="form-control" id="idade">
+                                            <input type="number" class="form-control" id="idade" required>
                                         </div>
                                     </div>
                                 </div>
@@ -57,7 +64,7 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label class="bmd-label-floating">E-mail</label>
-                                            <input type="email" class="form-control" id="email" maxlength="100">
+                                            <input type="email" class="form-control" id="email" maxlength="100" required>
                                         </div>
                                     </div>
                                     <div class="col-md-3">
@@ -109,7 +116,7 @@
                                                 <label class="bmd-label-floating">
                                                     Conte mais sobre sua carreira, experiências e conhecimentos
                                                 </label>
-                                                <textarea id="resumoCandidato" name="resumoCandidato"class="form-control textarea" rows="7" maxlength="1000"></textarea>
+                                                <textarea id="resumoCandidato" name="resumoCandidato"class="form-control textarea" rows="7" maxlength="100"></textarea>
                                                 <p class="text-muted"><small><span name="txtArea">1000</span></small> caracteres restantes</p>
                                             </div>
                                         </div>
@@ -118,8 +125,9 @@
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label id="objetivo" name="objetivo" class="bmd-label-floating">Objetivo
-                                                Profissional</label>
+                                            <label id="objetivo" name="objetivo" class="bmd-label-floating">
+                                                Objetivo Profissional
+                                            </label>
                                             <input type="text" class="form-control">
                                         </div>
                                     </div>
@@ -158,8 +166,8 @@
                                 <div id="campoIdiomas"></div>
                                 <div class="row">
                                     <div class="col-md-6">
-                                        <button type="button" id="botaoIdiomas" class="btn btn-dark">Cadastrar
-                                            Idioma
+                                        <button type="button" id="botaoIdiomas" class="btn btn-dark">
+                                            Cadastrar Idioma
                                         </button>
                                     </div>
                                 </div>
