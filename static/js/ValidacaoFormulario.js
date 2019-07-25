@@ -38,10 +38,11 @@ class ValidacaoFormulario {
     }
 
     static contador_caracteres(){
-        $(document).on("keydown", "#resumoCandidato, #descricaoCurso", function () {
+        $("#resumoCandidato").on("keyup", function () {
+           
             let caracteresRestantes = 1000;
             let caracteresDigitados = parseInt($(this).val().length);
-            let caracteresRestantes = caracteresRestantes - caracteresDigitados;
+            caracteresRestantes = caracteresRestantes - caracteresDigitados;
         
             $(".caracteres").text(caracteresRestantes);
         });
