@@ -144,9 +144,11 @@ class CurriculoController {
     enviarCurriculo(){
 
         let form = document.querySelector("#formularioCurriculo");
-        ValidacaoFormulario.valida(form);
-        let curriculoObj = FormHelper.paraObjeto(form);
-        let curriculoJSON = JSON.stringify( curriculoObj );
+        if(ValidacaoFormulario.valida(form)){
+            let curriculoObj = FormHelper.paraObjeto(form);
+            let curriculoJSON = JSON.stringify( curriculoObj );
+            console.log(curriculoJSON)
+        }
         /*
         this._http.post("http://localhost:3000/curriculo",curriculoJSON)
             .then(resposta=>{

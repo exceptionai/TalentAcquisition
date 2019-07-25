@@ -38,7 +38,6 @@ class ValidacaoFormulario {
     }
 
     static contador_caracteres(idCampo){
-        console.log(idCampo)
         $("#"+idCampo).on("keyup", (e) =>{
             let caracteresRestantes = 1000;
             let caracteresDigitados = parseInt(e.target.value.length);
@@ -48,32 +47,101 @@ class ValidacaoFormulario {
         });
     }
 
+    static bloquearPorClick(idElemento,element){
+        const elementoABloquear = document.querySelector("#"+idElemento);
+        element.addEventListener('click',()=>{
+
+            if(!elementoABloquear.disabled) {
+                elementoABloquear.classList.add('text-dark');
+                elementoABloquear.classList.remove('inputError');
+            }
+            else elementoABloquear.classList.remove('text-dark');           
+            
+            elementoABloquear.required = !elementoABloquear.required;
+            elementoABloquear.disabled = !elementoABloquear.disabled;
+
+        })
+    }
+
+    static bloquearPorValor(idABloquear,valorCondicional, elementoAcao,){
+        const elementoABloquear = document.querySelector("#"+idABloquear);
+        const required = elementoABloquear.required;
+        elementoAcao.addEventListener('change',(event)=>{
+            if(event.target.value.toLowerCase() == valorCondicional.toLowerCase()){
+                elementoABloquear.disabled = true;
+                elementoABloquear.classList.add('text-dark');
+                elementoABloquear.classList.remove('inputError');
+                elementoABloquear.required = false;
+            }
+            else{
+                elementoABloquear.disabled = false;
+                elementoABloquear.classList.remove('text-dark');
+                elementoABloquear.required = required;
+            }
+        })
+    }
+
+    static adicionaEventosValidacoes(){
+        $('input').on('focus', function(e){
+            if( $(e.target).is(':invalid') ){
+                $(e.target).addClass('inputError');
+            } else {
+                $(e.target).removeClass('inputError');
+            }
+        });
+        $('input').on('change', function(e){
+            if( $(e.target).is(':invalid') ){
+                $(e.target).addClass('inputError');
+            } else {
+                $(e.target).removeClass('inputError');
+            }
+        });
+        $('input').on('keydown', function(e){
+
+            if( $(e.target).is(':invalid') ){
+                $(e.target).addClass('inputError');
+            } else {
+                $(e.target).removeClass('inputError');
+            }
+        });
+    }
+
     static adicionaValidacao(idCampo) {
-        let elementos = document.querySelectorAll("input, textarea, select");
+        ValidacaoFormulario.adicionaEventosValidacoes();
+        let elementos = document.querySelector("#"+idCampo).querySelectorAll("input, textarea, select");
         let validaDatas = [];
         elementos.forEach(element => {
-            console.log(element.id)
             let validacao = element.getAttribute("data-valida");
             if (validacao != null) {
-                switch (validacao) {
-                    case "data":
-                        validaDatas.push(element.id);
-                        break;
-                    case "salario":
-                        this.mascara_salarios(element.id);
-                        break;
-                    case "caracteres":
-                        this.contador_caracteres(element.id);
-                        break;
-                }
+              ValidacaoFormulario.adicionaPorTipo(validacao,element,validaDatas)
             }
-            
         });
         let [idDataEntrada, idDataSaida] = validaDatas;
         this._valida_data(idDataEntrada, idDataSaida);
         
     }
 
+
+    static adicionaPorTipo(tipoValidacao,element,arrDatas){
+        switch (tipoValidacao) {
+            case "data":
+                arrDatas.push(element.id);
+                break;
+            case "salario":
+                ValidacaoFormulario.mascara_salarios(element.id);
+                break;
+            case "caracteres":
+                ValidacaoFormulario.contador_caracteres(element.id);
+                break;
+            case 'bloquear':
+                if(element.getAttribute('data-eventBloquear') == 'click')
+                    ValidacaoFormulario.bloquearPorClick(element.getAttribute('data-idBloquear'),element)
+                else{
+                    ValidacaoFormulario.bloquearPorValor(element.getAttribute('data-idBloquear'),element.getAttribute('data-eventBloquear'), element)
+                }
+                break;
+        }
+    }
 
 	static valida(form){
         let elementos = form.querySelectorAll( "input, select, textarea" );

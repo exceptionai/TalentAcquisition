@@ -43,13 +43,13 @@
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label class="bmd-label-floating">Nome Completo</label>
+                                            <label class="bmd-label-floating">Nome Completo*</label>
                                             <input type="text" name="nome" class="form-control" id="nome" maxlength="50" required>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label class="bmd-label-floating">Idade</label>
+                                            <label class="bmd-label-floating">Idade*</label>
                                             <input type="number" name="idade" class="form-control" id="idade" required>
                                         </div>
                                     </div>
@@ -57,20 +57,20 @@
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label class="bmd-label-floating">E-mail</label>
+                                            <label class="bmd-label-floating">E-mail*</label>
                                             <input type="email" name="email" class="form-control" id="email" maxlength="100" required>
                                         </div>
                                     </div>
                                     <div class="col-md-3">
                                         <div class="form-group">
                                             <label class="bmd-label-floating">Telefone Residêncial</label>
-                                            <input type="text" name="telefoneResidencial" class="form-control" id="telefoneResidencial">
+                                            <input type="text" maxlength="12" name="telefoneResidencial" class="form-control" id="telefoneResidencial">
                                         </div>
                                     </div>
                                     <div class="col-md-3">
                                         <div class="form-group">
                                             <label class="bmd-label-floating">Telefone Celular</label>
-                                            <input type="text" name="telefoneCelular" class="form-control" id="telefoneCelular">
+                                            <input type="text"  maxlength="12"  name="telefoneCelular" class="form-control" id="telefoneCelular">
                                         </div>
                                     </div>
                                 </div>
@@ -78,7 +78,7 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label class="bmd-label-floating">Endereço</label>
-                                            <input type="text" name="endereco" class="form-control">
+                                            <input type="text" name="endereco" required class="form-control">
                                         </div>
                                     </div>
                                     <div class="col-md-3">
@@ -94,8 +94,8 @@
                                     <div class="col-md-3">
                                         <div class="form-group">
                                             <label class="bmd-label-floating">Cidade</label>
-                                            <select class="form-control" name="cidade" data-style="btn btn-link">
-                                                <option selected disabled>Escolha a Cidade</option>
+                                            <select class="form-control" required name="cidade" data-style="btn btn-link">
+                                                <option selected disabled value="">Escolha a Cidade</option>
                                                 <option>São Paulo</option>
                                                 <option>Rio de Janeiro</option>
                                             </select>
@@ -217,27 +217,7 @@
         controller.geraFormacaoDinamicamente("campoFormacoes", "botaoFormacoes");
         ValidacaoFormulario.mascara_salarios("salarioExpectativa");
         ValidacaoFormulario.contador_caracteres("resumoCandidato")
-        $('input').on('focus', function(e){
-            if( $(e.target).is(':invalid') ){
-                $(e.target).addClass('inputError');
-            } else {
-                $(e.target).removeClass('inputError');
-            }
-        });
-        $('input').on('change', function(e){
-            if( $(e.target).is(':invalid') ){
-                $(e.target).addClass('inputError');
-            } else {
-                $(e.target).removeClass('inputError');
-            }
-        });
-        $('input').on('keydown', function(e){
-            if( $(e.target).is(':invalid') ){
-                $(e.target).addClass('inputError');
-            } else {
-                $(e.target).removeClass('inputError');
-            }
-        });
+        ValidacaoFormulario.adicionaValidacao("formularioCurriculo")
     </script>
 </body>
 

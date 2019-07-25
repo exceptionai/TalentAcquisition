@@ -43,13 +43,13 @@ class CurriculoView {
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label class="bmd-label-floating">Nome do Curso</label>
+                            <label class="bmd-label-floating">Nome do Curso* </label>
                             <input type="text" class="form-control" name="nome" data-parent="cursosComplementares" required>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label class="bmd-label-floating">Nome da Instituição</label>
+                            <label class="bmd-label-floating">Nome da Instituição*</label>
                             <input type="text" class="form-control" name="instituicao" required data-parent="cursosComplementares">
                         </div>
                     </div>
@@ -64,7 +64,7 @@ class CurriculoView {
                     <div class="col-md-4">
                         <div class="form-group">
                             <label class="bmd-label-floating">Duração</label>
-                            <select class="form-control" data-parent="cursosComplementares" data-style="btn btn-link" name="duracao">
+                            <select class="form-control" data-parent="cursosComplementares" data-style="btn btn-link" name="duracao" id="duracaoCurso${this._contadorCursos}">
                                 <option value="curta">Curta (até 40 horas)</option>
                                 <option value="media">Média (de 41 a 360 horas)</option>
                                 <option value="longa">Longa (acima de 360 horas</option>
@@ -74,9 +74,9 @@ class CurriculoView {
                     <div class="col-md-4">
                         <div class="form-group">
                             <label class="bmd-label-floating">Situação</label>
-                            <select class="form-control" name="situacao" data-parent="cursosComplementares" data-style="btn btn-link">
-                                <option selected disabled>Cursando</option> 
-                                <option value="cursando">Cursando</option>
+                            <select class="form-control" name="situacao" data-parent="cursosComplementares" data-style="btn btn-link" data-valida="bloquear" data-eventBloquear="Cursando" data-idBloquear="duracaoCurso${this._contadorCursos}">
+                                <option selected disabled >Situação</option> 
+                                <option value="cursando" >Cursando</option>
                                 <option value="concluido">Concluído</option>
                                 <option value="interrompido">Interrompido</option>
                             </select>
@@ -153,13 +153,13 @@ class CurriculoView {
             <div class="row">
                 <div class="col-md-4">
                     <div class="form-group">
-                        <label class="bmd-label-floating">Nome da empresa</label>
+                        <label class="bmd-label-floating">Nome da empresa*</label>
                         <input type="text" data-parent="experienciasAnteriores" class="form-control" name="nomeEmpresa" placeholder="Ex: Bayer" required>
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="form-group">
-                        <label class="bmd-label-floating">Cargo</label>
+                        <label class="bmd-label-floating">Cargo*</label>
                         <input type="text" data-parent="experienciasAnteriores" class="form-control"  name="cargo"  placeholder="Ex: Engenheiro Elétrico" required>
                     </div>
                 </div>
@@ -173,13 +173,13 @@ class CurriculoView {
             <div class="row">
                 <div class="col-md-4">
                     <div class="form-group">
-                        <label class="bmd-label-floating">Data de entrada *</label>
+                        <label class="bmd-label-floating">Data de entrada*</label>
                         <input type="date" data-parent="experienciasAnteriores" class="form-control" name="dataEntrada" id="dataEntrada${this._contadorExperiencias}" data-valida="data" required>
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="form-group">
-                        <label class="bmd-label-floating">Data de saída *</label>
+                        <label class="bmd-label-floating">Data de saída*</label>
                         <input type="date" data-parent="experienciasAnteriores" class="form-control" name="dataSaida" id="dataSaida${this._contadorExperiencias}" data-valida="data" required>
                     </div>
                 </div>
@@ -187,7 +187,7 @@ class CurriculoView {
                     <div class="form-group">
                         <div class="form-check">
                             <label class="form-check-label">
-                                <input class="form-check-input" data-parent="experienciasAnteriores" type="radio" name="trabalhoAtual">
+                                <input class="form-check-input" data-parent="experienciasAnteriores" type="checkbox" name="trabalhoAtual" data-valida="bloquear" data-eventBloquear="click" data-idBloquear="dataSaida${this._contadorExperiencias}">
                                 É meu emprego atual
                                 <span class="form-check-sign">
                                     <span class="check"></span>
