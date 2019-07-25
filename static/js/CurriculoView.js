@@ -202,7 +202,7 @@ class CurriculoView {
                     <div class="form-group">
                         <div class="form-group">
                             <label class="bmd-label-floating">Principais atividades</label>
-                            <textarea  data-parent="experienciasAnteriores" class="form-control" name="principaisAtividades" rows="5"></textarea>
+                            <textarea id="descricaoExperiencia${this._contadorExperiencias}" data-parent="experienciasAnteriores" class="form-control" name="principaisAtividades" rows="5"  data-valida="caracteres"></textarea>
                             <p class="text-muted"><small><span name="txtArea">1000</span></small> caracteres restantes</p>
                         </div>
                     </div>

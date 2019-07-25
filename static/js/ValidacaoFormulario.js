@@ -37,14 +37,14 @@ class ValidacaoFormulario {
         })
     }
 
-    static contador_caracteres(){
-        $("#resumoCandidato").on("keyup", function () {
-           
+    static contador_caracteres(idCampo){
+        console.log(idCampo)
+        $("#"+idCampo).on("keyup", (e) =>{
             let caracteresRestantes = 1000;
-            let caracteresDigitados = parseInt($(this).val().length);
+            let caracteresDigitados = parseInt(e.target.value.length);
             caracteresRestantes -= caracteresDigitados;
-        
-            $(".caracteres").text(caracteresRestantes);
+            $("#"+idCampo).parent().children('.text-muted').children("small").text(caracteresRestantes);
+            
         });
     }
 
@@ -52,6 +52,7 @@ class ValidacaoFormulario {
         let elementos = document.querySelectorAll("input, textarea, select");
         let validaDatas = [];
         elementos.forEach(element => {
+            console.log(element.id)
             let validacao = element.getAttribute("data-valida");
             if (validacao != null) {
                 switch (validacao) {
@@ -75,20 +76,33 @@ class ValidacaoFormulario {
 
 
 	static valida(form){
-		let elementos = form.querySelectorAll( "input, select, textarea" );
+        let elementos = form.querySelectorAll( "input, select, textarea" );
+        
 		elementos.filter = Array.prototype.filter;
-		let obrigatorioNaoPreenchido = elementos.filter(elemento => elemento.required && !elemento.value)
-		if(obrigatorioNaoPreenchido.length){
+        let obrigatoriosNaoPreenchidos = elementos.filter(elemento => elemento.required && !elemento.value)
+        
+		if(obrigatoriosNaoPreenchidos.length){
 			Notificacao.invalido('Por favor, preencha os campos Obrigatórios','Campos Obrigatórios')
-			obrigatorioNaoPreenchido.forEach(naoPreenchido =>{
-				naoPreenchido.classList.add("inputError")
-				
-				naoPreenchido.addEventListener("keydown",()=>{
-					naoPreenchido.classList.remove("inputError");
-				})
-			});
+			ValidacaoFormulario.marcarNaoPreenchidos(obrigatoriosNaoPreenchidos)
 			return false;
 		}
 		return true;
-	}	
+    }	
+    
+    static marcarNaoPreenchidos(obrigatoriosNaoPreenchidos){
+        for (let naoPreenchido of obrigatoriosNaoPreenchidos){
+            naoPreenchido.classList.add("inputError")
+            ValidacaoFormulario.removerInvalidoAoCorrigirObrigatorio(naoPreenchido);
+        }
+    }
+
+    static removerInvalidoAoCorrigirObrigatorio(naoPreenchido){
+        $(naoPreenchido).bind('change', function(e){
+            if( $(naoPreenchido).is(':invalid') ){
+                $(naoPreenchido).addClass('inputError');
+            } else {
+                $(e.target).removeClass('inputError');
+            }
+        });
+    }
 }

@@ -216,6 +216,28 @@
         controller.geraCursosDinamicamente("campoCursos", "botaoCursos");
         controller.geraFormacaoDinamicamente("campoFormacoes", "botaoFormacoes");
         ValidacaoFormulario.mascara_salarios("salarioExpectativa");
+        ValidacaoFormulario.contador_caracteres("resumoCandidato")
+        $('input').on('focus', function(e){
+            if( $(e.target).is(':invalid') ){
+                $(e.target).addClass('inputError');
+            } else {
+                $(e.target).removeClass('inputError');
+            }
+        });
+        $('input').on('change', function(e){
+            if( $(e.target).is(':invalid') ){
+                $(e.target).addClass('inputError');
+            } else {
+                $(e.target).removeClass('inputError');
+            }
+        });
+        $('input').on('keydown', function(e){
+            if( $(e.target).is(':invalid') ){
+                $(e.target).addClass('inputError');
+            } else {
+                $(e.target).removeClass('inputError');
+            }
+        });
     </script>
 </body>
 
