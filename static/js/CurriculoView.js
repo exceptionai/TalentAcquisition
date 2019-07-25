@@ -209,7 +209,7 @@ class CurriculoView {
                 </div>
             </div>
             
-            <button type="button" class="btn btn-danger" id="experienciaAnteriorRemover${this._contadorExperiencias}">Remover Experiencia Anterior</button>
+            <button type="button" class="btn btn-danger" id="experienciaAnteriorRemover${this._contadorExperiencias}">Remover Experiência Anterior</button>
             <hr>
         </div>
         `);
