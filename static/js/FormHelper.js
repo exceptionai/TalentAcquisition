@@ -1,15 +1,15 @@
 class FormHelper{
-	static toJSONString( form ) {
-		let obj = {};
-		let elements = form.querySelectorAll( "input, select, textarea" );
-		
-		elements.forEach( element =>{
-			let {name, value, id} = element;
-			const parent = element.getAttribute("data-parent");
-			FormHelper.validaEadicionaObj(obj, element, parent, name, value);
-		})
 
-		return JSON.stringify( obj );
+	static paraObjeto( form ) {
+		let obj = {};
+		let elementos = form.querySelectorAll( "input, select, textarea" );
+		
+		elementos.forEach( elemento =>{
+			let {name, value} = elemento;
+			const parent = elemento.getAttribute("data-parent");
+			FormHelper.validaEadicionaObj(obj, elemento, parent, name, value);
+		})
+		return obj;
 	}
 
 	static validaEadicionaObj(obj,element, parent, name, value){

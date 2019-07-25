@@ -42,13 +42,13 @@ class ValidacaoFormulario {
            
             let caracteresRestantes = 1000;
             let caracteresDigitados = parseInt($(this).val().length);
-            caracteresRestantes = caracteresRestantes - caracteresDigitados;
+            caracteresRestantes -= caracteresDigitados;
         
             $(".caracteres").text(caracteresRestantes);
         });
     }
 
-    static valida(idCampo) {
+    static adicionaValidacao(idCampo) {
         let elementos = document.querySelectorAll("input, textarea, select");
         let validaDatas = [];
         elementos.forEach(element => {
@@ -72,4 +72,23 @@ class ValidacaoFormulario {
         this._valida_data(idDataEntrada, idDataSaida);
         
     }
+
+
+	static valida(form){
+		let elementos = form.querySelectorAll( "input, select, textarea" );
+		elementos.filter = Array.prototype.filter;
+		let obrigatorioNaoPreenchido = elementos.filter(elemento => elemento.required && !elemento.value)
+		if(obrigatorioNaoPreenchido.length){
+			Notificacao.invalido('Por favor, preencha os campos Obrigatórios','Campos Obrigatórios')
+			obrigatorioNaoPreenchido.forEach(naoPreenchido =>{
+				naoPreenchido.classList.add("inputError")
+				
+				naoPreenchido.addEventListener("keydown",()=>{
+					naoPreenchido.classList.remove("inputError");
+				})
+			});
+			return false;
+		}
+		return true;
+	}	
 }

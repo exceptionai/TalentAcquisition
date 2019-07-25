@@ -15,7 +15,8 @@
 
     <link href="../../static/css/libs/material-dashboard.css" rel="stylesheet" />
     <link rel="stylesheet" href="../../static/css/curriculoForm.css">
- 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
+    
 </head>
 
 <body onload="controller.esconderHeader()">
@@ -83,8 +84,8 @@
                                     <div class="col-md-3">
                                         <div class="form-group">
                                             <label class="bmd-label-floating">Estado</label>
-                                            <select class="form-control" name="estado" data-style="btn btn-link">
-                                                <option selected disabled>Escolha o Estado</option>
+                                            <select class="form-control" required name="estado" data-style="btn btn-link">
+                                                <option selected disabled value="">Escolha o Estado</option>
                                                 <option>São Paulo</option>
                                                 <option>Rio de Janeiro</option>
                                             </select>
@@ -188,14 +189,17 @@
             </footer>
         </div>
     </div>
+    
     <script src="../../static/js/FormHelper.js"></script>
     <script src="../../static/js/libs/jquery-1.11.3.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
         integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
         crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
         integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
         crossorigin="anonymous"></script>
+    <script src="../../static/js/Notificacao.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-maskmoney/3.0.2/jquery.maskMoney.min.js"></script>
     <script src="../../static/js/ValidacaoFormulario.js"></script>
     <script src="../../static/js/VagaService.js"></script>
