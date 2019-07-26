@@ -1,5 +1,18 @@
 {
   "curriculo": [
-    
+    {
+      "nome": "teste",
+      "idade": "123",
+      "email": "renan.sanches_123@hotmail.com",
+      "telefoneResidencial": "",
+      "telefoneCelular": "",
+      "endereco": "Rsa",
+      "estado": "São Paulo",
+      "cidade": "São Paulo",
+      "resumoCandidato": "",
+      "objetivo": "",
+      "salarioExpectativa": "",
+      "id": 1
+    }
   ]
 }
