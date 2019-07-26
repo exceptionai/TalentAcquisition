@@ -49,8 +49,8 @@ class ValidacaoFormulario {
 
     static bloquearPorClick(idElemento,element){
         const elementoABloquear = document.querySelector("#"+idElemento);
-        element.addEventListener('click',()=>{
-
+        $(element).change(()=>{
+            console.log('change',element.id)
             if(!elementoABloquear.disabled) {
                 elementoABloquear.classList.add('text-dark');
                 elementoABloquear.classList.remove('inputError');
@@ -111,9 +111,12 @@ class ValidacaoFormulario {
         let elementos = document.querySelector("#"+idCampo).querySelectorAll("input, textarea, select");
         let validaDatas = [];
         elementos.forEach(element => {
-            let validacao = element.getAttribute("data-valida");
-            if (validacao != null) {
-              ValidacaoFormulario.adicionaPorTipo(validacao,element,validaDatas)
+            let validacoes = element.getAttribute("data-valida");
+            if (validacoes != null) {
+                let arrValidacaos = validacoes.split(",");
+                for (let validacao of arrValidacaos){
+                    ValidacaoFormulario.adicionaPorTipo(validacao,element,validaDatas,idCampo)
+                }
             }
         });
         let [idDataEntrada, idDataSaida] = validaDatas;
@@ -122,7 +125,31 @@ class ValidacaoFormulario {
     }
 
 
-    static adicionaPorTipo(tipoValidacao,element,arrDatas){
+    static bloquear(element){
+        if(element.getAttribute('data-eventBloquear') == 'click')
+            ValidacaoFormulario.bloquearPorClick(element.getAttribute('data-idBloquear'),element)
+        else
+            ValidacaoFormulario.bloquearPorValor(element.getAttribute('data-idBloquear'),element.getAttribute('data-eventBloquear'), element)
+    }
+
+    static unico(element,idCampos){
+        const campos = document.querySelector("#"+idCampos).parentElement;
+        element.addEventListener('change',function(){
+            console.log('unico')
+            
+            for(let campo of campos.querySelectorAll(`input[name="${element.name}"]`)){
+               
+                if(campo.id != element.id){
+                    if(campo.checked){ 
+                        $(campo).attr('checked',false).trigger('change');
+                    }
+                }
+            }
+        })
+
+    }
+
+    static adicionaPorTipo(tipoValidacao,element,arrDatas,idCampo){
         switch (tipoValidacao) {
             case "data":
                 arrDatas.push(element.id);
@@ -134,12 +161,11 @@ class ValidacaoFormulario {
                 ValidacaoFormulario.contador_caracteres(element.id);
                 break;
             case 'bloquear':
-                if(element.getAttribute('data-eventBloquear') == 'click')
-                    ValidacaoFormulario.bloquearPorClick(element.getAttribute('data-idBloquear'),element)
-                else{
-                    ValidacaoFormulario.bloquearPorValor(element.getAttribute('data-idBloquear'),element.getAttribute('data-eventBloquear'), element)
-                }
+                ValidacaoFormulario.bloquear(element)
                 break;
+            case 'unico':
+                ValidacaoFormulario.unico(element,idCampo);
+            
         }
     }
 

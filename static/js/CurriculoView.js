@@ -187,7 +187,7 @@ class CurriculoView {
                     <div class="form-group">
                         <div class="form-check">
                             <label class="form-check-label">
-                                <input class="form-check-input" data-parent="experienciasAnteriores" type="checkbox" name="trabalhoAtual" data-valida="bloquear" data-eventBloquear="click" data-idBloquear="dataSaida${this._contadorExperiencias}">
+                                <input class="form-check-input" id="empregoAtual${this._contadorExperiencias}" data-parent="experienciasAnteriores" type="checkbox" name="trabalhoAtual" data-valida="bloquear,unico" data-eventBloquear="click" data-idBloquear="dataSaida${this._contadorExperiencias}">
                                 É meu emprego atual
                                 <span class="form-check-sign">
                                     <span class="check"></span>
