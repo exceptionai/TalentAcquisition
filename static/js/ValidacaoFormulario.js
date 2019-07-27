@@ -84,9 +84,13 @@ class ValidacaoFormulario {
 
     static adicionaEventosValidacoes(){
         $('input').on('keydown', function(e){
-            if(!isNaN(e.target.value)){
-                e.preventDefault();
-            }
+            const digitadoEhNumero = !isNaN(String.fromCharCode(e.keyCode));
+            const naoVazio = !e.target.value.length;
+            const naoEhDataOuNumero = e.target.type != 'number' && e.target.type != 'date';
+            console.log(e.target.type)
+            if(digitadoEhNumero && naoVazio && naoEhDataOuNumero) return false;
+            return true;
+            
         });
 
         $('input').on('focus', function(e){

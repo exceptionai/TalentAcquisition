@@ -58,7 +58,7 @@ class CurriculoView {
                     <div class="col-md-4">
                         <div class="form-group">
                             <label class="bmd-label-floating">Data Inicial</label>
-                            <input type="date" name="dataInicial" class="form-control" data-parent="cursosComplementares">
+                            <input type="date"  min="1900-01-01" name="dataInicial" class="form-control" data-parent="cursosComplementares">
                         </div>
                     </div>
                     <div class="col-md-4">
@@ -175,13 +175,13 @@ class CurriculoView {
                 <div class="col-md-4">
                     <div class="form-group">
                         <label class="bmd-label-floating">Data de entrada*</label>
-                        <input type="date" data-parent="experienciasAnteriores" class="form-control" name="dataEntrada" id="dataEntrada${this._contadorExperiencias}" data-valida="data" required>
+                        <input type="date" min="1900-01-01" data-parent="experienciasAnteriores" class="form-control" name="dataEntrada" id="dataEntrada${this._contadorExperiencias}" data-valida="data" required>
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="form-group">
                         <label class="bmd-label-floating">Data de saída*</label>
-                        <input type="date" data-parent="experienciasAnteriores" class="form-control" name="dataSaida" id="dataSaida${this._contadorExperiencias}" data-valida="data" required>
+                        <input type="date" min="1900-01-01" data-parent="experienciasAnteriores" class="form-control" name="dataSaida" id="dataSaida${this._contadorExperiencias}" data-valida="data" required>
                     </div>
                 </div>
                 <div class="col-md-4">
