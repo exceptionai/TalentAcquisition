@@ -54,6 +54,7 @@ class ValidacaoFormulario {
             if(!elementoABloquear.disabled) {
                 elementoABloquear.classList.add('text-dark');
                 elementoABloquear.classList.remove('inputError');
+                elementoABloquear.value = '';
             }
             else elementoABloquear.classList.remove('text-dark');           
             
@@ -82,6 +83,12 @@ class ValidacaoFormulario {
     }
 
     static adicionaEventosValidacoes(){
+        $('input').on('keydown', function(e){
+            if(!isNaN(e.target.value)){
+                e.preventDefault();
+            }
+        });
+
         $('input').on('focus', function(e){
             if( $(e.target).is(':invalid') ){
                 $(e.target).addClass('inputError');
@@ -179,7 +186,8 @@ class ValidacaoFormulario {
 			Notificacao.invalido('Por favor, preencha os campos Obrigatórios','Campos Obrigatórios')
 			ValidacaoFormulario.marcarNaoPreenchidos(obrigatoriosNaoPreenchidos)
 			return false;
-		}
+        }
+
 		return true;
     }	
     

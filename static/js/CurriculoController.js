@@ -148,12 +148,12 @@ class CurriculoController {
             let curriculoObj = FormHelper.paraObjeto(form);
             let curriculoJSON = JSON.stringify( curriculoObj );
             console.log(curriculoJSON)
+            this._http.post("http://localhost:3000/curriculo",curriculoJSON)
+                .then(resposta=>{
+                    Notificacao.sucesso('Currículo cadastrado com sucesso','Sucesso')
+                })
+                .catch(erro => console.log(erro))
         }
-        /*
-        this._http.post("http://localhost:3000/curriculo",curriculoJSON)
-            .then(resposta=>{
-                console.log(resposta)
-            })
-            .catch(erro => console.log(erro))*/
+        
     }
 }
