@@ -20,13 +20,8 @@
 }
 
 .form-control {
-    border-style: solid;
-    border-width: 3px;
-    border-color: #86A612;
-    border-radius: 10px;
-    /*background-color: #86A612;*/
-    color: #03588C;
-    padding-left: 5px;
+    background-color: #86A612;
+    color: #fff;
 }
 
 .bmd-label-floating,
@@ -131,7 +126,7 @@
 }
 
 .form-control::placeholder {
-    color: #03588C;
+    color: #fff;
 }
 
 .form-check-input {
