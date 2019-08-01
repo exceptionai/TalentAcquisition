@@ -107,11 +107,9 @@ class CurriculoController {
                 event.preventDefault();
                 curriculoView.removerCampo(campoAdicionalID, campoID)
             });
-
+            ValidacaoFormulario.adicionaValidacao(campoAdicionalID+campoID);
         })
     }
-
-
 
     _valida_estado(estado) {
         if (estado !== this._vaga.estado) {
@@ -146,11 +144,16 @@ class CurriculoController {
     enviarCurriculo(){
 
         let form = document.querySelector("#formularioCurriculo");
+        if(ValidacaoFormulario.valida(form)){
+            let curriculoObj = FormHelper.paraObjeto(form);
+            let curriculoJSON = JSON.stringify( curriculoObj );
+            console.log(curriculoJSON)
+            this._http.post("http://localhost:3000/curriculo",curriculoJSON)
+                .then(resposta=>{
+                    Notificacao.sucesso('Currículo cadastrado com sucesso','Sucesso')
+                })
+                .catch(erro => console.log(erro))
+        }
         
-        let curriculo = FormHelper.toJSONString(form)
-        this._http.post("http://localhost:3000/curriculo",curriculo)
-            .then(resposta=>{
-                console.log(resposta)
-            })
     }
 }

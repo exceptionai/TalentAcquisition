@@ -43,14 +43,14 @@ class CurriculoView {
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label class="bmd-label-floating">Nome do Curso</label>
-                            <input type="text" class="form-control">
+                            <label class="bmd-label-floating">Nome do Curso* </label>
+                            <input type="text" class="form-control" name="nome" data-parent="cursosComplementares" required>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label class="bmd-label-floating">Nome da Instituição</label>
-                            <input type="text" class="form-control">
+                            <label class="bmd-label-floating">Nome da Instituição*</label>
+                            <input type="text" class="form-control" name="instituicao" required data-parent="cursosComplementares">
                         </div>
                     </div>
                 </div>  
@@ -58,13 +58,14 @@ class CurriculoView {
                     <div class="col-md-4">
                         <div class="form-group">
                             <label class="bmd-label-floating">Data Inicial</label>
-                            <input type="date" class="form-control">
+                            <input type="date"  min="1900-01-01" name="dataInicial" class="form-control" data-parent="cursosComplementares">
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div class="form-group">
                             <label class="bmd-label-floating">Duração</label>
-                            <select class="form-control" data-style="btn btn-link" name="duracao${this._contadorCursos}">
+                            <select class="form-control" data-parent="cursosComplementares" data-style="btn btn-link" name="duracao" id="duracaoCurso${this._contadorCursos}">
+                                <option value="" disabled>Situação</option>
                                 <option value="curta">Curta (até 40 horas)</option>
                                 <option value="media">Média (de 41 a 360 horas)</option>
                                 <option value="longa">Longa (acima de 360 horas</option>
@@ -74,23 +75,22 @@ class CurriculoView {
                     <div class="col-md-4">
                         <div class="form-group">
                             <label class="bmd-label-floating">Situação</label>
-                            <select class="form-control" data-style="btn btn-link">
-                                    
-                                <option selected disabled>Cursando</option> 
-                                <option value="cursando">Cursando</option>
+                            <select class="form-control" name="situacao" data-parent="cursosComplementares" data-style="btn btn-link" data-valida="bloquear" data-eventBloquear="Cursando" data-idBloquear="duracaoCurso${this._contadorCursos}">
+                                <option selected disabled >Situação</option> 
+                                <option value="cursando" >Cursando</option>
                                 <option value="concluido">Concluído</option>
                                 <option value="interrompido">Interrompido</option>
                             </select>
                         </div>
                     </div>
                 </div>  
-                
                 <div class="row">
                     <div class="col-md-12">
                         <div class="form-group">
                             <div class="form-group">
                                 <label class="bmd-label-floating">Descrição do curso</label>
-                                <textarea class="form-control" rows="5"></textarea>
+                                <textarea id="descricaoCurso${this._contadorCursos  }" name="descricao" data-parent="cursosComplementares" class="form-control" rows="5" maxlength="1000" data-valida="caracteres"></textarea>
+                                <p class="text-muted"><small><span class="caracteres" name="txtArea">1000</span></small> caracteres restantes</p>
                             </div>
                         </div>
                     </div>
@@ -111,8 +111,8 @@ class CurriculoView {
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label class="bmd-label-floating">Idioma</label>
-                            <select class="form-control" data-style="btn btn-link" name="idioma" data-parent="idiomas">
+                            <label class="bmd-label-floating">Idioma*</label>
+                            <select required class="form-control" data-style="btn btn-link" name="idioma" data-parent="idiomas">
                                 <option value="" selected disabled>Idioma</option>
                                 <option value="ingles">Inglês</option>
                                 <option value="espanhol">Espanhol</option>
@@ -126,8 +126,8 @@ class CurriculoView {
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label class="bmd-label-floating">Nível</label>
-                            <select class="form-control" data-style="btn btn-link" name="nivelIdioma" data-parent="idiomas" >
+                            <label class="bmd-label-floating">Nível*</label>
+                            <select required class="form-control" data-style="btn btn-link" name="nivelIdioma" data-parent="idiomas" >
                                 <option value="" selected disabled>Nível</option>
                                 <option value="basico">Básico</option>
                                 <option value="intermediario">Intermediário</option>
@@ -154,41 +154,41 @@ class CurriculoView {
             <div class="row">
                 <div class="col-md-4">
                     <div class="form-group">
-                        <label class="bmd-label-floating">Nome da empresa</label>
-                        <input type="text" data-parent="experienciasAnteriores" class="form-control" name="nomeEmpresa${this._contadorExperiencias}" placeholder="Ex: Bayer" required>
+                        <label class="bmd-label-floating">Nome da empresa*</label>
+                        <input type="text" data-parent="experienciasAnteriores" class="form-control" name="nomeEmpresa" placeholder="Ex: Bayer" required>
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="form-group">
-                        <label class="bmd-label-floating">Cargo</label>
-                        <input type="number" data-parent="experienciasAnteriores" class="form-control"  name="cargo${this._contadorExperiencias}"  placeholder="Ex: Engenheiro Elétrico" required>
+                        <label class="bmd-label-floating">Cargo*</label>
+                        <input type="text" data-parent="experienciasAnteriores" class="form-control"  name="cargo"  placeholder="Ex: Engenheiro Elétrico" required>
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="form-group">
                         <label class="bmd-label-floating">Salário</label>
-                        <input type="text" data-parent="experienciasAnteriores" class="form-control" name="salario${this._contadorExperiencias}" id="salario${this._contadorExperiencias}">
+                        <input type="text" data-parent="experienciasAnteriores" class="form-control" name="salario" id="salario${this._contadorExperiencias}" data-valida="salario" inputmode="numeric">
                     </div>
                 </div>
             </div>
             <div class="row">
                 <div class="col-md-4">
                     <div class="form-group">
-                        <label class="bmd-label-floating">Data de entrada *</label>
-                        <input type="date" data-parent="experienciasAnteriores" class="form-control" name="dataEntrada${this._contadorExperiencias}" id="dataEntrada${this._contadorExperiencias}"  required>
+                        <label class="bmd-label-floating">Data de entrada*</label>
+                        <input type="date" min="1900-01-01" data-parent="experienciasAnteriores" class="form-control" name="dataEntrada" id="dataEntrada${this._contadorExperiencias}" data-valida="data" required>
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="form-group">
-                        <label class="bmd-label-floating">Data de saída *</label>
-                        <input type="date" data-parent="experienciasAnteriores" class="form-control" name="dataSaida${this._contadorExperiencias}" id="dataSaida${this._contadorExperiencias}" required>
+                        <label class="bmd-label-floating">Data de saída*</label>
+                        <input type="date" min="1900-01-01" data-parent="experienciasAnteriores" class="form-control" name="dataSaida" id="dataSaida${this._contadorExperiencias}" data-valida="data" required>
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="form-group">
                         <div class="form-check">
                             <label class="form-check-label">
-                                <input class="form-check-input" data-parent="experienciasAnteriores" type="radio" name="trabalhoAtual${this._contadorExperiencias}" value="teste1">
+                                <input class="form-check-input" id="empregoAtual${this._contadorExperiencias}" data-parent="experienciasAnteriores" type="checkbox" name="trabalhoAtual" data-valida="bloquear,unico" data-eventBloquear="click" data-idBloquear="dataSaida${this._contadorExperiencias}">
                                 É meu emprego atual
                                 <span class="form-check-sign">
                                     <span class="check"></span>
@@ -203,7 +203,8 @@ class CurriculoView {
                     <div class="form-group">
                         <div class="form-group">
                             <label class="bmd-label-floating">Principais atividades</label>
-                            <textarea  data-parent="experienciasAnteriores" class="form-control" name="principaisAtividades${this._contadorExperiencias}" rows="5"></textarea>
+                            <textarea id="descricaoExperiencia${this._contadorExperiencias}" data-parent="experienciasAnteriores" class="form-control" name="principaisAtividades" rows="5"  data-valida="caracteres"></textarea>
+                            <p class="text-muted"><small><span name="txtArea">1000</span></small> caracteres restantes</p>
                         </div>
                     </div>
                 </div>
@@ -226,14 +227,15 @@ class CurriculoView {
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label class="bmd-label-floating">Nome do Curso</label>
-                            <input type="text" data-parent="formacaoAcademica" class="form-control" id="nomeFormacao${this._contadorFormacao}" name="curso">
+                            <label class="bmd-label-floating">Nome do Curso*</label>
+                            <input type="text" required data-parent="formacaoAcademica" class="form-control" id="nomeFormacao${this._contadorFormacao}" name="curso">
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label class="bmd-label-floating">Nível</label>
-                            <select class="form-control" data-parent="formacaoAcademica" data-style="btn btn-link" name="nivelCurso" >
+                            <label class="bmd-label-floating">Nível*</label>
+                            <select required class="form-control" data-parent="formacaoAcademica" data-style="btn btn-link" name="nivelCurso" >
+                                <option value="" selected disabled>Nível</option>
                                 <option value="ensinoMedio">Ensino Médio</option>
                                 <option value="tecnico">Técnico</option>
                                 <option value="graduacao">Graduação</option>
@@ -250,17 +252,18 @@ class CurriculoView {
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label class="bmd-label-floating">Nome da Instituição</label>
-                            <input type="text" data-parent="formacaoAcademica" class="form-control" id="nomeInstituicao" name="nomeInstituicao${this._contadorFormacao}">
+                            <label class="bmd-label-floating">Nome da Instituição*</label>
+                            <input type="text" required data-parent="formacaoAcademica" class="form-control" id="nomeInstituicao" name="nomeInstituicao">
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label class="bmd-label-floating">Situação</label>
-                            <select class="form-control" data-parent="formacaoAcademica" data-style="btn btn-link" id="situacaoFormacao${this._contadorFormacao}" name="situacaoFormacao">
-                                <option>Cursando</option>
-                                <option>Concluído</option>
-                                <option>Interrompido</option>
+                            <label class="bmd-label-floating">Situação*</label>
+                            <select class="form-control" required data-parent="formacaoAcademica" data-style="btn btn-link" id="situacaoFormacao${this._contadorFormacao}" name="situacaoFormacao">
+                                <option value="">Situação</option>
+                                <option value="cursando">Cursando</option>
+                                <option value="concluido">Concluído</option>
+                                <option value="interrompido">Interrompido</option>
                             </select>
                         </div>
                     </div>

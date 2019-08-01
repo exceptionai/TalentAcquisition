@@ -1,42 +1,54 @@
 class FormHelper{
-	static toJSONString( form ) {
+
+	static paraObjeto( form ) {
 		let obj = {};
-		let elements = form.querySelectorAll( "input, select, textarea" );
+		let elementos = form.querySelectorAll( "input, select, textarea" );
 		
-		let newObj = {};
-		elements.forEach( element =>{
-			let {name, value, id} = element;
-			const parent = element.getAttribute("data-parent")
-
-			if(parent){
-				let contem = false;
-				newObj[name] = value
-				if(!obj[parent]) obj[parent] = [{}]
-				let newObjeto = {};
-				for(let objeto of obj[parent]){
-					if(Object.keys(objeto).includes(name)){
-						newObjeto[name] = value;
-					}else{
-						objeto[name] = value;
-					}
-					if(objeto[name] == value) contem = true;
-				}
-				
-				if(Object.keys(newObjeto).length && !contem) obj[parent].push(newObjeto)
-
-			}else if(element.type == "checkbox" && name){
-				if(element.checked) obj[ name ] = true;
-				else obj[name] = false;
-			}else if(element.type == "radio"){
-				if(element.checked) obj[ name ] = value;
-			}else if( name ) {
-				obj[ name ] = value;
-			}else if(id){
-				obj[ id ] = value;
-			}
+		elementos.forEach( elemento =>{
+			let {name, value} = elemento;
+			const parent = elemento.getAttribute("data-parent");
+			FormHelper.adicionaCamposObj(obj, elemento, parent, name, value);
 		})
+		return obj;
+	}
 
-		return JSON.stringify( obj );
+	static adicionaCamposObj(obj,element, parent, name, value){
+		if(!name) return;
+
+ 		if(value.includes('R$')) value = FormHelper.moneyToNumber(value);
+		if(element.type == 'number') value = parseFloat(value);
+
+		if(parent) FormHelper.addObjCampoDinamico(obj, parent, name, value,element)
+		else if(element.type == "checkbox") obj[ name ] = element.checked
+		else obj[ name ] = value;
+		
+	}
+
+	static addObjCampoDinamico(objDestino, parent, name, value,element){
+
+		if(!objDestino[parent]) objDestino[parent] = [{}];
+		let tamanhoObjDestino = objDestino[parent].length;
+
+		const ultimoObjeto = objDestino[parent][tamanhoObjDestino-1];
+		if(!ultimoObjeto[name]){
+			if(element.type == 'checkbox') value = element.checked;
+			ultimoObjeto[name] = value;
+		}else{
+			let novoItem = {};
+			novoItem[name] = value;
+			objDestino[parent].push(novoItem);
+		}
+
+	}
+
+
+	static moneyToNumber(money){
+		return parseFloat(
+			money.replace('R$','')
+				.replace('.','')
+				.replace(',','.')
+				.replace(/\s/g,'')
+			);
 	}
 
 }
