@@ -87,7 +87,7 @@ class ValidacaoFormulario {
             const digitadoEhNumero = !isNaN(String.fromCharCode(e.keyCode));
             const naoVazio = !e.target.value.length;
             const naoEhDataOuNumero = e.target.type != 'number' && e.target.type != 'date';
-            console.log(e.target.type)
+            
             if(digitadoEhNumero && naoVazio && naoEhDataOuNumero) return false;
             return true;
             
@@ -191,7 +191,11 @@ class ValidacaoFormulario {
 			ValidacaoFormulario.marcarNaoPreenchidos(obrigatoriosNaoPreenchidos)
 			return false;
         }
-
+        if(!form.checkValidity()){
+            Notificacao.invalido('Por favor, verifique os campos inválidos','Formulário Inválido')
+            form.reportValidity();
+            return false;
+        }
 		return true;
     }	
     

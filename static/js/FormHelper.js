@@ -7,64 +7,48 @@ class FormHelper{
 		elementos.forEach( elemento =>{
 			let {name, value} = elemento;
 			const parent = elemento.getAttribute("data-parent");
-			FormHelper.validaEadicionaObj(obj, elemento, parent, name, value);
+			FormHelper.adicionaCamposObj(obj, elemento, parent, name, value);
 		})
 		return obj;
 	}
 
-	static validaEadicionaObj(obj,element, parent, name, value){
-		if(value.includes('R$')) value = FormHelper.moneyToNumber(value);
+	static adicionaCamposObj(obj,element, parent, name, value){
+		if(!name) return;
 
-		if(parent){
-			FormHelper.addObjCampoDinamico(obj, parent, name, value,element)
-		}else if( name && !FormHelper.validaEadicionaCheckBoxSelect(element,name,obj,value)) {
-			obj[ name ] = value;
-		}
+ 		if(value.includes('R$')) value = FormHelper.moneyToNumber(value);
+		if(element.type == 'number') value = parseFloat(value);
+
+		if(parent) FormHelper.addObjCampoDinamico(obj, parent, name, value,element)
+		else if(element.type == "checkbox") obj[ name ] = element.checked
+		else obj[ name ] = value;
+		
 	}
 
 	static addObjCampoDinamico(objDestino, parent, name, value,element){
-		let contem = false;
 
-		if(!objDestino[parent]) objDestino[parent] = [{}]
+		if(!objDestino[parent]) objDestino[parent] = [{}];
+		let tamanhoObjDestino = objDestino[parent].length;
 
-		let newObjeto = {};
-		for(let objeto of objDestino[parent]){
-			if(element.type == 'radio'){	
-				if(element.checked && !newObjeto[name]) newObjeto[name]=true;
-				else newObjeto[name] = false;
-			}else if(!FormHelper.validaEadicionaCheckBoxSelect(element,name,newObjeto,value) && Object.keys(objeto).includes(name)){
-				newObjeto[name] = value;
-			}else{
-				objeto[name] = value;
-				contem = true;
-			}
+		const ultimoObjeto = objDestino[parent][tamanhoObjDestino-1];
+		if(!ultimoObjeto[name]){
+			if(element.type == 'checkbox') value = element.checked;
+			ultimoObjeto[name] = value;
+		}else{
+			let novoItem = {};
+			novoItem[name] = value;
+			objDestino[parent].push(novoItem);
 		}
-		
-		if(Object.keys(newObjeto).length && !contem) 
-			objDestino[parent].push(newObjeto)
 
 	}
 
-	static validaEadicionaCheckBoxSelect(element,name,obj,value){
-		if (element.type == "checkbox" && name){
-			if(element.checked) obj[ name ] = true;
-			else obj[ name ] = false;
-			return true;
-		}else if(element.type == "radio" && !element.checked){
-			console.log('s')
-			obj[ name ] = false;
-			return true;
-		}
-		return false;
-	}
 
 	static moneyToNumber(money){
 		return parseFloat(
-				money.replace('R$','')
-					.replace('.','')
-					.replace(',','.')
-					.replace(/\s/g,'')
-				);
+			money.replace('R$','')
+				.replace('.','')
+				.replace(',','.')
+				.replace(/\s/g,'')
+			);
 	}
 
 }
