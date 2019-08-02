@@ -4,7 +4,7 @@ class ValidacaoFormularioView{
         for (let elemento of elementos) {
             if (!elemento.checkValidity()) {
                 primeiroInvalido = !primeiroInvalido ? elemento : primeiroInvalido;
-                ValidacaoFormularioController._addClassInvalid(elemento);
+                ValidacaoFormularioView._addClassInvalid(elemento);
             }
         }
         return primeiroInvalido;
