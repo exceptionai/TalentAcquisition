@@ -1,5 +1,21 @@
 class ValidacaoFormulario {
 
+	static valida(form){
+        let elementos = form.querySelectorAll( "input, select, textarea" );
+    
+        if(!form.checkValidity()){
+            const primeiroElementoInvalido = ValidacaoFormulario.
+                                                marcarInvalidos(elementos)
+            ValidacaoFormulario.scrollInvalido(primeiroElementoInvalido);
+            Notificacao.invalido('Por favor, verifique os campos em vermelho','Currículo Inválido')
+           
+            return false;
+        }
+        return true;
+    }	
+
+    
+    
 
     static mascara_salarios(...salariosID) {
         for (let salarioID of salariosID) {
@@ -7,123 +23,143 @@ class ValidacaoFormulario {
         }
     }
 
-    static _valida_data(idDataEntrada, idDataSaida) {
+    static _valida_data_entrada(input_entrada,input_saida){
+        if (new Date(input_entrada.val()).getTime() > new Date(input_saida.val()).getTime()) {
+            input_entrada.val(input_saida.val());
+        }
+        ValidacaoFormulario._dataMaximaHoje(input_entrada);
+    }
+    
+    static _valida_data_saida(input_entrada, input_saida){
+        ValidacaoFormulario._valida_data_entrada(input_entrada,input_saida);
+        ValidacaoFormulario._dataMaximaHoje(input_saida);
+    }
+
+    static _dataMaximaHoje(inputData){
+        if (new Date(inputData.val()).getTime() > new Date().getTime()) {
+            inputData.val(new Date().toISOString().substr(0, 10));
+        }
+    }
+
+    static _valida_datas(idDataEntrada, idDataSaida) {
         let input_entrada = $(`#${idDataEntrada}`);
         let input_saida = $(`#${idDataSaida}`);
         let input_curso_inicio = $('#dataCursoInicio1');
 
-        input_entrada.on("change", function () {
-            if (new Date(input_entrada.val()).getTime() > new Date(input_saida.val()).getTime()) {
-                input_entrada.val(input_saida.val());
-            }
-            if (new Date(input_entrada.val()).getTime() > new Date().getTime()) {
-                input_entrada.val(new Date().toISOString().substr(0, 10));
-            }
-        });
+        input_entrada.on("change", () =>
+            ValidacaoFormulario._valida_data_entrada(input_entrada, input_saida));
 
+        /**
+         * Neste ponto é utilizado o padrão debounce, esperando que o usuario
+         * pare de alterar o valor para poder aplicar as mudanças. 
+         * Isto é necessário pois caso contrario a alteração no input de saída seria
+         * tão rápida que antes mesmo de o usuário fazer a alteração que deseja ocorreria
+         * efeitos colaterais no input de entrada.
+         */
+
+        let timerSaida = 0;
         input_saida.on("change", function () {
-            if (new Date(input_entrada.val()).getTime() > new Date(input_saida.val()).getTime()) {
-                input_entrada.val(input_saida.val());
-            }
-            if (new Date(input_saida.val()).getTime() > new Date().getTime()) {
-                input_saida.val(new Date().toISOString().substr(0, 10));
-            }
+            clearTimeout(timerSaida);
+            timerSaida = setTimeout(()=>
+                ValidacaoFormulario._valida_data_saida(input_entrada, input_saida),300)
         });
 
-        input_curso_inicio.on("change", function () {
-            if (new Date(input_curso_inicio.val()).getTime() > new Date().getTime()) {
-                input_curso_inicio.val(new Date().toISOString().substr(0, 10));
-            }
-        })
+        input_curso_inicio.on("change", () =>
+           ValidacaoFormulario._dataMaximaHoje(input_curso_inicio))
     }
 
     static contador_caracteres(idCampo){
-        $("#"+idCampo).on("keyup", (e) =>{
+        const campoTexto = $("#"+idCampo);
+        const labelCaracteres = campoTexto.parent().children('.text-muted')
+                                                   .children("small")
+
+        campoTexto.on("keyup", e =>{
             let caracteresRestantes = 1000;
             let caracteresDigitados = parseInt(e.target.value.length);
             caracteresRestantes -= caracteresDigitados;
-            $("#"+idCampo).parent().children('.text-muted').children("small").text(caracteresRestantes);
-            
+            labelCaracteres.text(caracteresRestantes);
         });
     }
 
-    static bloquearPorClick(idElemento,element){
-        const elementoABloquear = document.querySelector("#"+idElemento);
-        $(element).change(()=>{
-            console.log('change',element.id)
-            if(!elementoABloquear.disabled) {
-                elementoABloquear.classList.add('text-dark');
+    static _bloquear(idAbloquear,elemento, condicao){
+        const elementoABloquear = document.querySelector("#"+idAbloquear);
+        const required = elementoABloquear.required;
+
+        $(elemento).change(()=>{
+            if(condicao) {
                 elementoABloquear.classList.remove('inputError');
+                elementoABloquear.required = false;
                 elementoABloquear.value = '';
             }
-            else elementoABloquear.classList.remove('text-dark');           
-            
-            elementoABloquear.required = !elementoABloquear.required;
+            else elementoABloquear.required = required;
+
+            elementoABloquear.classList.toggle('text-dark');           
             elementoABloquear.disabled = !elementoABloquear.disabled;
 
         })
     }
 
-    static bloquearPorValor(idABloquear,valorCondicional, elementoAcao,){
+    static bloquearPorClick(idABloquear,element){
         const elementoABloquear = document.querySelector("#"+idABloquear);
-        const required = elementoABloquear.required;
-        elementoAcao.addEventListener('change',(event)=>{
-            if(event.target.value.toLowerCase() == valorCondicional.toLowerCase()){
-                elementoABloquear.disabled = true;
-                elementoABloquear.classList.add('text-dark');
-                elementoABloquear.classList.remove('inputError');
-                elementoABloquear.required = false;
-            }
-            else{
-                elementoABloquear.disabled = false;
-                elementoABloquear.classList.remove('text-dark');
-                elementoABloquear.required = required;
-            }
-        })
+        ValidacaoFormulario._bloquear(idABloquear,element,!elementoABloquear.disabled)
     }
 
-    static adicionaEventosValidacoes(){
-        $('input').on('keydown', function(e){
-            const digitadoEhNumero = !isNaN(String.fromCharCode(e.keyCode));
-            const naoVazio = !e.target.value.length;
-            const naoEhDataOuNumero = e.target.type != 'number' && e.target.type != 'date';
-            
-            if(digitadoEhNumero && naoVazio && naoEhDataOuNumero) return false;
-            return true;
-            
-        });
+    static bloquearPorValor(idABloquear,valorCondicional, elementoAcao,){
+        ValidacaoFormulario._bloquear(idABloquear,elementoAcao,elementoAcao.value.toLowerCase() == valorCondicional.toLowerCase())
+       
+    }
 
-        $('input').on('focus', function(e){
-            if( $(e.target).is(':invalid') ){
-                $(e.target).addClass('inputError');
-            } else {
-                $(e.target).removeClass('inputError');
-            }
-        });
-        $('input').on('change', function(e){
-            if( $(e.target).is(':invalid') ){
-                $(e.target).addClass('inputError');
-            } else {
-                $(e.target).removeClass('inputError');
-            }
-        });
-        $('input').on('keydown', function(e){
+    static adicionaEventosValidacoes(fields){
+        fields.on('keydown', ValidacaoFormulario._bloqueiaNumero);
+        fields.on('focus', ValidacaoFormulario._addClassOnInvalid);
+        fields.on('change', ValidacaoFormulario._addClassOnInvalid);
+        fields.on('keyup', ValidacaoFormulario._addClassOnInvalid);
+    }
 
-            if( $(e.target).is(':invalid') ){
-                $(e.target).addClass('inputError');
-            } else {
-                $(e.target).removeClass('inputError');
-            }
-        });
+    static _bloqueiaNumeros(e){
+        const digitadoEhNumero = !isNaN(String.fromCharCode(e.keyCode));
+        const naoVazio = !e.target.value.length;
+        const naoEhDataOuNumero = e.target.type != 'number' && e.target.type != 'date';
+        
+        if(digitadoEhNumero && naoVazio && naoEhDataOuNumero)
+            return false;
+        return true;
+    }
+
+    static _addClassInvalid(element){
+        element = $(element);
+        let lblElement = element.parent().children('label');
+        let msgElement = lblElement.children('.mensagemValidacao');
+        let lblText = lblElement.text();
+        let mensagem = element.get(0).validationMessage;
+        
+        if( element.is(':invalid') ){
+            element.addClass('inputError');
+            if(!msgElement.length)
+                lblElement.html(`${lblText} <span class="mensagemValidacao">(${mensagem})</span>`)
+            msgElement.text(`(${mensagem})`);
+        } else {
+            if(msgElement.length)
+                msgElement.html('');
+            element.removeClass('inputError');
+        }
+    }
+
+    static _addClassOnInvalid(e){
+        ValidacaoFormulario._addClassInvalid(e.target)
     }
 
     static adicionaValidacao(idCampo) {
-        ValidacaoFormulario.adicionaEventosValidacoes();
-        let elementos = document.querySelector("#"+idCampo).querySelectorAll("input, textarea, select");
+        
+        let elementos = $("#"+idCampo)
+                            .find("input, textarea, select");
+        ValidacaoFormulario.adicionaEventosValidacoes(elementos);
+
         let validaDatas = [];
-        elementos.forEach(element => {
+        elementos.each((index, element) => {
             let validacoes = element.getAttribute("data-valida");
-            if (validacoes != null) {
+            
+            if (!!validacoes) {
                 let arrValidacaos = validacoes.split(",");
                 for (let validacao of arrValidacaos){
                     ValidacaoFormulario.adicionaPorTipo(validacao,element,validaDatas,idCampo)
@@ -131,8 +167,7 @@ class ValidacaoFormulario {
             }
         });
         let [idDataEntrada, idDataSaida] = validaDatas;
-        this._valida_data(idDataEntrada, idDataSaida);
-        
+        ValidacaoFormulario._valida_datas(idDataEntrada, idDataSaida);
     }
 
 
@@ -143,18 +178,13 @@ class ValidacaoFormulario {
             ValidacaoFormulario.bloquearPorValor(element.getAttribute('data-idBloquear'),element.getAttribute('data-eventBloquear'), element)
     }
 
-    static unico(element,idCampos){
+    static _input_unico(element,idCampos){
         const campos = document.querySelector("#"+idCampos).parentElement;
+        
         element.addEventListener('change',function(){
-            console.log('unico')
-            
             for(let campo of campos.querySelectorAll(`input[name="${element.name}"]`)){
-               
-                if(campo.id != element.id){
-                    if(campo.checked){ 
-                        $(campo).attr('checked',false).trigger('change');
-                    }
-                }
+                if(campo.id != element.id && campo.checked)
+                    $(campo).attr('checked',false).trigger('change')
             }
         })
 
@@ -175,44 +205,33 @@ class ValidacaoFormulario {
                 ValidacaoFormulario.bloquear(element)
                 break;
             case 'unico':
-                ValidacaoFormulario.unico(element,idCampo);
+                ValidacaoFormulario._input_unico(element,idCampo);
             
         }
     }
 
-	static valida(form){
-        let elementos = form.querySelectorAll( "input, select, textarea" );
-        
-		elementos.filter = Array.prototype.filter;
-        let obrigatoriosNaoPreenchidos = elementos.filter(elemento => elemento.required && !elemento.value)
-        
-		if(obrigatoriosNaoPreenchidos.length){
-			Notificacao.invalido('Por favor, preencha os campos Obrigatórios','Campos Obrigatórios')
-			ValidacaoFormulario.marcarNaoPreenchidos(obrigatoriosNaoPreenchidos)
-			return false;
-        }
-        if(!form.checkValidity()){
-            Notificacao.invalido('Por favor, verifique os campos inválidos','Formulário Inválido')
-            form.reportValidity();
-            return false;
-        }
-		return true;
-    }	
-    
-    static marcarNaoPreenchidos(obrigatoriosNaoPreenchidos){
-        for (let naoPreenchido of obrigatoriosNaoPreenchidos){
-            naoPreenchido.classList.add("inputError")
-            ValidacaoFormulario.removerInvalidoAoCorrigirObrigatorio(naoPreenchido);
-        }
+    static mensagemValidacao(){
+
     }
 
-    static removerInvalidoAoCorrigirObrigatorio(naoPreenchido){
-        $(naoPreenchido).bind('change', function(e){
-            if( $(naoPreenchido).is(':invalid') ){
-                $(naoPreenchido).addClass('inputError');
-            } else {
-                $(e.target).removeClass('inputError');
-            }
-        });
+    static scrollInvalido(elementoInvalido){
+        Element.prototype.documentOffsetTop = function () {
+            return this.offsetTop + ( this.offsetParent ? this.offsetParent.documentOffsetTop() : 0 );
+        };
+        
+        const top = elementoInvalido.documentOffsetTop() - (window.innerHeight / 2 );
+        window.scrollTo( 0, top );
     }
+    
+    static marcarInvalidos(elementos){
+        let primeiroInvalido = null;
+        for (let elemento of elementos){
+            if(!elemento.checkValidity()) {
+                primeiroInvalido = !primeiroInvalido? elemento:primeiroInvalido;
+                ValidacaoFormulario._addClassInvalid(elemento);
+            }
+        }
+        return primeiroInvalido;
+    }
+
 }

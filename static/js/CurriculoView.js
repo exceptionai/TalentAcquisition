@@ -65,7 +65,7 @@ class CurriculoView {
                         <div class="form-group">
                             <label class="bmd-label-floating">Duração</label>
                             <select class="form-control" data-parent="cursosComplementares" data-style="btn btn-link" name="duracao" id="duracaoCurso${this._contadorCursos}">
-                                <option value="" disabled>Situação</option>
+                                <option value="" disabled>Duração</option>
                                 <option value="curta">Curta (até 40 horas)</option>
                                 <option value="media">Média (de 41 a 360 horas)</option>
                                 <option value="longa">Longa (acima de 360 horas</option>
@@ -210,8 +210,8 @@ class CurriculoView {
                 </div>
             </div>
             
-            <button type="button" class="btn btn-danger" id="experienciaAnteriorRemover${this._contadorExperiencias}">Remover Experiência Anterior</button>
-            <hr>
+            <button type="button" class="btn btn-danger mb-4" id="experienciaAnteriorRemover${this._contadorExperiencias}">Remover Experiência Anterior</button>
+            
         </div>
         `);
         ValidacaoFormulario.mascara_salarios(`salario${this._contadorExperiencias}`);
