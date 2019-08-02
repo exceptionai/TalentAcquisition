@@ -106,7 +106,7 @@ class CurriculoController {
                 event.preventDefault();
                 curriculoView.removerCampo(campoAdicionalID, campoID)
             });
-            ValidacaoFormulario.adicionaValidacao(campoAdicionalID+campoID);
+            ValidacaoFormularioController.adicionaValidacao(campoAdicionalID+campoID);
         })
     }
 
@@ -131,27 +131,20 @@ class CurriculoController {
         });
     }
 
-    status_cadastro() {
-        let requisicao = true;
-        if (requisicao) {
-            alert("Cadastro concluído com sucesso!");
-        } else {
-            alert("Não foi possível registrar suas informações. Tente novamente.");
-        }
-    }
-
     enviarCurriculo(){
 
         let form = document.querySelector("#formularioCurriculo");
-        if(ValidacaoFormulario.valida(form)){
+        if(ValidacaoFormularioController.valida(form)){
             let curriculoObj = FormHelper.paraObjeto(form);
             let curriculoJSON = JSON.stringify( curriculoObj );
-            console.log(curriculoJSON)
             this._http.post("http://localhost:3000/curriculo",curriculoJSON)
                 .then(resposta=>{
-                    Notificacao.sucesso('Currículo cadastrado com sucesso','Sucesso')
+                    NotificacaoService.sucesso('Currículo cadastrado com sucesso','Sucesso')
                 })
-                .catch(erro => console.log(erro))
+                .catch(erro =>{ 
+                    console.log(erro)
+                    NotificacaoService.invalido('Erro ao cadastrar o currículo','Erro ao Enviar')
+                })
         }
         
     }

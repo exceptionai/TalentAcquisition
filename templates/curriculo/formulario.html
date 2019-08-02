@@ -185,8 +185,10 @@
         </div>
     </div>
 
-    <script src="../../static/js/FormHelper.js"></script>
+    <script src="../../static/js/curriculoForm/services/FormHelper.js"></script>
     <script src="../../static/js/libs/jquery-1.11.3.min.js"></script>
+    <script src="../../static/js/curriculoForm/helpers/ValidacaoDataHelper.js"></script>
+    <script src="../../static/js/curriculoForm/views/ValidacaoFormularioView.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
         integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
@@ -194,15 +196,15 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
         integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
         crossorigin="anonymous"></script>
-    <script src="../../static/js/Notificacao.js"></script>
+    <script src="../../static/js/curriculoForm/services/NotificacaoService.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-maskmoney/3.0.2/jquery.maskMoney.min.js"></script>
-    <script src="../../static/js/ValidacaoFormulario.js"></script>
-    <script src="../../static/js/VagaService.js"></script>
-    <script src="../../static/js/CurriculoView.js"></script>
-    <script src="../../static/js/VagaController.js"></script>
-    <script src="../../static/js/CurriculoService.js"></script>
-    <script src="../../static/js/HttpService.js"></script>
-    <script src="../../static/js/CurriculoController.js"></script>
+    <script src="../../static/js/curriculoForm/controllers/ValidacaoFormularioController.js"></script>
+    <script src="../../static/js/curriculoForm/services/VagaService.js"></script>
+    <script src="../../static/js/curriculoForm/views/CurriculoView.js"></script>
+    <script src="../../static/js/curriculoForm/controllers/VagaController.js"></script>
+    <script src="../../static/js/curriculoForm/services/CurriculoService.js"></script>
+    <script src="../../static/js/curriculoForm/services/HttpService.js"></script>
+    <script src="../../static/js/curriculoForm/controllers/CurriculoController.js"></script>
     <script>
         const vaga = new VagaController().get_vaga();
         const controller = new CurriculoController(vaga, "#cidade", "#uf", "#campoDispostoSeMudar");
@@ -210,9 +212,9 @@
         controller.geraExperienciasDinamicamente("campoExperiencias", "botaoExperiencias");
         controller.geraCursosDinamicamente("campoCursos", "botaoCursos");
         controller.geraFormacaoDinamicamente("campoFormacoes", "botaoFormacoes");
-        ValidacaoFormulario.mascara_salarios("salarioExpectativa");
-        ValidacaoFormulario.contador_caracteres("resumoCandidato")
-        ValidacaoFormulario.adicionaValidacao("formularioCurriculo")
+        ValidacaoFormularioController.mascara_salarios("salarioExpectativa");
+        ValidacaoFormularioController.contador_caracteres("resumoCandidato")
+        ValidacaoFormularioController.adicionaValidacao("formularioCurriculo")
     </script>
 </body>
 

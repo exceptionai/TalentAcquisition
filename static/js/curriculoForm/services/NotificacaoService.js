@@ -1,4 +1,4 @@
-class Notificacao{
+class NotificacaoService{
 
     static _configToaster(){
         toastr.options = {
@@ -8,12 +8,12 @@ class Notificacao{
     }
 
     static invalido(mensagem,titulo){
-        Notificacao._configToaster();
+        NotificacaoService._configToaster();
         toastr.error(mensagem,titulo);
     }
 
     static sucesso(mensagem,titulo){
-        Notificacao._configToaster();
+        NotificacaoService._configToaster();
         toastr.success(mensagem,titulo);
     }
 }

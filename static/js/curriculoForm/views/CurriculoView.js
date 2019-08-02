@@ -75,7 +75,7 @@ class CurriculoView {
                     <div class="col-md-4">
                         <div class="form-group">
                             <label class="bmd-label-floating">Situação</label>
-                            <select class="form-control" name="situacao" data-parent="cursosComplementares" data-style="btn btn-link" data-valida="bloquear" data-eventBloquear="Cursando&dataInicialCurso${this._contadorCursos}" data-idBloquear="duracaoCurso${this._contadorCursos}">
+                            <select class="form-control" name="situacao" data-parent="cursosComplementares" data-style="btn btn-link" >
                                 <option selected disabled >Situação</option> 
                                 <option value="cursando" >Cursando</option>
                                 <option value="concluido">Concluído</option>
@@ -214,7 +214,7 @@ class CurriculoView {
             
         </div>
         `);
-        ValidacaoFormulario.mascara_salarios(`salario${this._contadorExperiencias}`);
+        ValidacaoFormularioController.mascara_salarios(`salario${this._contadorExperiencias}`);
         return campoExperienciaAnterior;
     }
 
