@@ -58,7 +58,7 @@ class CurriculoView {
                     <div class="col-md-4">
                         <div class="form-group">
                             <label class="bmd-label-floating">Data Inicial</label>
-                            <input type="date"  min="1900-01-01" name="dataInicial" class="form-control" data-parent="cursosComplementares">
+                            <input type="date"  min="1900-01-01" name="dataInicial" class="form-control" data-parent="cursosComplementares" id="dataInicialCurso${this._contadorCursos}">
                         </div>
                     </div>
                     <div class="col-md-4">
@@ -75,7 +75,7 @@ class CurriculoView {
                     <div class="col-md-4">
                         <div class="form-group">
                             <label class="bmd-label-floating">Situação</label>
-                            <select class="form-control" name="situacao" data-parent="cursosComplementares" data-style="btn btn-link" data-valida="bloquear" data-eventBloquear="Cursando" data-idBloquear="duracaoCurso${this._contadorCursos}">
+                            <select class="form-control" name="situacao" data-parent="cursosComplementares" data-style="btn btn-link" data-valida="bloquear" data-eventBloquear="Cursando&dataInicialCurso${this._contadorCursos}" data-idBloquear="duracaoCurso${this._contadorCursos}">
                                 <option selected disabled >Situação</option> 
                                 <option value="cursando" >Cursando</option>
                                 <option value="concluido">Concluído</option>

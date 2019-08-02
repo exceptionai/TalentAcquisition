@@ -4,7 +4,6 @@ class CurriculoController {
         this._cidadeID = cidadeID;
         this._estadoID = estadoID;
         this._dispostoMudarEstadoID = dispostoMudarEstadoID;
-        this._control_endereco();
         this._estados = [];
         this._contadorIdiomas = 0;
         this._contadorExperiencias = 0;
@@ -12,6 +11,7 @@ class CurriculoController {
         this._http = new HttpService();
         
         
+        this._control_endereco();
     }
 
     _control_endereco() {
@@ -24,10 +24,8 @@ class CurriculoController {
 
             $(document).on('change', '#uf', async function(e) {
                 self._valida_estado(this.value);
-                const target = $(this).data('target');
-                if (target) {
                     self.atualizaCidades(self._cidadeID, $(self._estadoID).val());
-                }
+                
             });
 
         });
@@ -35,12 +33,12 @@ class CurriculoController {
 
     atualizaEstados(element) {
 
-        var label = $(element).data('label');
+        let label = $(element).data('label');
         label = label ? label : 'Estado';
 
-        var options = '<option value="">' + label + '</option>';
-        for (var i in this._estados) {
-            var estado = this._estados[i];
+        let options = '<option value="">' + label + '</option>';
+        for (let i in this._estados) {
+            let estado = this._estados[i];
             options += '<option value="' + estado.sigla + '">' + estado.nome + '</option>';
         }
 
@@ -48,14 +46,15 @@ class CurriculoController {
     }
 
     atualizaCidades(element, estado_sigla) {
-        var label = $(element).data('label');
+        let label = $(element).data('label');
+        console.log('element')
         label = label ? label : 'Cidade';
 
-        var options = '<option value="">' + label + '</option>';
-        for (var estado of this._estados) {
+        let options = '<option value="">' + label + '</option>';
+        for (let estado of this._estados) {
             if (estado.sigla !== estado_sigla)
                 continue;
-            for (var cidade of estado.cidades) {
+            for (let cidade of estado.cidades) {
                 options += '<option value="' + cidade + '">' + cidade + '</option>';
             }
         }
