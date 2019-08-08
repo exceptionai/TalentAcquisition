@@ -64,13 +64,13 @@
                                     <div class="col-md-3">
                                         <div class="form-group">
                                             <label class="bmd-label-floating">Telefone Residencial</label>
-                                            <input type="number" maxlength="12" name="telefoneResidencial" class="form-control" id="telefoneResidencial" inputmode="numeric">
+                                            <input type="text" maxlength="12" name="telefoneResidencial" class="form-control" id="telefoneResidencial" data-valida="telefone-residencial" inputmode="numeric">
                                         </div>
                                     </div>
                                     <div class="col-md-3">
                                         <div class="form-group">
                                             <label class="bmd-label-floating">Telefone Celular</label>
-                                            <input type="number"  maxlength="12"  name="telefoneCelular" class="form-control" id="telefoneCelular" inputmode="numeric">
+                                            <input type="text"  maxlength="12"  name="telefoneCelular" class="form-control" id="telefoneCelular" data-valida="telefone-celular" inputmode="numeric">
                                         </div>
                                     </div>
                                 </div>
@@ -216,8 +216,8 @@
         controller.geraCursosDinamicamente("campoCursos", "botaoCursos");
         controller.geraFormacaoDinamicamente("campoFormacoes", "botaoFormacoes");
         ValidacaoFormulario.mascara_salarios("salarioExpectativa");
-        ValidacaoFormulario.contador_caracteres("resumoCandidato")
-        ValidacaoFormulario.adicionaValidacao("formularioCurriculo")
+        ValidacaoFormulario.contador_caracteres("resumoCandidato");
+        ValidacaoFormulario.adicionaValidacao("formularioCurriculo");
     </script>
 </body>
 
