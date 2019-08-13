@@ -225,6 +225,7 @@ class ValidacaoFormulario {
         let telefoneResidencial = $(`#${idTelefoneResidencial}`);
         telefoneResidencial.mask('(00) 0000-0000');
     }
+    
     static formatarCamposTelefoneCelular(idTelefoneCelular){
         let telefoneCelular = $(`#${idTelefoneCelular}`);
         telefoneCelular.mask('(00) 00000-0000');
