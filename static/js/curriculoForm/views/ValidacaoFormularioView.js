@@ -1,4 +1,7 @@
-class ValidacaoFormularioView{
+import { ValidacaoDataHelper } from '../helpers/ValidacaoDataHelper.js';
+
+export class ValidacaoFormularioView {
+
     static marcarInvalidos(elementos) {
         let primeiroInvalido = null;
         for (let elemento of elementos) {
@@ -10,15 +13,6 @@ class ValidacaoFormularioView{
         return primeiroInvalido;
     }
 
-    
-    static scrollInvalido(elementoInvalido) {
-        Element.prototype.documentOffsetTop = function () {
-            return this.offsetTop + (this.offsetParent ? this.offsetParent.documentOffsetTop() : 0);
-        };
-
-        const top = elementoInvalido.documentOffsetTop() - (window.innerHeight / 2);
-        window.scrollTo(0, top);
-    }
 
     static _addClassInvalid(element) {
         element = $(element);
@@ -29,10 +23,10 @@ class ValidacaoFormularioView{
         let existeMensagem = msgElement.length;
 
         if (element.is(':invalid')) {
-            
+
             element.addClass('inputError');
             if (!existeMensagem) lblElement.html(`${lblText} <span class="mensagemValidacao">(${mensagem})</span>`)
-            
+
             msgElement.text(`(${mensagem})`);
         } else {
             if (existeMensagem) msgElement.html('');
@@ -40,7 +34,17 @@ class ValidacaoFormularioView{
         }
     }
 
-    static _addClassOnInvalid(e) {
+    static scrollInvalido(elementoInvalido) {
+        Element.prototype.documentOffsetTop = function() {
+            return this.offsetTop + (this.offsetParent ? this.offsetParent.documentOffsetTop() : 0);
+        };
+
+        const top = elementoInvalido.documentOffsetTop() - (window.innerHeight / 2);
+        window.scrollTo(0, top);
+    }
+
+
+    static addClassOnInvalid(e) {
         ValidacaoFormularioView._addClassInvalid(e.target)
     }
 }

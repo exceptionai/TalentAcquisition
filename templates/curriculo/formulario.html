@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 
 <head>
     <meta charset="utf-8" />
@@ -7,11 +7,9 @@
     <title>
         Formulário de Cadastro
     </title>
-    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no"
-        name="viewport" />
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no" name="viewport" />
 
-    <link rel="stylesheet" type="text/css"
-        href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
+    <link rel="icon" type="image" href="./../static/img/logo.png" />
 
     <link href="../../static/css/libs/material-dashboard.css" rel="stylesheet" />
     <link rel="stylesheet" href="../../static/css/curriculoForm.css">
@@ -19,26 +17,23 @@
 
 </head>
 
-<body onload="controller.esconderHeader()">
-    <div class="wrapper">
+<body>
+    <header class="header-logo">
+        <div class="escondido" id="logo">
+            <div class="item"><img src="../../static/img/logo.png" class="img-thumbnail" style="width:80px">
+            </div>
+            <div class="item">
+                <h3><span style="color:#03588C">Bayer</span> <span style="color:#86A612">Carreiras</span></h3>
+            </div>
+        </div>
+    </header>
+    <main class="wrapper">
         <div class="main-panel" style="width:100%">
             <div class="content">
                 <div class="container-fluid">
                     <div class="col-md-11 m-auto">
                         <div class="card" id="conteudoCard">
-                            <div class="header-logo">
-                                <div class="escondido" id="logo">
-                                    <div class="item"><img src="./logo.png" class="img-thumbnail" style="width:80px">
-                                    </div>
-                                    <div class="item">
-                                        <h3><span style="color:#03588C">Bayer</span> <span
-                                                style="color:#86A612">Carreiras</span></h3>
-                                    </div>
-                                </div>
-                            </div>
-                            <div id="fotoCarreiras">
-                                <img src="./carreiras.jpg" class="img-thumbnail">
-                            </div>
+                            <div id="fotoCarreiras"></div>
                             <form class="m-3" id="formularioCurriculo">
                                 <div class="row">
                                     <div class="col-md-6">
@@ -64,20 +59,20 @@
                                     <div class="col-md-3">
                                         <div class="form-group">
                                             <label class="bmd-label-floating">Telefone Residencial</label>
-                                            <input type="number" maxlength="12" name="telefoneResidencial" class="form-control" id="telefoneResidencial" inputmode="numeric">
+                                            <input type="text" data-valida="telefone-residencial" maxlength="12" name="telefoneResidencial" class="form-control" id="telefoneResidencial" inputmode="numeric">
                                         </div>
                                     </div>
                                     <div class="col-md-3">
                                         <div class="form-group">
                                             <label class="bmd-label-floating">Telefone Celular</label>
-                                            <input type="number"  maxlength="12"  name="telefoneCelular" class="form-control" id="telefoneCelular" inputmode="numeric">
+                                            <input type="text" data-valida="telefone-celular" maxlength="12" name="telefoneCelular" class="form-control" id="telefoneCelular" inputmode="numeric">
                                         </div>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label class="bmd-label-floating">Endereço</label>
+                                            <label class="bmd-label-floating">Endereço*</label>
                                             <input type="text" name="endereco" required class="form-control">
                                         </div>
                                     </div>
@@ -106,7 +101,7 @@
                                                 <label class="bmd-label-floating">
                                                     Conte mais sobre sua carreira, experiências e conhecimentos
                                                 </label>
-                                                <textarea id="resumoCandidato" name="resumoCandidato"class="form-control textarea" rows="7" maxlength="1000" data-valida="caracteres"></textarea>
+                                                <textarea id="resumoCandidato" name="resumoCandidato" class="form-control textarea" rows="7" maxlength="1000" data-valida="caracteres"></textarea>
                                                 <p class="text-muted"><small><span class="caracteres" name="txtArea">1000</span></small> caracteres restantes</p>
                                             </div>
                                         </div>
@@ -162,7 +157,7 @@
                                 </div>
                                 <div class="row">
                                     <div class="enviar col-md-12">
-                                        <button type="button" class="btn btn-primary pull-right" onclick="controller.enviarCurriculo()">
+                                        <button type="button" class="btn btn-primary pull-right" id="btnEnviar">
                                             Enviar
                                         </button>
                                     </div>
@@ -183,38 +178,17 @@
                 </div>
             </footer>
         </div>
-    </div>
+    </main>
+    <script type="module" src="../../static/js/curriculoForm/init.js"></script>
 
-    <script src="../../static/js/curriculoForm/services/FormHelper.js"></script>
     <script src="../../static/js/libs/jquery-1.11.3.min.js"></script>
-    <script src="../../static/js/curriculoForm/helpers/ValidacaoDataHelper.js"></script>
-    <script src="../../static/js/curriculoForm/views/ValidacaoFormularioView.js"></script>
+
+    <script src="../../static/js/libs/jquery.mask.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
-        integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
-        crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
-        integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
-        crossorigin="anonymous"></script>
-    <script src="../../static/js/curriculoForm/services/NotificacaoService.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-maskmoney/3.0.2/jquery.maskMoney.min.js"></script>
-    <script src="../../static/js/curriculoForm/controllers/ValidacaoFormularioController.js"></script>
-    <script src="../../static/js/curriculoForm/services/VagaService.js"></script>
-    <script src="../../static/js/curriculoForm/views/CurriculoView.js"></script>
-    <script src="../../static/js/curriculoForm/controllers/VagaController.js"></script>
-    <script src="../../static/js/curriculoForm/services/CurriculoService.js"></script>
-    <script src="../../static/js/curriculoForm/services/HttpService.js"></script>
-    <script src="../../static/js/curriculoForm/controllers/CurriculoController.js"></script>
     <script>
-        const vaga = new VagaController().get_vaga();
-        const controller = new CurriculoController(vaga, "#cidade", "#uf", "#campoDispostoSeMudar");
-        controller.geraIdiomasDinamicamente("campoIdiomas", "botaoIdiomas");
-        controller.geraExperienciasDinamicamente("campoExperiencias", "botaoExperiencias");
-        controller.geraCursosDinamicamente("campoCursos", "botaoCursos");
-        controller.geraFormacaoDinamicamente("campoFormacoes", "botaoFormacoes");
-        ValidacaoFormularioController.mascara_salarios("salarioExpectativa");
-        ValidacaoFormularioController.contador_caracteres("resumoCandidato")
-        ValidacaoFormularioController.adicionaValidacao("formularioCurriculo")
     </script>
 </body>
 

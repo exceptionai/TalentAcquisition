@@ -1,5 +1,5 @@
-class ValidacaoDataHelper{
-    
+export class ValidacaoDataHelper {
+
     static _valida_data_entrada(input_entrada, input_saida) {
         if (new Date(input_entrada.val()).getTime() > new Date(input_saida.val()).getTime()) {
             input_entrada.val(input_saida.val());
@@ -16,9 +16,9 @@ class ValidacaoDataHelper{
         }
     }
 
-    static _eventDataMaximaHoje(e){
+    static _eventDataMaximaHoje(e) {
         const element = e.target;
-        if(element.type == 'date')
+        if (element.type == 'date')
             ValidacaoDataHelper._dataMaximaHoje($(element));
     }
 
@@ -39,7 +39,7 @@ class ValidacaoDataHelper{
          */
 
         let timerSaida = 0;
-        input_saida.on("change", function () {
+        input_saida.on("change", function() {
             clearTimeout(timerSaida);
             timerSaida = setTimeout(() =>
                 ValidacaoDataHelper._valida_data_saida(input_entrada, input_saida), 300)

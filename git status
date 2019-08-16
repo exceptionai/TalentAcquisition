@@ -1,0 +1,95 @@
+[33mcommit 0d97e063f00e4e46a2bb5327c744e3891adc9bd2[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m)[m
+Author: Renan do Nascimento Sanches <renan.sanches_123@hotmail.com>
+Date:   Sun May 19 15:26:08 2019 -0300
+
+    Refatorado o nome dos inputs
+
+[33mcommit 536c7e8ecf5c2c6b8b3df56da4865a592f1eab36[m
+Author: Renan do Nascimento Sanches <renan.sanches_123@hotmail.com>
+Date:   Sun May 19 12:50:51 2019 -0300
+
+    Adicionado o campo de descrição do curso extracurricular
+
+[33mcommit e5907ca740426c3c9aae4b2b8b0204c8499ee237[m[33m ([m[1;31morigin/master[m[33m)[m
+Author: Renan do Nascimento Sanches <renan.sanches_123@hotmail.com>
+Date:   Sun May 19 05:21:33 2019 -0300
+
+    Adaptado os testes e classes de analises para as classes implementadas do currículo
+
+[33mcommit 5caf20cbc7f69804e788746939e50e953efd302c[m
+Author: Renan do Nascimento Sanches <renan.sanches_123@hotmail.com>
+Date:   Sun May 19 04:49:18 2019 -0300
+
+    Adicionado os valores de 'cursando' e 'data_inicial' na chamada dos cursos extracurriculares
+
+[33mcommit 412028da991d19e5371a4e4374d4f6fc2467da94[m
+Author: Renan do Nascimento Sanches <renan.sanches_123@hotmail.com>
+Date:   Sun May 19 04:17:56 2019 -0300
+
+    adicionado o campo de idiomas do curriculo
+
+[33mcommit 400a8b56120b07052cfb7d1162791fcc93e48196[m
+Author: Renan do Nascimento Sanches <renan.sanches_123@hotmail.com>
+Date:   Sun May 19 04:13:01 2019 -0300
+
+    Adicionado e implementado os cursos extracurriculares
+
+[33mcommit 38cced612e4c35a87c069a579ad20b334b9a5ed4[m
+Author: Renan do Nascimento Sanches <renan.sanches_123@hotmail.com>
+Date:   Sun May 19 03:53:22 2019 -0300
+
+    capturado os dados do formulario simulado o banco de dados e redirecionado para as paginas de sucesso/falha
+
+[33mcommit 549c63174e67a3c210207495883b68cac5faea5e[m
+Author: Renan do Nascimento Sanches <renan.sanches_123@hotmail.com>
+Date:   Sun May 19 03:47:56 2019 -0300
+
+    Adicionado a classe de pontuação
+
+[33mcommit 6b50e54dffe2c9dfd370cdb8accaeb8465e80fc4[m
+Author: Renan do Nascimento Sanches <renan.sanches_123@hotmail.com>
+Date:   Sun May 19 03:33:42 2019 -0300
+
+    Criado as páginas de sucesso e erro
+
+[33mcommit fcdbb24dda6dcb88c4cb84dba823b68efc7e9002[m
+Author: Renan do Nascimento Sanches <renan.sanches_123@hotmail.com>
+Date:   Sun May 19 03:31:49 2019 -0300
+
+    Alterado o formulário para a pasta templates/curriculo
+
+[33mcommit cb922e3aeb663e1fdca882b7a058a5cd3db0ab39[m
+Author: Renan do Nascimento Sanches <renan.sanches_123@hotmail.com>
+Date:   Sun May 19 03:28:24 2019 -0300
+
+    Adicionado a rota correta para o formulario'
+
+[33mcommit 5db222e74d345626af7d676487b73db710d31c67[m
+Author: Renan do Nascimento Sanches <renan.sanches_123@hotmail.com>
+Date:   Sun May 19 01:57:30 2019 -0300
+
+    Criado a classe para os currículos
+
+[33mcommit e5c7ad452bfbf02d72f1e328cc4d2ec92116a6f2[m
+Author: Renan do Nascimento Sanches <renan.sanches_123@hotmail.com>
+Date:   Sat May 18 22:36:23 2019 -0300
+
+    Realizada a implementação do formulário no sistema
+
+[33mcommit 98eb8b7ebab20060ac04dee004bc8704b2fd6422[m
+Author: Renan do Nascimento Sanches <renan.sanches_123@hotmail.com>
+Date:   Sat May 18 22:34:29 2019 -0300
+
+    Criado o arquivo de rotas e iniciação do servidor
+
+[33mcommit 6435fba076dffd6d4583cd1fa349e7121b9552f4[m
+Author: Renan do Nascimento Sanches <renan.sanches_123@hotmail.com>
+Date:   Sat May 18 15:51:07 2019 -0300
+
+    Adicionado a análise de cursos extra-curriculares e reorganizado a estrutura de pastas
+
+[33mcommit addc4abcea16d08ce159e154d1584420a913fd80[m
+Author: Renan do Nascimento Sanches <renan.sanches_123@hotmail.com>
+Date:   Fri May 10 15:36:44 2019 -0300
+
+    Adicionado a pontuação para o objetivo

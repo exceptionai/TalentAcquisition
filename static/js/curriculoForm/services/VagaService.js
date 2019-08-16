@@ -1,5 +1,5 @@
-class VagaService{
-    load_vaga(url){
-        return {estado:'SP'}
+export class VagaService {
+    load_vaga(url) {
+        return { estado: 'SP' }
     }
 }

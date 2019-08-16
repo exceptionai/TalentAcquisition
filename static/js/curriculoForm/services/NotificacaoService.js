@@ -1,19 +1,19 @@
-class NotificacaoService{
+export class NotificacaoService {
 
-    static _configToaster(){
+    static _configToaster() {
         toastr.options = {
-            "closeButton":true,
-            "progressBar":true
+            "closeButton": true,
+            "progressBar": true
         };
     }
 
-    static invalido(mensagem,titulo){
+    static invalido(mensagem, titulo) {
         NotificacaoService._configToaster();
-        toastr.error(mensagem,titulo);
+        toastr.error(mensagem, titulo);
     }
 
-    static sucesso(mensagem,titulo){
+    static sucesso(mensagem, titulo) {
         NotificacaoService._configToaster();
-        toastr.success(mensagem,titulo);
+        toastr.success(mensagem, titulo);
     }
 }

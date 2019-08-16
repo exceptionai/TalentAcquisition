@@ -1,5 +1,16 @@
-class CurriculoController {
-    constructor(vaga, cidadeID, estadoID, dispostoMudarEstadoID) {
+import { CurriculoService } from '../services/CurriculoService.js';
+import { CurriculoView } from '../views/CurriculoView.js';
+import { HttpService } from '../services/HttpService.js';
+import { ValidacaoFormularioController } from '../controllers/ValidacaoFormularioController.js';
+import { NotificacaoService } from '../services/NotificacaoService.js';
+import { FormHelper } from '../services/FormHelper.js';
+import { IdiomasView } from '../views/IdiomasView.js';
+import { ExperienciasAnterioresView } from '../views/ExperienciasAnterioresView.js';
+import { CursosComplementaresView } from '../views/CursosComplementaresView.js';
+import { FormacoesAcademicasView } from '../views/FormacoesAcademicasView.js';
+
+export class CurriculoController {
+    constructor(vaga, cidadeID, estadoID, dispostoMudarEstadoID, formularioID) {
         this._vaga = vaga;
         this._cidadeID = cidadeID;
         this._estadoID = estadoID;
@@ -7,10 +18,9 @@ class CurriculoController {
         this._estados = [];
         this._contadorIdiomas = 0;
         this._contadorExperiencias = 0;
-        this._view = new CurriculoView();
         this._http = new HttpService();
-        
-        
+        this._form = document.querySelector(formularioID);
+
         this._control_endereco();
     }
 
@@ -24,8 +34,8 @@ class CurriculoController {
 
             $(document).on('change', '#uf', async function(e) {
                 self._valida_estado(this.value);
-                    self.atualizaCidades(self._cidadeID, $(self._estadoID).val());
-                
+                self.atualizaCidades(self._cidadeID, $(self._estadoID).val());
+
             });
 
         });
@@ -47,7 +57,6 @@ class CurriculoController {
 
     atualizaCidades(element, estado_sigla) {
         let label = $(element).data('label');
-        console.log('element')
         label = label ? label : 'Cidade';
 
         let options = '<option value="">' + label + '</option>';
@@ -62,33 +71,37 @@ class CurriculoController {
     }
 
     geraIdiomasDinamicamente(idioma_ID, botao_idiomas_ID) {
+        const view = new IdiomasView();
         this._gerarCampoDinamicamente(
             idioma_ID, botao_idiomas_ID,
-            this._view.idioma.bind(this._view),
+            view.template.bind(view),
             "campoIdiomaAdicional"
         )
     }
 
     geraExperienciasDinamicamente(experiencia_ID, botao_experiencia_ID) {
+        const view = new ExperienciasAnterioresView();
         this._gerarCampoDinamicamente(
             experiencia_ID, botao_experiencia_ID,
-            this._view.experienciaAnterior.bind(this._view),
+            view.template.bind(view),
             "experienciaAnterior"
         )
     }
 
     geraCursosDinamicamente(cursosID, botaoCursosID) {
+        const view = new CursosComplementaresView();
         this._gerarCampoDinamicamente(
             cursosID, botaoCursosID,
-            this._view.cursosComplementares.bind(this._view),
+            view.template.bind(view),
             "cursosComplementares"
         )
     }
 
     geraFormacaoDinamicamente(experienciasID, botaoExperienciasID) {
+        const view = new FormacoesAcademicasView();
         this._gerarCampoDinamicamente(
             experienciasID, botaoExperienciasID,
-            this._view.formacao.bind(this._view),
+            view.template.bind(view),
             "formacao"
         )
     }
@@ -106,7 +119,7 @@ class CurriculoController {
                 event.preventDefault();
                 curriculoView.removerCampo(campoAdicionalID, campoID)
             });
-            ValidacaoFormularioController.adicionaValidacao(campoAdicionalID+campoID);
+            ValidacaoFormularioController.adicionaValidacao(campoAdicionalID + campoID);
         })
     }
 
@@ -131,21 +144,19 @@ class CurriculoController {
         });
     }
 
-    enviarCurriculo(){
-
-        let form = document.querySelector("#formularioCurriculo");
-        if(ValidacaoFormularioController.valida(form)){
-            let curriculoObj = FormHelper.paraObjeto(form);
-            let curriculoJSON = JSON.stringify( curriculoObj );
-            this._http.post("http://localhost:3000/curriculo",curriculoJSON)
-                .then(resposta=>{
-                    NotificacaoService.sucesso('Currículo cadastrado com sucesso','Sucesso')
+    enviarCurriculo() {
+        if (ValidacaoFormularioController.valida(this._form)) {
+            let curriculoObj = FormHelper.paraObjeto(this._form);
+            let curriculoJSON = JSON.stringify(curriculoObj);
+            this._http.post("http://localhost:3000/curriculo", curriculoJSON)
+                .then(resposta => {
+                    NotificacaoService.sucesso('Currículo cadastrado com sucesso', 'Sucesso')
                 })
-                .catch(erro =>{ 
+                .catch(erro => {
                     console.log(erro)
-                    NotificacaoService.invalido('Erro ao cadastrar o currículo','Erro ao Enviar')
+                    NotificacaoService.invalido('Erro ao cadastrar o currículo', 'Erro ao Enviar')
                 })
         }
-        
+
     }
 }

@@ -1,11 +1,15 @@
-class ValidacaoFormularioController {
+import { ValidacaoFormularioView } from '../views/ValidacaoFormularioView.js';
+import { ValidacaoDataHelper } from '../helpers/ValidacaoDataHelper.js';
+import { NotificacaoService } from '../services/NotificacaoService.js';
+
+export class ValidacaoFormularioController {
 
     static valida(form) {
-        let elementos = form.querySelectorAll("input, select, textarea");
+        let elementos = form.querySelectorAll('input, select, textarea');
 
         if (!form.checkValidity()) {
             const primeiroElementoInvalido = ValidacaoFormularioView
-                                                .marcarInvalidos(elementos)
+                .marcarInvalidos(elementos)
             ValidacaoFormularioView.scrollInvalido(primeiroElementoInvalido);
             NotificacaoService.invalido('Por favor, verifique os campos em vermelho', 'Currículo Inválido')
 
@@ -21,11 +25,11 @@ class ValidacaoFormularioController {
     }
 
     static contador_caracteres(idCampo) {
-        const campoTexto = $("#" + idCampo);
+        const campoTexto = $('#' + idCampo);
         const labelCaracteres = campoTexto.parent().children('.text-muted')
-            .children("small")
+            .children('small')
 
-        campoTexto.on("keyup", e => {
+        campoTexto.on('keyup', e => {
             let caracteresRestantes = 1000;
             let caracteresDigitados = parseInt(e.target.value.length);
             caracteresRestantes -= caracteresDigitados;
@@ -34,7 +38,7 @@ class ValidacaoFormularioController {
     }
 
     static _bloquear(idAbloquear, elemento, condicao) {
-        const elementoABloquear = document.querySelector("#" + idAbloquear);
+        const elementoABloquear = document.querySelector('#' + idAbloquear);
         const required = elementoABloquear.required;
 
         $(elemento).change(() => {
@@ -42,8 +46,7 @@ class ValidacaoFormularioController {
                 elementoABloquear.classList.remove('inputError');
                 elementoABloquear.required = false;
                 elementoABloquear.value = '';
-            }
-            else elementoABloquear.required = required;
+            } else elementoABloquear.required = required;
 
             elementoABloquear.classList.toggle('text-dark');
             elementoABloquear.disabled = !elementoABloquear.disabled;
@@ -52,7 +55,7 @@ class ValidacaoFormularioController {
     }
 
     static bloquearPorClick(idABloquear, element) {
-        const elementoABloquear = document.querySelector("#" + idABloquear);
+        const elementoABloquear = document.querySelector('#' + idABloquear);
         ValidacaoFormularioController._bloquear(idABloquear, element, !elementoABloquear.disabled)
     }
 
@@ -61,35 +64,42 @@ class ValidacaoFormularioController {
     }
 
     static adicionaEventosValidacoes(fields) {
-        fields.on('keydown', ValidacaoFormularioController._bloqueiaNumero);
-        fields.on('focus', ValidacaoFormularioView._addClassOnInvalid);
-        fields.on('change', ValidacaoFormularioView._addClassOnInvalid);
-        fields.on('change',ValidacaoDataHelper._eventDataMaximaHoje);
-        fields.on('keyup', ValidacaoFormularioView._addClassOnInvalid);
+        fields.on('keydown', ValidacaoFormularioController._bloqueiaNumeros);
+        fields.on('focus', ValidacaoFormularioView.addClassOnInvalid);
+        fields.on('change', ValidacaoFormularioView.addClassOnInvalid);
+        fields.on('change', ValidacaoDataHelper.eventDataMaximaHoje);
+        fields.on('keyup', ValidacaoFormularioController._bloqueiaPrimeiroValorNumeros)
+        fields.on('keyup', ValidacaoFormularioView.addClassOnInvalid);
     }
+
 
     static _bloqueiaNumeros(e) {
         const digitadoEhNumero = !isNaN(String.fromCharCode(e.keyCode));
         const naoVazio = !e.target.value.length;
         const naoEhDataOuNumero = e.target.type != 'number' && e.target.type != 'date';
+        const validacaoCampo = e.target.getAttribute('data-valida')
+        let ehTelefone = false;
 
-        if (digitadoEhNumero && naoVazio && naoEhDataOuNumero)
+        if (validacaoCampo)
+            ehTelefone = validacaoCampo.toLowerCase().startsWith('telefone');
+
+        if (digitadoEhNumero && naoVazio && naoEhDataOuNumero && !ehTelefone)
             return false;
         return true;
     }
 
     static adicionaValidacao(idCampo) {
 
-        let elementos = $("#" + idCampo)
-            .find("input, textarea, select");
+        let elementos = $('#' + idCampo)
+            .find('input, textarea, select');
         ValidacaoFormularioController.adicionaEventosValidacoes(elementos);
 
         let validaDatas = [];
         elementos.each((index, element) => {
-            let validacoes = element.getAttribute("data-valida");
+            let validacoes = element.getAttribute('data-valida');
 
             if (!!validacoes) {
-                let arrValidacaos = validacoes.split(",");
+                let arrValidacaos = validacoes.split(',');
                 for (let validacao of arrValidacaos) {
                     ValidacaoFormularioController.adicionaPorTipo(validacao, element, validaDatas, idCampo)
                 }
@@ -108,9 +118,9 @@ class ValidacaoFormularioController {
     }
 
     static _input_unico(element, idCampos) {
-        const campos = document.querySelector("#" + idCampos).parentElement;
+        const campos = document.querySelector('#' + idCampos).parentElement;
 
-        element.addEventListener('change', function () {
+        element.addEventListener('change', function() {
             for (let campo of campos.querySelectorAll(`input[name="${element.name}"]`)) {
                 if (campo.id != element.id && campo.checked)
                     $(campo).attr('checked', false).trigger('change')
@@ -121,13 +131,13 @@ class ValidacaoFormularioController {
 
     static adicionaPorTipo(tipoValidacao, element, arrDatas, idCampo) {
         switch (tipoValidacao) {
-            case "data":
+            case 'data':
                 arrDatas.push(element.id);
                 break;
-            case "salario":
+            case 'salario':
                 ValidacaoFormularioController.mascara_salarios(element.id);
                 break;
-            case "caracteres":
+            case 'caracteres':
                 ValidacaoFormularioController.contador_caracteres(element.id);
                 break;
             case 'bloquear':
@@ -135,7 +145,22 @@ class ValidacaoFormularioController {
                 break;
             case 'unico':
                 ValidacaoFormularioController._input_unico(element, idCampo);
-
+                break;
+            case 'telefone-celular':
+                ValidacaoFormularioController.formatarCamposTelefoneCelular(element.id);
+                break;
+            case 'telefone-residencial':
+                ValidacaoFormularioController.formatarCamposTelefoneResidencial(element.id);
+                break;
         }
+    }
+
+    static formatarCamposTelefoneResidencial(idTelefoneResidencial) {
+        let telefoneResidencial = $(`#${idTelefoneResidencial}`);
+        telefoneResidencial.mask('(00) 0000-0000');
+    }
+    static formatarCamposTelefoneCelular(idTelefoneCelular) {
+        let telefoneCelular = $(`#${idTelefoneCelular}`);
+        telefoneCelular.mask('(00) 00000-0000');
     }
 }
