@@ -12,13 +12,13 @@ export class CursosComplementaresView extends CurriculoView {
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label class="bmd-label-floating">Nome do Curso* </label>
+                            <label class="bmd-label-floating">Nome do curso* </label>
                             <input required type="text" class="form-control" name="nome" data-parent="cursosComplementares" required>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label class="bmd-label-floating">Nome da Instituição*</label>
+                            <label class="bmd-label-floating">Nome da instituição*</label>
                             <input type="text" class="form-control" name="instituicao" required data-parent="cursosComplementares">
                         </div>
                     </div>
@@ -26,7 +26,7 @@ export class CursosComplementaresView extends CurriculoView {
                 <div class="row">
                     <div class="col-md-4">
                         <div class="form-group">
-                            <label class="bmd-label-floating">Data Inicial</label>
+                            <label class="bmd-label-floating">Data inicial</label>
                             <input type="date"  min="1900-01-01" name="dataInicial" class="form-control" data-parent="cursosComplementares" id="dataInicialCurso${this._dinamicoCampoContador}">
                         </div>
                     </div>

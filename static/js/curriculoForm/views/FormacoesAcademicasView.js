@@ -7,11 +7,11 @@ export class FormacoesAcademicasView extends CurriculoView {
         return $(`
             <div id="formacao${this._dinamicoCampoContador}">
                 <hr>
-                Formação Acadêmica
+                Formação acadêmica
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label class="bmd-label-floating">Nome do Curso*</label>
+                            <label class="bmd-label-floating">Nome do curso*</label>
                             <input type="text" required data-parent="formacaoAcademica" class="form-control" id="nomeFormacao${this._dinamicoCampoContador}" name="curso">
                         </div>
                     </div>
@@ -36,7 +36,7 @@ export class FormacoesAcademicasView extends CurriculoView {
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label class="bmd-label-floating">Nome da Instituição*</label>
+                            <label class="bmd-label-floating">Nome da instituição*</label>
                             <input type="text" required data-parent="formacaoAcademica" class="form-control" id="nomeInstituicao" name="nomeInstituicao">
                         </div>
                     </div>
@@ -53,7 +53,7 @@ export class FormacoesAcademicasView extends CurriculoView {
                     </div>
                 </div>  
                 
-                <button type="button" class="btn btn-danger" id="formacaoRemover${this._dinamicoCampoContador}">Remover Formação Acadêmica</button>
+                <button type="button" class="btn btn-danger" id="formacaoRemover${this._dinamicoCampoContador}">Remover formação acadêmica</button>
                 <hr>
             </div>
         `)

@@ -339,13 +339,13 @@ class CurriculoView {
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label class="bmd-label-floating">Nome do Curso* </label>
+                            <label class="bmd-label-floating">Nome do curso* </label>
                             <input type="text" class="form-control" name="nome" data-parent="cursosComplementares" required>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label class="bmd-label-floating">Nome da Instituição*</label>
+                            <label class="bmd-label-floating">Nome da instituição*</label>
                             <input type="text" class="form-control" name="instituicao" required data-parent="cursosComplementares">
                         </div>
                     </div>
@@ -353,7 +353,7 @@ class CurriculoView {
                 <div class="row">
                     <div class="col-md-4">
                         <div class="form-group">
-                            <label class="bmd-label-floating">Data Inicial</label>
+                            <label class="bmd-label-floating">Data inicial</label>
                             <input type="date"  min="1900-01-01" name="dataInicial" class="form-control" data-parent="cursosComplementares" id="dataInicialCurso${this._contadorCursos}">
                         </div>
                     </div>
@@ -392,7 +392,7 @@ class CurriculoView {
                     </div>
                 </div>
                 
-                <button type="button" class="btn btn-danger" id="cursosComplementaresRemover${this._contadorCursos}">Remover Curso Extra Curricular</button>
+                <button type="button" class="btn btn-danger" id="cursosComplementaresRemover${this._contadorCursos}">Remover curso extra curricular</button>
                 <hr>
                 <br>
             </div>
@@ -523,7 +523,7 @@ class CurriculoView {
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label class="bmd-label-floating">Nome do Curso*</label>
+                            <label class="bmd-label-floating">Nome do curso*</label>
                             <input type="text" required data-parent="formacaoAcademica" class="form-control" id="nomeFormacao${this._contadorFormacao}" name="curso">
                         </div>
                     </div>
@@ -548,7 +548,7 @@ class CurriculoView {
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label class="bmd-label-floating">Nome da Instituição*</label>
+                            <label class="bmd-label-floating">Nome da instituição*</label>
                             <input type="text" required data-parent="formacaoAcademica" class="form-control" id="nomeInstituicao" name="nomeInstituicao">
                         </div>
                     </div>
