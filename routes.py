@@ -64,6 +64,19 @@ def inserir():
 def sistema_base():
     return render_template('sistema-base/index.html')
 
+@app.route('/candidatosPotencial')
+def candidatosPotencial():
+    return render_template('sistema-base/candidatosPotencial.html')
+
+@app.route('/candidatosTotais')
+def candidatosTotais():
+    return render_template('sistema-base/candidatosTotais.html')
+
+@app.route('/vagasAberto')
+def vagasAberto():
+    return render_template('sistema-base/vagasAberto.html')
+
 @app.route('/spec')
 def spec():
     return render_template('spec/SpecRunner.html')
+
