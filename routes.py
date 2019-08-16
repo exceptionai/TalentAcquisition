@@ -63,3 +63,7 @@ def inserir():
 @app.route('/sistema')
 def sistema_base():
     return render_template('sistema-base/index.html')
+
+@app.route('/spec')
+def spec():
+    return render_template('spec/SpecRunner.html')

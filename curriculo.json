@@ -1,18 +1,208 @@
 {
   "curriculo": [
     {
-      "nome": "teste",
-      "idade": "123",
+      "nome": "Renan do Nascimento Sanches",
+      "idade": 22,
       "email": "renan.sanches_123@hotmail.com",
-      "telefoneResidencial": "",
-      "telefoneCelular": "",
-      "endereco": "Rsa",
+      "telefoneResidencial": 1120253682,
+      "telefoneCelular": 11959363429,
+      "endereco": "Rua Antônio João de Medeiros, 425",
+      "estado": "Rio de Janeiro",
+      "cidade": "São Paulo",
+      "resumoCandidato": "Estudo",
+      "objetivo": "estudar mais",
+      "salarioExpectativa": 10000,
+      "experienciasAnteriores": [
+        {
+          "nomeEmpresa": "Vonex",
+          "cargo": "Desenvolvedor",
+          "salario": 2000,
+          "dataEntrada": "1997-05-02",
+          "dataSaida": "",
+          "trabalhoAtual": true,
+          "principaisAtividades": "Muito top"
+        },
+        {
+          "nomeEmpresa": "Resource IT",
+          "cargo": "suportao",
+          "salario": 1550.5,
+          "dataEntrada": "2019-08-01",
+          "dataSaida": "2019-08-01",
+          "trabalhoAtual": false,
+          "principaisAtividades": "Oloco"
+        }
+      ],
+      "formacaoAcademica": [
+        {
+          "curso": "Sistemas de Informação",
+          "nivelCurso": "graduacao",
+          "nomeInstituicao": "FIAP",
+          "situacaoFormacao": "cursando"
+        },
+        {
+          "curso": "Segurança da Informação",
+          "nivelCurso": "graduacao",
+          "nomeInstituicao": "Uninove",
+          "situacaoFormacao": "interrompido"
+        }
+      ],
+      "cursosComplementares": [
+        {
+          "nome": "GIT",
+          "instituicao": "Alura",
+          "dataInicial": "1900-01-01",
+          "duracao": "curta",
+          "situacao": "cursando",
+          "descricao": "Curso muito bom de git"
+        },
+        {
+          "nome": "Regex",
+          "instituicao": "Alura",
+          "dataInicial": "2018-05-02",
+          "duracao": "media",
+          "situacao": "concluido",
+          "descricao": "Regex massa"
+        }
+      ],
+      "idiomas": [
+        {
+          "idioma": "ingles",
+          "nivelIdioma": "avançado"
+        },
+        {
+          "idioma": "japones",
+          "nivelIdioma": "basico"
+        }
+      ],
+      "id": 1
+    },
+    {
+      "nome": "Lucas",
+      "idade": 26,
+      "email": "renan.sanches_123@hotmail.com",
+      "telefoneResidencial": 1120253687,
+      "telefoneCelular": 11959363425,
+      "endereco": "Rua Antônio João de Medeiros, 424",
       "estado": "São Paulo",
+      "cidade": "São Paulo",
+      "resumoCandidato": "Estudo",
+      "objetivo": "estudar mais",
+      "salarioExpectativa": 10000,
+      "experienciasAnteriores": [
+        {
+          "nomeEmpresa": "Vonex",
+          "cargo": "Desenvolvedor",
+          "salario": 2000,
+          "dataEntrada": "1997-05-02",
+          "dataSaida": "",
+          "trabalhoAtual": true,
+          "principaisAtividades": "Muito topzera"
+        },
+        {
+          "nomeEmpresa": "Resource ",
+          "cargo": "chefe",
+          "salario": 15505.02,
+          "dataEntrada": "2019-08-01",
+          "dataSaida": "2019-08-01",
+          "trabalhoAtual": false,
+          "principaisAtividades": "Oloco meu"
+        }
+      ],
+      "formacaoAcademica": [
+        {
+          "curso": "Sistemas de Informação",
+          "nivelCurso": "graduacao",
+          "nomeInstituicao": "FIAP",
+          "situacaoFormacao": "cursando"
+        },
+        {
+          "curso": "Segurança da Informação",
+          "nivelCurso": "graduacao",
+          "nomeInstituicao": "Uninove 10",
+          "situacaoFormacao": "interrompido"
+        }
+      ],
+      "cursosComplementares": [
+        {
+          "nome": "GIT",
+          "instituicao": "Alura",
+          "dataInicial": "1900-01-01",
+          "duracao": "curta",
+          "situacao": "cursando",
+          "descricao": "Curso muito bom de git"
+        },
+        {
+          "nome": "Regex",
+          "instituicao": "Alura",
+          "dataInicial": "2018-05-02",
+          "duracao": "media",
+          "situacao": "concluido",
+          "descricao": "Regex "
+        }
+      ],
+      "idiomas": [
+        {
+          "idioma": "ingles",
+          "nivelIdioma": "avançado"
+        },
+        {
+          "idioma": "russo",
+          "nivelIdioma": "basico"
+        }
+      ],
+      "id": 2
+    },
+    {
+      "nome": "dadasd",
+      "idade": 22,
+      "email": "dasdasd@dasda",
+      "telefoneResidencial": null,
+      "telefoneCelular": null,
+      "endereco": "dasda",
+      "estado": "Rio de Janeiro",
       "cidade": "São Paulo",
       "resumoCandidato": "",
       "objetivo": "",
       "salarioExpectativa": "",
-      "id": 1
+      "id": 3
+    },
+    {
+      "nome": "sdada",
+      "idade": 232,
+      "email": "wqdqw@dasd",
+      "telefoneResidencial": 123123,
+      "telefoneCelular": 213123,
+      "endereco": "dsadas",
+      "estado": "Rio de Janeiro",
+      "cidade": "Rio de Janeiro",
+      "resumoCandidato": "dasdad",
+      "objetivo": "dasda",
+      "salarioExpectativa": 123.12,
+      "cursosComplementares": [
+        {
+          "nome": "dasda",
+          "instituicao": "dsada",
+          "dataInicial": "",
+          "duracao": "curta",
+          "situacao": "cursando",
+          "descricao": ""
+        }
+      ],
+      "id": 4
+    },
+    {
+      "nome": "dasdas",
+      "idade": 123,
+      "email": "dasdas@adsad",
+      "telefoneResidencial": null,
+      "telefoneCelular": null,
+      "endereco": "dsadasd",
+      "estado": "AC",
+      "cidade": "Assis Brasil",
+      "resumoCandidato": "",
+      "objetivo": "",
+      "salarioExpectativa": "",
+      "id": 5
     }
   ]
 }

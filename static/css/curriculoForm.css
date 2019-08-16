@@ -2,14 +2,42 @@
     display: none;
 }
 
+body {
+    background-color: #eee!important;
+}
+
+@media (min-width: 768px) {
+    .col-md-11 {
+        background-color: rgba(255, 255, 255, 0.4);
+    }
+}
+
+#fotoCarreiras {
+    background-image: url(../../static/img/carreiras.jpg);
+    height: 350px;
+    background-position: center;
+    background-position-x: 37%;
+    background-size: 300%;
+    background-position-y: 10%;
+}
+
+@media (min-width: 768px) {
+    #fotoCarreiras {
+        background-image: url(../../static/img/carreiras.jpg);
+        height: 350px;
+        background-position: center;
+        background-size: 100%;
+    }
+}
+
 .campoIdiomaAdicional {
     display: block;
     margin-bottom: 10px;
 }
 
-.inputError{
-    background-color:firebrick!important;
-    color:#fff!important;
+.inputError {
+    color: #333!important;
+    border-color: firebrick!important;
 }
 
 .card {
@@ -25,12 +53,20 @@
 }
 
 .form-control {
-  border-style: solid;
-  border-width: 3px;
-  border-color: #86A612;
-  border-radius: 10px;
-  color: #03588C;
-  padding-left: 5px;
+    border-style: solid;
+    border-width: 3px;
+    border-color: #86A612;
+    border-radius: 10px;
+    color: #03588C;
+    border-bottom: none;
+    padding-left: 5px;
+    background-color: rgba(255, 255, 255, 0.5);
+    background-image: linear-gradient(to top, #03588C 2px, rgba(156, 39, 176, 0) 2px), linear-gradient(to top, #d2d2d2 1px, rgba(210, 210, 210, 0) 1px);
+}
+
+.mensagemValidacao {
+    color: firebrick;
+    font-size: 12px;
 }
 
 .bmd-label-floating,
@@ -50,10 +86,6 @@
     top: 35px;
 }
 
-.form-control {
-    background-image: linear-gradient(to top, #03588C 2px, rgba(156, 39, 176, 0) 2px), linear-gradient(to top, #d2d2d2 1px, rgba(210, 210, 210, 0) 1px);
-}
-
 #logo {
     display: none;
 }
@@ -64,11 +96,11 @@
         background-color: #fff;
         padding: 10px;
         position: fixed;
-        left:0;
+        left: 0;
         z-index: 2;
         width: 100%;
-      }
     }
+}
 
 #logo img {
     border-radius: 50;
