@@ -14,18 +14,36 @@ body {
 
 #fotoCarreiras {
     background-image: url(../../static/img/carreiras.jpg);
-    height: 350px;
-    background-position: center;
-    background-position-x: 37%;
-    background-size: 300%;
+    height: 440px;
+    background-position-x: 40%;
     background-position-y: 10%;
+    background-repeat: no-repeat;
+    background-size: 300%;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 500px) {
+    #fotoCarreiras {
+        background-size: 250%;
+    }
+}
+
+@media (min-width: 600px) {
     #fotoCarreiras {
         background-image: url(../../static/img/carreiras.jpg);
-        height: 350px;
-        background-position: center;
+        background-size: 180%;
+    }
+}
+
+@media (min-width: 900px) {
+    #fotoCarreiras {
+        background-image: url(../../static/img/carreiras.jpg);
+        background-size: 150%;
+    }
+}
+
+@media (min-width: 1000px) {
+    #fotoCarreiras {
+        background-image: url(../../static/img/carreiras.jpg);
         background-size: 100%;
     }
 }

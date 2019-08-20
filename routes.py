@@ -51,13 +51,11 @@ def analise_curriculo():
 @app.route('/inserir/curriculo', methods=['POST', ])
 def inserir():
     try:
-        curriculo = CurriculoController.load_por_form(request.form)
-        curriculoDAO = CurriculoDAO(curriculo)
-        curriculoDAO.insere()
-        return render_template('curriculo/sucesso.html')
+        print(request)
+        return '200'
     except Exception as error:
         print(f'erro: {error}')
-        return render_template('curriculo/erro.html')
+        return '500'
 
 
 @app.route('/sistema')

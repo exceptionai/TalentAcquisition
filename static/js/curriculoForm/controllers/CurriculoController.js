@@ -18,9 +18,8 @@ export class CurriculoController {
         this._estados = [];
         this._contadorIdiomas = 0;
         this._contadorExperiencias = 0;
-        this._http = new HttpService();
         this._form = document.querySelector(formularioID);
-
+        this._service = new CurriculoService();
         this._control_endereco();
     }
 
@@ -148,13 +147,12 @@ export class CurriculoController {
         if (ValidacaoFormularioController.valida(this._form)) {
             let curriculoObj = FormHelper.paraObjeto(this._form);
             let curriculoJSON = JSON.stringify(curriculoObj);
-            this._http.post("http://localhost:3000/curriculo", curriculoJSON)
+            this._service.enviar("http://localhost:5500/inserir/curriculo", curriculoJSON)
                 .then(resposta => {
-                    NotificacaoService.sucesso('Currículo cadastrado com sucesso', 'Sucesso')
+                    NotificacaoService.sucesso(resposta, 'Sucesso')
                 })
                 .catch(erro => {
-                    console.log(erro)
-                    NotificacaoService.invalido('Erro ao cadastrar o currículo', 'Erro ao Enviar')
+                    NotificacaoService.invalido(erro, 'Erro ao Enviar')
                 })
         }
 

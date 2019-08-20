@@ -1,6 +1,16 @@
 from flask import Flask
+import mysql.connector as msql
+
+from connections.connectionFactory import ConnectionFactory
+
 
 app = Flask(__name__)
+
+# ConnectionFactory.execute('SELECT * FROM proficiencia')
+# resultado = ConnectionFactory.fetchall()
+
+# print(resultado)
+
 
 from routes import *
 

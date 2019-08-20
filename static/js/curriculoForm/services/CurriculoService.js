@@ -1,4 +1,10 @@
+import { HttpService } from "./HttpService.js";
+
 export class CurriculoService {
+
+    constructor() {
+        this._http = new HttpService();
+    }
 
     loadEstados(element) {
         return new Promise(resolve => {
@@ -12,6 +18,17 @@ export class CurriculoService {
             }).done(function(response) {
                 resolve(response.estados);
             });
+        });
+    }
+
+    enviar(url, data) {
+        return new Promise((resolve, reject) => {
+            this._http.post(url, data)
+                .then(() => resolve('Curriculo enviado com sucesso'))
+                .catch(erro => {
+                    console.log(erro);
+                    reject('Erro ao enviar o currículo');
+                })
         });
     }
 }
