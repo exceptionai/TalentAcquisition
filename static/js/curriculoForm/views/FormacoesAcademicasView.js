@@ -44,7 +44,7 @@ export class FormacoesAcademicasView extends CurriculoView {
                         <div class="form-group">
                             <label class="bmd-label-floating">Situação*</label>
                             <select class="form-control" required data-parent="formacaoAcademica" data-style="btn btn-link" id="situacaoFormacao${this._dinamicoCampoContador}" name="situacaoFormacao">
-                                <option value="">Situação</option>
+                                <option value="" disabled>Situação</option>
                                 <option value="cursando">Cursando</option>
                                 <option value="concluido">Concluído</option>
                                 <option value="interrompido">Interrompido</option>

@@ -147,7 +147,7 @@ export class CurriculoController {
         if (ValidacaoFormularioController.valida(this._form)) {
             let curriculoObj = FormHelper.paraObjeto(this._form);
             let curriculoJSON = JSON.stringify(curriculoObj);
-            this._service.enviar("http://localhost:5500/inserir/curriculo", curriculoJSON)
+            this._service.enviar("http://localhost:5500/candidato/curriculo", curriculoJSON)
                 .then(resposta => {
                     NotificacaoService.sucesso(resposta, 'Sucesso')
                 })

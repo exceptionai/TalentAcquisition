@@ -4,6 +4,7 @@ from flask import render_template, request
 from DAO.curriculoDAO import CurriculoDAO
 from analises.analiseCurriculo import AnaliseCurriculo
 from controllers.curriculoController import CurriculoController
+from models.cursoExtraCurricular import CursoExtraCurricular
 from main import app
 
 
@@ -48,14 +49,17 @@ def analise_curriculo():
     return json.dumps(lista_analises)
 
 
-@app.route('/inserir/curriculo', methods=['POST', ])
+@app.route('/candidato/curriculo', methods=['POST', ])
 def inserir():
     try:
-        print(request)
-        return '200'
+        curriculo_request = request.json
+        cursos_complementares_request = curriculo_request.cursosComplementares
+        curso = CursoExtraCurricular(cursos_complementares_request[0].nome,cursos_complementares_request[0].instituicao,cursos_complementares_request[0].duracao,cursos_complementares_request[0].dataInicial,cursos_complementares_request[0].descricao)
+        print(curso.nome)
+        return '',201
     except Exception as error:
         print(f'erro: {error}')
-        return '500'
+        return '',500
 
 
 @app.route('/sistema')
