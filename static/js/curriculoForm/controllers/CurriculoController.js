@@ -23,6 +23,32 @@ export class CurriculoController {
         this._control_endereco();
     }
 
+    carregarCEP(CEP) {
+        this._service.carregarCep(CEP)
+            .then(async dadosCEP => {
+                if (!dadosCEP.erro) {
+                    if (!this._estados) {
+                        this._estados = this._estados || await this._service.loadEstados('#uf');
+                        this.atualizaEstados(this._estadoID);
+                    }
+                    this.atualizaCidades(this._cidadeID, dadosCEP.uf);
+                    const elementoEstado = $(this._estadoID);
+                    const elementoCidade = $(this._cidadeID);
+                    const elementoEndereco = $("#endereco");
+
+                    elementoCidade.val(dadosCEP.localidade);
+                    elementoEstado.val(dadosCEP.uf);
+                    elementoEndereco.val(dadosCEP.logradouro);
+                    elementoCidade.trigger('change');
+                    elementoEstado.trigger('keyup');
+                    elementoEndereco.trigger('change');
+
+                }
+
+
+            });
+    }
+
     _control_endereco() {
         const self = this;
         document.addEventListener('DOMContentLoaded', async() => {

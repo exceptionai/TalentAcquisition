@@ -74,10 +74,24 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label class="bmd-label-floating">Endereço*</label>
-                                            <input type="text" name="endereco" required class="form-control">
+                                            <input type="text" id="endereco" name="endereco" required class="form-control">
                                         </div>
                                     </div>
                                     <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label class="bmd-label-floating">Número*</label>
+                                            <input type="text" name="numero" maxlength="7" id="numeroResidencial" required class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label class="bmd-label-floating">CEP*</label>
+                                            <input data-valida="cep" type="text" maxlength="9" minlength="9" name="cep" id="cep" required class="form-control">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-4">
                                         <div class="form-group">
                                             <label class="bmd-label-floating">Estado*</label>
                                             <select class="form-control" required name="estado" id="uf" data-style="btn btn-link">
@@ -85,12 +99,25 @@
                                             </select>
                                         </div>
                                     </div>
-                                    <div class="col-md-3">
+                                    <div class="col-md-4">
                                         <div class="form-group">
                                             <label class="bmd-label-floating">Cidade*</label>
                                             <select class="form-control" required name="cidade" id="cidade" data-style="btn btn-link">
                                                 <option selected disabled value="">Escolha a cidade</option>
                                             </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <div class="form-check">
+                                                <label class="form-check-label">
+                                                    <input class="form-check-input" id="dispostoMudar" name="dispostoMudar" type="checkbox">
+                                                    Disposto a se mudar
+                                                    <span class="form-check-sign">
+                                                        <span class="check"></span>
+                                                    </span>
+                                                </label>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>

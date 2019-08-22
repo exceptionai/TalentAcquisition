@@ -46,7 +46,7 @@ export class ValidacaoFormularioController {
                 elementoABloquear.classList.remove('inputError');
                 elementoABloquear.required = false;
                 elementoABloquear.value = '';
-            } else elementoABloquear.required = required;
+            } else elementoABloquear.requireinputErrord = required;
 
             elementoABloquear.classList.toggle('text-dark');
             elementoABloquear.disabled = !elementoABloquear.disabled;
@@ -78,12 +78,17 @@ export class ValidacaoFormularioController {
         const naoVazio = !e.target.value.length;
         const naoEhDataOuNumero = e.target.type != 'number' && e.target.type != 'date';
         const validacaoCampo = e.target.getAttribute('data-valida')
+        const ehNumeroResidencial = e.target.id == 'numeroResidencial'
         let ehTelefone = false;
+        let ehCep = false;
 
-        if (validacaoCampo)
+
+        if (validacaoCampo) {
             ehTelefone = validacaoCampo.toLowerCase().startsWith('telefone');
+            ehCep = validacaoCampo.toLowerCase().startsWith('cep')
+        }
 
-        if (digitadoEhNumero && naoVazio && naoEhDataOuNumero && !ehTelefone)
+        if (digitadoEhNumero && naoVazio && naoEhDataOuNumero && !ehTelefone && !ehCep && !ehNumeroResidencial)
             return false;
         return true;
     }
@@ -152,7 +157,14 @@ export class ValidacaoFormularioController {
             case 'telefone-residencial':
                 ValidacaoFormularioController.formatarCamposTelefoneResidencial(element.id);
                 break;
+            case 'cep':
+                ValidacaoFormularioController.mascara_cep(element.id);
+                break;
         }
+    }
+
+    static mascara_cep(idCEP) {
+        $(`#${idCEP}`).mask('00000-000');
     }
 
     static formatarCamposTelefoneResidencial(idTelefoneResidencial) {

@@ -21,6 +21,11 @@ export class CurriculoService {
         });
     }
 
+    carregarCep(CEP) {
+        return this._http.getJSON(`https://viacep.com.br/ws/${CEP}/json`)
+
+    }
+
     enviar(url, data) {
         return new Promise((resolve, reject) => {
             this._http.post(url, data)

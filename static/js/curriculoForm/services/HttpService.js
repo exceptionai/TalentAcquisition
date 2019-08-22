@@ -12,4 +12,13 @@ export class HttpService {
                 return res;
             })
     }
+
+    getJSON(url) {
+        return fetch(url)
+            .then(res => {
+                if (!res.ok) throw new Error();
+                return res;
+            })
+            .then(res => res.json())
+    }
 }

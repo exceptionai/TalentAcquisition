@@ -9,7 +9,11 @@ window.onload = () => controller.esconderHeader();
 
 btnEnviar.addEventListener('click', controller.enviarCurriculo.bind(controller));
 
-
+$('#cep').on('blur', function(event) {
+    let CEP = event.target.value;
+    CEP = CEP.replace(/\D/g, '');
+    controller.carregarCEP(CEP);
+})
 controller.geraIdiomasDinamicamente("campoIdiomas", "botaoIdiomas");
 controller.geraExperienciasDinamicamente("campoExperiencias", "botaoExperiencias");
 controller.geraCursosDinamicamente("campoCursos", "botaoCursos");
