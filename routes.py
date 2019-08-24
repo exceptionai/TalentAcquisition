@@ -6,6 +6,9 @@ from analises.analiseCurriculo import AnaliseCurriculo
 from controllers.curriculoController import CurriculoController
 from models.cursoExtraCurricular import CursoExtraCurricular
 from main import app
+from models.cursoComplementar import CursoComplementar
+from models.experienciaAnterior import ExperienciaAnterior
+from models.idioma import Idioma
 
 
 @app.route('/')
@@ -53,9 +56,39 @@ def analise_curriculo():
 def inserir():
     try:
         curriculo_request = request.json
-        cursos_complementares_request = curriculo_request.cursosComplementares
-        curso = CursoExtraCurricular(cursos_complementares_request[0].nome,cursos_complementares_request[0].instituicao,cursos_complementares_request[0].duracao,cursos_complementares_request[0].dataInicial,cursos_complementares_request[0].descricao)
-        print(curso.nome)
+        print(curriculo_request)
+        cc = curriculo_request.cursosComplementares
+        xp = curriculo_request.experienciasAnteriores
+        idi = curriculo_request.idiomas
+        fa = curriculo_request.formacaoAcademica
+        i = 0;
+        cursos= []
+        idiomas = []
+        experiencias =[]
+        formacao =[]
+
+        #CURSO COMPLEMENTARES
+        while i < len(cc):
+            cursos[i] = CursoComplementar(cc[i].nome,cc[i].instituicao,cc[i].duracao,cc[i].dataInicial,cc[i].descricao)
+        i = 0
+
+        #EXPERIENCIAS
+        if (xp):
+            while i < len(xp):
+                experiencias[i] = ExperienciaAnterior(xp[i].nomeEmpresa, xp[i].cargo, xp[i].salario, xp[i].dataEntrada,
+                                              xp[i].dataSaida,xp[i].trabalhoAtual,xp[i].principaisAtividades)
+        i = 0
+
+        # IDIOMAS
+        while i < len(idi):
+            idiomas[i] = Idioma(idi[i].idiomo, idi[i].fala, idi[i].leitura, idi[i].escrita)
+        i = 0;
+
+        #FORMAÇÃO ACADEMICA
+        while i < len(fd):
+            formacao[i] = Formacao(fa[i].curso,fa[i].nivelCurso,fa[i].nomeInstituicao,fa[i].situacaoFormacaos)
+
+
         return '',201
     except Exception as error:
         print(f'erro: {error}')

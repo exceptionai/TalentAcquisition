@@ -1,9 +1,9 @@
 class ExperienciaAnterior:
-    def __init__(self, cargo, nome_empresa, emprego_atual, data_entrada, data_saida, principais_atividades, salario):
+    def __init__(self, empresa,cargo,salario, entrada, saida,emprego_atual, atividades):
         self.cargo = cargo
-        self.nome_empresa = nome_empresa
+        self.empresa = empresa
         self.emprego_atual = emprego_atual
-        self.data_entrada = data_entrada
-        self.data_saida = data_saida
-        self.principais_atividades = principais_atividades
+        self.entrada = entrada
+        self.saida = saida
+        self.atividades = atividades
         self.salario = salario
