@@ -18,7 +18,10 @@ class ConnectionFactory:
     
     @classmethod
     def execute(cls,query):
-        return cls.get_cursor().execute(query)
+        result = cls.get_cursor().execute(query)
+        cls.get_connection().commit()
+        return result
+           
 
     @classmethod
     def fetchall(cls):

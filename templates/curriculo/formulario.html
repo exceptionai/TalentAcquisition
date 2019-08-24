@@ -39,14 +39,14 @@
 
                                         <div class="form-group">
                                             <label class="bmd-label-floating">Nome completo*</label>
-                                            <input type="text" name="nome" class="form-control" id="nome" maxlength="50" required>
+                                            <input type="text" name="nome" data-parent="candidato" class="form-control" id="nome" maxlength="50" required>
 
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label class="bmd-label-floating">Idade*</label>
-                                            <input type="number" name="idade" class="form-control" max="300" id="idade" required>
+                                            <input type="number" name="idade" data-parent="candidato" class="form-control" max="300" id="idade" required>
                                         </div>
                                     </div>
                                 </div>
@@ -54,19 +54,19 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label class="bmd-label-floating">E-mail*</label>
-                                            <input type="email" name="email" class="form-control" id="email" maxlength="70" required>
+                                            <input type="email" name="email" data-parent="candidato" class="form-control" id="email" maxlength="70" required>
                                         </div>
                                     </div>
                                     <div class="col-md-3">
                                         <div class="form-group">
                                             <label class="bmd-label-floating">Telefone residencial</label>
-                                            <input type="text" data-valida="telefone-residencial" minlength="14" maxlength="14" name="telefoneResidencial" class="form-control" id="telefoneResidencial" inputmode="numeric">
+                                            <input type="text" data-parent="candidato" data-valida="telefone-residencial" minlength="14" maxlength="14" name="telefoneResidencial" class="form-control" id="telefoneResidencial" inputmode="numeric">
                                         </div>
                                     </div>
                                     <div class="col-md-3">
                                         <div class="form-group">
                                             <label class="bmd-label-floating">Telefone celular</label>
-                                            <input type="text" data-valida="telefone-celular" minlength="15" maxlength="15" name="telefoneCelular" class="form-control" id="telefoneCelular" inputmode="numeric">
+                                            <input type="text" data-parent="candidato" data-valida="telefone-celular" minlength="15" maxlength="15" name="telefoneCelular" class="form-control" id="telefoneCelular" inputmode="numeric">
                                         </div>
                                     </div>
                                 </div>
@@ -74,19 +74,19 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label class="bmd-label-floating">Endereço*</label>
-                                            <input type="text" id="endereco" name="endereco" required class="form-control">
+                                            <input type="text" id="endereco" data-parent="endereco" name="rua" required class="form-control">
                                         </div>
                                     </div>
                                     <div class="col-md-3">
                                         <div class="form-group">
                                             <label class="bmd-label-floating">Número*</label>
-                                            <input type="text" name="numero" maxlength="7" id="numeroResidencial" required class="form-control">
+                                            <input type="text" name="numero" data-parent="endereco" maxlength="7" id="numeroResidencial" required class="form-control">
                                         </div>
                                     </div>
                                     <div class="col-md-3">
                                         <div class="form-group">
                                             <label class="bmd-label-floating">CEP*</label>
-                                            <input data-valida="cep" type="text" maxlength="9" minlength="9" name="cep" id="cep" required class="form-control">
+                                            <input data-valida="cep" data-parent="endereco" type="text" maxlength="9" minlength="9" name="cep" id="cep" required class="form-control">
                                         </div>
                                     </div>
                                 </div>
@@ -94,7 +94,7 @@
                                     <div class="col-md-4">
                                         <div class="form-group">
                                             <label class="bmd-label-floating">Estado*</label>
-                                            <select class="form-control" required name="estado" id="uf" data-style="btn btn-link">
+                                            <select class="form-control" data-parent="endereco" required name="uf" id="uf" data-style="btn btn-link">
                                                 <option selected disabled value="">Escolha o estado</option>
                                             </select>
                                         </div>
@@ -102,7 +102,7 @@
                                     <div class="col-md-4">
                                         <div class="form-group">
                                             <label class="bmd-label-floating">Cidade*</label>
-                                            <select class="form-control" required name="cidade" id="cidade" data-style="btn btn-link">
+                                            <select class="form-control" required data-parent="endereco" name="cidade" id="cidade" data-style="btn btn-link">
                                                 <option selected disabled value="">Escolha a cidade</option>
                                             </select>
                                         </div>
@@ -111,7 +111,7 @@
                                         <div class="form-group">
                                             <div class="form-check">
                                                 <label class="form-check-label">
-                                                    <input class="form-check-input" id="dispostoMudar" name="dispostoMudar" type="checkbox">
+                                                    <input class="form-check-input" data-parent="endereco"  id="dispostoMudar" name="realocar" type="checkbox">
                                                     Disposto a se mudar
                                                     <span class="form-check-sign">
                                                         <span class="check"></span>
@@ -129,7 +129,7 @@
                                                 <label class="bmd-label-floating">
                                                     Conte mais sobre sua carreira, experiências e conhecimentos
                                                 </label>
-                                                <textarea id="resumoCandidato" name="resumoCandidato" class="form-control textarea" rows="7" maxlength="1000" data-valida="caracteres"></textarea>
+                                                <textarea id="resumoCandidato" name="resumo" class="form-control textarea" rows="7" maxlength="1000" data-valida="caracteres"></textarea>
                                                 <p class="text-muted"><small><span class="caracteres" name="txtArea">1000</span></small> caracteres restantes</p>
                                             </div>
                                         </div>
@@ -141,7 +141,7 @@
                                             <label id="objetivo" class="bmd-label-floating">
                                                 Objetivo profissional
                                             </label>
-                                            <input type="text" name="objetivo" class="form-control">
+                                            <input type="text" name="objetivo_profissional" class="form-control">
                                         </div>
                                     </div>
                                     <div class="col-md-6">

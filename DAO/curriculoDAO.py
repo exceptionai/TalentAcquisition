@@ -1,68 +1,31 @@
 from models.curriculo import Curriculo
 from models.cursoExtraCurricular import CursoExtraCurricular
-
+from connections.connectionFactory import ConnectionFactory
 
 class CurriculoDAO:
     def __init__(self, curriculo):
         self.curriculo = curriculo
 
     def insere(self):
-        return True
+        ConnectionFactory.execute('INSERT INTO curriculo (objetivo_profissional, expectativa_salario, resumo, candidato_id) VALUES ('
+            f'{self.curriculo.objetivo_profissional}, {self.curriculo.expectativa_salario}, {self.curriculo.resumo}, {self.curriculo.candidato.id})')
+
+    def insere_curso(self,curso_extracurricular_id):
+        ConnectionFactory.execute('INSERT INTO curriculo_curso_extracurricular (curso_extracurricular_id, curriculo_id) VALUES ('
+            f'{curso_extracurricular_id}, {self.curriculo.id})')
+
+    def insere_experiencia(self,experiencia_id):
+        ConnectionFactory.execute('INSERT INTO curriculo_experiencia (experiencia_id, curriculo_id) VALUES ('
+            f'{experiencia_id}, {self.curriculo.id})')
+
+    def insere_formacao(self,formacao_id):
+        ConnectionFactory.execute('INSERT INTO curriculo_formacao (formacao, curriculo_id) VALUES ('
+            f'{formacao}, {self.curriculo.id})')
+
+    def insere_idioma(self, idioma):
+        ConnectionFactory.execute('INSERT INTO curriculo_idioma (idioma, curriculo_id) VALUES ('
+            f'{idioma}, {self.curriculo.id})')
+
 
     def listar(self):
-        return [Curriculo(
-            objetivo_profissional='atuar com desenvolvimento em Java',
-            cursos_complementares=[],
-            email='renan.sanches_123@hotmail.com',
-            nome_completo='renan do nascimento sanches',
-            endereco='rua123',
-            cidade='sao paulo',
-            estado='sp',
-            experiencias_anteriores=[],
-            idade=22,
-            idiomas=[],
-            telefone_residencial='',
-            telefone_celular=''
-        ), Curriculo(
-            objetivo_profissional='eu quero ser um desenvolvedor',
-            cursos_complementares=[],
-            email='chabaris@gmail.com',
-            nome_completo='Alisson Chabaribery',
-            endereco='rua312',
-            experiencias_anteriores=[],
-            idade=19,
-            cidade='sao paulo',
-            estado='sp',
-            idiomas=[],
-            telefone_residencial='',
-            telefone_celular=''
-        ), Curriculo(
-            objetivo_profissional='eu quero ser uma programadora Ruby',
-            cursos_complementares=[
-                CursoExtraCurricular('Curso de desenvolvimento em Java', 'caelum', 100, False, '2018-05-29',
-                                     'curso muito bom')
-            ],
-            email='vanessa.queiroz@hotmail.com',
-            nome_completo='Vanessa Cunha Queiroz',
-            endereco='rua231',
-            experiencias_anteriores=[],
-            idade=19,
-            cidade='sao paulo',
-            estado='sp',
-            idiomas=[],
-            telefone_residencial='',
-            telefone_celular=''
-        ), Curriculo(
-            objetivo_profissional='eu quero ver um programa de tv',
-            cursos_complementares=[],
-            email='gabriel_lopes@gmail.com',
-            nome_completo='Gabriel Lopes Pontes',
-            endereco='rua3123',
-            cidade='sao paulo',
-            estado='sp',
-            experiencias_anteriores=[],
-            idade=21,
-            idiomas=[],
-            telefone_residencial='',
-            telefone_celular=''
-        )]
+        return []

@@ -1,11 +1,15 @@
 from flask import Flask
-import mysql.connector as msql
-
 from connections.connectionFactory import ConnectionFactory
-
+from DAO.proeficienciaDAO import ProeficienciaDAO
+from models.proeficiencia import Proeficiencia
 
 app = Flask(__name__)
 
+proeficiencia = Proeficiencia('baixo','alto','baixo')
+
+dao = ProeficienciaDAO(proeficiencia)
+
+dao.insere()
 # ConnectionFactory.execute('SELECT * FROM proficiencia')
 # resultado = ConnectionFactory.fetchall()
 
