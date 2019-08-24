@@ -12,7 +12,4 @@ class Curriculo:
         self.experiencias_anteriores = experiencias_anteriores
         self.curso_extracurricular = curso_extracurricular
         self.idiomas = idiomas
-        self.telefone_residencial = telefone_residencial
-        self.telefone_celular = telefone_celular
-        self.estado = estado
-        self.cidade = cidade
+        self.formacao = formacao
