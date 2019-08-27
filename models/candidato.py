@@ -1,13 +1,8 @@
-class Candidato
-    def __init__(self,nome,idade,email,tel,cel,endereco,estado,cidade,resumo,objetivo,salario):
+class Candidato:
+    def __init__(self,nome,idade,email,telefone_residencial,telefone_celular,endereco):
         self.nome = nome
         self.idade = idade
-        self.tel = tel
-        self.cel = cel
+        self.telefone_residencial = telefone_residencial
+        self.telefone_celular = telefone_celular
         self.email = email
         self.endereco = endereco
-        self.estado = estado
-        self.cidade = cidade
-        self.resumo = resumo
-        self.objetivo = objetivo
-        self.salario = salario

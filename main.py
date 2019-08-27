@@ -1,13 +1,13 @@
 from flask import Flask
 from connections.connectionFactory import ConnectionFactory
-from DAO.proeficienciaDAO import ProeficienciaDAO
+from DAO.proficienciaDAO import ProficienciaDAO
 from models.proeficiencia import Proeficiencia
-
+ 
 app = Flask(__name__)
 
 proeficiencia = Proeficiencia('baixo','alto','baixo')
 
-dao = ProeficienciaDAO(proeficiencia)
+dao = ProficienciaDAO(proeficiencia)
 
 dao.insere()
 # ConnectionFactory.execute('SELECT * FROM proficiencia')

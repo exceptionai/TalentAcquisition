@@ -1,5 +1,3 @@
-from models.curriculo import Curriculo
-from models.cursoExtraCurricular import CursoExtraCurricular
 from connections.connectionFactory import ConnectionFactory
 
 class CurriculoDAO:

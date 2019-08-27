@@ -1,6 +1,4 @@
-class Idioma
-    def __init__(self,nome,fala,leitura,escrita):
+class Idioma:
+    def __init__(self,nome,proficiencia):
         self.nome = nome
-        self.fala = fala
-        self.leitura = leitura
-        self.escrita = escrita
+        self.proficiencia = proficiencia

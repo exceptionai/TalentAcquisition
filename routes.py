@@ -2,13 +2,18 @@ import json
 from flask import render_template, request
 
 from DAO.curriculoDAO import CurriculoDAO
+from DAO.cursoExtraCurricularDAO import CursoExtraCurricularDAO
 from analises.analiseCurriculo import AnaliseCurriculo
 from controllers.curriculoController import CurriculoController
 from models.cursoExtraCurricular import CursoExtraCurricular
 from main import app
-from models.cursoComplementar import CursoComplementar
 from models.experienciaAnterior import ExperienciaAnterior
 from models.idioma import Idioma
+from models.formacaoAcademica import FormacaoAcademica
+from models.proeficiencia import Proeficiencia
+from models.candidato import Candidato
+from models.endereco import Endereco
+from models.curriculo import Curriculo
 
 
 @app.route('/')
@@ -56,40 +61,82 @@ def analise_curriculo():
 def inserir():
     try:
         curriculo_request = request.json
-        print(curriculo_request)
-        cc = curriculo_request.cursosComplementares
-        xp = curriculo_request.experienciasAnteriores
-        idi = curriculo_request.idiomas
-        fa = curriculo_request.formacaoAcademica
-        i = 0;
-        cursos= []
+
+        cursos_complementares_requisicao = []
+        experiencias_anteriores_requisicao = []
+        idiomas_requisicao = []
+        formacoes_academicas_requisicao = []
+
+        if 'cursosComplementares' in curriculo_request:
+            cursos_complementares_requisicao = curriculo_request['cursosComplementares']
+
+        if 'experienciasAnteriores' in curriculo_request:
+            experiencias_anteriores_requisicao = curriculo_request['experienciasAnteriores']
+
+        if 'idiomas' in curriculo_request:
+            idiomas_requisicao = curriculo_request['idiomas']
+        
+        if 'formacaoAcademica' in curriculo_request:
+            formacoes_academicas_requisicao = curriculo_request['formacaoAcademica']
+
+        candidato_requisicao = curriculo_request['candidato'][0]
+
+        cursos_complementares = []
         idiomas = []
-        experiencias =[]
-        formacao =[]
+        experiencias_anteriores =[]
+        formacoes_academicas =[]
+
 
         #CURSO COMPLEMENTARES
-        while i < len(cc):
-            cursos[i] = CursoComplementar(cc[i].nome,cc[i].instituicao,cc[i].duracao,cc[i].dataInicial,cc[i].descricao)
-        i = 0
+
+        # CursoExtraCurricular.parse_request(cursos_complementares_requisicao)
+        for curso  in cursos_complementares_requisicao:
+            curso_obj = CursoExtraCurricular(
+                curso['nome'],
+                curso['instituicao'],
+                curso['duracao'],
+                curso['dataInicial'],
+                curso['descricao'],
+                curso['situacao'])
+            cursos_complementares.append(curso_obj)
+            cursoDAO = CursoExtraCurricularDAO(curso_obj)
+            cursoDAO.insere()
 
         #EXPERIENCIAS
-        if (xp):
-            while i < len(xp):
-                experiencias[i] = ExperienciaAnterior(xp[i].nomeEmpresa, xp[i].cargo, xp[i].salario, xp[i].dataEntrada,
-                                              xp[i].dataSaida,xp[i].trabalhoAtual,xp[i].principaisAtividades)
-        i = 0
+        for experiencia_anterior in experiencias_anteriores_requisicao:
+            experiencias_anteriores.append(ExperienciaAnterior(
+                experiencia_anterior['nomeEmpresa'], 
+                experiencia_anterior['cargo'], 
+                experiencia_anterior['salario'], 
+                experiencia_anterior['dataEntrada'],
+                experiencia_anterior['dataSaida'],
+                experiencia_anterior['trabalhoAtual'],
+                experiencia_anterior['principais_atividades']))
 
+        
         # IDIOMAS
-        while i < len(idi):
-            idiomas[i] = Idioma(idi[i].idiomo, idi[i].fala, idi[i].leitura, idi[i].escrita)
-        i = 0;
-
+        for idioma in idiomas_requisicao:
+            proeficiencia = Proeficiencia(
+                idioma['nivelFala'], 
+                idioma['nivelLeitura'], 
+                idioma['nivelEscrita'])
+            idiomas.append(Idioma(idioma['idioma'],proeficiencia))
+        
         #FORMAÇÃO ACADEMICA
-        while i < len(fd):
-            formacao[i] = Formacao(fa[i].curso,fa[i].nivelCurso,fa[i].nomeInstituicao,fa[i].situacaoFormacaos)
+        for formacao_academica in formacoes_academicas_requisicao:
+            formacoes_academicas.append(FormacaoAcademica(
+                formacao_academica['nomeInstituicao'],
+                formacao_academica['curso'],
+                formacao_academica['situacaoFormacao'],
+                formacao_academica['nivelCurso']))
 
-
-        return '',201
+        endereco_requisicao = curriculo_request['endereco'][0]
+        endereco = (Endereco(endereco_requisicao['cep'],endereco_requisicao['rua'],endereco_requisicao['numero'],endereco_requisicao['cidade'],endereco_requisicao['uf'],endereco_requisicao['realocar']))
+        
+        candidato = Candidato(candidato_requisicao['nome'],candidato_requisicao['idade'],candidato_requisicao['email'],candidato_requisicao['telefone_residencial'],candidato_requisicao['telefone_celular'],endereco)
+        curriculo = Curriculo(curriculo_request['objetivo_profissional'],experiencias_anteriores,cursos_complementares,idiomas,formacoes_academicas,curriculo_request['salarioExpectativa'],curriculo_request['resumo'],candidato)
+        print(curriculo.candidato.endereco.rua)
+        return '', 201
     except Exception as error:
         print(f'erro: {error}')
         return '',500
