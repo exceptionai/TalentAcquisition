@@ -1,4 +1,4 @@
 class Idioma:
-    def __init__(self,nome,proficiencia):
-        self.nome = nome
+    def __init__(self,idioma,proficiencia):
+        self.idioma = idioma
         self.proficiencia = proficiencia

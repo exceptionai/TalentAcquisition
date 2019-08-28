@@ -1,13 +1,14 @@
 from connections.connectionFactory import ConnectionFactory
 
-class idiomaDAO:
+class IdiomaDAO:
     def __init__(self,idioma):
         self.idioma = idioma
     
     def insere(self):
-        ConnectionFactory.execute('INSERT INTO idioma (idioma) VALUES ('
-        f' {self.idioma.idioma})')
+        ConnectionFactory.execute(f'INSERT INTO idioma (idioma) VALUES ( "{self.idioma.idioma}")')
+        return ConnectionFactory.get_cursor().lastrowid
 
-    def insere_proeficiencia(self, proeficiencia_id):
-        ConnectionFactory.execute('INSERT INTO proficiencia_idioma (idioma_id, proeficiencia_id) VALUES ('
-        f' {self.idioma.idioma_id}, "{proeficiencia_id}")')
+    @staticmethod
+    def insere_proficiencia(idioma_id, proficiencia_id):
+        ConnectionFactory.execute(f'INSERT INTO proficiencia_idioma (idioma_id, proficiencia_id) VALUES ( {idioma_id}, {proficiencia_id})')
+        return ConnectionFactory.get_cursor().lastrowid

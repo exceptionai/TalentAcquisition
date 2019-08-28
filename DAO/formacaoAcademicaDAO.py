@@ -5,5 +5,5 @@ class FormacaoAcademicaDAO:
         self.formacao_academica = formacao_academica
     
     def insere(self):
-        ConnectionFactory.execute('INSERT INTO formacao_academica (instituicao, nome_curso, situacao, nivel) VALUES ('
-        f' {self.formacao_academica.instituicao}, {self.formacao_academica.nome_curso}, {self.formacao_academica.situacao}, {self.formacao_academica.nivel})')
+        ConnectionFactory.execute(f'INSERT INTO formacao_academica (instituicao, nome_curso, situacao, nivel) VALUES ( "{self.formacao_academica.instituicao}", "{self.formacao_academica.nome_curso}", "{self.formacao_academica.situacao}", "{self.formacao_academica.nivel}")')
+        return ConnectionFactory.get_cursor().lastrowid
