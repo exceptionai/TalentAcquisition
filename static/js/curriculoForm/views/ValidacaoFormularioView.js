@@ -40,7 +40,10 @@ export class ValidacaoFormularioView {
         };
 
         const top = elementoInvalido.documentOffsetTop() - (window.innerHeight / 2);
-        window.scrollTo(0, top);
+        window.scroll({
+            top,
+            behavior: 'smooth'
+        });
     }
 
 

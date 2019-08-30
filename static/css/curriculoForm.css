@@ -6,19 +6,26 @@ body {
     background-color: #eee!important;
 }
 
+footer {
+    background-color: #FFF;
+}
+
 @media (min-width: 768px) {
     .col-md-11 {
-        background-color: rgba(255, 255, 255, 0.4);
+        background-color: rgba(255, 255, 255, 0.9);
+    }
+    .col-md-11:hover {
+        box-shadow: 0px 4px 20px 0 rgba(99, 96, 96, 0.7);
     }
 }
 
 #fotoCarreiras {
     background-image: url(../../static/img/carreiras.jpg);
     height: 440px;
-    background-position-x: 40%;
+    background-position-x: 35%;
     background-position-y: 10%;
     background-repeat: no-repeat;
-    background-size: 300%;
+    background-size: 280%;
 }
 
 @media (min-width: 500px) {
@@ -44,6 +51,13 @@ body {
 @media (min-width: 1000px) {
     #fotoCarreiras {
         background-image: url(../../static/img/carreiras.jpg);
+        background-size: 150%;
+    }
+}
+
+@media (min-width: 1600px) {
+    #fotoCarreiras {
+        background-image: url(../../static/img/carreiras.jpg);
         background-size: 100%;
     }
 }
@@ -56,6 +70,7 @@ body {
 .inputError {
     color: #333!important;
     border-color: firebrick!important;
+    background-size: 100%;
 }
 
 .card {
@@ -70,7 +85,8 @@ body {
     padding-left: 0;
 }
 
-.form-control {
+
+/* .form-control {
     border-style: solid;
     border-width: 3px;
     border-color: #86A612;
@@ -80,7 +96,7 @@ body {
     padding-left: 5px;
     background-color: rgba(255, 255, 255, 0.5);
     background-image: linear-gradient(to top, #03588C 2px, rgba(156, 39, 176, 0) 2px), linear-gradient(to top, #d2d2d2 1px, rgba(210, 210, 210, 0) 1px);
-}
+} */
 
 .mensagemValidacao {
     color: firebrick;
@@ -121,10 +137,9 @@ body {
 }
 
 #logo img {
-    border-radius: 50;
     border: none;
     background-color: rgba(0, 0, 0, 0);
-    box-shadow: none
+    box-shadow: none;
 }
 
 .item {

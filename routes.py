@@ -26,7 +26,7 @@ from models.curriculo import Curriculo
 def index():
     return 'Bayer Challenge<br>' \
            '<a href="cadastrar/curriculo">cadastrar curriculo</a><br>' \
-           '<a href="sistema">sistema</a><br>' \
+           '<a href="recrutador">sistema do recrutador</a><br>' \
            '<a href="analises">analises</a>'
 
 
@@ -204,21 +204,26 @@ def inserir():
         return '',500
 
 
-@app.route('/sistema')
+@app.route('/recrutador')
 def sistema_base():
-    return render_template('sistema-base/index.html')
+    return render_template('bayer-recrutador/dashboard.html')
 
-@app.route('/candidatosPotencial')
-def candidatosPotencial():
-    return render_template('sistema-base/candidatosPotencial.html')
+@app.route('/recrutador/candidatosPotenciais')
+def candidatosPotenciais():
+    return render_template('bayer-recrutador/candidatosPotencial.html')
 
-@app.route('/candidatosTotais')
+@app.route('/recrutador/candidatosTotais')
 def candidatosTotais():
-    return render_template('sistema-base/candidatosTotais.html')
+    return render_template('bayer-recrutador/candidatosTotais.html')
 
-@app.route('/vagasAberto')
+@app.route('/recrutador/vagasAberto')
 def vagasAberto():
-    return render_template('sistema-base/vagasAberto.html')
+    return render_template('bayer-recrutador/vagasAberto.html')
+
+@app.route('/recrutador/candidato/pontuacao')
+def pontuacao_candidato():
+    return render_template('bayer-recrutador/candidatoVisualizar.html')
+
 
 @app.route('/spec')
 def spec():
