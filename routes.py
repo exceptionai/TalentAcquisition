@@ -25,9 +25,8 @@ from models.curriculo import Curriculo
 @app.route('/')
 def index():
     return 'Bayer Challenge<br>' \
-           '<a href="cadastrar/curriculo">cadastrar curriculo</a><br>' \
-           '<a href="recrutador">sistema do recrutador</a><br>' \
-           '<a href="analises">analises</a>'
+           '<a href="candidato">Sistema Candidato</a><br>' \
+           '<a href="recrutador">Sistema Recrutador</a><br>' 
 
 
 @app.route('/analises')
@@ -35,14 +34,30 @@ def analises():
     return render_template('curriculo/analises.html')
 
 
-@app.route('/cadastrar/curriculo')
+@app.route('/candidato/curriculo')
 def formulario_curriculo():
-    return render_template('curriculo/formulario.html')
+    return render_template('bayer-candidato/formulario.html')
 
+@app.route('/candidato/andamentoProcesso')
+def andamentoProcesso():
+    return render_template('bayer-candidato/andamentoProcesso.html')
+
+@app.route('/candidato/duvidas')
+def duvidas():
+    return render_template('bayer-candidato/duvidas.html')
+
+@app.route('/candidato/conhecaMais')
+def conhecaMais():
+    return render_template('bayer-candidato/conhecaMais.html')
+
+@app.route('/candidato/desafios')
+def desafios():
+    return render_template('bayer-candidato/desafios.html')
 
 @app.route('/vagas/vaga')
 def vaga_especifica():
     return json.dumps({'descricao': 'desenvolvedor java', 'uf': 'RJ', 'cidade': 'Rio de Janeiro'})
+
 
 
 @app.route('/analises/curriculo')
@@ -224,8 +239,25 @@ def vagasAberto():
 def pontuacao_candidato():
     return render_template('bayer-recrutador/candidatoVisualizar.html')
 
+@app.route('/candidato')
+def candidato():
+    return render_template('bayer-candidato/dashboard.html')
+
+@app.route('/candidato/desafios/categoria/<id_categoria>')
+def categoria(id_categoria):
+    return render_template('bayer-candidato/desafiosCategoria1.html')
+
+@app.route('/candidato/desafios/categoria/<id_categoria>/atividade/<id_atividade>')
+def atividade(id_categoria, id_atividade):
+    return render_template('bayer-candidato/desafiosCategoria1Atividade1.html')
 
 @app.route('/spec')
 def spec():
     return render_template('spec/SpecRunner.html')
 
+
+def page_not_found(e):
+  return render_template('notFound.html'), 404
+
+
+app.register_error_handler(404, page_not_found)

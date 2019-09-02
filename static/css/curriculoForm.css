@@ -19,6 +19,137 @@ footer {
     }
 }
 
+.main-panel>.content {
+    min-height: calc(100vh - 155px)
+}
+
+.score-box {
+    min-width: 80px;
+    height: 80px;
+    text-align: center;
+    margin-right: 2rem;
+    border-radius: 100%;
+    border: 2px solid #00617f;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    color: #624862;
+    justify-content: center;
+}
+
+.desafio-container {
+    border: 1px solid rgba(0, 97, 127, 0.4);
+    min-height: 80px;
+    border-radius: 3px;
+    margin-top: 10px;
+    padding: 12px;
+}
+
+.medium-title {
+    font-size: 1.7rem;
+}
+
+.medium-small-title {
+    font-size: 1.5rem;
+}
+
+.basis-110-grow-1 {
+    flex: 1 1 110px;
+}
+
+.btn-alternate {
+    background-color: #624862;
+    color: #fff!important;
+}
+
+.text-bold {
+    font-weight: bold;
+}
+
+.text-small {
+    font-size: 0.9rem;
+}
+
+.btn-alternate:active,
+.btn-alternate:focus {
+    background-color: #624862!important;
+}
+
+.atividade-titulo {
+    padding-bottom: 5px;
+    border-bottom: 1px solid #d2d2d2;
+    margin-bottom: 10px;
+}
+
+.flex-1 {
+    flex: 1;
+}
+
+.flex-2 {
+    flex: 2;
+}
+
+.flex-3 {
+    flex: 3;
+}
+
+.flex-4 {
+    flex: 4;
+}
+
+.flex-grow-1 {
+    flex-grow: 1;
+}
+
+.shrink-1-basis {
+    flex-grow: 1;
+    flex-shrink: 1;
+}
+
+.shrink-3-basis {
+    flex-grow: 1;
+    flex-shrink: 3;
+    flex-basis: 150px;
+}
+
+.respostas {
+    padding: 0 0 40px 0px;
+}
+
+.question {
+    border-bottom: 1px solid #ccc;
+}
+
+.rodapeAtividade {
+    margin-top: 25px;
+}
+
+.desafio-title {
+    font-size: 18px;
+    margin: 0;
+    text-transform: uppercase;
+}
+
+.btn-success {
+    background-color: #43a047!important;
+}
+
+.desafio-description {
+    font-size: .82rem;
+}
+
+.wrapper {
+    height: 100%;
+}
+
+.progress {
+    width: 120px;
+}
+
+.border-right-primary {
+    border-right: 1px solid rgba(0, 97, 127, 0.2);
+}
+
 #fotoCarreiras {
     background-image: url(../../static/img/carreiras.jpg);
     height: 440px;
@@ -67,18 +198,28 @@ footer {
     margin-bottom: 10px;
 }
 
-.inputError {
-    color: #333!important;
-    border-color: firebrick!important;
-    background-size: 100%;
+.navbar-expand-lg {
+    z-index: 1!important;
 }
 
-.card {
+.inputError {
+    color: #333!important;
+    border: 1px solid rgba(210, 210, 210, 0.5);
+    border-radius: 2px;
+    background-size: 100%!important;
+}
+
+.marg-0 {
+    margin-top: 0!important;
+}
+
+
+/* .card {
     background-color: rgba(0, 0, 0, 0);
     box-shadow: none;
     padding-left: 0;
     padding-right: 0;
-}
+} */
 
 .col-md-10 {
     padding-right: 0;
@@ -155,10 +296,11 @@ footer {
     .item h2 {}
 }
 
-.content {
+
+/* .content {
     margin-top: 0!important;
     padding: 0!important;
-}
+} */
 
 .enviar button {
     background-color: #03588C!important;
@@ -198,7 +340,8 @@ footer {
     margin-top: 47px!important;
 }
 
-.form-control::placeholder {
+.form-control::placeholder,
+.main-color {
     color: #03588C;
 }
 
@@ -209,4 +352,24 @@ footer {
 
 #conteudoCard {
     margin-top: 0px;
+}
+
+.bold {
+    font-weight: bold;
+}
+
+#logo-bayer {
+    height: 50px;
+}
+
+.title-bayer {
+    font-size: 30px;
+}
+
+.card {
+    z-index: 0;
+}
+
+.gold {
+    color: #717500!important;
 }

@@ -18,6 +18,7 @@ dao.insere()
 
 from routes import *
 
+
 if __name__ == '__main__':
     from livereload import Server, shell
     app.debug = True
