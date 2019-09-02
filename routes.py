@@ -224,16 +224,21 @@ def sistema_base():
     return render_template('bayer-recrutador/dashboard.html')
 
 @app.route('/recrutador/candidatosPotenciais')
-def candidatosPotenciais():
+def candidatos_potenciais():
     return render_template('bayer-recrutador/candidatosPotencial.html')
 
 @app.route('/recrutador/candidatosTotais')
-def candidatosTotais():
+def candidatos_totais():
     return render_template('bayer-recrutador/candidatosTotais.html')
 
 @app.route('/recrutador/vagasAberto')
-def vagasAberto():
+def vagas_aberto():
     return render_template('bayer-recrutador/vagasAberto.html')
+
+
+@app.route('/recrutador/cadastrarSelecao')
+def cadastrar_selecao():
+    return render_template('bayer-recrutador/cadastrarSelecao.html')
 
 @app.route('/recrutador/candidato/pontuacao')
 def pontuacao_candidato():
