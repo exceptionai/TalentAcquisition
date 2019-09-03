@@ -19,6 +19,45 @@ footer {
     }
 }
 
+.resposta-ativada {
+    background-color: #624862!important;
+}
+
+.text-alternate {
+    color: #624862!important;
+}
+
+.btn-high-danger {
+    background-color: #D7263D!important;
+}
+
+#conhecaMais {
+    height: 29vh;
+    float: left;
+    width: 100%;
+    background-size: 100%;
+    margin-right: 25px;
+    background-repeat: no-repeat;
+    background-image: url(https://krishijagran.com/media/2073/bayer.jpg);
+}
+
+.textoConheca {
+    text-align: justify;
+    margin-right: 15px;
+}
+
+.textoConheca h2 {
+    font-size: 2rem;
+}
+
+.textoConheca p {
+    font-size: 1rem;
+}
+
+.atividade-footer-bottons {
+    display: none;
+}
+
 .main-panel>.content {
     min-height: calc(100vh - 155px)
 }
@@ -75,9 +114,12 @@ footer {
     background-color: #624862!important;
 }
 
+.header-atividade {
+    border-bottom: 1px solid #d2d2d2;
+}
+
 .atividade-titulo {
     padding-bottom: 5px;
-    border-bottom: 1px solid #d2d2d2;
     margin-bottom: 10px;
 }
 
