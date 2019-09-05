@@ -8,10 +8,13 @@
     <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <!-- Fonts e icones -->
+    <link rel="icon" type="image" href="./../static/img/icon.png" />
     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
     <!-- Material Kit CSS -->
     <link href="../../static/recrutador/css/material-dashboard.css?v=2.1.1" rel="stylesheet" />
+    <link rel="stylesheet" href="../../static/css/curriculoForm.css">
+    <link rel="stylesheet" href="../../static/recrutador/css/recrutador.css">
 </head>
 
 <body>
@@ -75,7 +78,7 @@
 
         <div class="main-panel">
             <!-- Barra Superior -->
-            <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top ">
+            <nav class="navbar navbar-expand-lg  navbar-absolute  ">
                 <div class="container-fluid">
                     <div class="navbar-wrapper">
                         <a class="navbar-brand" href="#pablo">Exception Dashboard</a>
@@ -182,7 +185,7 @@
                         <div class="col-md-6">
                             <div class="card card-chart">
                                 <div class="card-header card-header-success">
-                                    <div class="ct-chart" id="dailySalesChart"></div>
+                                    <div class="ct-chart" id="graficoCandidatosAltaPerformance"></div>
                                 </div>
                                 <div class="card-body">
                                     <h4 class="card-title">Candidatos de Alta Performance</h4>
@@ -199,7 +202,7 @@
                         <div class="col-md-6">
                             <div class="card card-chart">
                                 <div class="card-header card-header-success">
-                                    <div class="ct-chart" id="websiteViewsChart"></div>
+                                    <div class="ct-chart" id="graficoCandidatosUltimoAno"></div>
                                 </div>
                                 <div class="card-body">
                                     <h4 class="card-title">Candidatos no Ultimo Ano</h4>
@@ -264,11 +267,12 @@
             </div>
             <footer class="footer">
                 <div class="container-fluid">
+                    <div class="float-left ml-3 d-flex align-items-center">
+                        <img src="../../static/img/logo.png" alt="Logo Bayer" title="Logo Bayer" id="logo-bayer">
+                        <span class="title-bayer ml-3">Bayer</span>
+                    </div>
                     <div class="copyright float-right">
                         Exception &copy;
-                        <script>
-                            document.write(new Date().getFullYear())
-                        </script>
                     </div>
                 </div>
             </footer>
@@ -281,12 +285,170 @@
 
     <!-- Chartist JS -->
     <script src="../../static/recrutador/js/plugins/chartist.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts@latest"></script>
 
     <script>
-        $(document).ready(function() {
-            md.initDashboardPageCharts();
-        });
+        var optionsLine = {
+            chart: {
+                foreColor: '#fff',
+                height: 170,
+                type: 'line',
+                zoom: {
+                    enabled: false
+                },
+
+                toolbar: {
+                    show: false
+                }
+            },
+            stroke: {
+                curve: 'straight',
+                width: 4
+            },
+            colors: ["#FFF"],
+            series: [{
+                name: "Pontos",
+                data: [15, 15, 20, 21, 33, 34]
+
+            }],
+            markers: {
+                size: 6,
+                strokeWidth: 0,
+                hover: {
+                    size: 9
+                }
+            },
+            grid: {
+                strokeDashArray: 3,
+                show: true,
+                xaxis: {
+                    lines: {
+                        show: true
+                    }
+                },
+                yaxis: {
+                    lines: {
+                        show: true
+                    }
+                },
+            },
+            dataLabels: {
+                enabled: true,
+                dropShadow: {
+                    enabled: true,
+                    top: 1,
+                    left: 1,
+                    blur: 1,
+                    opacity: 0.45
+                },
+                style: {
+                    colors: ["#fff"]
+                }
+            },
+            labels: ['D', 'S', 'T', 'Q', 'Q', 'S', 'S'],
+            xaxis: {
+                tooltip: {
+                    enabled: false
+                }
+            },
+            tooltip: {
+                theme: 'dark'
+            },
+            yaxis: {
+                show: true,
+                showAlways: true,
+                seriesName: undefined,
+                opposite: false,
+                reversed: false,
+                logarithmic: false,
+                tickAmount: 4
+            }
+        }
+
+        const progressiveOptions = {
+            chart: {
+                foreColor: '#fff',
+                height: 170,
+                type: 'line',
+                zoom: {
+                    enabled: false
+                },
+
+                toolbar: {
+                    show: false
+                }
+            },
+            stroke: {
+                curve: 'straight',
+                width: 4
+            },
+            colors: ["#FFF"],
+            series: [{
+                name: "Pontos",
+                data: [72, 102, 80, 225, 300, 203, 90, 233, 245, 180, 200, 320]
+
+            }],
+            markers: {
+                size: 6,
+                strokeWidth: 0,
+                hover: {
+                    size: 9
+                }
+            },
+            grid: {
+                strokeDashArray: 3,
+                show: true,
+                xaxis: {
+                    lines: {
+                        show: true
+                    }
+                },
+                yaxis: {
+                    lines: {
+                        show: true
+                    }
+                },
+            },
+            dataLabels: {
+                enabled: true,
+                dropShadow: {
+                    enabled: true,
+                    top: 1,
+                    left: 1,
+                    blur: 1,
+                    opacity: 0.45
+                },
+                style: {
+                    colors: ["#fff"]
+                }
+            },
+            labels: ['jan', 'fev', 'mar', 'abr', 'mai', 'jun', 'jul', 'ago', 'set', 'out', 'nov', 'dez'],
+            xaxis: {
+                tooltip: {
+                    enabled: false
+                }
+            },
+            tooltip: {
+                theme: 'dark'
+            },
+            yaxis: {
+                show: true,
+                showAlways: true,
+                seriesName: undefined,
+                opposite: false,
+                reversed: false,
+                logarithmic: false,
+                tickAmount: 4
+            }
+        }
+
+        var chartLine = new ApexCharts(document.querySelector('#graficoCandidatosAltaPerformance'), optionsLine);
+        const chart2 = new ApexCharts(document.querySelector('#graficoCandidatosUltimoAno'), progressiveOptions)
+        chartLine.render();
+        chart2.render()
     </script>
+
+
 </body>
 
 </html>

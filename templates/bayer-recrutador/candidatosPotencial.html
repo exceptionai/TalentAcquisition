@@ -8,10 +8,50 @@
     <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <!-- Fonts e icones -->
+
+    <link rel="icon" type="image" href="./../static/img/icon.png" />
     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
     <!-- Material Kit CSS -->
     <link href="../../static/recrutador/css/material-dashboard.css?v=2.1.1" rel="stylesheet" />
+    <link rel="stylesheet" href="../../static/css/curriculoForm.css">
+    <link rel="stylesheet" href="../../static/recrutador/css/recrutador.css">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/cldrjs/0.4.4/cldr.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/cldrjs/0.4.4/cldr/event.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/cldrjs/0.4.4/cldr/supplemental.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/cldrjs/0.4.4/cldr/unresolved.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/globalize/1.1.1/globalize.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/globalize/1.1.1/globalize/message.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/globalize/1.1.1/globalize/number.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/globalize/1.1.1/globalize/currency.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/globalize/1.1.1/globalize/date.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn3.devexpress.com/jslib/19.1.5/css/dx.common.css" />
+    <link rel="stylesheet" type="text/css" href="https://cdn3.devexpress.com/jslib/19.1.5/css/dx.light.css" />
+
+    <script src="https://cdn3.devexpress.com/jslib/19.1.5/js/localization/dx.messages.pt.js"></script>
+
+    <style>
+        select[name='candidatos_length'] {
+            width: auto;
+            margin-right: 8px;
+        }
+        
+        #candidatos_filter label {
+            float: right;
+            margin-right: 20px;
+        }
+        
+        .dataTables_length>label {
+            margin-left: 20px;
+        }
+        
+        #candidatos_filter input[aria-controls='candidatos'] {
+            display: inline-block;
+            width: 150px;
+            margin-left: 8px;
+        }
+    </style>
 </head>
 
 <body>
@@ -21,8 +61,8 @@
             <div class="logo">
 
                 <a href="#" class="simple-text logo-normal">
-          Exception Carriers
-        </a>
+                    Exception Carriers
+                </a>
             </div>
             <div class="sidebar-wrapper">
                 <ul class="nav">
@@ -32,7 +72,7 @@
                             <p>Resumo</p>
                         </a>
                     </li>
-                    <li class="nav-item active">
+                    <li class="nav-item active ">
                         <a class="nav-link" href="/recrutador/candidatosPotenciais">
                             <i class="material-icons">perm_identity</i>
                             <p>Candidatos em Potêncial</p>
@@ -44,7 +84,7 @@
                             <p>Vagas em Aberto</p>
                         </a>
                     </li>
-                    <li class="nav-item ">
+                    <li class="nav-item">
                         <a class="nav-link" href="/recrutador/cadastrarSelecao">
                             <i class="material-icons">edit</i>
                             <p>Cadastrar seleção</p>
@@ -76,16 +116,16 @@
         <div class="main-panel">
 
             <!-- Barra Superior -->
-            <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top ">
+            <nav class="navbar navbar-expand-lg  navbar-absolute ">
                 <div class="container-fluid">
                     <div class="navbar-wrapper">
                     </div>
                     <button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="navbar-toggler-icon icon-bar"></span>
-            <span class="navbar-toggler-icon icon-bar"></span>
-            <span class="navbar-toggler-icon icon-bar"></span>
-          </button>
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="navbar-toggler-icon icon-bar"></span>
+                        <span class="navbar-toggler-icon icon-bar"></span>
+                        <span class="navbar-toggler-icon icon-bar"></span>
+                    </button>
                     <div class="collapse navbar-collapse justify-content-end">
 
                         <ul class="navbar-nav">
@@ -93,9 +133,9 @@
                                 <div class="input-group no-border">
                                     <input type="text" value="" class="form-control" placeholder="Pesquisar...">
                                     <button type="submit" class="btn btn-white btn-round btn-just-icon">
-                    <i class="material-icons">search</i>
-                    <div class="ripple-container"></div>
-                  </button>
+                                        <i class="material-icons">search</i>
+                                        <div class="ripple-container"></div>
+                                    </button>
                                 </div>
                             </form>
                             <li class="nav-item">
@@ -126,33 +166,322 @@
 
             <div class="content">
                 <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="card">
+                                <div class="card-header card-header-primary">
+                                    <h4 class="card-title ">Candidatos</h4>
+                                    <p class="card-category">Lista com todos os candidatos</p>
+                                </div>
+                                <div class="card-body col-12">
+                                    <div class="demo-container">
+                                        <div id="candidatoTable"></div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
             <!-- Fim do conteudo principal-->
             <footer class="footer">
                 <div class="container-fluid">
+                    <div class="float-left ml-3 d-flex align-items-center">
+                        <img src="../../static/img/logo.png" alt="Logo Bayer" title="Logo Bayer" id="logo-bayer">
+                        <span class="title-bayer ml-3">Bayer</span>
+                    </div>
                     <div class="copyright float-right">
                         Exception &copy;
-                        <script>
-                            document.write(new Date().getFullYear())
-                        </script>
                     </div>
                 </div>
             </footer>
         </div>
     </div>
-    <script src="../../static/recrutador/js/core/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="../../static/recrutador/js/core/popper.min.js"></script>
     <script src="../../static/recrutador/js/core/bootstrap-material-design.min.js"></script>
-    <script src="../../static/recrutador/js/material-dashboard.js?v=2.1.1" type="text/javascript"></script>
-    <!--  Google Maps Plugin    -->
-    <!-- Chartist JS -->
-    <script src="../../static/recrutador/js/plugins/chartist.min.js"></script>
-    <!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
+    <script src="../static/js/libs/jquery.dataTables.min.js"></script>
     <script>
+        window.jQuery || document.write(decodeURIComponent('%3Cscript src="js/jquery.min.js"%3E%3C/script%3E'))
+    </script>
+    <link rel="stylesheet" type="text/css" href="https://cdn3.devexpress.com/jslib/19.1.5/css/dx.common.css" />
+    <link rel="stylesheet" type="text/css" href="https://cdn3.devexpress.com/jslib/19.1.5/css/dx.light.css" />
+
+    <script src="https://cdn3.devexpress.com/jslib/19.1.5/js/dx.all.js"></script>
+    <script src="https://unpkg.com/devextreme-intl/dist/devextreme-intl.min.js"></script>
+    <script src="https://cdn.polyfill.io/v2/polyfill.min.js?features=Intl.~locale.en,Intl.~locale.de,Intl.~locale.pt"></script>
+    <script src="https://cdn3.devexpress.com/jslib/19.1.5/js/localization/dx.messages.pt.js"></script>
+    <script src="https://unpkg.com/devextreme-cldr-data/supplemental.js"></script>
+    <script src="https://unpkg.com/devextreme-cldr-data/pt.js"></script>
+    <script>
+        $(function() {
+
+
+
+            const botao = (link, titulo, btnClass) => {
+                return $(`<div class="text-center"><a class="btn ${btnClass}" href="${link}" style="font-size:11px;padding:6px;">${titulo}</a></div>`)
+            }
+
+            const botaoCurriculo = (container, options) => {
+                return botao(`curriculo${options.text}`, "curriculo", 'btn-success')
+            }
+
+            const botaoPontuacao = (container, options) => {
+                return botao(`pontuacao${options.text}`, "Pontuacao", 'btn-primary')
+            }
+            DevExpress.localization.locale('pt');
+
+            $("#candidatoTable").dxDataGrid({
+                filterRow: {
+                    visible: true
+                },
+                dataSource: [{
+                    candidato: "Renan do Nascimento Sanches",
+                    vaga: "Desenvolvedor de Sistemas",
+                    pontuacao_alcancada: 155,
+                    pontuacao_minima: 200,
+                    fator_destaque: "Objetivo",
+                    status_candidatura: "Desafios Pontuados",
+                    curriculo: 1,
+                    detalhes_pontuacao: 1
+                }, {
+                    candidato: "Alisson Chabaribery",
+                    vaga: "Gerente de Biotecnologia",
+                    pontuacao_alcancada: 257,
+                    pontuacao_minima: 220,
+                    fator_destaque: "Experiências Anteriores",
+                    status_candidatura: "Currículo",
+                    curriculo: 2,
+                    detalhes_pontuacao: 2
+                }, {
+                    candidato: "Gabriel Lopes Pontes",
+                    vaga: "Analista de Recursos",
+                    pontuacao_alcancada: 350,
+                    pontuacao_minima: 120,
+                    fator_destaque: "Evolução nos testes",
+                    status_candidatura: "Desafios Pontuados",
+                    curriculo: 3,
+                    detalhes_pontuacao: 3
+                }, {
+                    candidato: "Vanessa Cunha Queiroz",
+                    vaga: "Desenvolvedor de Sistemas",
+                    pontuacao_alcancada: 275,
+                    pontuacao_minima: 200,
+                    fator_destaque: "Cursos Extracurrículares",
+                    status_candidatura: "Desafios Pontuados",
+                    curriculo: 4,
+                    detalhes_pontuacao: 4
+                }, {
+                    candidato: "Matheus Machado",
+                    vaga: "Desenvolvedor de Sistemas",
+                    pontuacao_alcancada: 320,
+                    pontuacao_minima: 200,
+                    fator_destaque: "Experiências Anteriores",
+                    status_candidatura: "Desafios Pontuados",
+                    curriculo: 5,
+                    detalhes_pontuacao: 5
+                }, {
+                    candidato: "Gabriele Ferreira",
+                    vaga: "Desenvolvedor de Sistemas",
+                    pontuacao_alcancada: 155,
+                    pontuacao_minima: 200,
+                    fator_destaque: "Evolução nos testes",
+                    status_candidatura: "Desafios Pontuados",
+                    curriculo: 6,
+                    detalhes_pontuacao: 6
+                }, {
+                    candidato: "Daniela Silva",
+                    vaga: "Desenvolvedor de Sistemas",
+                    pontuacao_alcancada: 155,
+                    pontuacao_minima: 200,
+                    fator_destaque: "Experiências Anteriores",
+                    status_candidatura: "Desafios Pontuados",
+                    curriculo: 7,
+                    detalhes_pontuacao: 7
+                }, {
+                    candidato: "Leonardo Ferraz Sales",
+                    vaga: "Desenvolvedor de Sistemas",
+                    pontuacao_alcancada: 155,
+                    pontuacao_minima: 200,
+                    fator_destaque: "Cursos Extracurrículares",
+                    status_candidatura: "Desafios Pontuados",
+                    curriculo: 8,
+                    detalhes_pontuacao: 8
+                }, {
+                    candidato: "Jessica Pontes Machado",
+                    vaga: "Desenvolvedor de Sistemas",
+                    pontuacao_alcancada: 155,
+                    pontuacao_minima: 200,
+                    fator_destaque: "Objetivo",
+                    status_candidatura: "Desafios Pontuados",
+                    curriculo: 9,
+                    detalhes_pontuacao: 9
+                }, {
+                    candidato: "Maria Carla",
+                    vaga: "Desenvolvedor de Sistemas",
+                    pontuacao_alcancada: 155,
+                    pontuacao_minima: 200,
+                    fator_destaque: "Cursos Extracurrículares",
+                    status_candidatura: "Desafios Pontuados",
+                    curriculo: 10,
+                    detalhes_pontuacao: 10
+                }, {
+                    candidato: "Josefina Santos",
+                    vaga: "Desenvolvedor de Sistemas",
+                    pontuacao_alcancada: 155,
+                    pontuacao_minima: 200,
+                    fator_destaque: "Experiências Anteriores",
+                    status_candidatura: "Desafios Pontuados",
+                    curriculo: 10,
+                    detalhes_pontuacao: 10
+                }, {
+                    candidato: "Lucas Machado",
+                    vaga: "Desenvolvedor de Sistemas",
+                    pontuacao_alcancada: 30,
+                    pontuacao_minima: 200,
+                    fator_destaque: "Evolução nos testes",
+                    status_candidatura: "Desafios Pontuados",
+                    curriculo: 11,
+                    detalhes_pontuacao: 11
+                }, {
+                    candidato: "Daniel Queiroz da Silva",
+                    vaga: "Desenvolvedor de Sistemas",
+                    pontuacao_alcancada: 155,
+                    pontuacao_minima: 200,
+                    fator_destaque: "Cursos Extracurrículares",
+                    status_candidatura: "Desafios Pontuados",
+                    curriculo: 12,
+                    detalhes_pontuacao: 12
+                }],
+                paging: {
+                    pageSize: 10
+                },
+                pager: {
+                    showPageSizeSelector: true,
+                    allowedPageSizes: [10, 20]
+                },
+                remoteOperations: false,
+                searchPanel: {
+                    visible: true,
+                    highlightCaseSensitive: true
+                },
+                groupPanel: {
+                    visible: true
+                },
+                grouping: {
+                    autoExpandAll: true
+                },
+                allowColumnReordering: true,
+                rowAlternationEnabled: true,
+                showBorders: true,
+
+                columns: [{
+                    dataField: "candidato",
+                    caption: "Candidato"
+                }, {
+                    dataField: "vaga",
+                    caption: "Vaga",
+                    dataType: "string",
+                }, {
+                    dataField: "pontuacao_alcancada",
+                    caption: "Pontuação Alcançada",
+                    dataType: "string"
+                }, {
+                    dataField: "pontuacao_minima",
+                    dataType: "number",
+                    caption: "Pontuação Miníma",
+                    alignment: "left"
+                }, {
+                    dataField: "fator_destaque",
+                    dataType: "string",
+                    caption: "Fator de destaque"
+                }, {
+                    dataField: "status_candidatura",
+                    dataType: "string",
+                    caption: "Status da Candidatura"
+                }, {
+                    dataField: "curriculo",
+                    dataType: "string",
+                    caption: "",
+                    cellTemplate: botaoCurriculo
+                }, {
+                    dataField: "detalhes_pontuacao",
+                    dataType: "string",
+                    width: 100,
+                    caption: "",
+                    cellTemplate: botaoPontuacao
+                }],
+                onContentReady: function(e) {
+                    if (!collapsed) {
+                        collapsed = true;
+                        e.component.expandRow(["EnviroCare"]);
+                    }
+                }
+            });
+        });
+
+        var discountCellTemplate = function(container, options) {
+            $("<div/>").dxBullet({
+                onIncidentOccurred: null,
+                size: {
+                    width: 150,
+                    height: 35
+                },
+                margin: {
+                    top: 5,
+                    bottom: 0,
+                    left: 5
+                },
+                showTarget: false,
+                showZeroLevel: true,
+                value: options.value * 100,
+                startScaleValue: 0,
+                endScaleValue: 100,
+                tooltip: {
+                    enabled: true,
+                    font: {
+                        size: 18
+                    },
+                    paddingTopBottom: 2,
+                    customizeTooltip: function() {
+                        return {
+                            text: options.text
+                        };
+                    },
+                    zIndex: 5
+                }
+            }).appendTo(container);
+        };
+
+        var collapsed = true;
         $(document).ready(function() {
             // Javascript method's body can be found in ../../static/recrutador/js/demos.js
-            md.initDashboardPageCharts();
+            $('#candidatos').DataTable({
+                "language": {
+                    "sEmptyTable": "Nenhum registro encontrado",
+                    "sInfo": "Mostrando de _START_ até _END_ de _TOTAL_ registros",
+                    "sInfoEmpty": "Mostrando 0 até 0 de 0 registros",
+                    "sInfoFiltered": "(Filtrados de _MAX_ registros)",
+                    "sInfoPostFix": "",
+                    "sInfoThousands": ".",
+                    "sLengthMenu": "_MENU_ resultados por página",
+                    "sLoadingRecords": "Carregando...",
+                    "sProcessing": "Processando...",
+                    "sZeroRecords": "Nenhum registro encontrado",
+                    "sSearch": "Pesquisar",
+                    "oPaginate": {
+                        "sNext": "Próximo",
+                        "sPrevious": "Anterior",
+                        "sFirst": "Primeiro",
+                        "sLast": "Último"
+                    },
+                    "oAria": {
+                        "sSortAscending": ": Ordenar colunas de forma ascendente",
+                        "sSortDescending": ": Ordenar colunas de forma descendente"
+                    }
+                }
+            });
 
         });
     </script>

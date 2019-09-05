@@ -38,9 +38,9 @@ def analises():
 def formulario_curriculo():
     return render_template('bayer-candidato/formulario.html')
 
-@app.route('/candidato/andamentoProcesso')
-def andamentoProcesso():
-    return render_template('bayer-candidato/andamentoProcesso.html')
+@app.route('/candidato/trocaPontos')
+def trocaPontos():
+    return render_template('bayer-candidato/trocaPontos.html')
 
 @app.route('/candidato/duvidas')
 def duvidas():

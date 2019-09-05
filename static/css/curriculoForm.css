@@ -123,6 +123,14 @@ footer {
     margin-bottom: 10px;
 }
 
+.header-link {
+    color: #00617f!important;
+}
+
+.header-link:hover {
+    color: #89229b!important;
+}
+
 .flex-1 {
     flex: 1;
 }
