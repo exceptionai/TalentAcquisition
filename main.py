@@ -1,7 +1,7 @@
 from flask import Flask
 from connections.connectionFactory import ConnectionFactory
-from DAO.proficienciaDAO import ProficienciaDAO
-from models.proeficiencia import Proeficiencia
+from services.pontuacaoService.DAO.proficienciaDAO import ProficienciaDAO
+from services.pontuacaoService.models.proeficiencia import Proeficiencia
  
 app = Flask(__name__)
 
@@ -16,7 +16,7 @@ dao.insere()
 # print(resultado)
 
 
-from routes import *
+from routes.routes import *
 
 
 if __name__ == '__main__':
