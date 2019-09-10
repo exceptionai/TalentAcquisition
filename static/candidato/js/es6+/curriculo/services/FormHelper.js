@@ -9,6 +9,8 @@ export class FormHelper {
         elementos.forEach(elemento => {
             let { name, value } = elemento;
             const parent = elemento.getAttribute("data-parent");
+
+            value = FormHelper.format(value, name)
             FormHelper._adicionaCamposObj(obj, elemento, parent, name, value);
         })
         return obj;
@@ -17,13 +19,19 @@ export class FormHelper {
     static _adicionaCamposObj(obj, element, parent, name, value) {
         if (!name) return;
 
-        if (value.includes('R$')) value = Formater.moneyToNumber(value);
         if (element.type == 'number') value = parseFloat(value);
 
         if (parent) FormHelper._addObjCampoDinamico(obj, parent, name, value, element)
         else if (element.type == "checkbox") obj[name] = element.checked
         else obj[name] = value;
 
+    }
+
+    static format(value, name) {
+        let formatedValue = value;
+        if (value.includes('R$')) formatedValue = Formater.moneyToNumber(value);
+        if (name.includes('telefone')) formatedValue = value.replace(/\D/g, '');
+        return formatedValue;
     }
 
     static _addObjCampoDinamico(objDestino, parent, name, value, element) {
