@@ -1,7 +1,5 @@
 import { AtividadeDesafioView } from '../views/AtividadeDesafioView.js';
 
-
-
 const questoes = [{
         titulo: "Juros compostos",
         descricao: "Aplicando hoje na caderneta de poupança a quantia de R$ 20.000,00, qual será o montante gerado ao final de 4 anos, sabendo que a rentabilidade mensal é de 0,5%?",
@@ -33,15 +31,17 @@ export class AtividadeDesafioController {
     constructor(proximaPerguntaSeletor, perguntaAnteriorSeletor, containerPerguntas) {
         this._proximaPerguntaButton = $(proximaPerguntaSeletor);
         this._perguntaAnteriorButton = $(perguntaAnteriorSeletor);
+        if (this._proximaPerguntaButton.length && this._perguntaAnteriorButton.length) {
 
-        this._indicePergunta = 0;
-        this._perguntaAtual = questoes[this._indicePergunta];
-        this._perguntaAnterior = null;
-        this._proximaPergunta = questoes[this._indicePergunta + 1];
+            this._indicePergunta = 0;
+            this._perguntaAtual = questoes[this._indicePergunta];
+            this._perguntaAnterior = null;
+            this._proximaPergunta = questoes[this._indicePergunta + 1];
 
-        this._view = new AtividadeDesafioView(containerPerguntas);
+            this._view = new AtividadeDesafioView(containerPerguntas);
 
-        this._init();
+            this._init();
+        }
     }
 
     _init() {
@@ -56,16 +56,49 @@ export class AtividadeDesafioController {
             this._proximaPerguntaButton.css("display", "block")
         if (this._perguntaAnterior)
             this._perguntaAnteriorButton.css("display", "block")
+
         $(".flow-question")[this._indicePergunta].classList.add('text-alternate');
         $(".flow-question")[this._indicePergunta].classList.remove('text-danger');
+
+        this._navegaEntreQuestoes();
+
+        AtividadeDesafioController._contagemTempoDesafio();
+
+        this._confirmarAoSair();
+    }
+
+    _navegaEntreQuestoes() {
+        $("#proximaQuestao").click(this.proximaQuestao.bind(this));
+        $("#questaoAnterior").click(this.questaoAnterior.bind(this));
+    }
+
+    static _contagemTempoDesafio() {
+        let tempoAtividade = 30;
+        const tempoTotalMilis = 10 * 1000;
+
+        let contador = setInterval(() => {
+            let tempoFormatado = tempoAtividade.toString().padStart(2, "0");
+            $("#tempoRestante").text(tempoFormatado + " min")
+            if (!tempoAtividade) clearInterval(contador);
+
+            tempoAtividade--;
+        }, tempoTotalMilis);
+    }
+
+    _confirmarAoSair() {
+        $("a").click(function(e) {
+            if ($(this).attr("href") != "#") {
+                e.preventDefault();
+                $('#modalDesistir').modal('show')
+                $("#desistir").click(() => window.location = $(this).attr("href"));
+            }
+        })
     }
 
     proximaQuestao() {
 
         const respostaSelecionada = $(".btn-resposta.resposta-ativada");
         questoes[this._indicePergunta].respostaSelecionada = respostaSelecionada.attr("data-id");
-
-
 
         this._perguntaAnterior = questoes[this._indicePergunta];
         this._perguntaAtual = questoes[++this._indicePergunta];
@@ -80,7 +113,6 @@ export class AtividadeDesafioController {
         if (!questoes[this._indicePergunta - 1].respostaSelecionada) {
             $(".flow-question")[this._indicePergunta - 1].classList.add('text-danger');
         }
-
 
 
         this._view.render(

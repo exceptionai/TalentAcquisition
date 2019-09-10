@@ -1,4 +1,4 @@
-import { FormHelper } from '../../curriculoForm/services/FormHelper.js';
+import { FormHelper } from '../../js/es6+/curriculo/services/FormHelper.js';
 
 describe('FormHelper', function() {
 

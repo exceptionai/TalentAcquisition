@@ -18,7 +18,6 @@ def candidatos_totais():
 def vagas_aberto():
     return render_template('recrutador/vagasAberto.html')
 
-
 @app.route('/recrutador/cadastrarSelecao')
 def cadastrar_selecao():
     return render_template('recrutador/cadastrarSelecao.html')
