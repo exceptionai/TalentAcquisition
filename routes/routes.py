@@ -5,10 +5,10 @@ from main import app
 
 
 @app.route('/')
+@app.route('/login')
+@app.route('/logout')
 def index():
-    return 'Bayer Challenge<br>' \
-           '<a href="candidato">Sistema Candidato</a><br>' \
-           '<a href="recrutador">Sistema Recrutador</a><br>' 
+    return render_template('login/login.html') 
 
 @app.route('/spec')
 def spec():

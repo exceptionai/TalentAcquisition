@@ -29,9 +29,9 @@ def candidato():
 def formulario_curriculo():
     return render_template('candidato/curriculo.html')
 
-@app.route('/candidato/trocaPontos')
-def trocaPontos():
-    return render_template('candidato/trocaPontos.html')
+@app.route('/candidato/desbloqueaveis')
+def desbloqueaveis():
+    return render_template('candidato/desbloqueaveis.html')
 
 @app.route('/candidato/duvidas')
 def duvidas():
