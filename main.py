@@ -1,4 +1,5 @@
 from flask import Flask
+<<<<<<< HEAD
  
 app = Flask(__name__)
 
@@ -6,12 +7,15 @@ app = Flask(__name__)
 # resultado = ConnectionFactory.fetchall()
 
 # print(resultado)
+=======
+from livereload import Server, shell
+>>>>>>> 8b8b4193b55a44048df2d041b8347591c085dc43
 
+app = Flask(__name__)
 
-from routes import *
+from routes.routes import *
 
 if __name__ == '__main__':
-    from livereload import Server, shell
     app.debug = True
     server = Server(app.wsgi_app)
     server.serve()

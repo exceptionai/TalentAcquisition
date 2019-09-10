@@ -1,0 +1,259 @@
+<!doctype html>
+<html>
+
+<head>
+    <title>Dashboard Matheus</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <!-- Fonts e icones -->
+    <link rel="icon" type="image" href="/static/shared/img/icon.png" />
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
+    <link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp" rel="stylesheet">
+
+    <link href="/static/candidato/libs/material-dashboard/css/material-dashboard.css?v=2.1.1" rel="stylesheet" />
+    <link rel="stylesheet" href="/static/shared/css/system.css">
+    <link rel="stylesheet" href="/static/shared/libs/font-awesome/css/all.css">
+
+</head>
+
+<body>
+    <div class="wrapper ">
+        <!-- Barra lateral -->
+        <div class="sidebar" data-color="green" data-background-color="white">
+            <div class="logo">
+
+                <a href="#" class="simple-text logo-normal">
+                    Olá Matheus!
+                </a>
+            </div>
+            <div class="sidebar-wrapper">
+                <ul class="nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/candidato">
+                            <i class="material-icons">dashboard</i>
+                            <p>Resumo</p>
+                        </a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/candidato/desafios">
+                            <i class="material-icons-outlined">poll</i>
+                            <p>Desafios e Testes</p>
+                        </a>
+                    </li>
+                    <li class="nav-item ">
+                        <a class="nav-link" href="/candidato/trocaPontos">
+                            <i class="material-icons">perm_identity</i>
+                            <p>Troca de Pontos</p>
+                        </a>
+                    </li>
+                    <li class="nav-item ">
+                        <a class="nav-link" href="/candidato/conhecaMais">
+                            <i class="material-icons">speaker_notes</i>
+                            <p>Conheça mais a Bayer</p>
+                        </a>
+                    </li>
+                    <!-- <li class="nav-item ">
+                        <a class="nav-link" href="/candidato/duvidas">
+                            <i class="material-icons">contacts</i>
+                            <p>Dúvidas</p>
+                        </a>
+                    </li> -->
+                    <li class="nav-item ">
+                        <a class="nav-link" href="/candidato/curriculo">
+                            <i class="material-icons">settings</i>
+                            <p>Seu Perfil</p>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <!-- Fim barra lateral-->
+
+        <div class="main-panel">
+            <!-- Barra Superior -->
+            <nav class="navbar navbar-expand-lg navbar-absolute">
+                <div class="container-fluid">
+                    <div class="navbar-wrapper">
+                        <a href="/candidato/desafios" class="mr-1 navbar-brand header-link">Desafios</a> /
+                        <a href="/candidato/desafios/categoria/1" class="ml-1 mr-1 navbar-brand header-link">Conhecimentos Gerais</a> /
+                        <a href="/candidato/desafios/categoria/1" class="ml-1 navbar-brand header-link">Matemática</a>
+                    </div>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="navbar-toggler-icon icon-bar"></span>
+                        <span class="navbar-toggler-icon icon-bar"></span>
+                        <span class="navbar-toggler-icon icon-bar"></span>
+                    </button>
+                    <div class="collapse navbar-collapse justify-content-end">
+
+                        <ul class="navbar-nav">
+                            <li class="nav-item d-flex justify-content-center align-items-center gold">
+                                <span class="mr-1">72</span>
+                                <i class="fas fa-coins mr-4"></i>
+                                <div class="progress mr-2">
+                                    <div class="progress-bar bg-info" style="width:72%">72/100</div>
+                                </div>
+                                <span class="mr-3 main-color bold">LVL 1</span>
+                            </li>
+                            <form class="navbar-form">
+                                <div class="input-group no-border">
+                                    <input type="text" value="" class="form-control" placeholder="Pesquisar...">
+                                    <button type="submit" class="btn btn-white btn-round btn-just-icon">
+                                        <i class="material-icons">search</i>
+                                        <div class="ripple-container"></div>
+                                    </button>
+                                </div>
+                            </form>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">
+                                    <i class="material-icons">notifications</i>
+                                </a>
+                            </li>
+
+
+                            <li class="nav-item dropdown">
+                                <a class="nav-link" href="#" id="navbarDropdownProfile" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <i class="material-icons">person</i>
+                                    <p class="d-lg-none d-md-block">
+                                        Account
+                                    </p>
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownProfile">
+                                    <a class="dropdown-item" href="/candidato/curriculo">Candidato</a>
+                                    <a class="dropdown-item" href="#">Configurações</a>
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item" href="#">Sair</a>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+            <!-- Fim da Barra Superior -->
+            <div class="content">
+                <div class="container-fluid">
+                    <!-- Conteudo Principal -->
+                    <div class="card p-3 mb-0">
+                        <div class="header-atividade d-flex justify-content-between align-items-center">
+                            <h2 class="text-primary medium-small-title atividade-titulo d-flex align-items-center pt-2">
+
+                                <i class="fas fa-book-open text-dark text-small mr-3"></i>Matemática
+
+                                <span class="text-bold text-small text-dark ml-3"><span id="questaoAtual">1</span> / 5
+                                </span>
+                                <div id="questoesQuadrados" class=" ml-3 text-small">
+                                    <i class="far fa-square text-danger flow-question"></i>
+                                    <i class="far fa-square text-danger flow-question"></i>
+                                    <i class="far fa-square text-danger flow-question"></i>
+                                    <i class="far fa-square text-danger flow-question"></i>
+                                    <i class="far fa-square text-danger flow-question"></i>
+                                </div>
+                            </h2>
+
+                            <div class="opcoesAtividade ">
+                                <i class="far fa-clock"></i>
+                                <span class="text-secondary mr-4" id="tempoRestante">30 min</span>
+
+                                <button class="btn btn-danger " data-toggle="modal" data-target="#exampleModal">Finalizar Teste</button>
+                            </div>
+
+                        </div>
+                        <div id="questionContainer">
+
+                        </div>
+
+                        <div class="rodapeAtividade d-flex flex-column">
+
+                            <div class="proximaAtividade col-12 d-flex justify-content-center">
+                                <button class="btn btn-alternate  mr-4 atividade-footer-bottons" id="questaoAnterior">Questão anterior</button>
+                                <button class="btn btn-success atividade-footer-bottons" id="proximaQuestao">Próxima
+                                    questão</button>
+                            </div>
+                        </div>
+
+
+                    </div>
+
+
+                </div>
+                <!-- Fim do conteudo principal-->
+                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <i class="fas fa-check mr-2"></i>
+                                <h5 class="modal-title" id="exampleModalLabel">Confirmação - <span class="text-bold">Finalizar Teste</span> Matemática</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <p>
+                                    Este teste depois de finalizado <span class="text-bold">não poderá ser
+                                        alterado</span>, tenha certeza de ter preenchido corretamente.
+                                </p>
+                                <p>
+                                    Certifique-se de ter respondido todas as perguntas antes de confirmar.
+                                </p>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-primary">Confirmar</button>
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal fade" id="modalDesistir" tabindex="-1" role="dialog" aria-labelledby="modalDesistir" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <i class="fas fa-check mr-2"></i>
+                                <h5 class="modal-title" id="exampleModalLabel">Confirmação - <span class="text-bold">Desistencia do Teste</span> | Matemática</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <p>
+                                    Ao prosseguir estará desistindo do testes e <span class="text-bold">deixará de
+                                        ganhar os pontos desta atividade</span>, esta é uma ação que não poderá ser desfeita.
+                                </p>
+                                <p>
+                                    Caso queira desistir tenha certeza antes de prosseguir, caso contrário aproveite para vencer estes desafios e aumentar seus pontos!
+                                </p>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                                <button type="button" class="btn btn-high-danger" id="desistir">Desistir</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <footer class="footer">
+            <div class="container-fluid">
+                <div class="float-left ml-3 d-flex align-items-center">
+                    <img src="/static/shared/img/logo.png" alt="Logo Bayer" title="Logo Bayer" id="logo-bayer">
+                    <span class="title-bayer ml-3">Bayer</span>
+                </div>
+                <div class="copyright float-right">
+                    Exception &copy;
+                    <script>
+                        document.write(new Date().getFullYear())
+                    </script>
+                </div>
+            </div>
+        </footer>
+    </div>
+    <script src="/static/candidato/libs/material-dashboard/js/core/jquery.min.js"></script>
+    <script src="/static/candidato/libs/material-dashboard/js/core/popper.min.js"></script>
+    <script src="/static/candidato/libs/material-dashboard/js/core/bootstrap-material-design.min.js"></script>
+
+    <script type="module" src="/static/candidato/js/es6+/desafios/init.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,441 @@
+.escondido {
+    display: none;
+}
+
+body {
+    background-color: #eee!important;
+}
+
+footer {
+    background-color: #FFF;
+}
+
+@media (min-width: 768px) {
+    .col-md-11 {
+        background-color: rgba(255, 255, 255, 0.9);
+    }
+    .col-md-11:hover {
+        box-shadow: 0px 4px 20px 0 rgba(99, 96, 96, 0.7);
+    }
+}
+
+.resposta-ativada {
+    background-color: #624862!important;
+}
+
+.text-alternate {
+    color: #624862!important;
+}
+
+.btn-high-danger {
+    background-color: #D7263D!important;
+}
+
+#conhecaMais {
+    height: 29vh;
+    float: left;
+    width: 100%;
+    background-size: 100%;
+    margin-right: 25px;
+    background-repeat: no-repeat;
+    background-image: url(https://krishijagran.com/media/2073/bayer.jpg);
+}
+
+.textoConheca {
+    text-align: justify;
+    margin-right: 15px;
+}
+
+.textoConheca h2 {
+    font-size: 2rem;
+}
+
+.textoConheca p {
+    font-size: 1rem;
+}
+
+.atividade-footer-bottons {
+    display: none;
+}
+
+.main-panel>.content {
+    min-height: calc(100vh - 155px)
+}
+
+.score-box {
+    min-width: 80px;
+    height: 80px;
+    text-align: center;
+    margin-right: 2rem;
+    border-radius: 100%;
+    border: 2px solid #00617f;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    color: #624862;
+    justify-content: center;
+}
+
+.desafio-container {
+    border: 1px solid rgba(0, 97, 127, 0.4);
+    min-height: 80px;
+    border-radius: 3px;
+    margin-top: 10px;
+    padding: 12px;
+}
+
+.medium-title {
+    font-size: 1.7rem;
+}
+
+.medium-small-title {
+    font-size: 1.5rem;
+}
+
+.basis-110-grow-1 {
+    flex: 1 1 110px;
+}
+
+.btn-alternate {
+    background-color: #624862;
+    color: #fff!important;
+}
+
+.text-bold {
+    font-weight: bold;
+}
+
+.text-small {
+    font-size: 0.9rem;
+}
+
+.btn-alternate:active,
+.btn-alternate:focus {
+    background-color: #624862!important;
+}
+
+.header-atividade {
+    border-bottom: 1px solid #d2d2d2;
+}
+
+.atividade-titulo {
+    padding-bottom: 5px;
+    margin-bottom: 10px;
+}
+
+.header-link {
+    color: #00617f!important;
+}
+
+.header-link:hover {
+    color: #89229b!important;
+}
+
+.selecionavel-icone {
+    cursor: pointer;
+}
+
+.selecionavel-icone:hover {
+    color: #89229b!important;
+}
+
+.title-shadow {
+    text-shadow: 5px 5px 30px #3337;
+}
+
+.tituloDetalhesCandidato {
+    font-size: 2rem;
+}
+
+.flex-1 {
+    flex: 1;
+}
+
+.flex-2 {
+    flex: 2;
+}
+
+.flex-3 {
+    flex: 3;
+}
+
+.flex-4 {
+    flex: 4;
+}
+
+.flex-grow-1 {
+    flex-grow: 1;
+}
+
+.shrink-1-basis {
+    flex-grow: 1;
+    flex-shrink: 1;
+}
+
+.shrink-3-basis {
+    flex-grow: 1;
+    flex-shrink: 3;
+    flex-basis: 150px;
+}
+
+.respostas {
+    padding: 0 0 40px 0px;
+}
+
+.question {
+    border-bottom: 1px solid #ccc;
+}
+
+.rodapeAtividade {
+    margin-top: 25px;
+}
+
+.desafio-title {
+    font-size: 18px;
+    margin: 0;
+    text-transform: uppercase;
+}
+
+.btn-success {
+    background-color: #43a047!important;
+}
+
+.desafio-description {
+    font-size: .82rem;
+}
+
+.wrapper {
+    height: 100%;
+}
+
+.progress {
+    width: 120px;
+}
+
+.border-right-primary {
+    border-right: 1px solid rgba(0, 97, 127, 0.2);
+}
+
+#fotoCarreiras {
+    background-image: url(/static/shared/img/carreiras.jpg);
+    height: 440px;
+    background-position-x: 35%;
+    background-position-y: 10%;
+    background-repeat: no-repeat;
+    background-size: 280%;
+}
+
+@media (min-width: 500px) {
+    #fotoCarreiras {
+        background-size: 250%;
+    }
+}
+
+@media (min-width: 600px) {
+    #fotoCarreiras {
+        background-image: url(/static/shared/img/carreiras.jpg);
+        background-size: 180%;
+    }
+}
+
+@media (min-width: 900px) {
+    #fotoCarreiras {
+        background-image: url(/static/shared/img/carreiras.jpg);
+        background-size: 150%;
+    }
+}
+
+@media (min-width: 1000px) {
+    #fotoCarreiras {
+        background-image: url(/static/shared/img/carreiras.jpg);
+        background-size: 150%;
+    }
+}
+
+@media (min-width: 1600px) {
+    #fotoCarreiras {
+        background-image: url(/static/shared/img/carreiras.jpg);
+        background-size: 100%;
+    }
+}
+
+.campoIdiomaAdicional {
+    display: block;
+    margin-bottom: 10px;
+}
+
+.navbar-expand-lg {
+    z-index: 1!important;
+}
+
+.inputError {
+    color: #333!important;
+    border: 1px solid rgba(210, 210, 210, 0.5);
+    border-radius: 2px;
+    background-size: 100%!important;
+}
+
+.marg-0 {
+    margin-top: 0!important;
+}
+
+
+/* .card {
+    background-color: rgba(0, 0, 0, 0);
+    box-shadow: none;
+    padding-left: 0;
+    padding-right: 0;
+} */
+
+.col-md-10 {
+    padding-right: 0;
+    padding-left: 0;
+}
+
+
+/* .form-control {
+    border-style: solid;
+    border-width: 3px;
+    border-color: #86A612;
+    border-radius: 10px;
+    color: #03588C;
+    border-bottom: none;
+    padding-left: 5px;
+    background-color: rgba(255, 255, 255, 0.5);
+    background-image: linear-gradient(to top, #03588C 2px, rgba(156, 39, 176, 0) 2px), linear-gradient(to top, #d2d2d2 1px, rgba(210, 210, 210, 0) 1px);
+} */
+
+.mensagemValidacao {
+    color: firebrick;
+    font-size: 12px;
+}
+
+.bmd-label-floating,
+.form-group label {
+    color: #03588C;
+}
+
+.form-group::after {
+    position: absolute;
+    right: 15px;
+    color: #fff;
+    background-color: #b93838;
+    border: 0.75px solid #b93838;
+    padding-right: 8px;
+    padding-left: 8px;
+    border-radius: 150px;
+    top: 35px;
+}
+
+#logo {
+    display: none;
+}
+
+@media(min-width:800px) {
+    #logo {
+        display: flex;
+        background-color: #fff;
+        padding: 10px;
+        position: fixed;
+        left: 0;
+        z-index: 2;
+        width: 100%;
+    }
+}
+
+#logo img {
+    border: none;
+    background-color: rgba(0, 0, 0, 0);
+    box-shadow: none;
+}
+
+.item {
+    order: 1;
+}
+
+.item h3 {
+    padding-left: 25px;
+    align-content: center;
+}
+
+@media(min-width:1200px) {
+    .item h2 {}
+}
+
+
+/* .content {
+    margin-top: 0!important;
+    padding: 0!important;
+} */
+
+.enviar button {
+    background-color: #03588C!important;
+}
+
+.btn-dark {
+    background-color: #444;
+}
+
+.btn-danger {
+    background-color: #84008A!important;
+}
+
+#fotoCarreiras img {
+    border: none;
+    border-radius: 0;
+    padding: 0;
+    margin: 0 auto;
+}
+
+.enviar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.header-logo {
+    display: none;
+}
+
+.form-check .form-check-input:checked+.form-check-sign .check {
+    background: #03588C;
+}
+
+.form-check {
+    margin-top: 47px!important;
+}
+
+.form-control::placeholder,
+.main-color {
+    color: #03588C;
+}
+
+.form-check-input {
+    padding-top: 10px;
+    position: absolute;
+}
+
+#conteudoCard {
+    margin-top: 0px;
+}
+
+.bold {
+    font-weight: bold;
+}
+
+#logo-bayer {
+    height: 50px;
+}
+
+.title-bayer {
+    font-size: 30px;
+}
+
+.card {
+    z-index: 0;
+}
+
+.gold {
+    color: #717500!important;
+}

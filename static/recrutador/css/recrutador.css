@@ -1,0 +1,55 @@
+.card .card-header-primary .card-icon,
+.card .card-header-primary:not(.card-header-icon):not(.card-header-text) {
+    background: linear-gradient(60deg, #ab47bc, #624862)!important;
+}
+
+.form-control::placeholder,
+.main-color {
+    color: #624862;
+}
+
+.border-alternate {
+    border-color: #ab47bc!important;
+}
+
+.btn-pontuacao-inicial {
+    border: 1px solid #62486288!important;
+}
+
+.btn-pontuacao-inicial.btn-success:hover {
+    background-color: #38823b!important;
+}
+
+.btn-pontuacao-inicial.btn-high-danger:hover {
+    background-color: #941b2b!important;
+}
+
+.pesquisar {
+    cursor: pointer;
+}
+
+#vagasCards div.card {
+    margin-top: 0;
+    margin-right: 10px;
+}
+
+#vagasCards {
+    margin-top: 15px;
+}
+
+#vagasCards .card-title {
+    font-size: .9rem;
+    font-weight: bold;
+}
+
+.tituloTotaisCandidato {
+    font-size: 1.7rem;
+}
+
+.text-link {
+    color: #333!important;
+}
+
+.text-link:hover {
+    color: #ab47bc!important;
+}
