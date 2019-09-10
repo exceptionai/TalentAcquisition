@@ -1,6 +1,11 @@
 from flask import Flask
+ 
 app = Flask(__name__)
 
+# ConnectionFactory.execute('SELECT * FROM proficiencia')
+# resultado = ConnectionFactory.fetchall()
+
+# print(resultado)
 
 
 from routes import *
