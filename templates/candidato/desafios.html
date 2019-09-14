@@ -24,8 +24,8 @@
         <div class="sidebar" data-color="green" data-background-color="white">
             <div class="logo">
 
-                <a href="#" class="simple-text logo-normal">
-                    Olá Matheus!
+                <a href="#" class="simple-text logo-normal d-none">
+                    Olá <span id="nomeUsuario"></span>!
                 </a>
             </div>
             <div class="sidebar-wrapper">
@@ -44,7 +44,7 @@
                     </li>
                     <li class="nav-item ">
                         <a class="nav-link" href="/candidato/desbloqueaveis">
-                            <i class="material-icons">perm_identity</i>
+                            <i class="material-icons">store</i>
                             <p>Desbloqueáveis</p>
                         </a>
                     </li>
@@ -88,10 +88,15 @@
 
                         <ul class="navbar-nav">
                             <li class="nav-item d-flex justify-content-center align-items-center gold">
-                                <span class="mr-1">72</span>
+                                <span class="mr-1 qntPontos"></span>
                                 <i class="fas fa-coins mr-4"></i>
                                 <div class="progress mr-2">
-                                    <div class="progress-bar bg-info" style="width:72%">72/100</div>
+                                    <div class="progress-bar bg-info pontosProximoLevelBar" style="width:0%">
+                                        <div>
+                                            <span class="experienciaAtual"></span>/
+                                            <span class="pontosProximoLevel"></span>
+                                        </div>
+                                    </div>
                                 </div>
                                 <span class="mr-3 main-color bold">LVL 1</span>
                             </li>
@@ -138,52 +143,10 @@
                         <p class="text-secondary mb-2 ">
                             Realize os desafios, conquiste pontos e com isso obtenha mais chances para a vaga desejada.
                         </p>
-                        <div class="desafio-container">
-                            <div class="row">
-                                <div class="col-3 d-flex align-items-center justify-content-center border-right-primary">
-                                    <a class="btn btn-alternate" href="/candidato/desafios/categoria/1">Começar</a>
-                                </div>
-                                <div class="col-1 mr-3 ml-3">
-                                    <div class="score-box col-1 ">
-                                        - / 45 Pontos
-                                    </div>
-                                </div>
-                                <div class="col-7 ">
-                                    <div class="texto-desafio">
-                                        <h3 class="desafio-title text-primary">Conhecimentos Gerais</h3>
-                                        <p class="text-secondary desafio-description">Testes e desafios para colocar em prova os seus conhecimentos gerais.</p>
-                                    </div>
-                                    <div class="small ">
-                                        <i class="fas fa-list"></i> <span class="text-secondary ml-1">0/15 Desafios concluídos</span>
-                                    </div>
-                                </div>
-                            </div>
-
+                        <div class="categoriasContainer">
 
                         </div>
 
-                        <div class="desafio-container">
-                            <div class="row">
-                                <div class="col-3 d-flex align-items-center justify-content-center border-right-primary">
-                                    <a class="btn btn-alternate" href="/candidato/desafios/categoria/2">Começar</a>
-                                </div>
-                                <div class="col-1 mr-3 ml-3">
-                                    <div class="score-box col-1 ">
-                                        - / 100 Pontos
-                                    </div>
-                                </div>
-                                <div class="col-7">
-                                    <div class="texto-desafio">
-                                        <h3 class="desafio-title text-primary ">Conhecimentos Específicos</h3>
-                                        <p class="text-secondary mb-1 desafio-description mb-2">Conjunto de habilidades necessárias para atuação na sua vaga seram testadas nesta etapa.</p>
-                                    </div>
-                                    <div class="small">
-                                        <i class="fas fa-list"></i><span class="text-secondary ml-1 ">0/10 Desafios concluídos</span>
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
 
                     </div>
                     <!-- Fim do conteudo principal-->
@@ -205,6 +168,7 @@
             </footer>
         </div>
     </div>
+    <script src="/static/candidato/js/es6+/desafios/init.js" type="module"></script>
     <script src="/static/candidato/libs/material-dashboard/js/core/jquery.min.js"></script>
     <script src="/static/candidato/libs/material-dashboard/js/core/popper.min.js"></script>
     <script src="/static/candidato/libs/material-dashboard/js/core/bootstrap-material-design.min.js"></script>

@@ -19,14 +19,14 @@
                     <img src="https://shared.bayer.com/img/bayer-logo.svg">
                 </div>
 
-                <form class="col-12" action="/candidato">
+                <form class="col-12" action="/candidato" name="login" id="login">
                     <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Insira seu email">
+                        <input type="text" class="form-control" id="email" placeholder="Insira seu email">
                     </div>
                     <div class="form-group">
                         <input type="password" class="form-control" placeholder="Senha">
                     </div>
-                    <button type="submit" class="btn"><i class="fas fa-sign-in-alt"></i>Entrar</button>
+                    <button type="submit" class="btn" id="enviar"><i class="fas fa-sign-in-alt"></i>Entrar</button>
                 </form>
 
                 <div class="col-12 forgot">
@@ -36,8 +36,21 @@
         </div>
 
 
+        <script src="/static/candidato/libs/material-dashboard/js/core/jquery.min.js"></script>
 
+        <script>
+            localStorage.clear();
 
+            console.log(document.login)
+            $("#enviar").click(e => {
+                e.preventDefault();
+                localStorage.setItem('pontos', 300);
+                localStorage.setItem('experienciaAtual', 72);
+                localStorage.setItem('proximoLevel', 100);
+                localStorage.setItem('nome', $("#email").val())
+                $("#login").submit()
+            })
+        </script>
 </body>
 
 </html>

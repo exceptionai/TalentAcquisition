@@ -1,3 +1,7 @@
+:root {
+    --color-secondary: #fff;
+}
+
 .card .card-header-primary .card-icon,
 .card .card-header-primary:not(.card-header-icon):not(.card-header-text) {
     background: linear-gradient(60deg, #ab47bc, #624862)!important;

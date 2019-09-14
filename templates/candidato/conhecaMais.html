@@ -24,8 +24,8 @@
         <div class="sidebar" data-color="green" data-background-color="white">
             <div class="logo">
 
-                <a href="#" class="simple-text logo-normal">
-                    Olá Matheus!
+                <a href="#" class="simple-text logo-normal d-none">
+                    Olá <span id="nomeUsuario"></span>!
                 </a>
             </div>
             <div class="sidebar-wrapper">
@@ -44,7 +44,7 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="/candidato/desbloqueaveis">
-                            <i class="material-icons">perm_identity</i>
+                            <i class="material-icons">store</i>
                             <p>Desbloqueáveis</p>
                         </a>
                     </li>
@@ -88,10 +88,15 @@
 
                         <ul class="navbar-nav">
                             <li class="nav-item d-flex justify-content-center align-items-center">
-                                <span class="mr-1">72</span>
+                                <span class="mr-1 qntPontos"></span>
                                 <i class="fas fa-coins mr-4 gold"></i>
                                 <div class="progress mr-2">
-                                    <div class="progress-bar bg-info" style="width:72%">72/100</div>
+                                    <div class="progress-bar bg-info pontosProximoLevelBar" style="width:0%">
+                                        <div>
+                                            <span class="experienciaAtual"></span>/
+                                            <span class="pontosProximoLevel"></span>
+                                        </div>
+                                    </div>
                                 </div>
                                 <span class="mr-3 main-color bold">LVL 1</span>
                             </li>
@@ -164,6 +169,7 @@
             </footer>
         </div>
     </div>
+    <script src="/static/candidato/js/es6+/conhecaMais/init.js" type="module"></script>
     <script src="/static/candidato/libs/material-dashboard/js/core/jquery.min.js"></script>
     <script src="/static/candidato/libs/material-dashboard/js/core/popper.min.js"></script>
     <script src="/static/candidato/libs/material-dashboard/js/core/bootstrap-material-design.min.js"></script>

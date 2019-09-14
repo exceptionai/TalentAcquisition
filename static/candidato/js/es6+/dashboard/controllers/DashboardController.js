@@ -35,7 +35,7 @@ export class DashboardController {
         const labels = ['04/08', '05/08', '06/08'];
         const series = [{
             name: "Pontos",
-            data: [72, 102, 80, 225, 300, 203, 90, 233, 245, 180, 200, 320]
+            data: [72, 80, 102]
         }]
 
         return {

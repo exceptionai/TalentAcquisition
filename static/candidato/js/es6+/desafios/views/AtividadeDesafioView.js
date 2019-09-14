@@ -39,7 +39,7 @@ export class AtividadeDesafioView {
             $("#questoesQuadrados .flow-question")[indexAtividade].classList.toggle("fa-check-square");
             // $("#questoesQuadrados .flow-question")[indexAtividade].classList.remove("text-alternate");
 
-            $("#questoesQuadrados .flow-question")[indexAtividade].classList.toggle("text-primary");
+            $("#questoesQuadrados .flow-question")[indexAtividade].classList.toggle("fa-dot-circle");
         })
     }
 }

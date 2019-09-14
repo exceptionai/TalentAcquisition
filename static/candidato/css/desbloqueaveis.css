@@ -1,0 +1,10 @@
+.desbloqueavel:hover {
+    box-shadow: 8px 8px 8px 8px rgba(153, 153, 153, 0.14), 0 3px 1px -2px rgba(153, 153, 153, 0.2), 0 1px 5px 0 rgba(153, 153, 153, 0.12);
+    transform: scale(1.03);
+}
+
+.desbloqueavel {
+    transition: all .3s ease-out;
+    max-width: 223.750px;
+    border: 1px solid #eee2;
+}

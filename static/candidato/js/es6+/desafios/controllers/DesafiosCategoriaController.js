@@ -1,7 +1,5 @@
 import { DesafiosCategoriaView } from '../views/DesafiosCategoriaView.js';
 
-
-
 export class DesafiosCategoriaController {
     constructor() {
         this._view = new DesafiosCategoriaView('desafios');

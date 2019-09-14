@@ -1,4 +1,5 @@
 import { VagaController, CurriculoController, ValidacaoFormularioController } from './controllers/index.js'
+import { UsuarioController } from '../shared/usuario/controllers/UsuarioController.js';
 
 
 const vaga = new VagaController().get_vaga();
@@ -22,3 +23,5 @@ controller.geraFormacaoDinamicamente("campoFormacoes", "botaoFormacoes");
 ValidacaoFormularioController.mascara_salarios("salarioExpectativa");
 ValidacaoFormularioController.contador_caracteres("resumoCandidato")
 ValidacaoFormularioController.adicionaValidacao("formularioCurriculo")
+
+const usuarioController = new UsuarioController();
