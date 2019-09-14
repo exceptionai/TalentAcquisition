@@ -45,6 +45,10 @@ def conhecaMais():
 def desafios():
     return render_template('candidato/desafios.html')
 
+@app.route('/candidato/oportunidades')
+def oportunidades():
+    return render_template('candidato/oportunidades.html')
+
 
 @app.route('/candidato/desafios/categoria/<id_categoria>')
 def categoria(id_categoria):

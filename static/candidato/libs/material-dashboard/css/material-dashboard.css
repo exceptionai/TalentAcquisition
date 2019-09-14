@@ -23,11 +23,11 @@ body {
     --body-bgcolor: #eee;
     --color-navigation: #444;
     --color-ancor: #00617f;
-    --color-ancor-hover: #eee;
+    --color-ancor-hover: #333;
     --card-color-final: #6495ED;
     --card-color-inicial: #00617f;
     --color-light: #f8f9fa;
-    --text-primary: #2196f3;
+    --text-primary: #00617f;
     --text-dark: #343a40;
 }
 
