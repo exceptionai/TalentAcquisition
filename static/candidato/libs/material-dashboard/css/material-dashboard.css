@@ -29,9 +29,12 @@ body {
     --color-light: #f8f9fa;
     --text-primary: #00617f;
     --text-dark: #343a40;
+    --light: #000;
+    --white: #fff;
 }
 
 .dark-theme {
+    --light: #fff;
     --bg-color-primary: #fff;
     --color-secondary: #333;
     --color-icons: #a9afbb;
@@ -2719,14 +2722,14 @@ fieldset:disabled a.btn {
 }
 
 .btn-primary {
-    color: var(--color-secondary);
+    color: var(--color-navigation);
     background-color: #2196f3;
     border-color: #2196f3;
     box-shadow: none;
 }
 
 .btn-primary:hover {
-    color: var(--color-secondary);
+    color: var(--color-navigation);
     background-color: #0c83e2;
     border-color: #0c7cd5;
 }
@@ -2738,7 +2741,7 @@ fieldset:disabled a.btn {
 
 .btn-primary.disabled,
 .btn-primary:disabled {
-    color: var(--color-secondary);
+    color: var(--color-navigation);
     background-color: #2196f3;
     border-color: #2196f3;
 }
@@ -2746,7 +2749,7 @@ fieldset:disabled a.btn {
 .btn-primary:not(:disabled):not(.disabled):active,
 .btn-primary:not(:disabled):not(.disabled).active,
 .show>.btn-primary.dropdown-toggle {
-    color: var(--color-secondary);
+    color: var(--color-navigation);
     background-color: #0c7cd5;
     border-color: #0b75c9;
 }
@@ -5391,7 +5394,7 @@ tbody.collapse.show {
     font-size: 1.5rem;
     font-weight: 500;
     line-height: 1;
-    color: #000000;
+    color: var(--light);
     text-shadow: 0 1px 0 var(--color-secondary);
     opacity: .5;
 }
@@ -8832,7 +8835,7 @@ a.text-dark:focus {
 }
 
 .btn.btn-primary {
-    color: var(--color-secondary);
+    color: var(--white);
     background-color: #00617f;
     border-color: #00617f;
     box-shadow: 0 2px 2px 0 rgba(156, 39, 176, 0.14), 0 3px 1px -2px rgba(156, 39, 176, 0.2), 0 1px 5px 0 rgba(156, 39, 176, 0.12);
@@ -9282,7 +9285,7 @@ a.text-dark:focus {
 }
 
 .btn.btn-danger {
-    color: var(--color-secondary);
+    color: var(--color-navigation);
     background-color: #f44336;
     border-color: #f44336;
     box-shadow: 0 2px 2px 0 rgba(244, 67, 54, 0.14), 0 3px 1px -2px rgba(244, 67, 54, 0.2), 0 1px 5px 0 rgba(244, 67, 54, 0.12);
