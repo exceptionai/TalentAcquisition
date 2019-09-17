@@ -5,3 +5,7 @@
 .card {
     width: auto;
 }
+
+.semitransparent {
+    opacity: 0.7;
+}
