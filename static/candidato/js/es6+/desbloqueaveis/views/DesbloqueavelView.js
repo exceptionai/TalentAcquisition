@@ -17,21 +17,23 @@ export class DesbloqueavelView {
             let action = '';
             let cursor = 'pointer';
             const pontos_atuais = localStorage.getItem('pontos');
-
+            let border = '';
+            console.log(desbloqueavel)
             if (this._possivelDesbloquear(desbloqueavel)) {
                 action = `data-toggle="modal" data-target="#desbloqueavel${++contadorDesbloqueavel}"`
             } else if (!desbloqueavel.obtido) {
                 cursor = 'default';
             } else {
                 action = 'data-toggle="tooltip" data-placement="top" title="Este item já está selecionado"'
+                border = "border border-outline-success";
             }
 
             return `
-            <div class="card mr-3 border-alternate desbloqueavel">
-                <img alt="${desbloqueavel.descricao}" title="${desbloqueavel.descricao}" src="${desbloqueavel.imagem}" height="180"></img>
+            <div class="card mr-3 border-alternate desbloqueavel ${border}">
+                <img class="${border}" alt="${desbloqueavel.descricao}" title="${desbloqueavel.descricao}" src="${desbloqueavel.imagem}" height="180"></img>
                 <div class="card-body d-flex flex-column text-center">
-                    <p class="card-text">${desbloqueavel.descricao}<i class="pl-2 fas  ${desbloqueavel.obtido?'fa-unlock-alt':'fa-lock'}"></i></p>
-                    <button ${action} href="#" style="cursor:${cursor}" class="${pontos_atuais < desbloqueavel.pontos_minimos?'disabled':''} btn ${desbloqueavel.obtido?' btn-outline-primary':'btn-primary'}">${desbloqueavel.pontos_minimos?desbloqueavel.pontos_minimos+`<i class="fas fa-coins pl-2 text-warning"></i>`:'Selecionado'}</button>
+                    <p class="card-text">${desbloqueavel.descricao}<i class="pl-2 fas  ${desbloqueavel.obtido || !desbloqueavel.pontos_minimos?'fa-unlock-alt':'fa-lock'}"></i></p>
+                    <button  ${action} href="#" style="cursor:${cursor}" class="${pontos_atuais < desbloqueavel.pontos_minimos?'disabled':''} btn ${desbloqueavel.obtido?' btn-outline-success':'btn-primary'} ">${desbloqueavel.obtido?'Selecionado':desbloqueavel.pontos_minimos?desbloqueavel.pontos_minimos+`<i class="fas fa-coins pl-2 text-warning"></i>`:'Selecionar'}</button>
                 </div>
             </div>
         `
@@ -71,7 +73,7 @@ export class DesbloqueavelView {
 
     _possivelDesbloquear(desbloqueavel){
         const pontos_atuais = localStorage.getItem('pontos');
-        return !desbloqueavel.obtido && pontos_atuais > desbloqueavel.pontos_minimos;
+        return !desbloqueavel.obtido && pontos_atuais >= desbloqueavel.pontos_minimos;
     }
 
     render(desbloqueavel, callback) {
@@ -87,7 +89,9 @@ export class DesbloqueavelView {
     }
 
     renderAll(desbloqueaveis, callbackItem) {
+        console.log(desbloqueaveis)
         this.container.html('')
+        console.log(this.container.html())
         desbloqueaveis.forEach(desbloqueavel=>{
             this.render(desbloqueavel, callbackItem)
         })

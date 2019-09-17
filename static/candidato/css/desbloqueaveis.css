@@ -7,4 +7,5 @@
     transition: all .3s ease-out;
     max-width: 223.750px;
     border: 1px solid #eee2;
+    border-collapse: collapse;
 }

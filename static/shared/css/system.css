@@ -5,15 +5,18 @@
 body {
     --gold-color: #717500;
     --main-color: #03588C;
-    --container-desafio:#FFFE;
-    --color-score:#624862;
+    --container-desafio: #FFFE;
+    --color-score: #624862;
+    --white: #fff;
+    --borda-container: rgba(0, 97, 127, 0.4);
 }
 
 .dark-theme {
-    --color-score:#fff;
+    --borda-container: rgba(0, 97, 127, 0.8);
+    --color-score: #fff;
     --gold-color: #FFC260;
     --main-color: #6fa7ca;
-    --container-desafio:none;
+    --container-desafio: none;
 }
 
 footer {
@@ -39,10 +42,10 @@ footer {
 
 .btn-high-danger {
     background-color: #D7263D!important;
-    color: var(--light);
+    color: var(--white)!important;
 }
 
-#conhecaMais {
+#conhecaMaisImg {
     height: 29vh;
     float: left;
     width: 100%;
@@ -87,12 +90,12 @@ footer {
     justify-content: center;
 }
 
-.desafio-container i{
-    color:var(--color-navigation);
+.desafio-container i {
+    color: var(--color-navigation);
 }
 
 .desafio-container {
-    border: 1px solid rgba(0, 97, 127, 0.4);
+    border: 1px solid var(--borda-container);
     min-height: 80px;
     border-radius: 3px;
     margin-top: 10px;
@@ -124,7 +127,7 @@ footer {
     border-bottom: 1px solid #d2d2d2;
 }
 
-.header-atividade i{
+.header-atividade i {
     color: var(--color-navigation);
 }
 
@@ -194,7 +197,7 @@ footer {
 
 .question {
     border-bottom: 1px solid #ccc;
-    color:var(--text-primary);
+    color: var(--text-primary);
 }
 
 .rodapeAtividade {
@@ -219,12 +222,16 @@ footer {
     height: 100%;
 }
 
+.btn {
+    color: #fff;
+}
+
 .progress {
     width: 120px;
 }
 
 .border-right-primary {
-    border-right: 1px solid rgba(0, 97, 127, 0.2);
+    border-right: 1px solid var(--borda-container);
 }
 
 #fotoCarreiras {
@@ -323,7 +330,7 @@ footer {
 
 .bmd-label-floating,
 .form-group label {
-    color: #03588C;
+    color: var(--color-ancor);
 }
 
 .form-group::after {

@@ -27,6 +27,7 @@ const questoes = [{
     }
 ]
 
+
 export class AtividadeDesafioController {
     constructor(proximaPerguntaSeletor, perguntaAnteriorSeletor, containerPerguntas) {
         this._proximaPerguntaButton = $(proximaPerguntaSeletor);
@@ -86,11 +87,17 @@ export class AtividadeDesafioController {
     }
 
     _confirmarAoSair() {
+        window.interceptarCliques = true;
         $("a").click(function(e) {
-            if ($(this).attr("href") != "#") {
+            const self = this;
+            if ($(this).attr("href") != "#" && window.interceptarCliques) {
                 e.preventDefault();
                 $('#modalDesistir').modal('show')
-                $("#desistir").click(() => window.location = $(this).attr("href"));
+                window.interceptarCliques = false;
+                $("#desistir").click(e => {
+                    Reflect.apply(carregarPaginaClick, self, [e]);
+                });
+
             }
         })
     }
@@ -167,4 +174,5 @@ export class AtividadeDesafioController {
 
         $("#questaoAtual").html(this._indicePergunta + 1);
     }
+
 }

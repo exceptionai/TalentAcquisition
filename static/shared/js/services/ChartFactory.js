@@ -1,3 +1,5 @@
+import 'https://cdn.jsdelivr.net/npm/apexcharts@latest';
+
 export class ChartFactory {
 
     create(chartContainerID, series, labels, options) {

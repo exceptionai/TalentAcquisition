@@ -64,7 +64,7 @@ export class IdiomasView extends CurriculoView {
                     </div>
                 </div>
 
-                <button type="button" class="btn btn-danger" id="campoIdiomaAdicionalRemover${this._dinamicoCampoContador}">remover idioma</button>
+                <button type="button" class="btn btn-high-danger" id="campoIdiomaAdicionalRemover${this._dinamicoCampoContador}">remover idioma</button>
                 <hr>
             </div>
         `);

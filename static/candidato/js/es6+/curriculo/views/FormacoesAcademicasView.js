@@ -53,7 +53,7 @@ export class FormacoesAcademicasView extends CurriculoView {
                     </div>
                 </div>  
                 
-                <button type="button" class="btn btn-danger" id="formacaoRemover${this._dinamicoCampoContador}">Remover formação acadêmica</button>
+                <button type="button" class="btn btn-high-danger" id="formacaoRemover${this._dinamicoCampoContador}">Remover formação acadêmica</button>
                 <hr>
             </div>
         `)

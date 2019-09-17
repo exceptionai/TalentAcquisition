@@ -8,8 +8,8 @@ export class DesafiosCategoriaView {
         return `
             <div class="desafio-container">
                 <div class="row">
-                    <div class="col-3 d-flex align-items-center justify-content-center border-right-primary">
-                        <button class="btn btn-alternate" href="/candidato/desafios/categoria/1" data-toggle="modal" data-target="#exampleModal">Começar</button>
+                    <div class="col-3 d-flex align-items-center justify-content-center border-right-primary"  ex-router>
+                        <button class="btn btn-alternate" data-toggle="modal" data-target="#exampleModal" >Começar</button>
                     </div>
                     <div class="col-1 mr-3 ml-3">
                         <div class="score-box col-1 ">

@@ -8,6 +8,7 @@ export class DesbloqueavelController {
         this.view = new DesbloqueavelView("#desloqueavelContainer");
         this.service = new DesbloqueavelService();
         this.userService = userService;
+        this.desbloqueaveis = [];
         this._init();
     }
 
@@ -17,8 +18,8 @@ export class DesbloqueavelController {
 
     async obterDesbloqueaveis() {
         const desbloqueaveisService = await this.service.buscarDesbloqueaveis();
-        const desbloqueaveis = Desbloqueavel.generate(desbloqueaveisService);
-        return desbloqueaveis;
+        this.desbloqueaveis = Desbloqueavel.generate(desbloqueaveisService);
+        return this.desbloqueaveis;
     }
 
     async gerarDesbloqueaveis() {
@@ -27,10 +28,19 @@ export class DesbloqueavelController {
     }
 
     desbloquear(desbloqueavel) {
+        const desbloqueavelAnterior = this.desbloqueaveis.find(desbloqueavelLista =>
+            desbloqueavelLista.obtido
+        )
+        if (desbloqueavelAnterior) {
+            desbloqueavelAnterior.obtido = false;
+        }
         desbloqueavel.obtido = true;
+        desbloqueavel.pontos_minimos = 0;
+        console.log(this.desbloqueaveis)
         this.userService.diminuirPontos(desbloqueavel.pontos_minimos);
         this.userService.setTema(desbloqueavel.tema);
-        this.gerarDesbloqueaveis();
+        this.view.renderAll(this.desbloqueaveis, this.desbloquear.bind(this));
+
     }
 
 

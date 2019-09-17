@@ -11,6 +11,7 @@ export class ValidacaoFormularioController {
             const primeiroElementoInvalido = ValidacaoFormularioView
                 .marcarInvalidos(elementos)
             ValidacaoFormularioView.scrollInvalido(primeiroElementoInvalido);
+            console.log('invalido')
             NotificacaoService.invalido('Por favor, verifique os campos em vermelho', 'Currículo Inválido')
 
             return false;
@@ -19,6 +20,7 @@ export class ValidacaoFormularioController {
     }
 
     static mascara_salarios(...salariosID) {
+        console.log($)
         for (let salarioID of salariosID) {
             $("#" + salarioID).maskMoney({ prefix: 'R$ ', thousands: '.', decimal: ',' });
         }

@@ -20,6 +20,10 @@ export class UsuarioController {
         pagina[0].classList = "";
         pagina.addClass(this._service.getTema());
 
+        if (this._service.getTema())
+            $("footer img").attr("src", "https://shared.bayer.com/img/logo-wht.svg");
+        else
+            $("footer img").attr("src", "https://shared.bayer.com/img/bayer-logo.svg");
     }
 
 

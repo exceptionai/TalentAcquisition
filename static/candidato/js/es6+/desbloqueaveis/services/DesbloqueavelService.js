@@ -3,7 +3,7 @@ const desbloqueaveis = [{
         imagem: 'https://www.htmlcsscolor.com/preview/gallery/624862.png',
         pontos_minimos: 0,
         tipo: 'tema',
-        obtido: false,
+        obtido: localStorage.getItem('tema') === '',
         tema: ''
     },
     {
@@ -11,7 +11,7 @@ const desbloqueaveis = [{
         imagem: 'http://html-color.org/pt/333232.jpg',
         pontos_minimos: 50,
         tipo: 'tema',
-        obtido: false,
+        obtido: localStorage.getItem('tema') === 'dark-theme',
         tema: 'dark-theme'
     },
     {

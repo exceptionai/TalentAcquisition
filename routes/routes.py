@@ -4,15 +4,18 @@ from flask import render_template, request
 from main import app
 
 
-@app.route('/')
 @app.route('/login')
 @app.route('/logout')
+def login():
+  return render_template('login/login.html') 
+
+@app.route('/')
 def index():
-    return render_template('login/login.html') 
+  return render_template('candidato/index.html')
 
 @app.route('/spec')
 def spec():
-    return render_template('spec/SpecRunner.html')
+  return render_template('spec/SpecRunner.html')
 
 def page_not_found(e):
   return render_template('notFound.html'), 404

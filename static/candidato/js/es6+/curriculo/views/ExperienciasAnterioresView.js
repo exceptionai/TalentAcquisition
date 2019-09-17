@@ -68,7 +68,7 @@ export class ExperienciasAnterioresView extends CurriculoView {
                 </div>
             </div>
             
-            <button type="button" class="btn btn-danger mb-4" id="experienciaAnteriorRemover${this._dinamicoCampoContador}">Remover Experiência Anterior</button>
+            <button type="button" class="btn btn-high-danger mb-4" id="experienciaAnteriorRemover${this._dinamicoCampoContador}">Remover Experiência Anterior</button>
             
         </div>
         `);

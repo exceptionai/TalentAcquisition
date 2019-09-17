@@ -65,7 +65,7 @@ export class CursosComplementaresView extends CurriculoView {
                     </div>
                 </div>
                 
-                <button type="button" class="btn btn-danger" id="cursosComplementaresRemover${this._dinamicoCampoContador}">Remover Curso Extra Curricular</button>
+                <button type="button" class="btn btn-high-danger" id="cursosComplementaresRemover${this._dinamicoCampoContador}">Remover Curso Extra Curricular</button>
                 <hr>
                 <br>
             </div>
