@@ -4,9 +4,4 @@ import { UsuarioService } from '../shared/usuario/services/UsuarioService.js';
 
 const usuarioService = new UsuarioService()
 const controller = new DesbloqueavelController(usuarioService);
-
-
-setInterval(() => {
-    const usuarioController = new UsuarioController();
-
-}, 2000)
+const usuarioController = new UsuarioController();

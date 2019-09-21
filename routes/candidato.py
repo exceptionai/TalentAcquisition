@@ -18,12 +18,50 @@ from services.pontuacaoService.models.proeficiencia import Proeficiencia
 from services.pontuacaoService.models.candidato import Candidato
 from services.pontuacaoService.models.endereco import Endereco
 from services.pontuacaoService.models.curriculo import Curriculo
+from services.dashboardService.dashboardService import DashboardService
+from services.candidatoService.candidatoService import CandidatoService
+
 
 import json
 
 @app.route('/candidato')
 def candidato():
     return render_template('candidato/dashboard.html')
+
+@app.route('/candidato/service')
+def candidato_service():
+    service = CandidatoService(request.args.get("candidatoID"))
+    candidato = service.buscar_candidato()
+    return candidato
+
+
+@app.route('/candidato/vaga/<id_vaga>')
+def candidato_vaga(id_vaga):
+    return render_template('candidato/vaga.html')
+
+@app.route('/candidato/fase')
+def fase():
+    service = DashboardService(request)
+    fases = service.buscar_fases()
+    return fases
+
+@app.route('/candidato/candidatura')
+def candidatura():
+    service = DashboardService(request)
+    candidatura = service.buscar_candidatura()
+    return candidatura
+
+@app.route('/candidato/desempenho')
+def desempenho():
+    service = DashboardService(request)
+    desempenho = service.buscar_desempenho(request.args.get("dataInicial"),request.args.get("dataFinal"))
+    return desempenho
+
+@app.route('/candidato/evolucao_progressiva')
+def evolucao_progressiva():
+    service = DashboardService(request)
+    evolucao_progressiva = service.buscar_evolucao_progressiva(request.args.get("dataFinal"),request.args.get("dataInicial"))
+    return evolucao_progressiva
 
 @app.route('/candidato/curriculo')
 def formulario_curriculo():

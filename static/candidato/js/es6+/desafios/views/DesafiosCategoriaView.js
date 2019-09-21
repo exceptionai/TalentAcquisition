@@ -1,10 +1,10 @@
 export class DesafiosCategoriaView {
 
     constructor(desafiosContainer) {
-        this.containerDesafios = $("#" + desafiosContainer);
+        this._containerDesafios = $("#" + desafiosContainer);
     }
 
-    _template(titulo, descricao, pontosConquistados, pontosADesbloquear, desafiosRealizados, desafiosARealizar, tempo) {
+    _template(desafioCategoria) {
         return `
             <div class="desafio-container">
                 <div class="row">
@@ -13,17 +13,17 @@ export class DesafiosCategoriaView {
                     </div>
                     <div class="col-1 mr-3 ml-3">
                         <div class="score-box col-1 ">
-                            ${pontosConquistados?pontosConquistados:'-'} / ${pontosADesbloquear} Pontos
+                            ${desafioCategoria.pontosConquistados?desafioCategoria.pontosConquistados:'-'} / ${desafioCategoria.pontosADesbloquear} Pontos
                         </div>
                     </div>
                     <div class="col-7 ">
                         <div class="texto-desafio">
-                            <h3 class="desafio-title text-primary">${titulo}</h3>
-                            <p class="text-secondary desafio-description">${descricao}</p>
+                            <h3 class="desafio-title text-primary">${desafioCategoria.titulo}</h3>
+                            <p class="text-secondary desafio-description">${desafioCategoria.descricao}</p>
                         </div>
                         <div class="small ">
-                            <i class="fas fa-list"></i> <span class="text-secondary ml-1">${desafiosRealizados}/${desafiosARealizar} Desafios concluídos</span>
-                            <i class="far fa-clock ml-4"></i> <span class="text-secondary">${tempo} min</span>
+                            <i class="fas fa-list"></i> <span class="text-secondary ml-1">${desafioCategoria.desafiosRealizados}/${desafioCategoria.desafiosARealizar} Desafios concluídos</span>
+                            <i class="far fa-clock ml-4"></i> <span class="text-secondary">${desafioCategoria.tempo} min</span>
                         </div>
                     </div>
                 </div>
@@ -31,7 +31,15 @@ export class DesafiosCategoriaView {
         `
     }
 
-    render(titulo, descricao, pontosConquistados, pontosADesbloquear, desafiosRealizados, desafiosARealizar, tempo) {
-        this.containerDesafios.append(this._template(titulo, descricao, pontosConquistados, pontosADesbloquear, desafiosRealizados, desafiosARealizar, tempo))
+    render(desafioCategoria) {
+        const template = this._template(desafioCategoria);
+        this._containerDesafios.append(template)
+    }
+
+    renderAll(desafiosCategoria) {
+        this._containerDesafios.html("");
+        desafiosCategoria.forEach(desafioCategoria => {
+            this.render(desafioCategoria);
+        })
     }
 }

@@ -9,7 +9,7 @@ export class CategoriasView {
         <div class="desafio-container">
             <div class="row">
                 <div class="col-3 d-flex align-items-center justify-content-center border-right-primary" ex-router>
-                    <a class="btn btn-alternate" href="/#/candidato/desafios/categoria/${categoria.id}" ex-route-name="desafiosCategoria">Começar</a>
+                    <a class="btn btn-alternate" href="#/candidato/desafios/categoria/${categoria.id}" ex-route-name="categoria${categoria.id}">Começar</a>
                 </div>
                 <div class="col-1 mr-3 ml-3">
                     <div class="score-box col-1 ">

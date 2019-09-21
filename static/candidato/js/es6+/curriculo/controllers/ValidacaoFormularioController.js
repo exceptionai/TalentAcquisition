@@ -11,7 +11,6 @@ export class ValidacaoFormularioController {
             const primeiroElementoInvalido = ValidacaoFormularioView
                 .marcarInvalidos(elementos)
             ValidacaoFormularioView.scrollInvalido(primeiroElementoInvalido);
-            console.log('invalido')
             NotificacaoService.invalido('Por favor, verifique os campos em vermelho', 'Currículo Inválido')
 
             return false;
@@ -19,12 +18,6 @@ export class ValidacaoFormularioController {
         return true;
     }
 
-    static mascara_salarios(...salariosID) {
-        console.log($)
-        for (let salarioID of salariosID) {
-            $("#" + salarioID).maskMoney({ prefix: 'R$ ', thousands: '.', decimal: ',' });
-        }
-    }
 
     static contador_caracteres(idCampo) {
         const campoTexto = $('#' + idCampo);
@@ -43,7 +36,7 @@ export class ValidacaoFormularioController {
         const elementoABloquear = document.querySelector('#' + idAbloquear);
         const required = elementoABloquear.required;
 
-        $(elemento).change(() => {
+        $(elemento).click(() => {
             if (condicao) {
                 elementoABloquear.classList.remove('inputError');
                 elementoABloquear.required = false;
@@ -68,10 +61,12 @@ export class ValidacaoFormularioController {
     static adicionaEventosValidacoes(fields) {
         fields.on('keydown', ValidacaoFormularioController._bloqueiaNumeros);
         fields.on('focus', ValidacaoFormularioView.addClassOnInvalid);
-        fields.on('change', ValidacaoFormularioView.addClassOnInvalid);
+        fields.filter('select').on('change', ValidacaoFormularioView.addClassOnInvalid);
         fields.on('change', ValidacaoDataHelper.eventDataMaximaHoje);
         fields.on('keyup', ValidacaoFormularioController._bloqueiaPrimeiroValorNumeros)
         fields.on('keyup', ValidacaoFormularioView.addClassOnInvalid);
+        fields.filter("[type=select]").on('change', ValidacaoFormularioView.addClassOnInvalid);
+        console.log(fields.filter("[type=select]"))
     }
 
 
@@ -142,7 +137,7 @@ export class ValidacaoFormularioController {
                 arrDatas.push(element.id);
                 break;
             case 'salario':
-                ValidacaoFormularioController.mascara_salarios(element.id);
+                ValidacaoFormularioView.mascara_salarios(element.id);
                 break;
             case 'caracteres':
                 ValidacaoFormularioController.contador_caracteres(element.id);

@@ -31,6 +31,25 @@ body {
     --text-dark: #343a40;
     --light: #000;
     --white: #fff;
+    --text-full-dark: #000;
+}
+
+.dark-theme2 {
+    --bg-color-primary: #681a24;
+    --color-secondary: #fff;
+    --color-icons: #a9afbb;
+    --body-bgcolor: #eee;
+    --color-navigation: #444;
+    --color-ancor: #5a0b16;
+    --color-ancor-hover: #333;
+    --card-color-final: rgb(126, 57, 62);
+    --card-color-inicial: #5a0b16;
+    --color-light: #f8f9fa;
+    --text-primary: #5a0b16;
+    --text-dark: #343a40;
+    --light: #000;
+    --white: #fff;
+    --text-full-dark: #000;
 }
 
 .dark-theme {
@@ -16322,7 +16341,7 @@ thead.thead-inverse th,
 
 .table.table-hover tbody tr:hover {
     background-color: #f5f5f5;
-    color: var(--color-secondary);
+    color: var(--text-full-dark);
 }
 
 .dataTable>thead>tr>th,

@@ -1,15 +1,15 @@
-import {TableView} from '../views/TableView.js';
-import {CandidatosService} from '../services/CandidatosService.js';
+import { TableView } from '../views/TableView.js';
+import { CandidatosService } from '../services/CandidatosService.js';
 
-export class TodosCandidatosController{
+export class TodosCandidatosController {
 
-    constructor(){
+    constructor() {
         this.tableView = new TableView("#todosCandidatoTabela");
         this.service = new CandidatosService();
         this._init();
     }
 
-    async _init(){
+    async _init() {
 
         this._animateCard();
 
@@ -20,9 +20,9 @@ export class TodosCandidatosController{
         this.tableView.render(todosCandidatos, colunasTabela)
     }
 
-    _animateCard(){
+    _animateCard() {
         $("#vagasCards button").click((e) => {
-            // window.history.pushState("", "Exception Carriers", "candidatosTotais/vagas/1/");
+            // window.history.pushState("", "Exception", "candidatosTotais/vagas/1/");
             $(".vagas").hide(400)
             $("#candidatosLista").hide();
             $("#candidatosLista").removeClass('d-none');
@@ -35,8 +35,8 @@ export class TodosCandidatosController{
         })
     }
 
-  
-    _definirColunas(){
+
+    _definirColunas() {
         return [{
             dataField: "candidato",
             caption: "Candidato"
@@ -67,5 +67,5 @@ export class TodosCandidatosController{
             cellTemplate: this.tableView.botaoPontuacao.bind(this.tableView)
         }]
     }
-        
+
 }

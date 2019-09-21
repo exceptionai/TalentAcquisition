@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title>Dashboard Matheus</title>
+    <title>Dashboard Candidato</title>
 
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
@@ -17,7 +17,7 @@
     <link rel="stylesheet" href="/static/shared/libs/font-awesome/css/all.css">
     <link href="/static/candidato/libs/material-dashboard/css/material-dashboard.css?v=2.1.1" rel="stylesheet" />
     <link rel="stylesheet" href="/static/candidato/css/vagas.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
+    <link rel="stylesheet" href="/static/shared/libs/toastr/toastr.min.css">
 
     <link rel="stylesheet" href="/static/candidato/css/desbloqueaveis.css">
 </head>
@@ -170,76 +170,89 @@
     <script src="/static/candidato/libs/material-dashboard/js/core/popper.min.js"></script>
     <script src="/static/candidato/libs/material-dashboard/js/core/bootstrap-material-design.min.js"></script>
     <script src="/static/candidato/libs/material-dashboard/js/material-dashboard.js?v=2.1.1" type="text/javascript"></script>
-
+    <script type="module">
+        import {NotificacaoService} from '../../static/candidato/js/es6+/curriculo/services/NotificacaoService.js'; NotificacaoService.sucesso("Login realizado com sucesso");
+    </script>
     <script>
         history.pushState({
             seletor: "/"
         }, null, "/");
+
         const rotasCarregadas = [];
 
-        fetch('/candidato').then(res => {
-            const rota = "dashboard";
-            res.text()
-                .then(paginaTexto => {
-                    rotasCarregadas.push(rota);
-                    document.querySelector('#scripts').innerHTML = '';
-                    const paginaHTML = document.createElement('div');
-                    paginaHTML.innerHTML = paginaTexto;
-                    $(paginaHTML).attr("id", rota);
-                    const scripts = paginaHTML.querySelectorAll("script");
-                    for (const script of scripts) {
-                        const novoScript = document.createElement("script");
-                        novoScript.src = script.src;
-                        novoScript.type = script.type;
-                        if (script.type === 'module') {
-                            import (script.src);
-                        }
-                        $(script).remove();
+        const carregarRota = function(endereco, rota) {
+            const uri = endereco.substring(endereco.indexOf("#") + 2);
+            fetch(uri).then(res => {
+                res.text()
+                    .then(paginaTexto => {
+                        rotasCarregadas.push(rota);
 
-                    }
-                    $("#conteudo").html(`<div id="dashboard">${paginaTexto}</div>`);
-                });
-        });
+                        document.querySelector('#scripts').innerHTML = '';
+                        const paginaHTML = document.createElement('div');
+                        paginaHTML.innerHTML = paginaTexto;
+                        $(paginaHTML).attr("id", rota);
+                        const scripts = paginaHTML.querySelectorAll("script");
+                        for (const script of scripts) {
+                            const novoScript = document.createElement("script");
+                            novoScript.src = script.src;
+                            novoScript.type = script.type;
+                            if (script.type === 'module') {
+                                import (script.src);
+                            }
+                            $(script).remove();
+
+                        }
+
+
+                        $("#conteudo").hide();
+                        $("#conteudo").append(paginaHTML)
+                        $("#conteudo").fadeIn(300, function() {
+                            $(rota + ' a').click(carregarPaginaClick);
+                        });
+                    });
+            });
+        }
+
+
+
+
+        const carregarPagina = function(url) {
+
+            if (!window.interceptarCliques) {
+
+                $("#conteudo > div").hide();
+                const link = document.querySelector(`[href='${url}']`);
+                $(".navbar-brand").html($(link).children("p").html())
+                const rota = link.attributes['ex-route-name'].value;
+                if (!rotasCarregadas.includes(rota)) {
+                    carregarRota(url, rota)
+                } else {
+                    $("#" + rota).show();
+                }
+                if (Array.from(link.parentElement.classList).includes('nav-item')) {
+                    $("[ex-router] .nav-item").removeClass("active");
+                    link.parentElement.classList.add('active');
+                }
+            }
+        }
+
+        window.onhashchange = function(evento) {
+            const novaUrl = evento.newURL;
+            const url = novaUrl.substring(novaUrl.indexOf("#"))
+            carregarPagina(url);
+        }
 
         const carregarPaginaClick = function(e) {
-            console.log(this)
+
             if (!window.interceptarCliques) {
 
                 $("#conteudo > div").hide();
                 const link = e.target;
                 $(".navbar-brand").html($(this).children("p").html())
-                console.log(this.href.substring(this.href.indexOf("#")));
                 const rota = this.attributes['ex-route-name'].value;
                 if (!rotasCarregadas.includes(rota)) {
-                    fetch(this.href.substring(this.href.indexOf("#") + 2)).then(res => {
-                        res.text()
-                            .then(paginaTexto => {
-                                rotasCarregadas.push(rota);
+                    carregarRota(this.href, rota)
 
-                                document.querySelector('#scripts').innerHTML = '';
-                                const paginaHTML = document.createElement('div');
-                                paginaHTML.innerHTML = paginaTexto;
-                                $(paginaHTML).attr("id", rota);
-                                const scripts = paginaHTML.querySelectorAll("script");
-                                for (const script of scripts) {
-                                    const novoScript = document.createElement("script");
-                                    novoScript.src = script.src;
-                                    novoScript.type = script.type;
-                                    if (script.type === 'module') {
-                                        import (script.src);
-                                    }
-                                    $(script).remove();
-
-                                }
-
-
-                                $("#conteudo").hide();
-                                $("#conteudo").append(paginaHTML)
-                                $("#conteudo").fadeIn(300, function() {
-                                    $('#' + rota + ' a').click(carregarPaginaClick);
-                                });
-                            });
-                    });
                 } else {
                     $("#" + rota).show();
                 }
@@ -249,14 +262,23 @@
                 }
             }
         }
+        const urlInical = window.location.pathname;
+        console.log(window.location)
+        const indiceHash = urlInical.indexOf("#");
+        if (indiceHash === -1) {
+            carregarPagina("#/candidato");
+        } else {
+            const urlHash = urlInical.substring();
+            carregarPagina(urlHash);
+        }
 
-        $("[ex-router] a").click(carregarPaginaClick);
+        // $("[ex-router] a").click(carregarPaginaClick);
     </script>
     <script src="https://cdn.jsdelivr.net/npm/apexcharts@latest"></script>
     <script src="/static/shared/js/libs/jquery.mask.min.js"></script>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-maskmoney/3.0.2/jquery.maskMoney.min.js"></script>
+    <script src="/static/shared/libs/toastr/toastr.min.js"></script>
+    <script src="/static/shared/libs/maskMoney/jquery.maskMoney.min.js"></script>
 </body>
 
 </html>

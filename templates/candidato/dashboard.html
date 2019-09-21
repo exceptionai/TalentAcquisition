@@ -9,11 +9,11 @@
                 </div>
                 <p class="card-category"><a href="desbloqueaveis.html">Status da Candidatura</a>
                 </p>
-                <p class="card-title">Aguardando aprovação</p>
+                <p class="card-title" id="statusCandidatura"></p>
             </div>
             <div class="card-footer">
                 <div class="stats">
-                    <i class="material-icons">date_range</i> Últimas 24 horas
+                    <i class="material-icons">date_range</i> <span id="dataVerificacaoCandidatura"></span>
                 </div>
             </div>
         </div>
@@ -26,11 +26,11 @@
                                                 class="material-icons">info</i></a>
                 </div>
                 <p class="card-category"><a href="vagasAberto.html">Fase atual</a></p>
-                <p class="card-title">2ª fase - Testes Pontuados</p>
+                <p class="card-title" id="faseAtual"></p>
             </div>
             <div class="card-footer">
                 <div class="stats">
-                    <i class="material-icons">date_range</i> Últimas 24 horas
+                    <i class="material-icons">date_range</i><span id="dataFaseCard"></span>
                 </div>
             </div>
         </div>
@@ -64,7 +64,7 @@
             </div>
             <div class="card-footer">
                 <div class="stats">
-                    <i class="material-icons">access_time</i> Atualizado 1 hora
+                    <i class="material-icons">access_time</i> <span id="dataDesempenhoSemanal"></span>
                 </div>
             </div>
         </div>
@@ -79,7 +79,7 @@
             </div>
             <div class="card-footer">
                 <div class="stats">
-                    <i class="material-icons">access_time</i> Atualizado 1 dias atrás
+                    <i class="material-icons">access_time</i><span id="dataDesempenhoProgressivo"></span>
                 </div>
             </div>
         </div>
@@ -101,25 +101,8 @@
                         <th>Pontuação</th>
                         <th>Período</th>
                     </thead>
-                    <tbody class="text-dark">
-                        <tr>
-                            <td>Cadastro</td>
-                            <td>Aprovado</td>
-                            <td>-</td>
-                            <td>22/07 - 01/08</td>
-                        </tr>
-                        <tr>
-                            <td>1ª Fase: Criação do Currículo</td>
-                            <td>Aprovado</td>
-                            <td>72</td>
-                            <td>07/08 - 10/08</td>
-                        </tr>
-                        <tr>
-                            <td>2ª Fase: Testes Pontuados</td>
-                            <td>Em Processo</td>
-                            <td>-</td>
-                            <td>10/08 - 17/08</td>
-                        </tr>
+                    <tbody class="text-dark" id="corpoFases">
+
                     </tbody>
                 </table>
             </div>

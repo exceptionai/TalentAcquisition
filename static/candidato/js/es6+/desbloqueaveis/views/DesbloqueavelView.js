@@ -18,7 +18,6 @@ export class DesbloqueavelView {
             let cursor = 'pointer';
             const pontos_atuais = localStorage.getItem('pontos');
             let border = '';
-            console.log(desbloqueavel)
             if (this._possivelDesbloquear(desbloqueavel)) {
                 action = `data-toggle="modal" data-target="#desbloqueavel${++contadorDesbloqueavel}"`
             } else if (!desbloqueavel.obtido) {
@@ -78,8 +77,9 @@ export class DesbloqueavelView {
 
     render(desbloqueavel, callback) {
         const templateDesbloqueavel = this._template(desbloqueavel);
-        this.container.append(templateDesbloqueavel)
-
+        
+        this.container.append(templateDesbloqueavel);
+       
         if (this._possivelDesbloquear(desbloqueavel)) {
 
             const templateConfirmacao = this._templateConfirmacao(desbloqueavel);
@@ -89,11 +89,10 @@ export class DesbloqueavelView {
     }
 
     renderAll(desbloqueaveis, callbackItem) {
-        console.log(desbloqueaveis)
-        this.container.html('')
-        console.log(this.container.html())
+        this.container.html('');
         desbloqueaveis.forEach(desbloqueavel=>{
-            this.render(desbloqueavel, callbackItem)
+            this.render(desbloqueavel, callbackItem);
         })
+        console.log(this.container.html())
     }
 }

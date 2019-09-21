@@ -1,6 +1,7 @@
 export class ValidacaoFormularioView {
 
     static marcarInvalidos(elementos) {
+        console.log(elementos)
         let primeiroInvalido = null;
         for (let elemento of elementos) {
             if (!elemento.checkValidity()) {
@@ -29,6 +30,12 @@ export class ValidacaoFormularioView {
         } else {
             if (existeMensagem) msgElement.html('');
             element.removeClass('inputError');
+        }
+    }
+
+    static mascara_salarios(...salariosID) {
+        for (let salarioID of salariosID) {
+            $(`#${salarioID}`).maskMoney({ prefix: 'R$ ', thousands: '.', decimal: ',' });
         }
     }
 

@@ -37,8 +37,7 @@ export class AtividadeDesafioView {
             $(".btn-resposta").removeClass('resposta-ativada');
             this.classList.toggle('resposta-ativada');
             $("#questoesQuadrados .flow-question")[indexAtividade].classList.toggle("fa-check-square");
-            // $("#questoesQuadrados .flow-question")[indexAtividade].classList.remove("text-alternate");
-
+            
             $("#questoesQuadrados .flow-question")[indexAtividade].classList.toggle("fa-dot-circle");
         })
     }

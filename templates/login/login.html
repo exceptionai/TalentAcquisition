@@ -44,10 +44,15 @@
             $("#enviar").click(e => {
                 e.preventDefault();
                 localStorage.setItem('pontos', 300);
+                localStorage.setItem('candidatoID', 1);
                 localStorage.setItem('experienciaAtual', 72);
                 localStorage.setItem('proximoLevel', 100);
                 localStorage.setItem('nome', $("#email").val())
-                $("#login").submit()
+                if ($("#email").val().includes("recrutador")) {
+                    window.location = "/recrutador"
+                } else {
+                    $("#login").submit()
+                }
             })
         </script>
 </body>

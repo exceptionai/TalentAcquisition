@@ -1,3 +1,5 @@
+import { ValidacaoFormularioView } from "../views/ValidacaoFormularioView";
+
 class ValidacaoFormulario {
 
     static _valida_data(idDataEntrada, idDataSaida) {
@@ -35,31 +37,32 @@ class ValidacaoFormulario {
             const digitadoEhNumero = !isNaN(String.fromCharCode(e.keyCode));
             const naoVazio = !e.target.value.length;
             const naoEhDataOuNumero = e.target.type != 'number' && e.target.type != 'date';
-            
-            if(digitadoEhNumero && naoVazio && naoEhDataOuNumero) return false;
+
+            if (digitadoEhNumero && naoVazio && naoEhDataOuNumero) return false;
             return true;
-            
+
         });
 
         $('input').on('focus', e => {
-            if( $(e.target).is(':invalid') ) {
+            if ($(e.target).is(':invalid')) {
                 $(e.target).addClass('inputError');
             } else {
                 $(e.target).removeClass('inputError');
             }
-		});
-		
+        });
+
         $('input').on('change', e => {
-            if( $(e.target).is(':invalid') ){
+            console.log(e)
+            if ($(e.target).is(':invalid')) {
                 $(e.target).addClass('inputError');
             } else {
                 $(e.target).removeClass('inputError');
             }
-		});
-		
+        });
+
         $('input').on('keydown', e => {
 
-            if( $(e.target).is(':invalid') ) {
+            if ($(e.target).is(':invalid')) {
                 $(e.target).addClass('inputError');
             } else {
                 $(e.target).removeClass('inputError');
@@ -79,61 +82,73 @@ class ValidacaoFormulario {
                     ValidacaoFormulario.adicionaPorTipo(validacao, element, validaDatas, idCampo)
                 }
             }
-		});
-		
+        });
+
         let [idDataEntrada, idDataSaida] = validaDatas;
         this._valida_data(idDataEntrada, idDataSaida);
-        
+
     }
 
     static adicionaPorTipo(tipoValidacao, element, arrDatas, idCampo) {
         switch (tipoValidacao) {
-            case 'data': arrDatas.push(element.id); break;
-            case 'salario': ValidacaoFormulario.mascara_salarios(element.id); break;
-            case 'caracteres': ValidacaoFormulario.contador_caracteres(element.id); break;
-            case 'bloquear': ValidacaoFormulario.bloquear(element); break;
-            case 'unico': ValidacaoFormulario.unico(element, idCampo); break;
-            case 'telefone-celular': ValidacaoFormulario.formatarCamposTelefoneCelular(element.id); break;
-            case 'telefone-residencial': ValidacaoFormulario.formatarCamposTelefoneResidencial(element.id); break;
+            case 'data':
+                arrDatas.push(element.id);
+                break;
+            case 'salario':
+                ValidacaoFormularioView.mascara_salarios(element.id);
+                break;
+            case 'caracteres':
+                ValidacaoFormulario.contador_caracteres(element.id);
+                break;
+            case 'bloquear':
+                ValidacaoFormulario.bloquear(element);
+                break;
+            case 'unico':
+                ValidacaoFormulario.unico(element, idCampo);
+                break;
+            case 'telefone-celular':
+                ValidacaoFormulario.formatarCamposTelefoneCelular(element.id);
+                break;
+            case 'telefone-residencial':
+                ValidacaoFormulario.formatarCamposTelefoneResidencial(element.id);
+                break;
         }
     }
-    
+
     static bloquearPorClick(idElemento, element) {
         const elementoABloquear = document.querySelector(`#${idElemento}`);
         $(element).change(() => {
-            if(!elementoABloquear.disabled) {
+            if (!elementoABloquear.disabled) {
                 elementoABloquear.classList.add('text-dark');
                 elementoABloquear.classList.remove('inputError');
                 elementoABloquear.value = '';
-            }
-            else elementoABloquear.classList.remove('text-dark');           
-            
+            } else elementoABloquear.classList.remove('text-dark');
+
             elementoABloquear.required = !elementoABloquear.required;
             elementoABloquear.disabled = !elementoABloquear.disabled;
 
         })
     }
 
-    static bloquearPorValor(idABloquear,valorCondicional, elementoAcao,) {
+    static bloquearPorValor(idABloquear, valorCondicional, elementoAcao, ) {
         const elementoABloquear = document.querySelector(`#${idABloquear}`);
         const required = elementoABloquear.required;
         elementoAcao.addEventListener('change', event => {
-            if(event.target.value.toLowerCase() == valorCondicional.toLowerCase()) {
+            if (event.target.value.toLowerCase() == valorCondicional.toLowerCase()) {
                 elementoABloquear.disabled = true;
                 elementoABloquear.classList.add('text-dark');
                 elementoABloquear.classList.remove('inputError');
                 elementoABloquear.required = false;
-            }
-            else{
+            } else {
                 elementoABloquear.disabled = false;
                 elementoABloquear.classList.remove('text-dark');
                 elementoABloquear.required = required;
             }
         })
     }
-    
+
     static bloquear(element) {
-        if(element.getAttribute('data-eventBloquear') == 'click')
+        if (element.getAttribute('data-eventBloquear') == 'click')
             ValidacaoFormulario.bloquearPorClick(element.getAttribute('data-idBloquear'), element)
         else
             ValidacaoFormulario.bloquearPorValor(element.getAttribute('data-idBloquear'), element.getAttribute('data-eventBloquear'), element)
@@ -148,20 +163,14 @@ class ValidacaoFormulario {
         });
     }
 
-    static formatarCamposTelefoneResidencial(idTelefoneResidencial) {     
+    static formatarCamposTelefoneResidencial(idTelefoneResidencial) {
         let telefoneResidencial = $(`#${idTelefoneResidencial}`);
         telefoneResidencial.mask('(00) 0000-0000');
     }
-    
+
     static formatarCamposTelefoneCelular(idTelefoneCelular) {
         let telefoneCelular = $(`#${idTelefoneCelular}`);
         telefoneCelular.mask('(00) 00000-0000');
-    }
-    
-    static mascara_salarios(...salariosID) {
-        for (let salarioID of salariosID) {
-            $(`#${salarioID}` ).maskMoney({ prefix: 'R$ ', thousands: '.', decimal: ',' });
-        }
     }
 
     static marcarNaoPreenchidos(obrigatoriosNaoPreenchidos) {
@@ -173,7 +182,7 @@ class ValidacaoFormulario {
 
     static removerInvalidoAoCorrigirObrigatorio(naoPreenchido) {
         $(naoPreenchido).bind('change', e => {
-            if( $(naoPreenchido).is(':invalid') ){
+            if ($(naoPreenchido).is(':invalid')) {
                 $(naoPreenchido).addClass('inputError');
             } else {
                 $(e.target).removeClass('inputError');
@@ -181,37 +190,37 @@ class ValidacaoFormulario {
         });
     }
 
-    static unico(element,idCampos) {
+    static unico(element, idCampos) {
         const campos = document.querySelector(`#${idCampos}`).parentElement;
         element.addEventListener('change', () => {
-            for(let campo of campos.querySelectorAll(`input[name='${element.name}']`)) {
-                if(campo.id != element.id) {
-                    if(campo.checked){ 
-                        $(campo).attr('checked',false).trigger('change');
+            for (let campo of campos.querySelectorAll(`input[name='${element.name}']`)) {
+                if (campo.id != element.id) {
+                    if (campo.checked) {
+                        $(campo).attr('checked', false).trigger('change');
                     }
                 }
             }
         })
-    }	
+    }
 
     static valida(form) {
         let elementos = form.querySelectorAll('input, select, textarea');
-		elementos.filter = Array.prototype.filter;
+        elementos.filter = Array.prototype.filter;
         let obrigatoriosNaoPreenchidos = elementos.filter(elemento => elemento.required && !elemento.value)
-        
-		if(obrigatoriosNaoPreenchidos.length) {
-			Notificacao.invalido('Por favor, preencha os campos Obrigatórios', 'Campos Obrigatórios')
-			ValidacaoFormulario.marcarNaoPreenchidos(obrigatoriosNaoPreenchidos)
-			return false;
-		}
-		
-        if(!form.checkValidity()) {
+
+        if (obrigatoriosNaoPreenchidos.length) {
+            Notificacao.invalido('Por favor, preencha os campos Obrigatórios', 'Campos Obrigatórios')
+            ValidacaoFormulario.marcarNaoPreenchidos(obrigatoriosNaoPreenchidos)
+            return false;
+        }
+
+        if (!form.checkValidity()) {
             Notificacao.invalido('Por favor, verifique os campos inválidos', 'Formulário Inválido')
             form.reportValidity();
             return false;
-		}
-		
-		return true;
+        }
+
+        return true;
     }
-   
+
 }

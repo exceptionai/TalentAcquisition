@@ -1,0 +1,74 @@
+<!-- Conteudo Principal -->
+<div class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header card-header-primary">
+                        <h4 class="card-title ">Desenvolvedor Front-end</h4>
+                        <p class="card-category">Visualize informações detalhadas da vaga</p>
+                    </div>
+                    <div class="card-body col-12 mt-4">
+                        <div>
+                            <div class="d-flex  flex-column " id="vagasContainer">
+                                <form>
+                                    <div class="row">
+                                        <div class="form-group col-6">
+                                            <label class="text-dark" for="cargo_vaga">Cargo da vaga</label>
+                                            <input readonly type="text" class="form-control " id="cargo_vaga">
+                                        </div>
+                                        <div class="form-group col-6">
+                                            <label class="text-dark " for="area_atuacao">Área de atuação</label>
+                                            <input readonly class="form-control " id="area_atuacao" type="text">
+                                        </div>
+                                    </div>
+                                    <div class="row">
+
+                                        <div class="form-group col-6">
+                                            <label class="text-dark" for="requisitos_desejaveis">Requisitos desejáveis</label>
+                                            <textarea readonly class="form-control border border-bottom-0 p-2" rows="6" id="requisitos_desejaveis" type="text"></textarea>
+                                        </div>
+                                        <div class="form-group col-6">
+                                            <label class="text-dark" for="requisitos_obrigatorios">Requisitos obrigatórios</label>
+                                            <textarea readonly class="form-control border border-bottom-0 p-2" rows="6" id="requisitos_obrigatorios" type="text"></textarea>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="form-group col-12">
+                                            <label class="text-dark" for="atividade">Principais atividades</label>
+                                            <textarea readonly class="form-control border border-bottom-0 p-2" rows="6" id="atividade"></textarea>
+                                        </div>
+
+                                    </div>
+                                    <div class="row">
+
+                                        <div class="form-group col-6">
+                                            <label class="text-dark" for="salario_vaga">Salário</label>
+                                            <input readonly class="form-control " id="salario_vaga" type="text">
+                                        </div>
+                                        <div class="form-group col-6">
+                                            <label class="text-dark" for="beneficios_vaga">Benefícios</label>
+                                            <input readonly class="form-control " id="beneficios_vaga" type="text">
+                                        </div>
+                                    </div>
+                                    <div class="d-flex justify-content-center mt-4">
+                                        <div class="form-group ">
+                                            <button type="submit" id="cadastrar_vaga" class="btn btn-success">Vaga Selecionada</button>
+
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Fim do conteudo principal-->
+<script src="/static/candidato/js/es6+/oportunidades/initDetalhes.js" type="module"></script>
+<script src="/static/candidato/libs/material-dashboard/js/core/jquery.min.js"></script>
+<script src="/static/candidato/libs/material-dashboard/js/core/popper.min.js"></script>
+<script src="/static/candidato/libs/material-dashboard/js/core/bootstrap-material-design.min.js"></script>

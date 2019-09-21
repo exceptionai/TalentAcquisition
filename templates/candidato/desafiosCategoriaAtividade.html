@@ -18,7 +18,7 @@
 
         <div class="opcoesAtividade ">
             <i class="far fa-clock"></i>
-            <span class="text-secondary mr-4" id="tempoRestante">30 min</span>
+            <span class="text-dark mr-4" id="tempoRestante">30 min</span>
 
             <button class="btn btn-danger" data-toggle="modal" data-target="#modalConfimar">Finalizar Teste</button>
         </div>
@@ -31,7 +31,7 @@
     <div class="rodapeAtividade d-flex flex-column">
 
         <div class="proximaAtividade col-12 d-flex justify-content-center">
-            <button class="btn btn-alternate  mr-4 atividade-footer-bottons" id="questaoAnterior">Questão anterior</button>
+            <button class="btn btn-alternate  mr-4 atividade-footer-bottons" id="questaoAnterior" style="display: none">Questão anterior</button>
             <button class="btn btn-success atividade-footer-bottons" id="proximaQuestao">
                 Próxima questão
             </button>
@@ -99,6 +99,5 @@
 
 <script src="/static/candidato/libs/material-dashboard/js/core/jquery.min.js"></script>
 <script src="/static/candidato/libs/material-dashboard/js/core/popper.min.js"></script>
-<script src="/static/candidato/libs/material-dashboard/js/core/bootstrap-material-design.min.js"></script>
 
 <script type="module" src="/static/candidato/js/es6+/desafios/initAtividade.js"></script>

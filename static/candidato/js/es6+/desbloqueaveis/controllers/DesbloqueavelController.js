@@ -34,13 +34,12 @@ export class DesbloqueavelController {
         if (desbloqueavelAnterior) {
             desbloqueavelAnterior.obtido = false;
         }
-        desbloqueavel.obtido = true;
-        desbloqueavel.pontos_minimos = 0;
-        console.log(this.desbloqueaveis)
         this.userService.diminuirPontos(desbloqueavel.pontos_minimos);
         this.userService.setTema(desbloqueavel.tema);
-        this.view.renderAll(this.desbloqueaveis, this.desbloquear.bind(this));
+        desbloqueavel.obtido = true;
+        desbloqueavel.pontos_minimos = 0;
 
+        this.view.renderAll(this.desbloqueaveis, this.desbloquear.bind(this));
     }
 
 

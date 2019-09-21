@@ -1,71 +1,55 @@
 import { AtividadeDesafioView } from '../views/AtividadeDesafioView.js';
-
-const questoes = [{
-        titulo: "Juros compostos",
-        descricao: "Aplicando hoje na caderneta de poupança a quantia de R$ 20.000,00, qual será o montante gerado ao final de 4 anos, sabendo que a rentabilidade mensal é de 0,5%?",
-        respostas: [1000, 2000, 3000, 4000]
-    },
-    {
-        titulo: "Números Complexos",
-        descricao: "Se z = (2 + i) ∙ (1 + i) ∙ i, então z, o conjugado de z, será dado por:",
-        respostas: ["−3 − i", "1 − 3i", "3 − i", "−3 + i"]
-    },
-    {
-        titulo: "Probabilidade",
-        descricao: "Em uma urna existem bolas enumeradas de 1 a 15. Qualquer uma delas possui a mesma chance de ser retirada. Determine a probabilidade de se retirar uma bola com número nas seguintes condições:",
-        respostas: ["par", "primo", "par ou primo", "par e primo"]
-    },
-    {
-        titulo: "Estatística",
-        descricao: "Um grupo de alunos é submetido a uma avaliação, e foram obtidas as seguintes notas: 3, 4, 5, 6 e 7. Com base nessas informações, assinale a alternativa que apresenta o desvio-padrão desse grupo.",
-        respostas: ["1,15", "1,21", "1,79", "1,61"]
-    },
-    {
-        titulo: "Média Ponderada",
-        descricao: "Qual é a média ponderada dos números 1, 2, 3, 4, 5, 6, 7, 8 e 9, sabendo que seus respectivos pesos são 5, 5, 5, 5, 4, 4, 4, 4, 2?",
-        respostas: ["4,5", "2,8", "4,2", "2,9"]
-    }
-]
-
+import { AtividadeDesafioService } from '../services/AtividadeDesafioService.js';
 
 export class AtividadeDesafioController {
     constructor(proximaPerguntaSeletor, perguntaAnteriorSeletor, containerPerguntas) {
         this._proximaPerguntaButton = $(proximaPerguntaSeletor);
         this._perguntaAnteriorButton = $(perguntaAnteriorSeletor);
-        if (this._proximaPerguntaButton.length && this._perguntaAnteriorButton.length) {
+        this._service = new AtividadeDesafioService();
+        this._view = new AtividadeDesafioView(containerPerguntas);
 
-            this._indicePergunta = 0;
-            this._perguntaAtual = questoes[this._indicePergunta];
-            this._perguntaAnterior = null;
-            this._proximaPergunta = questoes[this._indicePergunta + 1];
-
-            this._view = new AtividadeDesafioView(containerPerguntas);
-
-            this._init();
-        }
+        this._init();
     }
 
     _init() {
-        this._view.render(
-            this._perguntaAtual.titulo,
-            this._perguntaAtual.descricao,
-            this._perguntaAtual.respostas,
-            this._indicePergunta
-        )
 
-        if (this._proximaPergunta)
-            this._proximaPerguntaButton.css("display", "block")
-        if (this._perguntaAnterior)
-            this._perguntaAnteriorButton.css("display", "block")
+        this._service.buscarQuestoes().then(questoes => {
+            this._questoes = questoes;
+            return questoes;
+        }).then(questoes => {
 
-        $(".flow-question")[this._indicePergunta].classList.add('text-alternate');
-        $(".flow-question")[this._indicePergunta].classList.remove('text-danger');
+            if (this._proximaPerguntaButton.length && this._perguntaAnteriorButton.length) {
 
-        this._navegaEntreQuestoes();
+                this._indicePergunta = 0;
+                this._perguntaAtual = questoes[this._indicePergunta];
+                this._perguntaAnterior = null;
+                this._proximaPergunta = questoes[this._indicePergunta + 1];
+            }
 
-        AtividadeDesafioController._contagemTempoDesafio();
+            this._view.render(
+                this._perguntaAtual.titulo,
+                this._perguntaAtual.descricao,
+                this._perguntaAtual.respostas,
+                this._indicePergunta
+            )
 
-        this._confirmarAoSair();
+            console.log(this._perguntaAnterior)
+
+            if (this._proximaPergunta)
+                this._proximaPerguntaButton.css("display", "block")
+            if (this._perguntaAnterior)
+                this._perguntaAnteriorButton.css("display", "block")
+
+            $(".flow-question")[this._indicePergunta].classList.add('text-alternate');
+            $(".flow-question")[this._indicePergunta].classList.remove('text-danger');
+
+            this._navegaEntreQuestoes();
+
+            AtividadeDesafioController._contagemTempoDesafio();
+
+            this._confirmarAoSair();
+
+        })
     }
 
     _navegaEntreQuestoes() {
@@ -89,6 +73,7 @@ export class AtividadeDesafioController {
     _confirmarAoSair() {
         window.interceptarCliques = true;
         $("a").click(function(e) {
+            console.log(window.interceptarCliques)
             const self = this;
             if ($(this).attr("href") != "#" && window.interceptarCliques) {
                 e.preventDefault();
@@ -105,11 +90,11 @@ export class AtividadeDesafioController {
     proximaQuestao() {
 
         const respostaSelecionada = $(".btn-resposta.resposta-ativada");
-        questoes[this._indicePergunta].respostaSelecionada = respostaSelecionada.attr("data-id");
+        this._questoes[this._indicePergunta].respostaSelecionada = respostaSelecionada.attr("data-id");
 
-        this._perguntaAnterior = questoes[this._indicePergunta];
-        this._perguntaAtual = questoes[++this._indicePergunta];
-        this._proximaPergunta = questoes[this._indicePergunta + 1];
+        this._perguntaAnterior = this._questoes[this._indicePergunta];
+        this._perguntaAtual = this._questoes[++this._indicePergunta];
+        this._proximaPergunta = this._questoes[this._indicePergunta + 1];
 
         $(".flow-question")[this._indicePergunta].classList.remove('text-danger');
 
@@ -117,7 +102,7 @@ export class AtividadeDesafioController {
         $(".flow-question")[this._indicePergunta - 1].classList.remove('text-alternate');
 
 
-        if (!questoes[this._indicePergunta - 1].respostaSelecionada) {
+        if (!this._questoes[this._indicePergunta - 1].respostaSelecionada) {
             $(".flow-question")[this._indicePergunta - 1].classList.add('text-danger');
         }
 
@@ -127,7 +112,7 @@ export class AtividadeDesafioController {
             this._perguntaAtual.descricao,
             this._perguntaAtual.respostas,
             this._indicePergunta,
-            questoes[this._indicePergunta].respostaSelecionada
+            this._questoes[this._indicePergunta].respostaSelecionada
         )
 
         if (this._proximaPergunta) this._proximaPerguntaButton.css("display", "block")
@@ -140,14 +125,14 @@ export class AtividadeDesafioController {
     }
 
     questaoAnterior() {
-        if (!questoes[this._indicePergunta].respostaSelecionada) {
+        if (!this._questoes[this._indicePergunta].respostaSelecionada) {
             const respostaSelecionada = $(".btn-resposta.resposta-ativada");
-            questoes[this._indicePergunta].respostaSelecionada = respostaSelecionada.attr("data-id");
+            this._questoes[this._indicePergunta].respostaSelecionada = respostaSelecionada.attr("data-id");
         }
 
-        this._perguntaAtual = questoes[--this._indicePergunta];
-        this._perguntaAnterior = questoes[this._indicePergunta - 1];
-        this._proximaPergunta = questoes[this._indicePergunta + 1];
+        this._perguntaAtual = this._questoes[--this._indicePergunta];
+        this._perguntaAnterior = this._questoes[this._indicePergunta - 1];
+        this._proximaPergunta = this._questoes[this._indicePergunta + 1];
 
 
         this._view.render(
@@ -155,14 +140,14 @@ export class AtividadeDesafioController {
             this._perguntaAtual.descricao,
             this._perguntaAtual.respostas,
             this._indicePergunta,
-            questoes[this._indicePergunta].respostaSelecionada
+            this._questoes[this._indicePergunta].respostaSelecionada
         )
         $(".flow-question")[this._indicePergunta].classList.add('text-alternate');
 
         $(".flow-question")[this._indicePergunta].classList.remove('text-danger');
         $(".flow-question")[this._indicePergunta + 1].classList.remove('text-alternate');
 
-        if (!questoes[this._indicePergunta + 1].respostaSelecionada) {
+        if (!this._questoes[this._indicePergunta + 1].respostaSelecionada) {
             $(".flow-question")[this._indicePergunta + 1].classList.add('text-danger');
         }
 

@@ -13,7 +13,7 @@ class ConnectionFactory:
     @classmethod
     def get_cursor(cls):
         if cls._cursor is None:
-            cls._cursor = cls.get_connection().cursor()
+            cls._cursor = cls.get_connection().cursor(buffered=True)
         return cls._cursor
     
     @classmethod
@@ -26,3 +26,7 @@ class ConnectionFactory:
     @classmethod
     def fetchall(cls):
         return cls.get_cursor().fetchall()
+
+    @classmethod
+    def fetchone(cls):
+        return cls.get_cursor().fetchone()

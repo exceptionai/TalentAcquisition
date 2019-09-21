@@ -6,15 +6,19 @@ export class UsuarioController {
         this._init();
     }
 
-    _init() {
-        const usuario = this._service.obterUsuario();
-        $(".qntPontos").html(usuario.pontos)
-        $(".pontosProximoLevel").html(usuario.proximoLevel)
+    async _init() {
+        const usuario = await this._service.obterUsuario();
+        const { candidato, pontuacao } = usuario;
+        $(".qntPontos").html(candidato.pontos_consumiveis)
 
-        $('.experienciaAtual').html(usuario.experienciaAtual);
-        $(".pontosProximoLevelBar").css('width', `${usuario.porcentualXP}%`)
+        $('.experienciaAtual').html(pontuacao.pontuacao_atual);
+        $(".pontosProximoLevel").html(pontuacao.pontuacao_maxima)
 
-        $("#nomeUsuario").html(usuario.nome)
+        const percentual = pontuacao.pontuacao_atual / pontuacao.pontuacao_maxima * 100;
+
+        $(".pontosProximoLevelBar").css('width', `${percentual}%`)
+
+        $("#nomeUsuario").html(candidato.nome)
         $("#nomeUsuario").parent().removeClass('d-none');
         const pagina = $("body");
         pagina[0].classList = "";

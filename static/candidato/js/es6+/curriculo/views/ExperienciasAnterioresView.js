@@ -1,5 +1,5 @@
 import { CurriculoView } from './CurriculoView.js';
-import { ValidacaoFormularioController } from '../controllers/ValidacaoFormularioController.js';
+import { ValidacaoFormularioView } from './ValidacaoFormularioView.js';
 
 export class ExperienciasAnterioresView extends CurriculoView {
 
@@ -72,7 +72,7 @@ export class ExperienciasAnterioresView extends CurriculoView {
             
         </div>
         `);
-        ValidacaoFormularioController.mascara_salarios(`salario${this._dinamicoCampoContador}`);
+        ValidacaoFormularioView.mascara_salarios(`salario${this._dinamicoCampoContador}`);
         return campoExperienciaAnterior;
     }
 }

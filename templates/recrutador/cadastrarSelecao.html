@@ -2,19 +2,20 @@
 <html>
 
 <head>
-    <title>Exception Carriers</title>
+    <title>Exception</title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <!-- Fonts e icones -->
-    <link rel="stylesheet" type="text/css"
-        href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
+    <link rel="icon" type="image" href="/static/shared/img/icon.png" />
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
     <!-- Material Kit CSS -->
-    <link href="/static/recrutador/libs/material-dashboard/css/material-dashboard.css" rel="stylesheet" />
-    
-  
+
+    <link href="/static/recrutador/libs/material-dashboard/css/material-dashboard.css?v=2.1.1" rel="stylesheet" />
+    <link rel="stylesheet" href="/static/shared/css/system.css">
+    <link rel="stylesheet" href="/static/recrutador/css/recrutador.css">
 </head>
 
 <body>
@@ -24,7 +25,7 @@
             <div class="logo">
 
                 <a href="#" class="simple-text logo-normal">
-                    Exception Carriers
+                    Exception
                 </a>
             </div>
             <div class="sidebar-wrapper">
@@ -50,7 +51,7 @@
                     <li class="nav-item active">
                         <a class="nav-link" href="/recrutador/cadastrarSelecao">
                             <i class="material-icons">edit</i>
-                            <p>Cadastrar seleção</p>
+                            <p>Cadastrar Vaga</p>
                         </a>
                     </li>
                     <li class="nav-item ">
@@ -59,7 +60,7 @@
                             <p>Todos os candidatos</p>
                         </a>
                     </li>
-                   
+
                 </ul>
             </div>
         </div>
@@ -69,6 +70,7 @@
             <nav class="navbar navbar-expand-lg  navbar-absolute ">
                 <div class="container-fluid">
                     <div class="navbar-wrapper">
+                        Cadastrar Vaga
                     </div>
                     <button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="sr-only">Toggle navigation</span>
@@ -79,15 +81,7 @@
                     <div class="collapse navbar-collapse justify-content-end">
 
                         <ul class="navbar-nav">
-                            <form class="navbar-form">
-                                <div class="input-group no-border">
-                                    <input type="text" value="" class="form-control" placeholder="Pesquisar...">
-                                    <button type="submit" class="btn btn-white btn-round btn-just-icon">
-                                        <i class="material-icons">search</i>
-                                        <div class="ripple-container"></div>
-                                    </button>
-                                </div>
-                            </form>
+
                             <li class="nav-item">
                                 <a class="nav-link" href="#">
                                     <i class="material-icons">notifications</i>
@@ -110,47 +104,86 @@
                 </div>
             </nav>
             <!-- Fim da Barra Superior -->
-            <div class="content container-fluid">
-                <!-- Conteudo Principal -->
-                <div class="card col-12 text-center row">
-                    <form>
-                        <div class="form-group">
-                            <label class="text-dark" for="cargo_vaga">Cargo da vaga</label>
-                            <input type="text" class="form-control text-center" id="cargo_vaga" placeholder="Ex: Consultor de vendas">
-                        <div class="form-group">
-                            <label class="text-dark" for="atividade">Principais atividades</label>
-                            <input type="text-area" class="form-control text-center" id="atividade" placeholder="Ex: Atendimento ao cliente e prospecção de novos">
+
+
+            <!-- Conteudo Principal -->
+            <div class="content">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="card">
+                                <div class="card-header card-header-primary">
+                                    <h4 class="card-title ">Cadastro de Vaga</h4>
+                                    <p class="card-category">Forneça aos candidatos detalhes da vaga</p>
+                                </div>
+                                <div class="card-body col-12 mt-4">
+                                    <div>
+                                        <div class="d-flex  flex-column " id="desloqueavelContainer">
+                                            <form>
+                                                <div class="row">
+                                                    <div class="form-group col-6">
+                                                        <label class="text-dark" for="cargo_vaga">Cargo da vaga</label>
+                                                        <input type="text" class="form-control " id="cargo_vaga" placeholder="Ex: Consultor de vendas">
+                                                    </div>
+                                                    <div class="form-group col-6">
+                                                        <label class="text-dark " for="area_atuacao">Área de atuação</label>
+                                                        <input class="form-control " id="area_atuacao" type="text" placeholder="Ex: Comercial">
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+
+                                                    <div class="form-group col-6">
+                                                        <label class="text-dark" for="requisitos_desejaveis">Requisitos desejáveis</label>
+                                                        <textarea class="form-control border border-bottom-0 p-2" rows="6" id="requisitos_desejaveis" type="text" placeholder="Ex: Office Avançado"></textarea>
+                                                    </div>
+                                                    <div class="form-group col-6">
+                                                        <label class="text-dark" for="requisitos_obrigatorios">Requisitos obrigatórios</label>
+                                                        <textarea class="form-control border border-bottom-0 p-2" rows="6" id="requisitos_obrigatorios" type="text" placeholder="Ex: Excel Avançado"></textarea>
+                                                    </div>
+                                                </div>
+
+                                                <div class="row">
+                                                    <div class="form-group col-12">
+                                                        <label class="text-dark" for="atividade">Principais atividades</label>
+                                                        <textarea class="form-control border border-bottom-0 p-2" rows="6" id="atividade" placeholder="Ex: Atendimento ao cliente e prospecção de novos"></textarea>
+                                                    </div>
+
+                                                </div>
+                                                <div class="row">
+
+                                                    <div class="form-group col-6">
+                                                        <label class="text-dark" for="salario_vaga">Salário</label>
+                                                        <input class="form-control " id="salario_vaga" type="text" placeholder="Ex: R$ 5.000,00">
+                                                    </div>
+                                                    <div class="form-group col-6">
+                                                        <label class="text-dark" for="beneficios_vaga">Benefícios</label>
+                                                        <input class="form-control " id="beneficios_vaga" type="text" placeholder="Ex: Convênio médico...">
+                                                    </div>
+                                                </div>
+                                                <div class="d-flex justify-content-center mt-4">
+                                                    <div class="form-group ">
+                                                        <button type="submit" id="cadastrar_vaga" class="btn btn-primary">Cadastrar Vaga</button>
+                                                        <button type="submit" id="cadastrar_vaga" class="btn btn-dark">Editar Pontuação</button>
+
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <div class="form-group">
-                            <label class="text-dark " for="area_atuacao">Área de atuação</label>
-                            <input class="form-control text-center" id="area_atuacao" type="text" placeholder="Ex: Comercial">
-                        </div>
-                        <div class="form-group">
-                            <label class="text-dark" for="requisitos_obrigatorios">Requisitos obrigatórios</label>
-                            <input class="form-control text-center" id="requisitos_obrigatorios" type="text" placeholder="Ex: ">
-                        </div>
-                        <div class="form-group">
-                            <label class="text-dark" for="requisitos_desejaveis">Requisitos desejáveis</label>
-                            <input class="form-control text-center" id="requisitos_desejaveis" type="text" placeholder="Ex: ">
-                        </div>
-                        <div class="form-group">
-                            <label class="text-dark" for="salario_vaga">Salário</label>
-                            <input class="form-control text-center" id="salario_vaga" type="text" placeholder="Ex: R$ 5.000,00">
-                        </div>
-                        <div class="form-group">
-                            <label class="text-dark" for="beneficios_vaga">Benefícios</label>
-                            <input class="form-control text-center" id="beneficios_vaga" type="text" placeholder="Ex: Convênio médico...">
-                        </div>
-                        <div class="form-group">
-                            <button type="submit" id="cadastrar_vaga" class="btn btn-primary">Cadastrar Vaga</button>
-                        </div>
-                    </form>
+                    </div>
                 </div>
-                <!-- Fim do conteudo principal-->
             </div>
-            
+            <!-- Fim do conteudo principal-->
+
             <footer class="footer">
                 <div class="container-fluid">
+                    <div class="float-left ml-3 d-flex align-items-center">
+                        <img src="https://shared.bayer.com/img/bayer-logo.svg" alt="Logo Bayer" title="Logo Bayer" id="logo-bayer">
+                        <span class="title-bayer ml-3">Bayer</span>
+                    </div>
                     <div class="copyright float-right">
                         Exception &copy;
                     </div>
@@ -158,18 +191,17 @@
             </footer>
         </div>
     </div>
-    <script src="/static/recrutador/js/core/jquery.min.js"></script>
-    <script src="/static/recrutador/js/core/popper.min.js"></script>
-    <script src="/static/recrutador/js/core/bootstrap-material-design.min.js"></script>
-    <script src="/static/recrutador/js/material-dashboard.js?v=2.1.1" type="text/javascript"></script>
-    
+    <script src="/static/recrutador/libs/material-dashboard/js/core/jquery.min.js"></script>
+    <script src="/static/recrutador/libs/material-dashboard/js/core/popper.min.js"></script>
+    <script src="/static/recrutador/libs/material-dashboard/js/core/bootstrap-material-design.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-maskmoney/3.0.2/jquery.maskMoney.min.js"></script>
 
-    <!-- Chartist JS -->
-    <script src="/static/recrutador/js/plugins/chartist.min.js"></script>
 
     <script>
-        $(document).ready(function () {
-            md.initDashboardPageCharts();
+        $(`#salario_vaga`).maskMoney({
+            prefix: 'R$ ',
+            thousands: '.',
+            decimal: ','
         });
     </script>
 </body>

@@ -9,6 +9,7 @@ body {
     --color-score: #624862;
     --white: #fff;
     --borda-container: rgba(0, 97, 127, 0.4);
+    --container-bg: rgba(255, 255, 255, 0.9);
 }
 
 .dark-theme {
@@ -17,6 +18,7 @@ body {
     --gold-color: #FFC260;
     --main-color: #6fa7ca;
     --container-desafio: none;
+    --container-bg: rgba(255, 255, 255, 0.1);
 }
 
 footer {
@@ -25,7 +27,7 @@ footer {
 
 @media (min-width: 768px) {
     .col-md-11 {
-        background-color: rgba(255, 255, 255, 0.9);
+        background-color: var(--container-bg);
     }
     .col-md-11:hover {
         box-shadow: 0px 4px 20px 0 rgba(99, 96, 96, 0.7);
