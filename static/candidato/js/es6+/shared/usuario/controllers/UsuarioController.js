@@ -18,6 +18,9 @@ export class UsuarioController {
 
         $(".pontosProximoLevelBar").css('width', `${percentual}%`)
 
+        $("#levelAtual").html(pontuacao.level)
+
+
         $("#nomeUsuario").html(candidato.nome)
         $("#nomeUsuario").parent().removeClass('d-none');
         const pagina = $("body");

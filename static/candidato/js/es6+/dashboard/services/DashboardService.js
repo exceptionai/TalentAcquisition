@@ -9,12 +9,12 @@ export class DashboardService {
     }
 
     buscarFases() {
-        return fetch(`http://localhost:5500/candidato/fase?candidatoID=${this.dadosRequisicao.candidatoID}&token=${this.dadosRequisicao.token}`)
+        return fetch(`/service/candidato/fase?candidatoID=${this.dadosRequisicao.candidatoID}&token=${this.dadosRequisicao.token}`)
             .then(res => res.json())
     }
 
     buscarCandidatura() {
-        return fetch(`http://localhost:5500/candidato/candidatura?candidatoID=${this.dadosRequisicao.candidatoID}&token=${this.dadosRequisicao.token}`)
+        return fetch(`/service/candidato/candidatura?candidatoID=${this.dadosRequisicao.candidatoID}&token=${this.dadosRequisicao.token}`)
             .then(res => res.json())
     }
 
@@ -22,7 +22,7 @@ export class DashboardService {
         const dataInicio = new Date();
         dataInicio.setDate(dataInicio.getDate() - dataInicio.getDay());
         const dataFinal = new Date();
-        return fetch(`http://localhost:5500/candidato/desempenho?candidatoID=${this.dadosRequisicao.candidatoID}&dataInicial=${dataInicio.toISOString()}&dataFinal=${dataFinal.toISOString()}&token=${this.dadosRequisicao.token}`)
+        return fetch(`/service/candidato/desempenho?candidatoID=${this.dadosRequisicao.candidatoID}&dataInicial=${dataInicio.toISOString()}&dataFinal=${dataFinal.toISOString()}&token=${this.dadosRequisicao.token}`)
             .then(res => res.json())
             .then(dados => {
                 const series = this._parsePontuacoesChart(dados, dataInicio, dataFinal);
@@ -77,7 +77,7 @@ export class DashboardService {
 
     getDadosEvolucaoProgressiva() {
         const dataFinal = new Date();
-        return fetch(`http://localhost:5500/candidato/evolucao_progressiva?candidatoID=${this.dadosRequisicao.candidatoID}&dataFinal=${dataFinal.toISOString()}&token=${this.dadosRequisicao.token}`)
+        return fetch(`/service/candidato/evolucao_progressiva?candidatoID=${this.dadosRequisicao.candidatoID}&dataFinal=${dataFinal.toISOString()}&token=${this.dadosRequisicao.token}`)
             .then(res => res.json())
             .then(dados => {
                 const series = [{

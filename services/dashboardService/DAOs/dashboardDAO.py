@@ -23,9 +23,9 @@ class DashboardDAO:
     
     def busca_evolucao(self, candidato_id, data_final, data_inicial):
         if data_inicial:
-            query = f'SELECT p.data, (select sum(pontos) from historico_pontuacao p1 INNER JOIN candidato c ON p1.candidato_id = c.candidato_id  WHERE c.candidato_id = {candidato_id} and p.data >= "{data_inicial}" and p.data <= "{data_final}") FROM pontuacao p INNER JOIN candidato c ON p.candidato_id = c.candidato_id  WHERE c.candidato_id = {candidato_id} and p.data >= "{data_inicial}" and p.data <= "{data_final}" order by p.data asc '
+            query = f'SELECT p.data, (select sum(pontos) from historico_pontuacao p1 INNER JOIN candidato c ON p1.candidato_id = c.candidato_id  WHERE c.candidato_id = {candidato_id} and p.data >= "{data_inicial}" and p.data <= "{data_final}") FROM historico_pontuacao p INNER JOIN candidato c ON p.candidato_id = c.candidato_id  WHERE c.candidato_id = {candidato_id} and p.data >= "{data_inicial}" and p.data <= "{data_final}" order by p.data asc '
         else:
-            query = f'SELECT p.data, (select sum(pontos) from historico_pontuacao p1 INNER JOIN candidato c ON p1.candidato_id = c.candidato_id  WHERE c.candidato_id = {candidato_id} and p1.data <=  p.data) FROM pontuacao p INNER JOIN candidato c ON p.candidato_id = c.candidato_id  WHERE c.candidato_id = {candidato_id} and p.data >= "{data_inicial}" and p.data <= "{data_final}" order by p.data asc '
+            query = f'SELECT p.data, (select sum(pontos) from historico_pontuacao p1 INNER JOIN candidato c ON p1.candidato_id = c.candidato_id  WHERE c.candidato_id = {candidato_id} and p1.data <=  p.data) FROM historico_pontuacao p INNER JOIN candidato c ON p.candidato_id = c.candidato_id  WHERE c.candidato_id = {candidato_id} and p.data >= "{data_inicial}" and p.data <= "{data_final}" order by p.data asc '
         print(query)
         ConnectionFactory.execute(query)
         dados_evolucao = ConnectionFactory.fetchall()

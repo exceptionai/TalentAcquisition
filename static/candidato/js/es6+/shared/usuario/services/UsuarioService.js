@@ -11,7 +11,7 @@ export class UsuarioService {
     }
 
     obterUsuario() {
-        return fetch(`/candidato/service?candidatoID=${this.candidatoID}`)
+        return fetch(`service/candidato?candidatoID=${this.candidatoID}`)
             .then(candidato => candidato.json())
             .then(candidato => {
                 this._usuario = candidato;

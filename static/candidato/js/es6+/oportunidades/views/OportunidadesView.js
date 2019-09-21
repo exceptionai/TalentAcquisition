@@ -1,9 +1,12 @@
+import { Formater } from "../../shared/utils/Formater.js";
+
 export class OportunidadesView {
     constructor(seletorContainer) {
         this._container = $(seletorContainer);
     }
 
     _template(vaga) {
+        const dataAbertura = Formater.stringData(vaga.dataAbertura);
         return `
         <div class="card mr-4 border ${vaga.selecionado?'border-success':''} cardVaga">
             <div class="card-body">
@@ -12,7 +15,7 @@ export class OportunidadesView {
 
                     <div id="candidatos">
                         <i class="fas fa-user-check col-1"></i>
-                        <span class="text-secondary">Área de Atuação: <span class="text-bold">${vaga.area}</span> </span>
+                        <span class="text-secondary">Área de Atuação: <span class="text-bold">${vaga.areaAtuacao}</span> </span>
                     </div>
                     <div id="dataAbertura">
                         <i class="fas fa-city col-1 pr-3"></i>
@@ -20,7 +23,7 @@ export class OportunidadesView {
                     </div>
                     <div id="dataAbertura">
                         <i class="far fa-calendar-alt col-1"></i>
-                        <span class="text-secondary">Abertura da vaga: ${vaga.dataAbertura}</span>
+                        <span class="text-secondary">Abertura da vaga: ${dataAbertura}</span>
                     </div>
 
                 </div>
