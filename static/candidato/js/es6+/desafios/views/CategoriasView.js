@@ -13,7 +13,7 @@ export class CategoriasView {
                 </div>
                 <div class="col-1 mr-3 ml-3">
                     <div class="score-box col-1 ">
-                        ${categoria.pontos_obtidos} / ${categoria.pontos_maximos} Pontos
+                        ${categoria.pontosAdquiridos} / ${categoria.pontosNecessarios} Pontos
                     </div>
                 </div>
                 <div class="col-7 ">
@@ -22,7 +22,7 @@ export class CategoriasView {
                         <p class="text-secondary desafio-description">${categoria.descricao}</p>
                     </div>
                     <div class="small">
-                        <i class="fas fa-list"></i> <span class="text-secondary ml-1">${categoria.desafios_resolvidos}/${categoria.desafios_totais} Desafios concluídos</span>
+                        <i class="fas fa-list"></i> <span class="text-secondary ml-1">${categoria.desafiosConcluidos}/${categoria.desafiosTotais} Desafios concluídos</span>
                     </div>
                 </div>
             </div>

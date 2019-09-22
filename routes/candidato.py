@@ -20,6 +20,7 @@ from services.pontuacaoService.models.endereco import Endereco
 from services.pontuacaoService.models.curriculo import Curriculo
 from services.dashboardService.dashboardService import DashboardService
 from services.candidatoService.candidatoService import CandidatoService
+from services.desafioService.desafioService import DesafioService
 
 
 import json
@@ -33,6 +34,18 @@ def candidato_service():
     service = CandidatoService(request.args.get("candidatoID"))
     candidato = service.buscar_candidato()
     return candidato
+
+@app.route('/service/candidato/atividade_categoria')
+def atividade_categoria():
+    service = DesafioService(request.args.get("candidatoID"))
+    atividades_categoria = service.buscar_atividades_categoria(request.args.get("categoriaID"))
+    return atividades_categoria
+
+@app.route('/service/candidato/categoria_desafio')
+def desafios_service():
+    service = DesafioService(request.args.get("candidatoID"))
+    desafios = service.buscar_categorias()
+    return desafios
 
 
 @app.route('/candidato/vaga/<id_vaga>')

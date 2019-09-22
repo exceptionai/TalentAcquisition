@@ -3,14 +3,14 @@ import { DesafioCategoria } from "../models/DesafioCategoria.js";
 export class DesafiosCategoriaService {
 
     buscarDesafiosCategoria() {
-        return new Promise((resolve, reject) => {
-
-            resolve([
-                new DesafioCategoria('Matemática', 'Conhecimentos de operações matemáticas.', null, 20, 0, 5, 30),
-                new DesafioCategoria('Português', 'Conhecimentos de sintaxe e semântica', null, 15, 0, 5, 30),
-                new DesafioCategoria('Informática', 'Conhecimentos de pacote office e operações básicas no sistema operacional Windows', null, 10, 0, 5, 20)
-            ])
-        })
+        const categoriaID = /categoria\/(\d+)/g.exec(window.location.href)[1];
+        console.log(categoriaID)
+        return fetch(`/service/candidato/atividade_categoria?categoriaID=${categoriaID}`)
+            .then(res => res.json())
+            .then(desafios_categoria =>
+                desafios_categoria.map(desafio_categoria =>
+                    new DesafioCategoria(desafio_categoria.titulo, desafio_categoria.descricao, desafio_categoria.pontosConquistados, desafio_categoria.pontosADesbloquear, desafio_categoria.desafiosRealizados, desafio_categoria.desafiosARealizar, desafio_categoria.tempo)
+                )
+            )
     }
-
 }

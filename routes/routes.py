@@ -6,6 +6,7 @@ from main import app
 
 @app.route('/service/resumo_vaga')
 def resumo_vagas_service():
+  
     service = VagaService() 
     vagas = service.buscar_resumo_vagas()
     return vagas

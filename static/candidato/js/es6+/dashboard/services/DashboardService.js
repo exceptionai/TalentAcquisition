@@ -25,16 +25,25 @@ export class DashboardService {
         return fetch(`/service/candidato/desempenho?candidatoID=${this.dadosRequisicao.candidatoID}&dataInicial=${dataInicio.toISOString()}&dataFinal=${dataFinal.toISOString()}&token=${this.dadosRequisicao.token}`)
             .then(res => res.json())
             .then(dados => {
-                const series = this._parsePontuacoesChart(dados, dataInicio, dataFinal);
                 const labels = this._parseLabelsChartSemanal(new Date().getDay() + 1);
+
+                let series;
+                if (!dados.length) {
+                    series = [{
+                        name: "Pontos",
+                        data: labels.map(() => "0")
+                    }]
+                } else {
+                    series = this._parsePontuacoesChart(dados, dataInicio, dataFinal);
+                }
                 return { labels, series }
             })
     }
 
     _parseLabelsChartSemanal(qntDias) {
         const diasSemana = ['D', 'S', 'T', 'Q', 'Q', 'S', 'S'];
-        diasSemana[qntDias - 1] = "Hoje";
-        return diasSemana.slice(0, qntDias);
+        diasSemana[new Date().getDay()] = "Hoje";
+        return diasSemana;
     }
 
     _adicionarDatas(destino, dataInicio, dataFinal, dado) {
@@ -48,12 +57,12 @@ export class DashboardService {
     }
 
     _parsePontuacoesChart(dados, dataInicio, dataFinal) {
+
         const datas = [];
         let proxData = new Date(dataInicio);
         dados.forEach(dado => {
             const data = new Date(parseInt(dado.data.match(/\d{4}/g)) - 1, parseInt(dado.data.match(/(\d{2})/g)[1]) + 1, parseInt(dado.data.match(/\d{2}$/g)))
             if (data.getDate() !== proxData.getDate()) {
-                console.log(data.getDate(), proxData.getDate())
                 this._adicionarDatas(datas, proxData, data, dado);
             } else {
                 datas.push(dado.pontuacao);
