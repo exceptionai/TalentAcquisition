@@ -3,22 +3,17 @@
     <div class="header-atividade d-flex justify-content-between align-items-center">
         <h2 class="text-primary medium-small-title atividade-titulo d-flex align-items-center pt-2">
 
-            <i class="fas fa-book-open text-dark text-small mr-3"></i>Matemática
+            <i class="fas fa-book-open text-dark text-small mr-3"></i><span id="tituloDesafioCategoria"></span>
 
-            <span class="text-bold text-small text-dark ml-3"><span id="questaoAtual">1</span> / 5
+            <span class="text-bold text-small text-dark ml-3"><span id="questaoAtual">1</span> / <span id="totalQuestoes"></span>
             </span>
-            <div id="questoesQuadrados" class=" ml-3 text-small">
-                <i class="far fa-circle text-danger flow-question"></i>
-                <i class="far fa-circle text-danger flow-question"></i>
-                <i class="far fa-circle text-danger flow-question"></i>
-                <i class="far fa-circle text-danger flow-question"></i>
-                <i class="far fa-circle text-danger flow-question"></i>
+            <div id="questoesContador" class=" ml-3 text-small">
             </div>
         </h2>
 
         <div class="opcoesAtividade ">
             <i class="far fa-clock"></i>
-            <span class="text-dark mr-4" id="tempoRestante">30 min</span>
+            <span class="text-dark mr-4" id="tempoRestante"></span>
 
             <button class="btn btn-danger" data-toggle="modal" data-target="#modalConfimar">Finalizar Teste</button>
         </div>
@@ -64,7 +59,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                <button type="button" class="btn btn-high-danger" id="desistir" data-dismiss="modal">Desistir</button>
+                <button type="button" class="btn btn-high-danger" id="desistir" modal-link data-dismiss="modal">Desistir</button>
             </div>
         </div>
     </div>

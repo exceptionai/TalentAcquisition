@@ -2,33 +2,59 @@ export class AtividadeDesafioView {
 
     constructor(atividadeDesafioContainer) {
         this.atividadeDesafioContainer = $(atividadeDesafioContainer);
+        this.atividadeDesafioContainer.html("");
     }
 
-    _template(tituloAtividade, descricao, alternativas) {
+    _template(atividade) {
             return `
             <div class="question">
                 <div class="titulo-question">
-                    <h3>${tituloAtividade}</h3>
+                    <h3>${atividade.titulo}</h3>
                 </div>
                 <div class="description-question">
-                    <p>${descricao}</p>
+                    <p>${atividade.descricao}</p>
                 </div>
                 <div class="d-flex flex-column respostas">
-                    ${alternativas.map((alternativa, index) => `
+                    ${atividade.alternativas.map((alternativa, index) => `
                         <div class="flex-grow-1  d-flex ">
-                            <button data-id="${index}" class="btn-resposta btn btn-primary flex-grow-1 ${alternativas[index + 1] ? "col-6 mr-5" : "col-12"}">${alternativa}</button>
-                            ${alternativas[index + 1] ? `<button data-id="${index + 1}" class=" btn-resposta btn btn-primary flex-grow-1">${alternativas[index + 1]}</button>` : ""}
+                            <button data-id="${index}" class="btn-resposta btn btn-primary flex-grow-1 ${atividade.alternativas[index + 1] ? "col-6 mr-5" : "col-12"}">${alternativa.descricao}</button>
+                            ${atividade.alternativas[index + 1] ? `<button data-id="${index + 1}" class=" btn-resposta btn btn-primary flex-grow-1">${atividade.alternativas[index + 1].descricao}</button>` : ""}
                         </div>
                     `)
-                .filter((alternativa, index) => index % 2 === 0)
-                .join('')}
+                .filter((alternativa, index) => index % 2 === 0).join('')}
                 </div>
             </div>
         `
     }
 
-    render(tituloAtividade, descricao, alternativas, indexAtividade, idSelecionado) {
-        this.atividadeDesafioContainer.html(this._template(tituloAtividade, descricao, alternativas));
+    _templateContador(){
+        return `<i class="far fa-circle text-danger flow-question"></i>`
+    }
+
+    renderTitulo(titulo){
+        $("#tituloDesafioCategoria").html(titulo);
+    }
+
+    renderTempo(tempo){
+        $("#tempoRestante").html(tempo+" min");
+    }
+
+    renderQuantidade(quantidadeQuestoes){
+        $("#totalQuestoes").html(quantidadeQuestoes)
+    }
+
+    renderCircles(quantidadeQuestoes){
+        $("#questoesContador").html('')
+        for(let i = 0; i < quantidadeQuestoes; i++){
+            const template = this._templateContador();
+            $("#questoesContador").append(template)
+        }
+    }
+
+    render(atividade, indexAtividade, idSelecionado) {
+        this.atividadeDesafioContainer.html("");
+        const template = this._template(atividade);
+        this.atividadeDesafioContainer.html(template);
         const elementoSelecionado = $(`.btn-resposta[data-id=${idSelecionado}]`);
         if (elementoSelecionado.get(0)) {
             elementoSelecionado.addClass("resposta-ativada");
@@ -36,9 +62,11 @@ export class AtividadeDesafioView {
         $(".btn-resposta").click(function (event) {
             $(".btn-resposta").removeClass('resposta-ativada');
             this.classList.toggle('resposta-ativada');
-            $("#questoesQuadrados .flow-question")[indexAtividade].classList.toggle("fa-check-square");
+            $("#questoesContador .flow-question")[indexAtividade].classList.toggle("fa-check-square");
             
-            $("#questoesQuadrados .flow-question")[indexAtividade].classList.toggle("fa-dot-circle");
+            $("#questoesContador .flow-question")[indexAtividade].classList.toggle("fa-dot-circle");
         })
+        console.log(this.atividadeDesafioContainer.html())
+        console.log(template);
     }
 }

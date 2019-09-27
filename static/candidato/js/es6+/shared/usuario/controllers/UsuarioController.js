@@ -23,14 +23,17 @@ export class UsuarioController {
 
         $("#nomeUsuario").html(candidato.nome)
         $("#nomeUsuario").parent().removeClass('d-none');
-        const pagina = $("body");
-        pagina[0].classList = "";
-        pagina.addClass(this._service.getTema());
 
-        if (this._service.getTema())
-            $("footer img").attr("src", "https://shared.bayer.com/img/logo-wht.svg");
-        else
-            $("footer img").attr("src", "https://shared.bayer.com/img/bayer-logo.svg");
+        this._service.getTema().then(tema =>
+            this._service.setTema(tema)
+        )
+        this._service.getTema().then(tema => {
+            if (tema.valor)
+                $("#logo-bayer").attr("src", "https://shared.bayer.com/img/logo-wht.svg");
+            else
+                $("#logo-bayer").attr("src", "https://shared.bayer.com/img/bayer-logo.svg");
+
+        })
     }
 
 

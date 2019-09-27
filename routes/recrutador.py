@@ -1,3 +1,4 @@
+from services.recrutadorService.recrutadorService import RecrutadorService
 from flask import render_template, request
 from main import app
 
@@ -5,6 +6,16 @@ from main import app
 @app.route('/recrutador')
 def sistema_base():
     return render_template('recrutador/dashboard.html')
+
+@app.route('/service/recrutador/candidatos_potenciais')
+def candidatos_potenciais_service():
+    pass
+
+@app.route('/service/recrutador/candidato/quantidade')
+def quantidade_candidatos():
+    service = RecrutadorService(request.args.get('recrutadorID'))
+    quantidade_candidatos = service.quantidade_candidatos()
+    return quantidade_candidatos
 
 @app.route('/recrutador/candidatosPotenciais')
 def candidatos_potenciais():

@@ -29,6 +29,7 @@ export class CurriculoController {
                 if (!dadosCEP.erro) {
                     if (!this._estados) {
                         this._estados = this._estados || await this._service.loadEstados('#uf');
+
                         this.atualizaEstados(this._estadoID);
                     }
                     this.atualizaCidades(this._cidadeID, dadosCEP.uf);
@@ -49,21 +50,19 @@ export class CurriculoController {
             });
     }
 
-    _control_endereco() {
+    async _control_endereco() {
         const self = this;
-        document.addEventListener('DOMContentLoaded', async() => {
-            const curriculoService = new CurriculoService();
-            $(this._estadoID).removeAttr('disabled');
-            this._estados = await curriculoService.loadEstados('#uf');
-            this.atualizaEstados(this._estadoID);
+        const curriculoService = new CurriculoService();
+        $(this._estadoID).removeAttr('disabled');
+        this._estados = await curriculoService.loadEstados('#uf');
+        this.atualizaEstados(this._estadoID);
 
-            $(document).on('change', '#uf', async function(e) {
-                self._valida_estado(this.value);
-                self.atualizaCidades(self._cidadeID, $(self._estadoID).val());
-
-            });
+        $(document).on('change', '#uf', async function(e) {
+            self._valida_estado(this.value);
+            self.atualizaCidades(self._cidadeID, $(self._estadoID).val());
 
         });
+
     }
 
     atualizaEstados(element) {

@@ -21,6 +21,7 @@ from services.pontuacaoService.models.curriculo import Curriculo
 from services.dashboardService.dashboardService import DashboardService
 from services.candidatoService.candidatoService import CandidatoService
 from services.desafioService.desafioService import DesafioService
+from services.desbloqueavelService.desbloqueavelService import DesbloqueavelService
 
 
 import json
@@ -34,6 +35,28 @@ def candidato_service():
     service = CandidatoService(request.args.get("candidatoID"))
     candidato = service.buscar_candidato()
     return candidato
+
+@app.route('/service/candidato/atividades')
+def atividades_candidato_service():
+    service = DesafioService(request.args.get("candidatoID"))
+    atividades_candidato = service.buscar_atividades_candidato(request.args.get("atividadeCategoriaID"))
+    return atividades_candidato
+
+@app.route('/service/candidato/desbloqueaveis_candidato', methods=['GET','PUT'])
+def desbloqueaveis_candidato():
+    service = DesbloqueavelService(request.args.get("candidatoID"))
+    if request.method == 'GET':
+        desbloqueaveis = service.buscar_desbloqueaveis_candidato()
+        return desbloqueaveis
+    if request.method == 'PUT':
+        desbloqueaveis = service.atualizar_desbloqueavel_candidato(request.args.get("desbloqueavelID"))
+        return desbloqueaveis
+
+@app.route('/service/candidato/desbloqueavel')
+def desbloqueavel_service():
+    service = DesbloqueavelService(request.args.get("candidatoID"))
+    desbloqueaveis = service.buscar_desbloqueaveis()
+    return desbloqueaveis
 
 @app.route('/service/candidato/atividade_categoria')
 def atividade_categoria():
@@ -215,7 +238,7 @@ def inserir():
 
         candidato = Candidato(candidato_requisicao['nome'],candidato_requisicao['idade'],candidato_requisicao['email'],candidato_requisicao['telefone_residencial'],candidato_requisicao['telefone_celular'],endereco)
         candidatoDAO = CandidatoDAO(candidato)
-        candidato_id = candidatoDAO.insere(endereco_id)
+        candidato_id = candidatoDAO.insere(endereco_id,endereco.realocar)
 
         curriculo = Curriculo(curriculo_request['objetivo_profissional'],experiencias_anteriores,cursos_complementares,idiomas,formacoes_academicas,curriculo_request['salarioExpectativa'],curriculo_request['resumo'],candidato)
         curriculoDAO = CurriculoDAO(curriculo)

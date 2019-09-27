@@ -124,7 +124,348 @@
             <!-- Conteudo Principal -->
 
             <div class="content">
-                <div class="container-fluid"></div>
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="main-panel" style="width:100%">
+
+                                <div class="container-fluid mt-5">
+                                    <div class="col-md-11 m-auto">
+                                        <div class="card" id="conteudoCard">
+                                            <div id="fotoCarreiras"></div>
+                                            <form class="m-3" id="formularioCurriculo">
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label class="bmd-label-floating">Nome completo</label>
+                                                            <input disabled type="text" name="nome" data-parent="candidato" class="form-control" id="nome" maxlength="50" required value="Renan do Nascimento Sanches">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label class="bmd-label-floating">Idade</label>
+                                                            <input disabled type="number" name="idade" data-parent="candidato" class="form-control" max="300" id="idade" required value="22">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label class="bmd-label-floating">E-mail</label>
+                                                            <input disabled type="email" name="email" data-parent="candidato" class="form-control" id="email" maxlength="70" required value="renan.sanches_123@hotmail.com">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <div class="form-group">
+                                                            <label class="bmd-label-floating">Telefone residencial</label>
+                                                            <input disabled type="text" data-parent="candidato" data-valida="telefone-residencial" minlength="14" maxlength="14" name="telefone_residencial" class="form-control" id="telefoneResidencial" inputmode="numeric" value="(11) 2025-3682">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <div class="form-group">
+                                                            <label class="bmd-label-floating">Telefone
+                                                                                        celular</label>
+                                                            <input disabled type="text" data-parent="candidato" data-valida="telefone-celular" minlength="15" maxlength="15" name="telefone_celular" class="form-control" id="telefoneCelular" inputmode="numeric" value="(11) 95936-3429">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label class="bmd-label-floating">Endereço</label>
+                                                            <input disabled type="text" id="endereco" data-parent="endereco" name="rua" required class="form-control" value="Rua Antônio João de Medeiros">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <div class="form-group">
+                                                            <label class="bmd-label-floating">Número</label>
+                                                            <input disabled type="number" name="numero" data-parent="endereco" maxlength="7" id="numeroResidencial" required class="form-control" value="425">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <div class="form-group">
+                                                            <label class="bmd-label-floating">CEP</label>
+                                                            <input disabled data-valida="cep" data-parent="endereco" type="text" maxlength="9" minlength="9" name="cep" id="cep" required class="form-control" value="08140-060">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-4">
+                                                        <div class="form-group">
+                                                            <label class="bmd-label-floating">Estado</label>
+                                                            <select disabled class="form-control text-secondary" data-parent="endereco" required name="uf" id="uf" data-style="btn btn-link">
+                                                                                        <option selected disabled>São Paulo</option>
+                                                                                    </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <div class="form-group">
+                                                            <label class="bmd-label-floating">Cidade</label>
+                                                            <select disabled class="form-control text-secondary" required data-parent="endereco" name="cidade" id="cidade" data-style="btn btn-link">
+                                                                                        <option selected disabled >São Paulo</option>
+                                                                                    </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <div class="form-group">
+                                                            <div class="form-check">
+                                                                <label class="form-check-label">
+                                                                                            <input disabled class="form-check-input"
+                                                                                                data-parent="endereco" id="dispostoMudar"
+                                                                                                name="realocar" type="checkbox">
+                                                                                            Disposto a se mudar
+                                                                                            <span class="form-check-sign">
+                                                                                                <span class="check"></span>
+                                                                                            </span>
+                                                                                        </label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <div class="form-group">
+                                                            <label>Resumo</label>
+                                                            <div class="form-group">
+                                                                <label class="bmd-label-floating">
+                                                                                            Conte mais sobre sua carreira, experiências e
+                                                                                            conhecimentos
+                                                                                        </label>
+                                                                <textarea disabled id="resumoCandidato" name="resumo" class="form-control textarea" rows="7" maxlength="1000" data-valida="caracteres">Desenvolvedor Front-end Angular Junior</textarea>
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label id="objetivo" class="bmd-label-floating">
+                                                                                        Objetivo profissional
+                                                                                    </label>
+                                                            <input type="text" disabled name="objetivo_profissional" class="form-control" value="Desenvolvedor Full-stack MEAN">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label class="bmd-label-floating">Expectativa de
+                                                                                        salário</label>
+                                                            <input type="text" disabled id="salarioExpectativa" name="salarioExpectativa" class="form-control disabled " inputmode="numeric" autocomplete="off" value="R$ 15.000,00">
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div id="campoExperiencias">
+                                                    <div id="experienciaAnterior" data-group="true">
+                                                        <h3>Experiências Anteriores</h3>
+                                                        <div>
+                                                            <div class="row">
+                                                                <div class="col-md-4">
+                                                                    <div class="form-group">
+                                                                        <label class="bmd-label-floating">Nome da empresa</label>
+                                                                        <input type="text" disabled data-parent="experienciasAnteriores" class="form-control" name="nomeEmpresa" value="Vonex Telecomunicações" required>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-4">
+                                                                    <div class="form-group">
+                                                                        <label class="bmd-label-floating">Cargo</label>
+                                                                        <input type="text" disabled data-parent="experienciasAnteriores" class="form-control" name="cargo" value="Estagiário em Desenvolvimento" required>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-4">
+                                                                    <div class="form-group">
+                                                                        <label class="bmd-label-floating">Salário</label>
+                                                                        <input type="text" disabled data-parent="experienciasAnteriores" class="form-control" name="salario" value="R$ 2.000,00" data-valida="salario" inputmode="numeric">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col-md-4">
+                                                                    <div class="form-group">
+                                                                        <label class="bmd-label-floating">Data de entrada</label>
+                                                                        <input type="date" min="1900-01-01" disabled data-parent="experienciasAnteriores" value="2019-01-31" class="form-control" name="dataEntrada" id="dataEntrada${this._dinamicoCampoContador}" data-valida="data" required>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-4">
+                                                                    <div class="form-group">
+                                                                        <label class="bmd-label-floating">Data de saída</label>
+                                                                        <input type="text" min="1900-01-01" value="" disabled data-parent="experienciasAnteriores" class="form-control" name="dataSaida" id="dataSaida${this._dinamicoCampoContador}" data-valida="data" required>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-4">
+                                                                    <div class="form-group">
+                                                                        <div class="form-check">
+                                                                            <label class="form-check-label b-2">
+                                                                                <input class="form-check-input" checked disabled id="empregoAtual${this._dinamicoCampoContador}" data-parent="experienciasAnteriores" type="checkbox" name="trabalhoAtual" data-valida="bloquear,unico" data-eventBloquear="click" data-idBloquear="dataSaida${this._dinamicoCampoContador}">
+                                                                                É meu emprego atual
+                                                                                <span class="form-check-sign">
+                                                                                    <span class="check"></span>
+                                                                                </span>
+                                                                            </label>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col-md-12">
+                                                                    <div class="form-group">
+                                                                        <div class="form-group">
+                                                                            <label class="bmd-label-floating">Principais atividades</label>
+                                                                            <textarea disabled id="descricaoExperiencia${this._dinamicoCampoContador}" data-parent="experienciasAnteriores" class="form-control" name="principais_atividades" rows="5" data-valida="caracteres" maxlength="1000">Automação de Tarefas Com o Desenvolvimento de Scripts em PowerShell</textarea>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <hr>
+                                                        <div>
+                                                            <div class="row">
+                                                                <div class="col-md-4">
+                                                                    <div class="form-group">
+                                                                        <label class="bmd-label-floating">Nome da empresa</label>
+                                                                        <input type="text" disabled data-parent="experienciasAnteriores" class="form-control" name="nomeEmpresa" value="Resource IT" required>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-4">
+                                                                    <div class="form-group">
+                                                                        <label class="bmd-label-floating">Cargo</label>
+                                                                        <input type="text" disabled data-parent="experienciasAnteriores" class="form-control" name="cargo" value="Analista de Suporte Jr" placeholder="Ex: Engenheiro Elétrico" required>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-4">
+                                                                    <div class="form-group">
+                                                                        <label class="bmd-label-floating">Salário</label>
+                                                                        <input type="text" disabled data-parent="experienciasAnteriores" class="form-control" name="salario" value="R$ 1.550,00" data-valida="salario" inputmode="numeric">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col-md-4">
+                                                                    <div class="form-group">
+                                                                        <label class="bmd-label-floating">Data de entrada</label>
+                                                                        <input type="date" min="1900-01-01" disabled data-parent="experienciasAnteriores" value="2018-03-02" class="form-control" name="dataEntrada" id="dataEntrada${this._dinamicoCampoContador}" data-valida="data" required>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-4">
+                                                                    <div class="form-group">
+                                                                        <label class="bmd-label-floating">Data de saída</label>
+                                                                        <input type="date" min="1900-01-01" disabled data-parent="experienciasAnteriores" value="2019-01-31" class="form-control" name="dataSaida" id="dataSaida${this._dinamicoCampoContador}" data-valida="data" required>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-4">
+                                                                    <div class="form-group">
+                                                                        <div class="form-check">
+                                                                            <label class="form-check-label b-2">
+                                                                                    <input class="form-check-input" disabled id="empregoAtual${this._dinamicoCampoContador}" data-parent="experienciasAnteriores" type="checkbox" name="trabalhoAtual" data-valida="bloquear,unico" data-eventBloquear="click" data-idBloquear="dataSaida${this._dinamicoCampoContador}">
+                                                                                    É meu emprego atual
+                                                                                    <span class="form-check-sign">
+                                                                                        <span class="check"></span>
+                                                                                    </span>
+                                                                                </label>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col-md-12">
+                                                                    <div class="form-group">
+                                                                        <div class="form-group">
+                                                                            <label class="bmd-label-floating">Principais atividades</label>
+                                                                            <textarea disabled id="descricaoExperiencia${this._dinamicoCampoContador}" data-parent="experienciasAnteriores" class="form-control" name="principais_atividades" rows="5" data-valida="caracteres" maxlength="1000">Automação de Tarefas Com o Desenvolvimento de Scripts em PowerShell</textarea>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                                <div id="campoFormacoes"></div>
+                                                <div id="campoCursos">
+
+                                                    <h3>Cursos Complementares</h3>
+                                                    <div class="row">
+                                                        <div class="col-md-6">
+                                                            <div class="form-group">
+                                                                <label class="bmd-label-floating">Nome do curso* </label>
+                                                                <input required type="text" disabled class="form-control disabled" value="Curso de Regex" name="nome" data-parent="cursosComplementares" required>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <div class="form-group">
+                                                                <label class="bmd-label-floating">Nome da instituição*</label>
+                                                                <input type="text" class="form-control disabled" disabled value="Alura" name="instituicao" required data-parent="cursosComplementares">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-4">
+                                                            <label class="bmd-label-floating">Data inicial</label>
+                                                            <div class="form-group">
+                                                                <input type="date" disabled min="1900-01-01" value="2019-05-19" name="dataInicial" class="form-control" data-parent="cursosComplementares" id="dataInicialCurso${this._dinamicoCampoContador}">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <div class="form-group">
+                                                                <label class="bmd-label-floating">Duração</label>
+                                                                <select class="form-control" disabled data-parent="cursosComplementares" data-style="btn btn-link" name="duracao" id="duracaoCurso${this._dinamicoCampoContador}">
+                                                                    <option value="" disabled>Duração</option>
+                                                                    <option value="curta">Curta (até 40 horas)</option>
+                                                                    <option value="media">Média (de 41 a 360 horas)</option>
+                                                                    <option value="longa">Longa (acima de 360 horas</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <div class="form-group">
+                                                                <label class="bmd-label-floating">Situação*</label>
+                                                                <select class="form-control" disabled name="situacao" data-parent="cursosComplementares" data-style="btn btn-link">
+                                                                    <option selected disabled >Situação</option> 
+                                                                    <option value="cursando" >Cursando</option>
+                                                                    <option selected value="concluido">Concluído</option>
+                                                                    <option value="interrompido">Interrompido</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <div class="form-group">
+                                                                <div class="form-group">
+                                                                    <label class="bmd-label-floating">Descrição do curso</label>
+                                                                    <textarea disabled id="descricaoCurso${this._dinamicoCampoContador  }" name="descricao" data-parent="cursosComplementares" class="form-control" rows="5" maxlength="1000" data-valida="caracteres">Curso de encontro de padrões em strings.</textarea>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+
+                                                <div id="campoIdiomas"></div>
+
+                                                <div class="row justify-content-center mt-4">
+                                                    <a href="/recrutador/candidatosTotais/1/pontuacao" class="btn btn-outline-primary pull-right mr-4" id="btnEnviar">
+                                                            Pontuação
+                                                    </a>
+                                                    <a href="/recrutador/candidatosTotais/1/pontuacao" class="btn btn-outline-warning pull-right" id="btnEnviar">
+                                                            Experiência do Candidato
+                                                    </a>
+                                                </div>
+                                                <div class="clearfix"></div>
+                                            </form>
+
+                                        </div>
+                                    </div>
+
+                                </div>
+
+
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
 
             </div>
             <!-- Fim do conteudo principal-->

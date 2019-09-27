@@ -2,7 +2,32 @@
     display: none;
 }
 
+.b-2 {
+    bottom: 1rem;
+}
+
+.op-0 {
+    opacity: 0;
+}
+
+#futuristic-theme {
+    z-index: 0;
+}
+
+#formularioCurriculo input,
+#formularioCurriculo textarea,
+#formularioCurriculo select {
+    color: var(--togle-light);
+}
+
+.form-control:disabled {
+    cursor: text!important;
+    pointer-events: all !important;
+}
+
 body {
+    --togle-light: #222;
+    --validacao: firebrick;
     --gold-color: #717500;
     --main-color: #03588C;
     --container-desafio: #FFFE;
@@ -13,6 +38,8 @@ body {
 }
 
 .dark-theme {
+    --validacao: #ff7676;
+    --togle-light: #ccc;
     --borda-container: rgba(0, 97, 127, 0.8);
     --color-score: #fff;
     --gold-color: #FFC260;
@@ -23,6 +50,9 @@ body {
 
 footer {
     background-color: var(--color-secondary);
+    position: absolute;
+    width: 100%;
+    z-index: 0;
 }
 
 @media (min-width: 768px) {
@@ -79,8 +109,8 @@ footer {
 }
 
 .score-box {
-    min-width: 80px;
-    height: 80px;
+    min-width: 90px;
+    height: 90px;
     text-align: center;
     margin-right: 2rem;
     border-radius: 100%;
@@ -326,7 +356,7 @@ footer {
 } */
 
 .mensagemValidacao {
-    color: firebrick;
+    color: var(--validacao);
     font-size: 12px;
 }
 

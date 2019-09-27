@@ -9,3 +9,12 @@
     border: 1px solid #eee2;
     border-collapse: collapse;
 }
+
+.container {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    background-color: #000000;
+}

@@ -5,15 +5,17 @@ import { Desbloqueavel } from '../models/Desbloqueavel.js';
 export class DesbloqueavelController {
 
     constructor(userService) {
-        this.view = new DesbloqueavelView("#desloqueavelContainer");
         this.service = new DesbloqueavelService();
         this.userService = userService;
         this.desbloqueaveis = [];
         this._init();
     }
 
-    _init() {
+    async _init() {
+        const usuario = await this.userService.obterUsuario()
+        this.view = new DesbloqueavelView("#desloqueavelContainer", usuario);
         this.gerarDesbloqueaveis();
+
     }
 
     async obterDesbloqueaveis() {
@@ -29,13 +31,17 @@ export class DesbloqueavelController {
 
     desbloquear(desbloqueavel) {
         const desbloqueavelAnterior = this.desbloqueaveis.find(desbloqueavelLista =>
-            desbloqueavelLista.obtido
+            desbloqueavelLista.selecionado
         )
         if (desbloqueavelAnterior) {
-            desbloqueavelAnterior.obtido = false;
+            desbloqueavelAnterior.selecionado = false;
         }
         this.userService.diminuirPontos(desbloqueavel.pontos_minimos);
-        this.userService.setTema(desbloqueavel.tema);
+        this.userService.updateTema(desbloqueavel.id).then(() => {
+            this.userService.getTema().then(tema =>
+                this.userService.setTema(tema))
+        })
+        desbloqueavel.selecionado = true;
         desbloqueavel.obtido = true;
         desbloqueavel.pontos_minimos = 0;
 

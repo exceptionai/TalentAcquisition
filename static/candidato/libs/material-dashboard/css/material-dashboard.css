@@ -52,7 +52,8 @@ body {
     --text-full-dark: #000;
 }
 
-.dark-theme {
+.dark-theme,
+.futuristic-theme {
     --light: #fff;
     --bg-color-primary: #fff;
     --color-secondary: #333;

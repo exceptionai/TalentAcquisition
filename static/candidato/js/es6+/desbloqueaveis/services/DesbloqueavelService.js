@@ -34,7 +34,9 @@ const desbloqueaveis = [{
 export class DesbloqueavelService {
 
     buscarDesbloqueaveis() {
-        return new Promise(resolve => {
+        return fetch("/service/candidato/desbloqueavel?candidatoID=1")
+            .then(res => res.json())
+        new Promise(resolve => {
             resolve(desbloqueaveis)
         })
 

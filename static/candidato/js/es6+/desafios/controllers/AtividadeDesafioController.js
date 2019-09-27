@@ -2,54 +2,57 @@ import { AtividadeDesafioView } from '../views/AtividadeDesafioView.js';
 import { AtividadeDesafioService } from '../services/AtividadeDesafioService.js';
 
 export class AtividadeDesafioController {
-    constructor(proximaPerguntaSeletor, perguntaAnteriorSeletor, containerPerguntas) {
-        this._proximaPerguntaButton = $(proximaPerguntaSeletor);
-        this._perguntaAnteriorButton = $(perguntaAnteriorSeletor);
+    constructor() {
+        this._proximaPerguntaButton = $("#proximaQuestao");
+        this._perguntaAnteriorButton = $("#questaoAnterior");
+
         this._service = new AtividadeDesafioService();
-        this._view = new AtividadeDesafioView(containerPerguntas);
+        this._view = new AtividadeDesafioView("#questionContainer");
 
         this._init();
     }
 
     _init() {
 
-        this._service.buscarQuestoes().then(questoes => {
-            this._questoes = questoes;
-            return questoes;
-        }).then(questoes => {
-
-            if (this._proximaPerguntaButton.length && this._perguntaAnteriorButton.length) {
-
+        this._service.buscarQuestoes()
+            .then(({ questoes, tempoRestante, titulo }) => {
+                this._questoes = questoes;
                 this._indicePergunta = 0;
                 this._perguntaAtual = questoes[this._indicePergunta];
-                this._perguntaAnterior = null;
-                this._proximaPergunta = questoes[this._indicePergunta + 1];
-            }
+                if (this._proximaPerguntaButton.length && this._perguntaAnteriorButton.length) {
 
-            this._view.render(
-                this._perguntaAtual.titulo,
-                this._perguntaAtual.descricao,
-                this._perguntaAtual.respostas,
-                this._indicePergunta
-            )
+                    this._perguntaAnterior = null;
+                    this._proximaPergunta = questoes[this._indicePergunta + 1];
+                }
 
-            console.log(this._perguntaAnterior)
+                console.log(this._perguntaAtual)
+                this._view.renderTitulo(titulo)
 
-            if (this._proximaPergunta)
-                this._proximaPerguntaButton.css("display", "block")
-            if (this._perguntaAnterior)
-                this._perguntaAnteriorButton.css("display", "block")
+                this._view.renderTempo(tempoRestante);
 
-            $(".flow-question")[this._indicePergunta].classList.add('text-alternate');
-            $(".flow-question")[this._indicePergunta].classList.remove('text-danger');
+                this._view.renderQuantidade(questoes.length);
 
-            this._navegaEntreQuestoes();
+                this._view.renderCircles(questoes.length);
+                this._view.render(
+                    this._perguntaAtual,
+                    this._indicePergunta
+                )
 
-            AtividadeDesafioController._contagemTempoDesafio();
+                if (this._proximaPergunta)
+                    this._proximaPerguntaButton.css("display", "block")
+                if (this._perguntaAnterior)
+                    this._perguntaAnteriorButton.css("display", "block")
 
-            this._confirmarAoSair();
+                $(".flow-question")[this._indicePergunta].classList.add('text-alternate');
+                $(".flow-question")[this._indicePergunta].classList.remove('text-danger');
 
-        })
+                this._navegaEntreQuestoes();
+
+                AtividadeDesafioController._contagemTempoDesafio();
+
+                this._confirmarAoSair();
+
+            })
     }
 
     _navegaEntreQuestoes() {
@@ -90,7 +93,10 @@ export class AtividadeDesafioController {
     proximaQuestao() {
 
         const respostaSelecionada = $(".btn-resposta.resposta-ativada");
-        this._questoes[this._indicePergunta].respostaSelecionada = respostaSelecionada.attr("data-id");
+        let alternativaSelecionada = this._questoes[this._indicePergunta].alternativas.find(alternativa => alternativa.selecionada);
+        if (alternativaSelecionada !== -1) {
+            alternativaSelecionada = respostaSelecionada.attr("data-id");
+        }
 
         this._perguntaAnterior = this._questoes[this._indicePergunta];
         this._perguntaAtual = this._questoes[++this._indicePergunta];
@@ -108,9 +114,7 @@ export class AtividadeDesafioController {
 
 
         this._view.render(
-            this._perguntaAtual.titulo,
-            this._perguntaAtual.descricao,
-            this._perguntaAtual.respostas,
+            this._perguntaAtual,
             this._indicePergunta,
             this._questoes[this._indicePergunta].respostaSelecionada
         )
@@ -136,9 +140,7 @@ export class AtividadeDesafioController {
 
 
         this._view.render(
-            this._perguntaAtual.titulo,
-            this._perguntaAtual.descricao,
-            this._perguntaAtual.respostas,
+            this._perguntaAtual,
             this._indicePergunta,
             this._questoes[this._indicePergunta].respostaSelecionada
         )

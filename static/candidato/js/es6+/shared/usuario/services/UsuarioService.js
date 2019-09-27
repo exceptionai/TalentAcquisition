@@ -7,7 +7,18 @@ const porcentualXP = experienciaAtual / proximoLevel * 100;
 export class UsuarioService {
 
     constructor() {
-        this._usuario = {}
+        this._usuario = {};
+        this._tema = {};
+        this._temaAnterior = {};
+        this.obterUsuario();
+        this._obterDesbloqueaveis();
+    }
+
+    _obterDesbloqueaveis() {
+        this._temaAnterior = this._tema;
+        return fetch(`/service/candidato/desbloqueaveis_candidato?candidatoID=${this.candidatoID}`)
+            .then(res => res.json())
+            .then(tema => this._tema = tema);
     }
 
     obterUsuario() {
@@ -19,19 +30,64 @@ export class UsuarioService {
             })
     }
 
-    setTema(tema) {
-        usuario.tema = tema;
-        localStorage.setItem('tema', tema)
+    _aplicarTema(tema) {
+        const pagina = $("body");
+        pagina.removeClass();
+        pagina.addClass(tema);
+        if (tema)
+            $("#logo-bayer").attr("src", "https://shared.bayer.com/img/logo-wht.svg");
+        else
+            $("#logo-bayer").attr("src", "https://shared.bayer.com/img/bayer-logo.svg");
+
     }
 
-    getTema() {
-        const tema = localStorage.getItem('tema')
-        return tema
+    _aplicarInteratividadeTema(tema) {
+        $("#" + tema).removeClass("op-0");
+
+    }
+
+    setTema(tema) {
+        switch (tema.tipo) {
+
+            case "tema interativo":
+                this._aplicarInteratividadeTema(tema.valor);
+
+            case "tema":
+                this._aplicarTema(tema.valor);
+                break;
+        }
+    }
+
+    updateTema(tema_id) {
+
+
+        const body = JSON.stringify({
+            desbloqueavelId: tema_id,
+            token: this.dadosRequisicao.token,
+            usuarioId: this.dadosRequisicao.candidatoID
+        });
+
+        return fetch(`/service/candidato/desbloqueaveis_candidato?candidatoID=${this.candidatoID}&desbloqueavelID=${tema_id}`, {
+            method: "PUT",
+            body
+        }).then(res => {
+            if (this._tema.valor) $("#" + this._tema.valor).addClass("op-0");
+
+            return res
+        })
+
+    }
+
+
+
+    async getTema() {
+        await this._obterDesbloqueaveis();
+        return Promise.resolve(this._tema);
     }
 
     diminuirPontos(pontos) {
-        this._usuario.candidato.pontos_consumiveis -= pontos;
-        localStorage.setItem('pontos', usuario.pontos)
+        // this._usuario.candidato.pontos_consumiveis -= pontos;
+        // localStorage.setItem('pontos', usuario.pontos)
     }
 
     get dadosRequisicao() {

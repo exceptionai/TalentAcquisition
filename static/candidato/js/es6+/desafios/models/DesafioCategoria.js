@@ -1,5 +1,6 @@
 export class DesafioCategoria {
-    constructor(titulo, descricao, pontosConquistados, pontosADesbloquear, desafiosRealizados, desafiosARealizar, tempo) {
+    constructor(id, titulo, descricao, pontosConquistados, pontosADesbloquear, desafiosRealizados, desafiosARealizar, tempo) {
+        this._id = id;
         this._titulo = titulo;
         this._descricao = descricao;
         this._pontosConquistados = pontosConquistados;
@@ -7,6 +8,10 @@ export class DesafioCategoria {
         this._desafiosRealizados = desafiosRealizados;
         this._desafiosARealizar = desafiosARealizar;
         this._tempo = tempo;
+    }
+
+    get id() {
+        return this._id;
     }
 
     get titulo() {

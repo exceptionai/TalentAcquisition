@@ -11,6 +11,18 @@ export class DesafiosCategoriaController {
     _init() {
         this._service.buscarDesafiosCategoria().then(desafiosCategorias => {
             this._view.renderAll(desafiosCategorias);
+
+            this._esconderModal();
         })
+    }
+
+    _esconderModal() {
+        window.interceptarCliques = true;
+        $("a").click(function(e) {
+            if (this.hasAttribute('modal-link')) {
+                $("[modal-element]").modal("hide");
+            }
+            window.interceptarCliques = false;
+        });
     }
 }

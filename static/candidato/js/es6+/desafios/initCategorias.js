@@ -1,14 +1,6 @@
-import { DesafiosCategoriaController } from "./controllers/DesafiosCategoriaController.js";
-
+import { DesafiosCategoriaController }
+from "./controllers/DesafiosCategoriaController.js";
+export { DesafiosCategoriaController }
 
 const desafiosCategoriaController = new DesafiosCategoriaController();
-window.interceptarCliques = true;
 console.log($("[modal-element]"))
-
-$("a").click(function(e) {
-    if (this.hasAttribute('modal-link')) {
-        $("[modal-element]").modal("hide");
-        window.interceptarCliques = false;
-
-    }
-});

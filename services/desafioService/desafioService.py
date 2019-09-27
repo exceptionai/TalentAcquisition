@@ -40,3 +40,31 @@ class DesafioService:
                     "id": atividade_categoria[7]
                 })
         return json.dumps(atividades_categoria_dict)
+
+    def buscar_atividades_candidato(self, atividade_desafio_id):
+        atividades = self.dao.buscar_atividades(atividade_desafio_id)
+        dados_atividade = self.dao.buscar_tempo_titulo_atividade_categoria(atividade_desafio_id)
+
+        atividades_result = []
+        tempo_restante_result = dados_atividade[0]
+        titulo_atividade = dados_atividade[1]
+
+        for atividade in  atividades:
+            alternativas = self.dao.buscar_alternativas(atividade[2])
+            print(alternativas is None)
+            atividades_result.append(
+                {
+                    "titulo": atividade[0],
+                    "descricao": atividade[1],
+                    "alternativas": alternativas if alternativas else []
+                }
+                
+            )
+
+        atividades_dict = {
+            "atividades": atividades_result,
+            "tempoRestante": tempo_restante_result,
+            "titulo": titulo_atividade
+        }
+
+        return json.dumps(atividades_dict)
