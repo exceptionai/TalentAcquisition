@@ -20,13 +20,18 @@ export class DashboardService {
 
     getDadosDesempenhoSemanal() {
         const dataInicio = new Date();
+        dataInicio.setHours(0);
+        dataInicio.setMinutes(0);
+        dataInicio.setSeconds(0);
         dataInicio.setDate(dataInicio.getDate() - dataInicio.getDay());
         const dataFinal = new Date();
-        return fetch(`/service/candidato/desempenho?candidatoID=${this.dadosRequisicao.candidatoID}&dataInicial=${dataInicio.toISOString()}&dataFinal=${dataFinal.toISOString()}&token=${this.dadosRequisicao.token}`)
+        dataFinal.setHours(23);
+        dataFinal.setMinutes(59);
+        dataFinal.setSeconds(59);
+        return fetch(`/service/candidato/desempenho?candidatoID=${this.dadosRequisicao.candidatoID}&dataInicial=${dataInicio.toISOString().substr(0,11)}&dataFinal=${dataFinal.toISOString().substr(0,11)}&token=${this.dadosRequisicao.token}`)
             .then(res => res.json())
             .then(dados => {
                 const labels = this._parseLabelsChartSemanal(new Date().getDay() + 1);
-
                 let series;
                 if (!dados.length) {
                     series = [{
@@ -35,6 +40,11 @@ export class DashboardService {
                     }]
                 } else {
                     series = this._parsePontuacoesChart(dados, dataInicio, dataFinal);
+                    if (dataInicio.getDate() - dataInicio.getDay() < 3) {
+                        for (let i = 0; i < 6 - dados.length; i++) {
+                            series[0].data.push(0);
+                        }
+                    }
                 }
                 return { labels, series }
             })
@@ -47,7 +57,7 @@ export class DashboardService {
     }
 
     _adicionarDatas(destino, dataInicio, dataFinal, dado) {
-        for (var i = new Date(dataInicio); i.getDate() <= new Date(dataFinal).getDate(); i.setDate(i.getDate() + 1)) {
+        for (var i = new Date(dataInicio); i.getDay() <= new Date(dataFinal).getDay(); i.setDate(i.getDate() + 1)) {
             if (i.getDate() == new Date(dataFinal).getDate()) {
                 destino.push(dado.pontuacao);
             } else {

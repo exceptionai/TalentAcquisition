@@ -1,14 +1,14 @@
-from flask import render_template, request
+from flask import render_template, request, redirect
 from main import app
 
-from services.pontuacaoService.DAO.curriculoDAO import CurriculoDAO
-from services.pontuacaoService.DAO.cursoExtraCurricularDAO import CursoExtraCurricularDAO
-from services.pontuacaoService.DAO.experienciaAnteriorDAO import ExperienciaAnteriorDAO
-from services.pontuacaoService.DAO.candidatoDAO import CandidatoDAO
-from services.pontuacaoService.DAO.enderecoDAO import EnderecoDAO
-from services.pontuacaoService.DAO.formacaoAcademicaDAO import FormacaoAcademicaDAO
-from services.pontuacaoService.DAO.idiomaDAO import IdiomaDAO
-from services.pontuacaoService.DAO.proficienciaDAO import ProficienciaDAO
+from services.pontuacaoService.DAOs.curriculoDAO import CurriculoDAO
+from services.pontuacaoService.DAOs.cursoExtraCurricularDAO import CursoExtraCurricularDAO
+from services.pontuacaoService.DAOs.experienciaAnteriorDAO import ExperienciaAnteriorDAO
+from services.pontuacaoService.DAOs.candidatoDAO import CandidatoDAO
+from services.pontuacaoService.DAOs.enderecoDAO import EnderecoDAO
+from services.pontuacaoService.DAOs.formacaoAcademicaDAO import FormacaoAcademicaDAO
+from services.pontuacaoService.DAOs.idiomaDAO import IdiomaDAO
+from services.pontuacaoService.DAOs.proficienciaDAO import ProficienciaDAO
 from services.pontuacaoService.controllers.curriculoController import CurriculoController
 from services.pontuacaoService.models.cursoExtraCurricular import CursoExtraCurricular
 from services.pontuacaoService.models.experienciaAnterior import ExperienciaAnterior
@@ -22,19 +22,91 @@ from services.dashboardService.dashboardService import DashboardService
 from services.candidatoService.candidatoService import CandidatoService
 from services.desafioService.desafioService import DesafioService
 from services.desbloqueavelService.desbloqueavelService import DesbloqueavelService
-
-
+from services.usuarioService.usuarioService import UsuarioService
+from services.pontuacaoService.pontuacaoService import PontuacaoService
+import datetime
 import json
+import os
+import jwt
+app.secret_key = os.urandom(24)
+
+
+def decode_auth_token(auth_token):
+    """
+    Decodes the auth token
+    :param auth_token:
+    :return: integer|string
+    """
+    try:
+        print(auth_token)
+        print('\n\n\n')
+        payload = jwt.decode(auth_token, app.config.get('SECRET_KEY'), algorithms=['HS256'])
+        return payload['sub']
+    except jwt.ExpiredSignatureError:
+        print('token expirado')
+        return False
+    except jwt.InvalidTokenError as e:
+        print(e)
+        return False
+
 
 @app.route('/candidato')
 def candidato():
-    return render_template('candidato/dashboard.html')
+    token = request.args.get("token")
+    if(decode_auth_token(token)):
+        return render_template('candidato/dashboard.html')
+    return json.dumps({"message": "Token Invalido", "location":"/login"}), 401
+    
 
-@app.route('/service/candidato')
-def candidato_service():
+def candidato_service_post():
+    usuario_service = UsuarioService()
+    dados_usuario = usuario_service.inserir(request.json['login'])
+    pontuacao_service = PontuacaoService()
+    dados_pontuacao = pontuacao_service.inserir_pontuacao_candidato(70)
+
+    candidato_service = CandidatoService()
+    dados_candidato = candidato_service.inserir(json.loads(dados_usuario)['nomeCompleto'],json.loads(dados_usuario)['usuarioID'],json.loads(dados_pontuacao)['pontuacaoCandidatoID'],1)
+    
+    candidato_id = json.loads(dados_candidato)['candidatoID']
+    candidato_service.inserir_fase(candidato_id,1,1,70)
+    candidato_service.inserir_fase(candidato_id,2,2,0)
+    pontuacao_service.inserir_historico(70,candidato_id)
+
+    desbloqueavel_service = DesbloqueavelService(candidato_id)
+    tema_padrao_id = 1
+    desbloqueavel_service.obter_desbloqueavel(tema_padrao_id)
+    desbloqueavel_service.selecionar_desbloqueavel(tema_padrao_id)
+
+    return dados_candidato, 201
+
+def candidato_service_get():
     service = CandidatoService(request.args.get("candidatoID"))
-    candidato = service.buscar_candidato()
-    return candidato
+    if(service.valida_token(request.args.get("token"))):
+        candidato = service.buscar()
+        return candidato
+    else:
+        return json.dumps({"mensagem": "token invalido"}), 401
+
+@app.route('/service/candidato',methods=['GET','POST'])
+def candidato_service():
+    if request.method == 'GET':
+        return candidato_service_get()
+
+    if request.method == 'POST':
+        return candidato_service_post()
+
+
+@app.route('/service/candidato/autenticar',methods=['POST'])
+def autenticar():
+    service = UsuarioService()
+    try:
+        print(request.json)
+        dados_usuario = service.autenticar(request.json["email"],request.json["senha"])
+        return dados_usuario, 200
+    except Exception as e:
+        print(e)
+        return json.dumps({"mensagem":"login ou senha inválidos"}), 401
+
 
 @app.route('/service/candidato/atividades')
 def atividades_candidato_service():
@@ -42,15 +114,28 @@ def atividades_candidato_service():
     atividades_candidato = service.buscar_atividades_candidato(request.args.get("atividadeCategoriaID"))
     return atividades_candidato
 
-@app.route('/service/candidato/desbloqueaveis_candidato', methods=['GET','PUT'])
+@app.route('/service/candidato/desbloqueaveis_candidato', methods=['GET','PUT','POST'])
 def desbloqueaveis_candidato():
-    service = DesbloqueavelService(request.args.get("candidatoID"))
     if request.method == 'GET':
+        service = DesbloqueavelService(request.args.get("candidatoID"))
         desbloqueaveis = service.buscar_desbloqueaveis_candidato()
         return desbloqueaveis
     if request.method == 'PUT':
-        desbloqueaveis = service.atualizar_desbloqueavel_candidato(request.args.get("desbloqueavelID"))
+        service = DesbloqueavelService(request.args.get("candidatoID"))
+        desbloqueaveis = service.selecionar_desbloqueavel(request.args.get("desbloqueavelID"))
         return desbloqueaveis
+    if request.method == 'POST':
+        desbloqueavel_id = request.json["desbloqueavelID"]
+        candidato_id = request.json["candidatoID"]
+        service = DesbloqueavelService(candidato_id)
+        desbloqueaveis = service.obter_desbloqueavel(desbloqueavel_id)
+        return desbloqueaveis
+
+@app.route('/service/candidato/diminuir_pontuacao')
+def diminuir_pontuacao():
+    service = CandidatoService(request.args.get("candidatoID"))
+    mensagem = service.diminuir_pontos(request.args.get("pontos"))
+    return mensagem
 
 @app.route('/service/candidato/desbloqueavel')
 def desbloqueavel_service():
@@ -73,7 +158,10 @@ def desafios_service():
 
 @app.route('/candidato/vaga/<id_vaga>')
 def candidato_vaga(id_vaga):
-    return render_template('candidato/vaga.html')
+    token = request.args.get("token")
+    if(decode_auth_token(token)):
+        return render_template('candidato/vaga.html')
+    return json.dumps({"mensagem": "Token Invalido"}), 401
 
 @app.route('/service/candidato/fase')
 def fase():
@@ -101,36 +189,61 @@ def evolucao_progressiva():
 
 @app.route('/candidato/curriculo')
 def formulario_curriculo():
-    return render_template('candidato/curriculo.html')
+    token = request.args.get("token")
+    if(decode_auth_token(token)):
+        return render_template('candidato/curriculo.html')
+    return json.dumps({"mensagem": "Token Invalido"}), 401
 
 @app.route('/candidato/desbloqueaveis')
 def desbloqueaveis():
-    return render_template('candidato/desbloqueaveis.html')
+    token = request.args.get("token")
+    if(decode_auth_token(token)):
+        return render_template('candidato/desbloqueaveis.html')
+    return json.dumps({"mensagem": "Token Invalido"}), 401
+
 
 @app.route('/candidato/duvidas')
 def duvidas():
-    return render_template('candidato/duvidas.html')
+    token = request.args.get("token")
+    if(decode_auth_token(token)):
+        return render_template('candidato/duvidas.html')
+    return json.dumps({"mensagem": "Token Invalido"}), 401
 
 @app.route('/candidato/conhecaMais')
 def conhecaMais():
-    return render_template('candidato/conhecaMais.html')
+    token = request.args.get("token")
+    if(decode_auth_token(token)):
+        return render_template('candidato/conhecaMais.html')
+    return json.dumps({"mensagem": "Token Invalido"}), 401
 
 @app.route('/candidato/desafios')
 def desafios():
-    return render_template('candidato/desafios.html')
+    token = request.args.get("token")
+    if(decode_auth_token(token)):
+        return render_template('candidato/desafios.html')
+    return json.dumps({"mensagem": "Token Invalido"}), 401
 
 @app.route('/candidato/oportunidades')
 def oportunidades():
-    return render_template('candidato/oportunidades.html')
+    token = request.args.get("token")
+    if(decode_auth_token(token)):
+        return render_template('candidato/oportunidades.html')
+    return json.dumps({"mensagem": "Token Invalido"}), 401
 
 
 @app.route('/candidato/desafios/categoria/<id_categoria>')
 def categoria(id_categoria):
-    return render_template('candidato/desafiosCategoria.html')
+    token = request.args.get("token")
+    if(decode_auth_token(token)):
+        return render_template('candidato/desafiosCategoria.html')
+    return json.dumps({"mensagem": "Token Invalido"}), 401
 
 @app.route('/candidato/desafios/categoria/<id_categoria>/atividade/<id_atividade>')
 def atividade(id_categoria, id_atividade):
-    return render_template('candidato/desafiosCategoriaAtividade.html')
+    token = request.args.get("token")
+    if(decode_auth_token(token)):
+        return render_template('candidato/desafiosCategoriaAtividade.html')
+    return json.dumps({"mensagem": "Token Invalido"}), 401
 
 @app.route('/candidato/curriculo', methods=['POST', ])
 def inserir():

@@ -1,4 +1,4 @@
-from services.pontuacaoService.DAO.curriculoDAO import CurriculoDAO
+from services.pontuacaoService.DAOs.curriculoDAO import CurriculoDAO
 from services.pontuacaoService.analises.analiseCurriculo import AnaliseCurriculo
 from flask import render_template, request
 from main import app

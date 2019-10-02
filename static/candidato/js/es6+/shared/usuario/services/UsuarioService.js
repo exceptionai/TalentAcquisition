@@ -22,7 +22,7 @@ export class UsuarioService {
     }
 
     obterUsuario() {
-        return fetch(`service/candidato?candidatoID=${this.candidatoID}`)
+        return fetch(`service/candidato?candidatoID=${this.candidatoID}&token=${this.token}`)
             .then(candidato => candidato.json())
             .then(candidato => {
                 this._usuario = candidato;
@@ -37,7 +37,7 @@ export class UsuarioService {
         if (tema)
             $("#logo-bayer").attr("src", "https://shared.bayer.com/img/logo-wht.svg");
         else
-            $("#logo-bayer").attr("src", "https://shared.bayer.com/img/bayer-logo.svg");
+            $("#logo-bayer").attr("src", "/static/shared/img/bayer-logo.svg");
 
     }
 
@@ -47,6 +47,7 @@ export class UsuarioService {
     }
 
     setTema(tema) {
+        console.log(tema, 'tema')
         switch (tema.tipo) {
 
             case "tema interativo":
@@ -86,8 +87,12 @@ export class UsuarioService {
     }
 
     diminuirPontos(pontos) {
-        // this._usuario.candidato.pontos_consumiveis -= pontos;
-        // localStorage.setItem('pontos', usuario.pontos)
+        fetch(`/service/candidato/diminuir_pontuacao?candidatoID=${this.candidatoID}&pontos=${pontos}`)
+            .then(res => res.json())
+            .then(res => {
+                $(".qntPontos").html($(".qntPontos").html() - pontos);
+                return res;
+            })
     }
 
     get dadosRequisicao() {
@@ -98,7 +103,7 @@ export class UsuarioService {
     }
 
     get token() {
-        return 123;
+        return localStorage.getItem("token");
     }
 
     get candidatoID() {

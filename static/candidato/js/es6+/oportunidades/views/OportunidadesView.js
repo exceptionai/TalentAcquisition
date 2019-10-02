@@ -47,6 +47,8 @@ export class OportunidadesView {
             const template = this._template(vaga);
             vagasContainer.append(template);
         }
+        console.log(this._container)
+        if (!vagas.length) vagasContainer.html("<h2 class='font-white'>Não há novas vagas cadastradas</h2>");
         this._container.append(vagasContainer);
     }
 }

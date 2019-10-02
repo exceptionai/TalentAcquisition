@@ -1,6 +1,7 @@
 import { DesbloqueavelView } from '../views/DesbloqueavelView.js';
 import { DesbloqueavelService } from '../services/DesbloqueavelService.js';
 import { Desbloqueavel } from '../models/Desbloqueavel.js';
+import { NotificacaoService } from '../../curriculo/services/NotificacaoService.js';
 
 export class DesbloqueavelController {
 
@@ -29,14 +30,22 @@ export class DesbloqueavelController {
         this.view.renderAll(desbloqueaveis, this.desbloquear.bind(this));
     }
 
-    desbloquear(desbloqueavel) {
+    async desbloquear(desbloqueavel) {
         const desbloqueavelAnterior = this.desbloqueaveis.find(desbloqueavelLista =>
             desbloqueavelLista.selecionado
         )
         if (desbloqueavelAnterior) {
             desbloqueavelAnterior.selecionado = false;
         }
-        this.userService.diminuirPontos(desbloqueavel.pontos_minimos);
+        if (!desbloqueavel.obtido) {
+            this.userService.diminuirPontos(desbloqueavel.pontos_minimos);
+        }
+
+        if (!desbloqueavel.obtido) {
+            await this.service.obterDesbloqueavel(desbloqueavel.id);
+            NotificacaoService.sucesso("Desbloqueavel obtido com sucesso");
+        }
+
         this.userService.updateTema(desbloqueavel.id).then(() => {
             this.userService.getTema().then(tema =>
                 this.userService.setTema(tema))

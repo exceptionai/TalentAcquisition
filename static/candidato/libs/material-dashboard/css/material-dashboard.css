@@ -16,6 +16,10 @@
 
 /*     brand Colors              */
 
+.font-white {
+    color: var(--light)!important;
+}
+
 body {
     --bg-color-primary: #624862;
     --color-secondary: #fff;
@@ -67,6 +71,10 @@ body {
     --card-color-inicial: #737373;
     --text-primary: #fff;
     --text-dark: #a9afbb;
+}
+
+.futuristic-theme {
+    --color-secondary: #101520;
 }
 
 .btn-alternate {

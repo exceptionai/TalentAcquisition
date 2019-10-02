@@ -5,7 +5,7 @@ class ConnectionFactory:
     _cursor = None
 
     @classmethod
-    def get_connection(cls,database='bayerchallenge',user='root',password='password'):
+    def get_connection(cls,database='bayerchallenge',user='root',password='Voip_Nexus1'):
         if cls._connection is None:
             cls._connection = msql.connect(user=user,password=password,database=database)
         return cls._connection

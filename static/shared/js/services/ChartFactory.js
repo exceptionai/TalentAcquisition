@@ -1,4 +1,4 @@
-import 'https://cdn.jsdelivr.net/npm/apexcharts@latest';
+import '/static/shared/libs/apexcharts/apexcharts@latest.js';
 
 export class ChartFactory {
 
@@ -13,6 +13,7 @@ export class ChartFactory {
     _defaultOptions(series, labels) {
         return {
             chart: {
+
                 foreColor: '#fff',
                 height: 170,
                 type: 'line',
@@ -21,7 +22,10 @@ export class ChartFactory {
                 },
 
                 toolbar: {
-                    show: false
+                    show: false,
+                    tools: {
+                        download: false
+                    }
                 }
             },
             stroke: {

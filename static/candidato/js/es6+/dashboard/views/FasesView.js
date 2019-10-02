@@ -13,7 +13,7 @@ export class FasesView {
         return `
             <tr>
                 <td>${fase.descricao}</td>
-                <td>${fase.status}</td>
+                <td>${fase.status.charAt(0).toUpperCase() + fase.status.substr(1).toLowerCase()}</td>
                 <td>${fase.pontuacao || '-'}</td>
                 <td>${Formater.diaMes(fase.dataInicial)} - ${Formater.diaMes(fase.dataFinal)}</td>
             </tr>

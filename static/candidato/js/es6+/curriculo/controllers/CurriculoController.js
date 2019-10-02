@@ -20,7 +20,21 @@ export class CurriculoController {
         this._contadorExperiencias = 0;
         this._form = document.querySelector(formularioID);
         this._service = new CurriculoService();
-        this._control_endereco();
+        this._curriculoView = new CurriculoView();
+        this._init();
+    }
+
+    async _init() {
+        await this._control_endereco();
+        const curriculo = await this._service.buscarCurriculo();
+        this._curriculoView.preencherFormulario(curriculo)
+        $("#btnEditar").click(this.habilitarEdicao.bind(this));
+
+    }
+
+    habilitarEdicao(e) {
+        this._curriculoView.desbloquearCampos(e)
+        this._curriculoView.habilitarEdicao(e.target)
     }
 
     carregarCEP(CEP) {
@@ -45,8 +59,6 @@ export class CurriculoController {
                     elementoEndereco.trigger('change');
 
                 }
-
-
             });
     }
 
@@ -169,7 +181,9 @@ export class CurriculoController {
     }
 
     enviarCurriculo() {
-        if (ValidacaoFormularioController.valida(this._form)) {
+        this._curriculoView.bloquearCampos();
+        this._curriculoView.habilitarEnvio("#btnEnviar");
+        if (ValidacaoFormularioController.valida(this._form) && 0) {
             let curriculoObj = FormHelper.paraObjeto(this._form);
             let curriculoJSON = JSON.stringify(curriculoObj);
             this._service.enviar("/candidato/curriculo", curriculoJSON)

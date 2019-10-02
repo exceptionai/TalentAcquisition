@@ -5,7 +5,8 @@ export class DashboardService {
     }
 
     getVagasAberto() {
-        return new Promise(resolve => resolve({ vagasAberto: 130 }))
+        return fetch("/service/recrutador/vagas/quantidade")
+            .then(res => res.json())
     }
 
     getCandidatosTotais() {

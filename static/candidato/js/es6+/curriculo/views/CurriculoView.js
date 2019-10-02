@@ -32,4 +32,52 @@ export class CurriculoView {
     template() {
         throw new Error('O método template deve ser sobreescrito')
     }
+
+    habilitarEdicao(botaoEdicao) {
+        $("#btnEnviar").removeClass("d-none");
+        $(botaoEdicao).addClass("d-none");
+    }
+
+    habilitarEnvio(botaoEnvio) {
+        $("#btnEditar").removeClass("d-none");
+        $(botaoEnvio).addClass("d-none");
+    }
+
+    desbloquearCampos(e) {
+        $("form .btn-danger, form .btn-high-danger").removeClass("d-none");
+        $("#formularioCurriculo input,#formularioCurriculo textarea,#formularioCurriculo select").attr('disabled', false);
+        $("#formularioCurriculo p.text-muted").show();
+    }
+
+    bloquearCampos() {
+        $("#formularioCurriculo input,#formularioCurriculo textarea,#formularioCurriculo select").attr('disabled', true);
+        $("#formularioCurriculo p.text-muted").hide();
+        $("form .btn-danger, form .btn-high-danger").addClass("d-none");
+    }
+
+    preencherFormulario(camposCurriculo) {
+        const campos = Object.keys(camposCurriculo);
+        $("#botaoExperiencias").click();
+        $("#botaoFormacoes").click();
+        $("#botaoCursos").click();
+        $("#botaoIdiomas").click();
+        this.bloquearCampos()
+        campos.forEach(campo => {
+            const $campo = $(`[name=${campo}]`);
+            $campo.val(camposCurriculo[campo]);
+            $campo.trigger("change");
+
+            const $campoPai = $(`[data-parent=${campo}]`);
+            if ($campoPai.length) {
+                for (let campoService in camposCurriculo[campo]) {
+                    console.log(`[data-parent=${campo}][name=${campoService}]`)
+                    const $campoPai = $(`[data-parent=${campo}][name=${campoService}]`);
+                    $campoPai.val(camposCurriculo[campo][campoService])
+                    $campoPai.trigger("change");
+                }
+            }
+            if (!$campo.attr('data-parent')) {}
+        })
+
+    }
 }

@@ -30,6 +30,7 @@ export class DashboardController {
 
     async _buscarCandidatura() {
         const candidatura = await this._service.buscarCandidatura();
+        this._view.preencherAtualizacaoCard("#dataVerificacaoCandidatura", "Última hora");
         this._view.preencherCardCandidatura(candidatura);
     }
 
@@ -38,7 +39,47 @@ export class DashboardController {
         console.log(evolucaoProgressiva)
         const { series, labels } = evolucaoProgressiva;
 
-        this._chartFactory.create('#evolucaoProgressiva', series, labels);
+        let options = {}
+        if (series.length == 1) options = {
+            chart: {
+                type: 'bar',
+                height: 170,
+                toolbar: {
+
+                    tools: {
+                        download: false
+                    }
+                }
+            },
+            xaxis: {
+                labels: {
+                    style: {
+                        colors: ["#FFF"]
+                    }
+                }
+            },
+            yaxis: {
+                labels: {
+                    style: {
+                        color: "#FFF"
+                    }
+                }
+            },
+            dataLabels: {
+                style: {
+                    colors: ["#333"]
+                }
+            },
+            plotOptions: {
+                bar: {
+                    horizontal: false,
+                    endingShape: 'flat',
+                    columnWidth: '18%'
+                }
+            }
+        };
+
+        this._chartFactory.create('#evolucaoProgressiva', series, labels, options);
         this._view.preencherDataDesempenhoProgressivo("#dataDesempenhoSemanal", "Última Hora")
     }
 

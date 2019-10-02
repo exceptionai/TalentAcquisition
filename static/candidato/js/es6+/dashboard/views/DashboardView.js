@@ -5,6 +5,10 @@ export class DashboardView {
         this._campoDataCandidatura = $(seletorDataCandidatura);
     }
 
+    preencherAtualizacaoCard(seletorAtualizacaoCard, mensagem) {
+        $(seletorAtualizacaoCard).text(mensagem)
+    }
+
     preencherCardCandidatura(candidatura) {
         this._campoDescricaoCandidatura.hide();
         this._campoDataCandidatura.hide();

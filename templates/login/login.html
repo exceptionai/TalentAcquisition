@@ -3,58 +3,408 @@
 
 <head>
     <title>Bayer - Login</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"> -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/solid.css">
-    <link rel="stylesheet" type="text/css" href="/static/login/login.css">
     <link rel="icon" type="image" href="/static/shared/img/icon.png" />
+
+    <link rel="stylesheet" type="text/css" href="/static/login/login.css">
+    <!--     Fonts and icons     -->
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" />
+
+    <!-- CSS Files -->
+    <!-- <link rel="stylesheet" href="/static/shared/libs/font-awesome/css/all.css"> -->
+    <link rel="stylesheet" href="/static/shared/libs/font-awesome/css/all.css">
+    <link href="/static/login/assets/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="/static/login/assets/css/material-bootstrap-wizard.css" rel="stylesheet" />
+    <link rel="stylesheet" href="/static/shared/libs/toastr/toastr.min.css">
+
 </head>
 
-<body>
+<body class="d-flex align-items-center main-container">
 
-    <div class="modal-dialog text-center">
-        <div class="col-sm-9 main-section">
-            <div class="modal-content">
-                <div class="col-12 user-img">
-                    <img src="https://shared.bayer.com/img/bayer-logo.svg">
+
+
+    <div class="container ">
+        <div class="row">
+            <div class="modal-content col-sm-4 content-container" id="login" ex-login-form>
+                <div class="min-90">
+                    <div class="col-12 user-img ">
+                        <img src="https://shared.bayer.com/img/bayer-logo.svg">
+                    </div>
+                    <div class="row text-center">
+                        <span id="error-handler" class="login-error"></span>
+                    </div>
+                    <form class="col-12" action="/" name="login" id="loginForm">
+                        <div class="form-group grouped-input">
+                            <input type="email" class="form-control login-input" name="emailLogin" id="emailLogin" placeholder="Insira seu email">
+                        </div>
+                        <div class="form-group grouped-input" id="passwordField">
+                            <input type="password" id="passwordLogin" class="form-control login-input" placeholder="Senha" name="passwordLogin">
+                        </div>
+                        <div class="actions d-flex justify-content-center">
+                            <button type="submit" class="btn btn-primary btn-login mr-4" id="enviar"><i class="fas fa-sign-in-alt pr-2"></i>Entrar</button>
+                            <button type="submit" class="btn btn-outline-info border" id="registrar"><i class="fas fa-sign-in-alt pr-2"></i>Cadastrar</button>
+                        </div>
+                    </form>
+
+                    <div class="d-flex justify-content-between align-items-center mt-5 mb-4">
+                        <div class=" forgot">
+                            <a href="#">Precisa de ajuda?</a>
+                        </div>
+                        <div class="togglebutton">
+                            <label class="text-primary">
+                                <input type="checkbox" id="recrutador">
+                                    Recrutador
+                            </label>
+                        </div>
+                    </div>
                 </div>
+            </div>
+            <div id="register-container" class="d-none">
+                <div class="col-sm-9 d-none" id="register">
+                    <!--      Wizard container        -->
+                    <div class="wizard-container">
+                        <div class="card wizard-card" data-color="purple" id="wizardProfile">
+                            <form action="" method="">
+                                <!--        You can switch " data-color="purple" "  with one of the next bright colors: "green", "orange", "red", "blue"       -->
+                                <div class="nav-content d-flex">
+                                    <a class="voltar-login tab-login" href="/login">LOGIN</a>
+                                    <a class="voltar-login bg-white tab-register" href="#">REGISTRAR</a>
 
-                <form class="col-12" action="/" name="login" id="login">
-                    <div class="form-group">
-                        <input type="text" class="form-control" id="email" placeholder="Insira seu email">
-                    </div>
-                    <div class="form-group">
-                        <input type="password" class="form-control" placeholder="Senha">
-                    </div>
-                    <button type="submit" class="btn" id="enviar"><i class="fas fa-sign-in-alt"></i>Entrar</button>
-                </form>
+                                </div>
+                                <div class="wizard-header">
+                                    <h3 class="wizard-title">
+                                        Faça parte do nosso time!
+                                    </h3>
+                                    <h5>Preencha com seus dados e em poucas etapas poderá desfrutar de um sistema completamente interativo e disruptivo.</h5>
+                                </div>
+                                <div class="wizard-navigation">
+                                    <ul>
+                                        <li><a href="#about" data-toggle="tab">Login</a></li>
+                                        <li><a href="#curriculo" data-toggle="tab">Curriculo</a></li>
+                                        <li><a href="#areaInteresse" disabled data-toggle="tab">Área de Interesse</a></li>
+                                        <li><a href="#pontuacoes" disabled data-toggle="tab">Pontuações</a></li>
+                                    </ul>
+                                </div>
 
-                <div class="col-12 forgot">
-                    <a href="#">Precisa de ajuda?</a>
+                                <div class="tab-content">
+                                    <div class="tab-pane" id="about">
+                                        <div class="row">
+                                            <h4 class="info-text">Comece preenchendo as informações de login</h4>
+                                            <div class="col-sm-4 ">
+                                                <div class="picture-container">
+                                                    <div class="picture">
+                                                        <img src="assets/img/default-avatar.png" class="picture-src" id="wizardPicturePreview" title="" />
+                                                        <input type="file" id="wizard-picture">
+                                                    </div>
+                                                    <h6>Escolha uma Foto</h6>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-7">
+                                                <div class="input-group">
+                                                    <span class="input-group-addon">
+                                                            <i class="material-icons">face</i>
+                                                        </span>
+                                                    <div class="form-group label-floating">
+                                                        <label class="control-label">Nome completo<small>(obrigatório)</small></label>
+                                                        <input data-parent="login" name="login[nomeCompleto]" type="text" class="form-control">
+                                                    </div>
+                                                </div>
+
+                                                <div class="input-group">
+                                                    <span class="input-group-addon">
+                                                            <i class="material-icons">email</i>
+                                                        </span>
+                                                    <div class="form-group label-floating">
+                                                        <label class="control-label">Email<small>(obrigatório)</small></label>
+                                                        <input data-parent="login" name="login[email]" type="email" class="form-control">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-11 pl-3">
+                                                <div class="input-group">
+                                                    <span class="input-group-addon">
+                                                            <i class="material-icons">lock_open</i>
+                                                        </span>
+                                                    <div class="form-group label-floating">
+                                                        <label class="control-label">Senha <small>(obrigatório)</small></label>
+                                                        <input data-parent="login" id="passwordRegister" name="login[senha]" type="password" class="form-control">
+                                                    </div>
+                                                </div>
+                                                <div class="input-group">
+                                                    <span class="input-group-addon">
+                                                                <i class="material-icons">lock_open</i>
+                                                            </span>
+                                                    <div class="form-group label-floating">
+                                                        <label class="control-label">Corfimação de Senha <small>(obrigatório)</small></label>
+                                                        <input data-parent="login" id="passwordConfirmRegister" name="login[senhaConfirmacao]" type="password" class="form-control">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane" id="areaInteresse">
+                                        <h4 class="info-text"> Para qual área deseja se candidatar? Selecione os que for de seu interesse.</h4>
+                                        <div class="row">
+                                            <div class="col-sm-12   ">
+                                                <div class="col-sm-4">
+                                                    <div class="choice" data-toggle="wizard-checkbox">
+                                                        <input type="checkbox" name="vagaPreferencia[areaInteresse]" data-parent="vagaPreferencia" value="Design">
+                                                        <div class="icon">
+                                                            <i class="fas fa-pencil-alt"></i>
+                                                        </div>
+                                                        <h6>Design</h6>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-4">
+                                                    <div class="choice" data-toggle="wizard-checkbox">
+                                                        <input type="checkbox" name="vagaPreferencia[areaInteresse]" data-parent="vagaPreferencia" value="medicina">
+                                                        <div class="icon">
+                                                            <i class="far fa-hospital"></i>
+                                                        </div>
+                                                        <h6>Medicina</h6>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-sm-4">
+                                                    <div class="choice" data-toggle="wizard-checkbox">
+                                                        <input type="checkbox" name="vagaPreferencia[areaInteresse]" data-parent="vagaPreferencia" value="tecnologia">
+                                                        <div class="icon">
+                                                            <i class="fa fa-laptop"></i>
+                                                        </div>
+                                                        <h6>Tecnologia</h6>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane" id="curriculo">
+                                        <div class="row">
+                                            <div class="col-md-12 m-auto">
+                                                <div id="conteudoCard" class="p-2">
+                                                    <div id="fotoCarreiras"></div>
+                                                    <form class="m-3 p-2" id="formularioCurriculo">
+                                                        <div class="row">
+                                                            <div class="col-md-6">
+                                                                <div class="form-group">
+                                                                    <label class="bmd-label-floating">Nome completo</label>
+                                                                    <input type="text" name="curriculo[nome]" data-parent="curriculo" class="form-control" id="nome" maxlength="50" required>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-6">
+                                                                <div class="form-group">
+                                                                    <label class="bmd-label-floating">Idade</label>
+                                                                    <input type="number" name="curriculo[idade]" data-parent="curriculo" class="form-control" max="300" id="idade" required>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-md-6">
+                                                                <div class="form-group">
+                                                                    <label class="bmd-label-floating">E-mail</label>
+                                                                    <input type="email" name="curriculo[email]" data-parent="curriculo" class="form-control" id="email" maxlength="70" required>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-3">
+                                                                <div class="form-group">
+                                                                    <label class="bmd-label-floating">Telefone
+                                                                                                        residencial</label>
+                                                                    <input type="text" data-parent="curriculo" data-valida="telefone-residencial" minlength="14" maxlength="14" name="curriculo[telefone_residencial]" class="form-control" id="telefoneResidencial" inputmode="numeric">
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-3">
+                                                                <div class="form-group">
+                                                                    <label class="bmd-label-floating">Telefone
+                                                                                                        celular</label>
+                                                                    <input type="text" data-parent="curriculo" data-valida="telefone-celular" minlength="15" maxlength="15" name="curriculo[telefone_celular]" class="form-control" id="telefoneCelular" inputmode="numeric">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-md-6">
+                                                                <div class="form-group">
+                                                                    <label class="bmd-label-floating">Endereço</label>
+                                                                    <input type="text" id="endereco" data-parent="curriculo" name="curriculo[endereco][rua]" required class="form-control">
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-3">
+                                                                <div class="form-group">
+                                                                    <label class="bmd-label-floating">Número</label>
+                                                                    <input type="number" name="curriculo[endereco][numero]" data-parent="curriculo" maxlength="7" id="numeroResidencial" required class="form-control">
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-3">
+                                                                <div class="form-group">
+                                                                    <label class="bmd-label-floating">CEP</label>
+                                                                    <input data-valida="cep" data-parent="curriculo" type="text" maxlength="9" minlength="9" name="curriculo[endereco][cep]" id="cep" required class="form-control">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-md-4">
+                                                                <div class="form-group">
+                                                                    <label class="bmd-label-floating">Estado</label>
+                                                                    <input class="form-control" type="text" data-parent="curriculo" name="curriculo[endereco][uf]" id="uf" data-style="btn btn-link">
+
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-4">
+                                                                <div class="form-group">
+                                                                    <label class="bmd-label-floating">Cidade</label>
+                                                                    <input class="form-control" type="text" data-parent="curriculo" name="curriculo[endereco][cidade]" id="cidade" data-style="btn btn-link">
+
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-4">
+                                                                <div class="form-group">
+                                                                    <div class="form-check">
+                                                                        <label class="form-check-label pt-4">
+                                                                                                            <input class="form-check-input"
+                                                                                                                data-parent="curriculo" id="dispostoMudar"
+                                                                                                                name="curriculo[endereco][realocar]" type="checkbox">
+                                                                                                            Disposto a se mudar
+                                                                                                            <span class="form-check-sign">
+                                                                                                                <span class="check"></span>
+                                                                                                            </span>
+                                                                                                        </label>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-md-12">
+                                                                <div class="form-group">
+                                                                    <label>Resumo</label>
+                                                                    <div class="form-group">
+                                                                        <label class="bmd-label-floating">
+                                                                                                            Conte mais sobre sua carreira, experiências e
+                                                                                                            conhecimentos
+                                                                                                        </label>
+                                                                        <textarea id="resumoCandidato" data-parent="curriculo" name="curriculo[resumo]" class="form-control textarea" rows="7" maxlength="1000" data-valida="caracteres"></textarea>
+
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-md-6">
+                                                                <div class="form-group">
+                                                                    <label id="objetivo" class="bmd-label-floating">
+                                                                                                        Objetivo profissional
+                                                                                                    </label>
+                                                                    <input type="text" data-parent="curriculo" name="curriculo[objetivo_profissional]" class="form-control">
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-6">
+                                                                <div class="form-group">
+                                                                    <label class="bmd-label-floating">Expectativa de
+                                                                                                        salário</label>
+                                                                    <input type="text" data-parent="curriculo" id="salarioExpectativa" name="curriculo[salarioExpectativa]" class="form-control" inputmode="numeric" autocomplete="off">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div id="campoExperiencias"></div>
+                                                        <div class="row">
+                                                            <div class="col-md-6 d-none">
+                                                                <button type="button" id="botaoExperiencias" class="btn btn-danger">
+                                                                                                    Cadastrar experiência anterior
+                                                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                        <div id="campoFormacoes"></div>
+                                                        <div class="row">
+                                                            <div class="col-md-6 d-none">
+                                                                <button type="button" id="botaoFormacoes" class="btn btn-danger">
+                                                                                                    Cadastrar formação acadêmica
+                                                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                        <div id="campoCursos"></div>
+                                                        <div class="row">
+                                                            <div class="col-md-6 d-none">
+                                                                <button type="button" id="botaoCursos" class="btn btn-danger">
+                                                                                                    Cadastrar curso complementar
+                                                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                        <div id="campoIdiomas"></div>
+                                                        <div class="row">
+                                                            <div class="col-md-6 d-none">
+                                                                <button type="button" id="botaoIdiomas" class="btn btn-danger">
+                                                                                                    Cadastrar idioma
+                                                                                                </button>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="clearfix"></div>
+                                                    </form>
+
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div class="tab-pane" id="pontuacoes">
+
+                                        <div class="d-flex align-items-center
+                                            justify-content-center
+                                            ">
+                                            <div class="choice gold-icon" data-toggle="wizard-checkbox">
+                                                <input type="checkbox">
+                                                <div class="icon gold-icon">
+                                                    <i class="fas fa-coins text-gold"></i>
+                                                </div>
+
+                                            </div>
+                                            <h2 class="pl-4 text-gold">70 PONTOS!</h2>
+                                        </div>
+                                        <h4 class="info-text">Parabéns, você conquistou pontos ao completar o cadastro!</h4>
+                                        <hr>
+                                        <p>
+                                            Você poderá trocar esses pontos por desbloqueaveis ao acessar o nosso sistema.<br>Além disso todo ponto adquirido será acumulado em lvls para você poder visualizar o seu progresso contínuo.
+                                        </p>
+                                        <p>Para poder prosseguir <span class="text-bold">confirme seu acesso</span> através do email de verificação enviado.</p>
+
+
+                                    </div>
+
+                                </div>
+                                <div class="wizard-footer">
+                                    <div class="pull-right">
+                                        <input type='button' class='btn btn-next btn-fill btn-primary btn-wd' name='next' value='Próximo' />
+                                        <input id="finalizarRegistro" type='button' class='btn btn-finish btn-fill btn-success btn-wd' name='finish' value='Realizar Login' />
+                                    </div>
+
+                                    <div class="pull-left">
+                                        <input type='button' class='btn btn-previous border btn-outline-primary btn-fill btn-default btn-wd' name='previous' value='Anterior' />
+                                    </div>
+                                    <div class="clearfix"></div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <!-- wizard container -->
                 </div>
             </div>
         </div>
+        <!-- end row -->
+    </div>
+    <!-- </div> -->
 
 
-        <script src="/static/candidato/libs/material-dashboard/js/core/jquery.min.js"></script>
+    <script src="/static/candidato/libs/material-dashboard/js/core/jquery.min.js"></script>
+    <script src="/static/shared/libs/toastr/toastr.min.js"></script>
+    <script type="module" src="/static/login/init.js"></script>
+    <script src="/static/login/assets/js/jquery-2.2.4.min.js" type="text/javascript"></script>
+    <script src="/static/login/assets/js/bootstrap.min.js" type="text/javascript"></script>
+    <script src="/static/login/assets/js/jquery.bootstrap.js" type="text/javascript"></script>
 
-        <script>
-            localStorage.clear();
+    <!--  Plugin for the Wizard -->
+    <script src="/static/login/assets/js/material-bootstrap-wizard.js"></script>
 
-            console.log(document.login)
-            $("#enviar").click(e => {
-                e.preventDefault();
-                localStorage.setItem('pontos', 300);
-                localStorage.setItem('candidatoID', 1);
-                localStorage.setItem('experienciaAtual', 72);
-                localStorage.setItem('proximoLevel', 100);
-                localStorage.setItem('nome', $("#email").val())
-                if ($("#email").val().includes("recrutador")) {
-                    window.location = "/recrutador"
-                } else {
-                    $("#login").submit()
-                }
-            })
-        </script>
+    <!--  More information about jquery.validate here: http://jqueryvalidation.org/	 -->
+    <script src="/static/login/assets/js/jquery.validate.min.js"></script>
 </body>
 
 </html>

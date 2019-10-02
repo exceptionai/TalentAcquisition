@@ -17,8 +17,8 @@ class DesbloqueavelService:
                 "descricao": desbloqueavel[0],
                 "pontos_minimos": desbloqueavel[1],
                 "tipo": desbloqueavel[2],
-                "obtido": True if desbloqueavel_candidato and desbloqueavel_candidato[1] else False,
-                "selecionado": True if desbloqueavel_candidato and desbloqueavel_candidato[0] else False,
+                "obtido": True if desbloqueavel_candidato and desbloqueavel_candidato[0] else False,
+                "selecionado": True if desbloqueavel_candidato and desbloqueavel_candidato[1] else False,
                 "valor": desbloqueavel[3],
                 "imagem": f"/static/img/desbloqueaveis/{desbloqueavel[4]}.jpg",
                 "id": desbloqueavel[4]
@@ -37,8 +37,11 @@ class DesbloqueavelService:
             }
         return json.dumps(desbloqueaveis_dict)
 
-    def atualizar_desbloqueavel_candidato(self, desbloqueavelID):
-        self.dao.remover_selecao_desbloqueavel_candidato()
+    def obter_desbloqueavel(self, desbloqueavel_id):
+        self.dao.obter_desbloqueavel(desbloqueavel_id)
+        return json.dumps({"mensagem": "Desbloqueavel Obtido com sucesso"})
+
+    def selecionar_desbloqueavel(self, desbloqueavelID):
         desbloqueavel_id = self.dao.selecionar_desbloqueavel_candidato(desbloqueavelID)
-        desbloqueavel_dict = {"id_desbloqueavel":desbloqueavel_id}
+        desbloqueavel_dict = {"id_candidato":desbloqueavel_id}
         return json.dumps(desbloqueavel_dict)

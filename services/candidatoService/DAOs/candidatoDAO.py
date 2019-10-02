@@ -16,3 +16,18 @@ class CandidatoDAO:
         ConnectionFactory.execute(query)
         pontuacao = ConnectionFactory.fetchone()
         return pontuacao
+
+    def diminuir_pontos(self, pontos):
+        query = f'UPDATE candidato SET pontos_consumiveis = pontos_consumiveis - {pontos} WHERE candidato_id = {self.candidato_id}'
+        ConnectionFactory.execute(query)
+        return ConnectionFactory.get_cursor().lastrowid
+
+    def inserir_candidato(self,nome,usuario_id,pontuacao_alcancada_id):
+        query = f'INSERT INTO candidato (nome, usuario_id, status_candidatura_id, pontuacao_candidato_id, pontos_consumiveis) VALUES ("{nome}",{usuario_id},1,{pontuacao_alcancada_id},70)'
+        ConnectionFactory.execute(query)
+        return ConnectionFactory.get_cursor().lastrowid
+
+    def inserir_fase_candidato(self, candidato_id,fase_id,status_candidato_fase_id,pontuacao):
+        query = f'INSERT INTO candidato_fase (candidato_id,fase_id,status_candidato_fase_id,pontuacao) VALUES ({candidato_id},{fase_id},{status_candidato_fase_id},{pontuacao})'
+        print(query)
+        ConnectionFactory.execute(query)

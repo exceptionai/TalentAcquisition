@@ -6,10 +6,14 @@ export class CurriculoService {
         this._http = new HttpService();
     }
 
+    buscarCurriculo() {
+        return Promise.resolve({ candidato: { nome: "Renan do Nascimento Sanches", idade: 22, email: "renan.sanches_123@hotmail.com" }, endereco: { uf: "SP", cidade: "São Paulo", rua: "Rua 123", numero: "425", cep: "08140-060" }, cursosComplementares: { nome: "Regex avançado", instituicao: "Alura" }, experienciasAnteriores: { nomeEmpresa: "Resource IT", cargo: "Analista de Suporte Jr.", dataSaida: "2019-01-31", dataEntrada: "2018-05-01" }, formacaoAcademica: { curso: "Segurança da Informação", situacaoFormacao: "interrompido", nivelCurso: "graduacao", nomeInstituicao: "Universidade Nove de Julho" }, idiomas: { nivelFala: "intermediario", nivelLeitura: "fluente", nivelEscrita: "fluente" } });
+    }
+
     loadEstados(element) {
         return new Promise(resolve => {
             $.ajax({
-                url: 'https://api.myjson.com/bins/enzld',
+                url: '/json/estados.json',
                 method: 'get',
                 dataType: 'json',
                 beforeSend: function() {

@@ -34,7 +34,7 @@ export class DesbloqueavelView {
                 <img class="${border}" alt="${desbloqueavel.descricao}" title="${desbloqueavel.descricao}" src="${desbloqueavel.imagem}" height="180"></img>
                 <div class="card-body d-flex flex-column text-center">
                     <p class="card-text">${desbloqueavel.descricao}<i class="pl-2 fas  ${desbloqueavel.obtido || !desbloqueavel.pontos_minimos?'fa-unlock-alt':'fa-lock'}"></i></p>
-                    <button  ${action} href="#" style="cursor:${cursor}" class="${pontos_atuais < desbloqueavel.pontos_minimos?'disabled':''} btn ${desbloqueavel.selecionado?' btn-outline-success':'btn-primary'} ">${desbloqueavel.selecionado?'Selecionado':desbloqueavel.pontos_minimos && !desbloqueavel.obtido?desbloqueavel.pontos_minimos+`<i class="fas fa-coins pl-2 text-warning"></i>`:'Selecionar'}</button>
+                    <button  ${action} href="#" style="cursor:${cursor}" class="${!this._possivelDesbloquear(desbloqueavel) && !desbloqueavel.obtido?'disabled':''} btn ${desbloqueavel.selecionado?' btn-outline-success':'btn-primary'} ">${desbloqueavel.selecionado?'Selecionado':desbloqueavel.pontos_minimos && !desbloqueavel.obtido?desbloqueavel.pontos_minimos+`<i class="fas fa-coins pl-2 text-warning"></i>`:'Selecionar'}</button>
                 </div>
             </div>
         `

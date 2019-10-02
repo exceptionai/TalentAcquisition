@@ -40,5 +40,7 @@ export class CategoriasView {
         categorias.forEach(categoria => {
             this.render(categoria);
         })
+        if (!categorias.length) this._container.html("<h2 class='font-white text-center'>Não há desafios disponíveis no momento</h2>");
+
     }
 }
