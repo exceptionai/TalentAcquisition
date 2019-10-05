@@ -257,6 +257,7 @@
         window.onhashchange = function(evento) {
             const novaUrl = evento.newURL;
             const url = novaUrl.substring(novaUrl.indexOf("#"))
+            console.log('teste')
             carregarPagina(url);
         }
 
@@ -281,7 +282,7 @@
             }
         }
         const urlInical = window.location.pathname;
-        console.log(window.location)
+
         const indiceHash = urlInical.indexOf("#");
         if (indiceHash === -1) {
             carregarPagina("#/candidato");
@@ -556,8 +557,26 @@
                 }
             }
         };
+
+        function atualizarTema() {
+            let renderizacaoHexagon;
+            renderizacaoHexagon = setInterval(() => {
+                if ($("#futuristic-theme").hasClass('op-0')) {
+                    clearInterval(renderizacaoHexagon)
+                }
+                const clientX = Math.floor(Math.random() * window.innerWidth);
+                const clientY = Math.floor(Math.random() * window.innerHeight);
+                RENDERER.selectHexagon({
+                    clientX,
+                    clientY
+                })
+            }, 5000)
+        }
         $(function() {
             RENDERER.init();
+            let renderizacaoHexagon;
+            atualizarTema();
+
         });
     </script>
     <script src="/static/shared/libs/apexcharts/apexcharts@latest.js"></script>

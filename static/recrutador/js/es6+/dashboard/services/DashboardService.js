@@ -1,12 +1,11 @@
 export class DashboardService {
 
     getCandidatosPotenciais() {
-        return new Promise(resolve => resolve({ candidatosPotencias: 250 }))
+        return new Promise(resolve => resolve({ candidatosPotencias: 1 }))
     }
 
     getVagasAberto() {
-        return fetch("/service/recrutador/vagas/quantidade")
-            .then(res => res.json())
+        return new Promise(resolve => resolve({ vagasAberto: 2 }))
     }
 
     getCandidatosTotais() {
@@ -16,7 +15,7 @@ export class DashboardService {
 
     getDadosAltaPerformance() {
 
-        const labels = ['Domingo', 'Segunda-Feira', 'T', 'Q', 'Q', 'S', 'S'];
+        const labels = ['D', 'S', 'T', 'Q', 'Q', 'S', 'S'];
         const series = [{
             name: "Pontos",
             data: [15, 15, 20, 21, 33, 34]

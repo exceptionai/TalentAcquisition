@@ -37,7 +37,8 @@ body {
     --container-bg: rgba(255, 255, 255, 0.9);
 }
 
-.dark-theme {
+.dark-theme,
+.futuristic-theme {
     --validacao: #ff7676;
     --togle-light: #ccc;
     --borda-container: rgba(0, 97, 127, 0.8);

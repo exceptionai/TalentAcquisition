@@ -50,6 +50,7 @@ export class DesbloqueavelController {
             this.userService.getTema().then(tema =>
                 this.userService.setTema(tema))
         })
+        window.atualizarTema();
         desbloqueavel.selecionado = true;
         desbloqueavel.obtido = true;
         desbloqueavel.pontos_minimos = 0;

@@ -1,4 +1,5 @@
 import { Formater } from "../../shared/utils/Formater.js";
+import { UsuarioService } from "../../shared/usuario/services/UsuarioService.js";
 
 export class OportunidadesView {
     constructor(seletorContainer) {
@@ -7,6 +8,7 @@ export class OportunidadesView {
 
     _template(vaga) {
         const dataAbertura = Formater.stringData(vaga.dataAbertura);
+        const userService = new UsuarioService();
         return `
         <div class="card mr-4 border ${vaga.selecionado?'border-success':''} cardVaga">
             <div class="card-body">
@@ -28,7 +30,7 @@ export class OportunidadesView {
 
                 </div>
                 <div ex-router class="d-flex justify-content-center mt-3 border-top">
-                    <a class="btn ${vaga.selecionado?'btn-success':'btn-primary'} mt-3" ex-route-name="oportunidade1" href="#/candidato/vaga/1">Selecionado</a>
+                    <a class="btn ${vaga.selecionado && userService.dadosRequisicao.candidatoID == 1?'btn-success':'btn-primary'} mt-3" ex-route-name="oportunidade1" href="#/candidato/vaga/1"> ${vaga.selecionado  && userService.dadosRequisicao.candidatoID == 1?'Selecionado':'Selecionar'}</a>
 
                 </div>
             </div>

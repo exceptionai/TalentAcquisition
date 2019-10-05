@@ -24,6 +24,7 @@ from services.desafioService.desafioService import DesafioService
 from services.desbloqueavelService.desbloqueavelService import DesbloqueavelService
 from services.usuarioService.usuarioService import UsuarioService
 from services.pontuacaoService.pontuacaoService import PontuacaoService
+from services.curriculoService.curriculoService import CurriculoService
 import datetime
 import json
 import os
@@ -81,7 +82,8 @@ def candidato_service_post():
 
 def candidato_service_get():
     service = CandidatoService(request.args.get("candidatoID"))
-    if(service.valida_token(request.args.get("token"))):
+    token = request.args.get("token")
+    if(decode_auth_token(token)):
         candidato = service.buscar()
         return candidato
     else:
@@ -155,6 +157,15 @@ def desafios_service():
     desafios = service.buscar_categorias()
     return desafios
 
+@app.route('/service/candidato/curriculo')
+def curriculo_service():
+    token = request.args.get("token")
+    if(decode_auth_token(token)):
+        if request.method == 'GET':
+            service = CurriculoService(request.args.get("candidatoID"))
+            curriculo = service.buscar()
+            return curriculo
+    return json.dumps({"mensagem": "Token Invalido"}), 401
 
 @app.route('/candidato/vaga/<id_vaga>')
 def candidato_vaga(id_vaga):
@@ -245,9 +256,10 @@ def atividade(id_categoria, id_atividade):
         return render_template('candidato/desafiosCategoriaAtividade.html')
     return json.dumps({"mensagem": "Token Invalido"}), 401
 
-@app.route('/candidato/curriculo', methods=['POST', ])
+@app.route('/service/candidato/curriculo/inserir', methods=['POST', ])
 def inserir():
     try:
+        print('teste')
         curriculo_request = request.json
 
         cursos_complementares_requisicao = []
@@ -275,6 +287,7 @@ def inserir():
         formacoes_academicas =[]
 
 
+        print('teste0')
         #CURSO COMPLEMENTARES
 
         # CursoExtraCurricular.parse_request(cursos_complementares_requisicao)
@@ -292,7 +305,7 @@ def inserir():
 
             cursos_complementares.append(curso_obj)
             
-
+        
         #EXPERIENCIAS
         for experiencia_anterior in experiencias_anteriores_requisicao:
             experiencia_obj = ExperienciaAnterior(
@@ -348,14 +361,17 @@ def inserir():
         enderecoDAO = EnderecoDAO(endereco)
         endereco_id = enderecoDAO.insere()
 
+        print('teste11')
 
-        candidato = Candidato(candidato_requisicao['nome'],candidato_requisicao['idade'],candidato_requisicao['email'],candidato_requisicao['telefone_residencial'],candidato_requisicao['telefone_celular'],endereco)
-        candidatoDAO = CandidatoDAO(candidato)
-        candidato_id = candidatoDAO.insere(endereco_id,endereco.realocar)
+        # candidato = Candidato(candidato_requisicao['nome'],candidato_requisicao['idade'],candidato_requisicao['email'],candidato_requisicao['telefone_residencial'],candidato_requisicao['telefone_celular'],endereco)
+        # candidatoDAO = CandidatoDAO(candidato)
+        # candidato_id = candidatoDAO.insere(endereco_id,endereco.realocar)
 
-        curriculo = Curriculo(curriculo_request['objetivo_profissional'],experiencias_anteriores,cursos_complementares,idiomas,formacoes_academicas,curriculo_request['salarioExpectativa'],curriculo_request['resumo'],candidato)
+        curriculo = Curriculo(curriculo_request['objetivo_profissional'],experiencias_anteriores,cursos_complementares,idiomas,formacoes_academicas,curriculo_request['salarioExpectativa'],curriculo_request['resumo'],{})
         curriculoDAO = CurriculoDAO(curriculo)
-        curriculo_id = curriculoDAO.insere(candidato_id)
+        print('teste12')
+        curriculo_id = curriculoDAO.insere(1)
+        print('teste13')
         curriculo.id = curriculo_id
 
         for curso in cursos_complementares:
@@ -371,8 +387,7 @@ def inserir():
             curriculoDAO.insere_formacao(formacao.id)
 
         resposta = {
-            "curiculo_id" : curriculo_id,
-            "curriculo_nome": candidato.nome
+            "curiculo_id" : 1
         }
         
         return json.dumps(resposta), 201

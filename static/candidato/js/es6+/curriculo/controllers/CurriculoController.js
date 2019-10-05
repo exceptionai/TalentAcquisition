@@ -8,6 +8,7 @@ import { IdiomasView } from '../views/IdiomasView.js';
 import { ExperienciasAnterioresView } from '../views/ExperienciasAnterioresView.js';
 import { CursosComplementaresView } from '../views/CursosComplementaresView.js';
 import { FormacoesAcademicasView } from '../views/FormacoesAcademicasView.js';
+import { UsuarioService } from '../../shared/usuario/services/UsuarioService.js';
 
 export class CurriculoController {
     constructor(vaga, cidadeID, estadoID, dispostoMudarEstadoID, formularioID) {
@@ -181,14 +182,16 @@ export class CurriculoController {
     }
 
     enviarCurriculo() {
-        this._curriculoView.bloquearCampos();
-        this._curriculoView.habilitarEnvio("#btnEnviar");
-        if (ValidacaoFormularioController.valida(this._form) && 0) {
+
+        if (ValidacaoFormularioController.valida(this._form)) {
             let curriculoObj = FormHelper.paraObjeto(this._form);
             let curriculoJSON = JSON.stringify(curriculoObj);
-            this._service.enviar("/candidato/curriculo", curriculoJSON)
+            const userService = new UsuarioService();
+            this._service.enviar("/service/candidato/curriculo/inserir?token=" + userService.dadosRequisicao.token, curriculoJSON)
                 .then(resposta => {
                     NotificacaoService.sucesso(resposta, 'Sucesso')
+                    this._curriculoView.bloquearCampos();
+                    this._curriculoView.habilitarEnvio("#btnEnviar");
                 })
                 .catch(erro => {
                     NotificacaoService.invalido(erro, 'Erro ao Enviar')
