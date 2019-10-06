@@ -119,33 +119,33 @@
                                 <div class="card-body col-12 mt-4">
                                     <div>
                                         <div class="d-flex  flex-column " id="desloqueavelContainer">
-                                            <form>
+                                            <form id="cadastroVagaForm">
                                                 <div class="row">
                                                     <div class="form-group col-6">
                                                         <label class="text-dark" for="cargo_vaga">Cargo da vaga</label>
-                                                        <input type="text" class="form-control " id="cargo_vaga" placeholder="Ex: Consultor de vendas">
+                                                        <input type="text" class="form-control " name="vaga[cargo]" id="cargo_vaga" placeholder="Ex: Consultor de vendas">
                                                     </div>
                                                     <div class="form-group col-6">
                                                         <label class="text-dark " for="area_atuacao">Área de atuação</label>
-                                                        <input class="form-control " id="area_atuacao" type="text" placeholder="Ex: Comercial">
+                                                        <input class="form-control " id="area_atuacao" name="vaga[area_atuacao]" type="text" placeholder="Ex: Comercial">
                                                     </div>
                                                 </div>
                                                 <div class="row">
 
                                                     <div class="form-group col-6">
                                                         <label class="text-dark" for="requisitos_desejaveis">Requisitos desejáveis</label>
-                                                        <textarea class="form-control border border-bottom-0 p-2" rows="6" id="requisitos_desejaveis" type="text" placeholder="Ex: Office Avançado"></textarea>
+                                                        <textarea class="form-control border border-bottom-0 p-2" rows="6" name="vaga[requisitos_desejaveis]" id="requisitos_desejaveis" type="text" placeholder="Ex: Office Avançado"></textarea>
                                                     </div>
                                                     <div class="form-group col-6">
                                                         <label class="text-dark" for="requisitos_obrigatorios">Requisitos obrigatórios</label>
-                                                        <textarea class="form-control border border-bottom-0 p-2" rows="6" id="requisitos_obrigatorios" type="text" placeholder="Ex: Excel Avançado"></textarea>
+                                                        <textarea class="form-control border border-bottom-0 p-2" rows="6" name="vaga[requisitos_obrigatorios]" id="requisitos_obrigatorios" type="text" placeholder="Ex: Excel Avançado"></textarea>
                                                     </div>
                                                 </div>
 
                                                 <div class="row">
                                                     <div class="form-group col-12">
                                                         <label class="text-dark" for="atividade">Principais atividades</label>
-                                                        <textarea class="form-control border border-bottom-0 p-2" rows="6" id="atividade" placeholder="Ex: Atendimento ao cliente e prospecção de novos"></textarea>
+                                                        <textarea class="form-control border border-bottom-0 p-2" rows="6" id="atividade" name="vaga[principais_atividades]" placeholder="Ex: Atendimento ao cliente e prospecção de novos"></textarea>
                                                     </div>
 
                                                 </div>
@@ -153,17 +153,48 @@
 
                                                     <div class="form-group col-6">
                                                         <label class="text-dark" for="salario_vaga">Salário</label>
-                                                        <input class="form-control " id="salario_vaga" type="text" placeholder="Ex: R$ 5.000,00">
+                                                        <input class="form-control " id="salario_vaga" type="text" name="vaga[salario]" placeholder="Ex: R$ 5.000,00">
                                                     </div>
                                                     <div class="form-group col-6">
                                                         <label class="text-dark" for="beneficios_vaga">Benefícios</label>
-                                                        <input class="form-control " id="beneficios_vaga" type="text" placeholder="Ex: Convênio médico...">
+                                                        <input class="form-control " id="beneficios_vaga" type="text" name="vaga[beneficios]" placeholder="Ex: Convênio médico...">
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+
+                                                    <div class="form-group col-6">
+                                                        <label class="text-dark" for="rua">Rua</label>
+                                                        <input class="form-control " id="rua" type="text" name="endereco[rua]" placeholder="Ex: Rua ABC">
+                                                    </div>
+                                                    <div class="form-group col-6">
+                                                        <label class="text-dark" for="numero">Numero</label>
+                                                        <input class="form-control " id="numero" type="text" name="endereco[numero]" placeholder="Ex: 1">
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+
+                                                    <div class="form-group col-4">
+                                                        <label class="text-dark" for="cep">CEP</label>
+                                                        <input class="form-control " id="cep" type="text" name="endereco[cep]" placeholder="Ex: 00000-000">
+                                                    </div>
+                                                    <div class="form-group col-4">
+                                                        <label class="bmd-label-floating">Estado</label>
+                                                        <select class="form-control" name="endereco[uf]" id="uf" data-style="btn btn-link">
+                                                            <option selected disabled value="">Escolha o estado
+                                                            </option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="form-group col-4">
+                                                        <label class="bmd-label-floating">Cidade</label>
+                                                        <select class="form-control" name="endereco[cidade]" id="cidade" data-style="btn btn-link">
+                                                            <option selected disabled value="">Escolha a cidade
+                                                            </option>
+                                                        </select>
                                                     </div>
                                                 </div>
                                                 <div class="d-flex justify-content-center mt-4">
                                                     <div class="form-group ">
-                                                        <button type="submit" id="cadastrar_vaga" class="btn btn-primary">Cadastrar Vaga</button>
-                                                        <button type="submit" id="cadastrar_vaga" class="btn btn-dark">Editar Pontuação</button>
+                                                        <button type="button" id="cadastrar_vaga" class="btn btn-primary">Cadastrar Vaga</button>
 
                                                     </div>
                                                 </div>
@@ -191,6 +222,7 @@
             </footer>
         </div>
     </div>
+    <script src="/static/recrutador/js/es6+/vagas/initCadastrar.js" type="module"></script>
     <script src="/static/recrutador/libs/material-dashboard/js/core/jquery.min.js"></script>
     <script src="/static/recrutador/libs/material-dashboard/js/core/popper.min.js"></script>
     <script src="/static/recrutador/libs/material-dashboard/js/core/bootstrap-material-design.min.js"></script>

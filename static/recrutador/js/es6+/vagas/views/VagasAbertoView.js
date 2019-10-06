@@ -1,9 +1,21 @@
-import { UsuarioService } from "../../../../../candidato/js/es6+/shared/usuario/services/UsuarioService.js";
 import { Formater } from "../../../../../candidato/js/es6+/shared/utils/Formater.js";
+import { NotificacaoService } from "../../../../../candidato/js/es6+/curriculo/services/NotificacaoService.js";
 
 export class VagasAbertoView {
     constructor(seletorContainer) {
         this._container = $(seletorContainer);
+        this._init();
+    }
+
+    _init() {
+        const tituloMensagem = localStorage.getItem("tituloMensagem");
+        const mensagem = localStorage.getItem("mensagem");
+        if (mensagem && tituloMensagem) {
+            NotificacaoService.sucesso(mensagem, tituloMensagem);
+            localStorage.removeItem("mensagem");
+            localStorage.removeItem("tituloMensagem");
+        }
+
     }
 
     _template(vaga) {

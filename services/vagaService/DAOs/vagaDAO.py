@@ -13,6 +13,11 @@ class VagaDAO:
         ConnectionFactory.execute(query)
         vagas = ConnectionFactory.fetchall()
         return vagas
+
+    def cadastrar(self,obj_vaga, endereco_id):
+        query = f'INSERT INTO vaga (`cargo`,`area_atuacao`,`requisitos_desejaveis`,`requisitos_obrigatorios`,`principais_atividades`,`salario`,`beneficios`,`endereco_id`  ) VALUES ("{obj_vaga["cargo"]}","{obj_vaga["area_atuacao"]}","{obj_vaga["requisitos_desejaveis"]}","{obj_vaga["requisitos_obrigatorios"]}","{obj_vaga["principais_atividades"]}",{int(obj_vaga["salario"])},"{obj_vaga["beneficios"]}",{endereco_id})'
+        ConnectionFactory.execute(query)
+        return ConnectionFactory.get_cursor().lastrowid
     
     def quantidade(self):
         query = "SELECT COUNT(vaga_id),count(2) FROM vaga"

@@ -1,4 +1,6 @@
 from services.vagaService.DAOs.vagaDAO import VagaDAO
+from services.pontuacaoService.DAOs.enderecoDAO import EnderecoDAO
+from services.pontuacaoService.models.endereco import Endereco
 import json
 
 
@@ -13,6 +15,16 @@ class VagaService:
             "quantidade": quantidade[0]
         }
         return json.dumps(quantidade_dict)
+
+    def cadastrar(self, obj_vaga, obj_endereco):
+        endereco = Endereco(obj_endereco['cep'],obj_endereco['rua'],obj_endereco['numero'],obj_endereco['cidade'],obj_endereco['uf'])
+        endereco_dao = EnderecoDAO(endereco)
+        endereco_id = endereco_dao.insere()
+        self.dao.cadastrar(obj_vaga,endereco_id)
+        mensagem_dict = {
+            "mensagem": "Vaga cadastrada com sucesso"
+        }
+        return json.dumps(mensagem_dict)
 
     def buscar_resumo_vagas_recrutador(self):
         vagas = self.dao.buscar_vagas_recrutador()

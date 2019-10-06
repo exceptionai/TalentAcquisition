@@ -18,6 +18,13 @@ def resumo_vagas():
     resumo_vagas = service.buscar_resumo_vagas_recrutador()
     return resumo_vagas
 
+@app.route('/service/recrutador/vaga',methods=['POST'])
+def cadastrar_vaga():
+    service = VagaService()
+    mensagem = service.cadastrar(request.json['vaga'],request.json['endereco'])
+    return mensagem
+
+
 @app.route('/service/recrutador/candidato/quantidade')
 def quantidade_candidatos():
     service = CandidatoService(request.args.get('recrutadorID'))
