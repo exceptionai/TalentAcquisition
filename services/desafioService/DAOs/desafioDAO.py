@@ -12,7 +12,7 @@ class DesafioDAO:
         return categorias
     
     def buscar_atividades_categoria(self,categoria_id):
-        query = f"SELECT DISTINCT ad.titulo, ad.descricao, ac.pontos_atividade, ad.pontos, ac.desafios_resolvidos,  (select count(a1.atividade_id) from atividade a1 where a1.atividade_desafio_id = a.atividade_desafio_id), ad.minutos_necessarios, ad.atividade_desafio_id FROM atividade_desafio ad INNER JOIN atividade a ON a.atividade_desafio_id = ad.atividade_desafio_id LEFT JOIN atividade_candidato ac ON ac.atividade_id = a.atividade_id WHERE ad.categoria_desafio_id = {categoria_id} group by ad.atividade_desafio_id"
+        query = f"SELECT DISTINCT ad.titulo, ad.descricao, ac.pontos_atividade, ad.pontos, ac.desafios_resolvidos,  (select count(a1.atividade_id) from atividade a1 where a1.atividade_desafio_id = a.atividade_desafio_id), ad.minutos_necessarios, ad.atividade_desafio_id FROM atividade_desafio ad LEFT JOIN atividade a ON a.atividade_desafio_id = ad.atividade_desafio_id LEFT JOIN atividade_candidato ac ON ac.atividade_id = a.atividade_id WHERE ad.categoria_desafio_id = {categoria_id} group by ad.atividade_desafio_id"
         ConnectionFactory.execute(query)
         atividades_categoria = ConnectionFactory.fetchall()
         return atividades_categoria

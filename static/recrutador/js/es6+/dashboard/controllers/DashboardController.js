@@ -20,6 +20,10 @@ export class DashboardController {
         this.buscarDetalhesCandidatosPotenciais();
     }
 
+    async getDetalhesCandidatosPotenciais() {
+
+    }
+
     async buscarCandidatosPotenciais() {
         const { candidatosPotencias } = await this._service.getCandidatosPotenciais();
         this._view.renderCandidatosPotenciais(candidatosPotencias, "Últimas 24 horas");
@@ -27,8 +31,9 @@ export class DashboardController {
     }
 
     async buscarVagasAberto() {
-        const { vagasAberto } = await this._service.getVagasAberto();
-        this._view.renderVagasAberto(vagasAberto, "Últimas 24 horas");
+
+        const { quantidade } = await this._service.getVagasAberto();
+        this._view.renderVagasAberto(quantidade, "Agora");
     }
 
     async buscarCandidatosTotais() {
@@ -48,8 +53,8 @@ export class DashboardController {
     }
 
     async buscarDetalhesCandidatosPotenciais() {
-        const { nome, pontuacaoAlcancada, vagaDesejada, StatusVaga } = await this._service.getDetalhesCandidatosPotenciais();
-        this._view.renderDetalhesCandidatos(nome, pontuacaoAlcancada, vagaDesejada, StatusVaga);
+        // const { nome, pontuacaoAlcancada, vagaDesejada, StatusVaga } = await this._service.getDetalhesCandidatosPotenciais();
+        // this._view.renderDetalhesCandidatos(nome, pontuacaoAlcancada, vagaDesejada, StatusVaga);
     }
 
 

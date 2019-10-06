@@ -2,7 +2,6 @@ export class AtividadeDesafioView {
 
     constructor(atividadeDesafioContainer) {
         this.atividadeDesafioContainer = $(atividadeDesafioContainer);
-        this.atividadeDesafioContainer.html("");
     }
 
     _template(atividade) {
@@ -28,26 +27,27 @@ export class AtividadeDesafioView {
     }
 
     _templateContador(){
-        return `<i class="far fa-circle text-danger flow-question"></i>`
+        return `<i class="far fa-circle text-danger flow-question mr-1"></i>`
     }
 
     renderTitulo(titulo){
-        $("#tituloDesafioCategoria").html(titulo);
+        this.atividadeDesafioContainer.find("#tituloDesafioCategoria").html(titulo);
     }
 
     renderTempo(tempo){
-        $("#tempoRestante").html(tempo+" min");
+        this.atividadeDesafioContainer.parent().find("#tempoRestante").html(tempo+" min");
     }
 
     renderQuantidade(quantidadeQuestoes){
-        $("#totalQuestoes").html(quantidadeQuestoes)
+        this.atividadeDesafioContainer.parent().find("#totalQuestoes").html(quantidadeQuestoes)
     }
 
     renderCircles(quantidadeQuestoes){
-        $("#questoesContador").html('')
+        const contador = this.atividadeDesafioContainer.parent().find("#questoesContador");
+        contador.html('')
         for(let i = 0; i < quantidadeQuestoes; i++){
             const template = this._templateContador();
-            $("#questoesContador").append(template)
+            contador.append(template)
         }
     }
 
@@ -55,18 +55,14 @@ export class AtividadeDesafioView {
         this.atividadeDesafioContainer.html("");
         const template = this._template(atividade);
         this.atividadeDesafioContainer.html(template);
-        const elementoSelecionado = $(`.btn-resposta[data-id=${idSelecionado}]`);
+        const elementoSelecionado = this.atividadeDesafioContainer.parent().find(`.btn-resposta[data-id=${idSelecionado}]`);
         if (elementoSelecionado.get(0)) {
             elementoSelecionado.addClass("resposta-ativada");
         }
-        $(".btn-resposta").click(function (event) {
-            $(".btn-resposta").removeClass('resposta-ativada');
-            this.classList.toggle('resposta-ativada');
-            $("#questoesContador .flow-question")[indexAtividade].classList.toggle("fa-check-square");
-            
-            $("#questoesContador .flow-question")[indexAtividade].classList.toggle("fa-dot-circle");
+        this.atividadeDesafioContainer.parent().find(".btn-resposta").click( event =>{
+            this.atividadeDesafioContainer.parent().find(".btn-resposta").removeClass('resposta-ativada');
+            event.target.classList.toggle('resposta-ativada');
+            this.atividadeDesafioContainer.parent().find("#questoesContador .flow-question")[indexAtividade].classList.add("fa-dot-circle");
         })
-        console.log(this.atividadeDesafioContainer.html())
-        console.log(template);
     }
 }

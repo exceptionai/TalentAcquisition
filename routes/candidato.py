@@ -151,6 +151,12 @@ def atividade_categoria():
     atividades_categoria = service.buscar_atividades_categoria(request.args.get("categoriaID"))
     return atividades_categoria
 
+@app.route('/service/candidato/candidatar', methods=['POST'])
+def candidatar():
+    service = CandidatoService(request.json['candidatoID'])
+    mensagem = service.candidatar(request.json['vagaID'])
+    return json.dumps(mensagem)
+
 @app.route('/service/candidato/categoria_desafio')
 def desafios_service():
     service = DesafioService(request.args.get("candidatoID"))
@@ -259,7 +265,6 @@ def atividade(id_categoria, id_atividade):
 @app.route('/service/candidato/curriculo/inserir', methods=['POST', ])
 def inserir():
     try:
-        print('teste')
         curriculo_request = request.json
 
         cursos_complementares_requisicao = []

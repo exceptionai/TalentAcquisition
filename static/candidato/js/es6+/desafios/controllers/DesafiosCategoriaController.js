@@ -9,11 +9,16 @@ export class DesafiosCategoriaController {
     }
 
     _init() {
-        this._service.buscarDesafiosCategoria().then(desafiosCategorias => {
-            this._view.renderAll(desafiosCategorias);
+        this.buscarDesafiosCategoria();
+        $(".categoriasContainer [ex-router] a").click(this.buscarDesafiosCategoria.bind(this));
 
-            this._esconderModal();
-        })
+    }
+
+    async buscarDesafiosCategoria() {
+        const desafiosCategorias = await this._service.buscarDesafiosCategoria();
+        this._view.renderAll(desafiosCategorias);
+
+        this._esconderModal();
     }
 
     _esconderModal() {

@@ -33,7 +33,7 @@ export class DesafiosCategoriaView {
 
     _templateModal(desafioCategoria) {
         return `
-        <div class="modal" modal-element id="desafioCategoriaModal${desafioCategoria.id}" tabindex="-1" role="dialog" aria-labelledby="desafioCategoriaModal${desafioCategoria.id}" aria-hidden="true">
+        <div class="modal desafio-categoria-modal" modal-element id="desafioCategoriaModal${desafioCategoria.id}" tabindex="-1" role="dialog" aria-labelledby="desafioCategoriaModal${desafioCategoria.id}" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
                     <div class="modal-header">

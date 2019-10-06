@@ -36,7 +36,6 @@ export class DashboardController {
 
     async _buscarEvolucaoProgressiva() {
         const evolucaoProgressiva = await this._service.getDadosEvolucaoProgressiva();
-        console.log(evolucaoProgressiva)
         const { series, labels } = evolucaoProgressiva;
 
         let options = {}
@@ -85,7 +84,6 @@ export class DashboardController {
 
     async _buscarDesempenhoSemanal() {
         const desempenhoSemanal = await this._service.getDadosDesempenhoSemanal();
-        console.log(desempenhoSemanal)
         const { series, labels } = desempenhoSemanal;
 
         this._chartFactory.create('#desempenhoSemanal', series, labels);

@@ -1,4 +1,5 @@
-from services.recrutadorService.recrutadorService import RecrutadorService
+from services.candidatoService.candidatoService import CandidatoService
+from services.vagaService.vagaService import VagaService
 from flask import render_template, request
 from main import app
 
@@ -11,11 +12,23 @@ def sistema_base():
 def candidatos_potenciais_service():
     pass
 
+@app.route('/service/recrutador/resumo_vagas')
+def resumo_vagas():
+    service = VagaService()
+    resumo_vagas = service.buscar_resumo_vagas_recrutador()
+    return resumo_vagas
+
 @app.route('/service/recrutador/candidato/quantidade')
 def quantidade_candidatos():
-    service = RecrutadorService(request.args.get('recrutadorID'))
+    service = CandidatoService(request.args.get('recrutadorID'))
     quantidade_candidatos = service.quantidade_candidatos()
     return quantidade_candidatos
+
+@app.route('/service/recrutador/vagas/quantidade')
+def quantidade_vagas():
+    service = VagaService()
+    json_quantidade = service.quantidade_vagas()
+    return json_quantidade
 
 @app.route('/recrutador/candidatosPotenciais')
 def candidatos_potenciais():

@@ -47,7 +47,6 @@ export class UsuarioService {
     }
 
     setTema(tema) {
-        console.log(tema, 'tema')
         switch (tema.tipo) {
 
             case "tema interativo":

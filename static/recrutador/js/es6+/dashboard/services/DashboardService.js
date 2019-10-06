@@ -5,13 +5,21 @@ export class DashboardService {
     }
 
     getVagasAberto() {
-        return new Promise(resolve => resolve({ vagasAberto: 2 }))
+
+        return fetch("/service/recrutador/vagas/quantidade")
+            .then(vagas => vagas.json());
+
+    }
+
+    async getDetalhesCandidatosPotenciais() {
+
     }
 
     getCandidatosTotais() {
         return fetch("/service/recrutador/candidato/quantidade")
             .then(res => res.json())
     }
+
 
     getDadosAltaPerformance() {
 

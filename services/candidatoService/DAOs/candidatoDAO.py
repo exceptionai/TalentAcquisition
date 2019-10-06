@@ -29,5 +29,13 @@ class CandidatoDAO:
 
     def inserir_fase_candidato(self, candidato_id,fase_id,status_candidato_fase_id,pontuacao):
         query = f'INSERT INTO candidato_fase (candidato_id,fase_id,status_candidato_fase_id,pontuacao) VALUES ({candidato_id},{fase_id},{status_candidato_fase_id},{pontuacao})'
-        print(query)
         ConnectionFactory.execute(query)
+    
+    def candidatar_vaga(self,vaga_id):
+        query = f'INSERT INTO candidato_vaga (candidato_id,vaga_id) VALUES ({self.candidato_id},{vaga_id})'
+        ConnectionFactory.execute(query)
+    
+    def quantidade_candidatos(self):
+        query = f'SELECT COUNT(*) FROM candidato'
+        ConnectionFactory.execute(query)
+        return ConnectionFactory.fetchone()

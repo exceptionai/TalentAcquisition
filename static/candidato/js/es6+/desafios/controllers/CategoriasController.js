@@ -11,6 +11,7 @@ export class CategoriasController {
 
     _init() {
         this.gerarCategorias();
+        $("[ex-route-name=desafios]").click(this.gerarCategorias.bind(this))
     }
 
     async gerarCategorias() {

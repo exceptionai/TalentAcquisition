@@ -70,7 +70,6 @@ export class CurriculoView {
             const $campoPai = $(`[data-parent=${campo}]`);
             if ($campoPai.length) {
                 for (let campoService in camposCurriculo[campo]) {
-                    console.log(`[data-parent=${campo}][name=${campoService}]`)
                     const $campoPai = $(`[data-parent=${campo}][name=${campoService}]`);
                     $campoPai.val(camposCurriculo[campo][campoService])
                     $campoPai.trigger("change");

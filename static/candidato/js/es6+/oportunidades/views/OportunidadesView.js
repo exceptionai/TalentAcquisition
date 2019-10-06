@@ -30,7 +30,7 @@ export class OportunidadesView {
 
                 </div>
                 <div ex-router class="d-flex justify-content-center mt-3 border-top">
-                    <a class="btn ${vaga.selecionado && userService.dadosRequisicao.candidatoID == 1?'btn-success':'btn-primary'} mt-3" ex-route-name="oportunidade1" href="#/candidato/vaga/1"> ${vaga.selecionado  && userService.dadosRequisicao.candidatoID == 1?'Selecionado':'Selecionar'}</a>
+                    <a class="btn ${vaga.selecionado?'btn-success':'btn-primary'} mt-3" ex-route-name="oportunidade${vaga.vagaID}" href="#/candidato/vaga/${vaga.vagaID}"> ${vaga.selecionado?'Selecionado':'Detalhes'}</a>
 
                 </div>
             </div>

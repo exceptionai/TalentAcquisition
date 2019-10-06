@@ -1,7 +1,6 @@
 export class ValidacaoFormularioView {
 
     static marcarInvalidos(elementos) {
-        console.log(elementos)
         let primeiroInvalido = null;
         for (let elemento of elementos) {
             if (!elemento.checkValidity()) {

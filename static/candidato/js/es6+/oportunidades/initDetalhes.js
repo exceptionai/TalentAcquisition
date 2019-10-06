@@ -1,3 +1,3 @@
-import { DetalhesOportunidadeController } from "./models/DetalhesOportunidadeController.js";
+import { DetalhesOportunidadeController } from "./controllers/DetalhesOportunidadeController.js";
 
 const controller = new DetalhesOportunidadeController();

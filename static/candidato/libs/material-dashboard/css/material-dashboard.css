@@ -36,6 +36,22 @@ body {
     --light: #000;
     --white: #fff;
     --text-full-dark: #000;
+    --card-header-success-inicial: #66bb6a;
+    --card-header-success-final: #43a047;
+}
+
+.pink-theme {
+    --text-primary: #DE3163;
+    --body-bgcolor: #eee;
+    --bg-color-primary: #DE3163;
+    --card-color-final: #DE3163;
+    --card-color-inicial: #FF6FFF;
+    --card-header-success-inicial: #6495ED;
+    --card-header-success-final: #00617f;
+}
+
+#pink-theme {
+    background-color: var(--body-bgcolor);
 }
 
 .dark-theme2 {
@@ -16873,7 +16889,7 @@ label {
 .card.bg-success,
 .card.card-rotate.bg-success .front,
 .card.card-rotate.bg-success .back {
-    background: linear-gradient(60deg, #66bb6a, #43a047);
+    background: linear-gradient(60deg, var(--card-header-success-inicial), var(--card-header-success-final));
 }
 
 .card .card-header-warning .card-icon,

@@ -1,5 +1,5 @@
 export class Oportunidade {
-    constructor(cidade, cargo, area, dataAbertura, requisitos_desejaveis, requisitos_obrigatorios, atividades, salario, beneficios) {
+    constructor(cidade, cargo, area, dataAbertura, requisitos_desejaveis, requisitos_obrigatorios, atividades, salario, beneficios, oportunidadeID) {
         this._cargo = cargo;
         this._area = area;
         this._cidade = cidade;
@@ -10,6 +10,11 @@ export class Oportunidade {
         this._atividades = atividades;
         this._salario = salario;
         this._beneficios = beneficios;
+        this._oportunidadeID = oportunidadeID;
+    }
+
+    get oportunidadeID() {
+        return this._oportunidadeID;
     }
 
     get cargo() {

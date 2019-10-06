@@ -24,14 +24,18 @@ export class DashboardService {
         dataInicio.setMinutes(0);
         dataInicio.setSeconds(0);
         dataInicio.setDate(dataInicio.getDate() - dataInicio.getDay());
+        dataInicio.setDate(dataInicio.getDate() - 1);
         const dataFinal = new Date();
         dataFinal.setHours(23);
         dataFinal.setMinutes(59);
         dataFinal.setSeconds(59);
-        return fetch(`/service/candidato/desempenho?candidatoID=${this.dadosRequisicao.candidatoID}&dataInicial=${dataInicio.toISOString().substr(0,11)}&dataFinal=${dataFinal.toISOString().substr(0,11)}&token=${this.dadosRequisicao.token}`)
+        if (new Date().getDay()) {
+            dataFinal.setDate(dataFinal.getDate() - 1);
+        }
+        return fetch(`/service/candidato/desempenho?candidatoID=${this.dadosRequisicao.candidatoID}&dataInicial=${dataInicio.toISOString().substr(0,10)}&dataFinal=${dataFinal.toISOString().substr(0,10)}&token=${this.dadosRequisicao.token}`)
             .then(res => res.json())
             .then(dados => {
-                const labels = this._parseLabelsChartSemanal(new Date().getDay() + 1);
+                const labels = this._parseLabelsChartSemanal(new Date().getDay());
                 let series;
                 if (!dados.length) {
                     series = [{
@@ -41,7 +45,7 @@ export class DashboardService {
                 } else {
                     series = this._parsePontuacoesChart(dados, dataInicio, dataFinal);
                     if (dataInicio.getDate() - dataInicio.getDay() < 3) {
-                        for (let i = 0; i < 6 - dados.length; i++) {
+                        for (let i = 0; i < 7 - dados.length; i++) {
                             series[0].data.push(0);
                         }
                     }
@@ -52,7 +56,7 @@ export class DashboardService {
 
     _parseLabelsChartSemanal(qntDias) {
         const diasSemana = ['D', 'S', 'T', 'Q', 'Q', 'S', 'S'];
-        diasSemana[new Date().getDay()] = "Hoje";
+        diasSemana[qntDias] = "Hoje";
         return diasSemana;
     }
 
@@ -70,6 +74,8 @@ export class DashboardService {
 
         const datas = [];
         let proxData = new Date(dataInicio);
+        proxData.setDate(proxData.getDate() + 1);
+
         dados.forEach(dado => {
             const data = new Date(parseInt(dado.data.match(/\d{4}/g)) - 1, parseInt(dado.data.match(/(\d{2})/g)[1]) + 1, parseInt(dado.data.match(/\d{2}$/g)))
             if (data.getDate() !== proxData.getDate()) {
@@ -80,12 +86,11 @@ export class DashboardService {
             proxData = new Date(data);
             proxData.setDate(proxData.getDate() + 1);
         })
-
+        console.log(datas)
         const uData = dados[dados.length - 1];
         const data = new Date(parseInt(uData.data.match(/\d{4}/g)) - 1, parseInt(uData.data.match(/(\d{2})/g)[1]) + 1, parseInt(uData.data.match(/\d{2}$/g)))
 
         this._adicionarDatas(datas, data, dataFinal, uData)
-        datas.pop()
 
         return [{
             name: "Pontos",
@@ -106,19 +111,6 @@ export class DashboardService {
                 const labels = dados.map(dado => Formater.diaMes(dado.data));
                 return { labels, series }
             })
-
-        const labels = ['04/08', '05/08', '06/08'];
-        const series = [{
-            name: "Pontos",
-            data: [72, 80, 102]
-        }]
-
-        return new Promise((resolve, reject) => {
-            resolve({
-                labels,
-                series
-            })
-        });
     }
 
 }

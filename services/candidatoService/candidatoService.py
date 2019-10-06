@@ -29,6 +29,19 @@ class CandidatoService:
         }
         return json.dumps(candidato_dict)
 
+    def candidatar(self,vaga_id):
+        self.dao.candidatar_vaga(vaga_id)
+        mensagem_dict = {
+            "mensagem": f"candidato com sucesso à vaga {vaga_id}"
+        }
+
+    def quantidade_candidatos(self):
+        quantidade_candidatos = self.dao.quantidade_candidatos()
+        candidatos_dict = {
+            "candidatos": quantidade_candidatos[0]
+        }
+        return json.dumps(candidatos_dict)
+
     def buscar(self):
         candidato = self.dao.buscar_dados_candidato()
         pontuacao = self.dao.buscar_pontuacao()

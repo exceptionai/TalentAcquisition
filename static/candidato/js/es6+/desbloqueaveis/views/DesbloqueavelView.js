@@ -109,6 +109,5 @@ export class DesbloqueavelView {
         desbloqueaveis.forEach(desbloqueavel=>{
             this.render(desbloqueavel, callbackItem);
         })
-        console.log(this.container.html())
     }
 }
