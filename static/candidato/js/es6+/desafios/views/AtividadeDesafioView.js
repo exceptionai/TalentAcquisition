@@ -4,6 +4,10 @@ export class AtividadeDesafioView {
         this.atividadeDesafioContainer = $(atividadeDesafioContainer);
     }
 
+    mensagemFinalizar(titulo) {
+        $("[data-nomeDesafio]").html(titulo)
+    }
+
     _template(atividade) {
             return `
             <div class="question">
@@ -16,8 +20,8 @@ export class AtividadeDesafioView {
                 <div class="d-flex flex-column respostas">
                     ${atividade.alternativas.map((alternativa, index) => `
                         <div class="flex-grow-1  d-flex ">
-                            <button data-id="${index}" class="btn-resposta btn btn-primary flex-grow-1 ${atividade.alternativas[index + 1] ? "col-6 mr-5" : "col-12"}">${alternativa.descricao}</button>
-                            ${atividade.alternativas[index + 1] ? `<button data-id="${index + 1}" class=" btn-resposta btn btn-primary flex-grow-1">${atividade.alternativas[index + 1].descricao}</button>` : ""}
+                            <button data-id="${index}" data-alternativaID="${alternativa.descricao[1]}" class="btn-resposta btn btn-primary flex-grow-1 ${atividade.alternativas[index + 1] ? "col-6 mr-5" : "col-12"}">${alternativa.descricao[0]}</button>
+                            ${atividade.alternativas[index + 1] ? `<button data-id="${index + 1}" data-alternativaID="${atividade.alternativas[index + 1].descricao[1]}" class=" btn-resposta btn btn-primary flex-grow-1">${atividade.alternativas[index + 1].descricao[0]}</button>` : ""}
                         </div>
                     `)
                 .filter((alternativa, index) => index % 2 === 0).join('')}
@@ -51,7 +55,7 @@ export class AtividadeDesafioView {
         }
     }
 
-    render(atividade, indexAtividade, idSelecionado) {
+    render(atividade, indexAtividade, idSelecionado, questoes) {
         this.atividadeDesafioContainer.html("");
         const template = this._template(atividade);
         this.atividadeDesafioContainer.html(template);
@@ -62,6 +66,15 @@ export class AtividadeDesafioView {
         this.atividadeDesafioContainer.parent().find(".btn-resposta").click( event =>{
             this.atividadeDesafioContainer.parent().find(".btn-resposta").removeClass('resposta-ativada');
             event.target.classList.toggle('resposta-ativada');
+            const indexSelecionado = this.atividadeDesafioContainer.parent().find(".resposta-ativada").attr('data-alternativaid');
+            
+            if(questoes){
+                questoes._alternativas.forEach((alternativa, index)=>{
+                    if (alternativa.descricao[1] == indexSelecionado) alternativa._selecionada = true;
+                    else alternativa._selecionada = false;
+                })
+            }
+            console.log(questoes)
             this.atividadeDesafioContainer.parent().find("#questoesContador .flow-question")[indexAtividade].classList.add("fa-dot-circle");
         })
     }

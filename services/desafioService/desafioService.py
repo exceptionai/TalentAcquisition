@@ -7,6 +7,33 @@ class DesafioService:
         self.candidato_id = candidato_id
         self.dao = DesafioDAO(self.candidato_id)
 
+    def salvar(self, atividade_desafio):
+      
+        atividade_desafio_id = atividade_desafio["atividade_desafio_id"]
+        pontos_atividade = self.dao.buscar_pontos_desafio(atividade_desafio_id)
+        qntAtividades = self.dao.quantidade_atividade(atividade_desafio_id)
+        pontos_candidato = 0
+        resolvidas = 0
+        desafio_candidato_dict = {
+            "respostas": [
+
+            ]
+        }
+        for atividade in atividade_desafio["atividades"]:
+            atividade_id = atividade["atividadeID"]
+            resposta_correta = self.dao.buscar_resposta_correta(atividade_id)
+            if resposta_correta == atividade["respostaSelecionada"]:
+                pontos_candidato += (pontos_atividade / qntAtividades)
+            if atividade["respostaSelecionada"] is not None:
+                resolvidas += 1
+            resposta_id = self.dao.inserir_resposta(atividade_id,atividade["respostaSelecionada"])
+            desafio_candidato_dict["respostas"].append(resposta_id)
+        resposta_candidato_id = self.dao.inserir_atividade_candidato(atividade_desafio_id,resolvidas,pontos_candidato)
+        desafio_candidato_dict["respostaCandidatoID"] = resposta_candidato_id
+        desafio_candidato_dict["pontosObtidos"] = pontos_candidato
+        return json.dumps(desafio_candidato_dict)
+
+
     def buscar_categorias(self):
         categorias = self.dao.buscar_categorias()
         categorias_dict = []
@@ -56,7 +83,8 @@ class DesafioService:
                 {
                     "titulo": atividade[0],
                     "descricao": atividade[1],
-                    "alternativas": alternativas if alternativas else []
+                    "alternativas": alternativas if alternativas else [],
+                    "id": atividade[2]
                 }
                 
             )

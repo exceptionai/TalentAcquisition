@@ -16,7 +16,7 @@ export class CategoriasView {
                         ${categoria.pontosAdquiridos} / ${categoria.pontosNecessarios} Pontos
                     </div>
                 </div>
-                <div class="col-7 ">
+                <div class="col-7 ml-2">
                     <div class="texto-desafio">
                         <h3 class="desafio-title text-primary">${categoria.titulo}</h3>
                         <p class="text-secondary desafio-description">${categoria.descricao}</p>

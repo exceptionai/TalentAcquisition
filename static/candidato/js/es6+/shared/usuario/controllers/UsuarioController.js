@@ -9,7 +9,7 @@ export class UsuarioController {
     async _init() {
         const usuario = await this._service.obterUsuario();
         const { candidato, pontuacao } = usuario;
-        $(".qntPontos").html(candidato.pontos_consumiveis)
+        this._service.atualizarPontos(candidato.pontos_consumiveis);
 
         $('.experienciaAtual').html(pontuacao.pontuacao_atual);
         $(".pontosProximoLevel").html(pontuacao.pontuacao_maxima)

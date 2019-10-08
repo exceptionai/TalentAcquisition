@@ -29,7 +29,8 @@ import datetime
 import json
 import os
 import jwt
-app.secret_key = os.urandom(24)
+app.secret_key = 'abc'
+# app.secret_key = os.urandom(24)
 
 
 def decode_auth_token(auth_token):
@@ -58,6 +59,20 @@ def candidato():
         return render_template('candidato/dashboard.html')
     return json.dumps({"message": "Token Invalido", "location":"/login"}), 401
     
+
+@app.route('/service/candidato/atividade_desafio',methods=["POST"])
+def salvar_desafio():
+    service = DesafioService(request.json["candidatoID"])
+    dados = service.salvar(request.json)
+    pontos = json.loads(dados)["pontosObtidos"]
+
+    pontuacao_service = PontuacaoService()
+    pontuacao_service.inserir_pontuacao_candidato(pontos)
+    pontuacao_service.inserir_historico(pontos,request.json["candidatoID"])
+
+    candidato_service = CandidatoService(request.json["candidatoID"])
+    candidato_service.ganhar_pontos(json.loads(dados)["pontosObtidos"])
+    return dados
 
 def candidato_service_post():
     usuario_service = UsuarioService()

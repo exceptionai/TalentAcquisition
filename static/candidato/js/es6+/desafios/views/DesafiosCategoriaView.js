@@ -5,20 +5,22 @@ export class DesafiosCategoriaView {
     }
 
     _template(desafioCategoria) {
+        const finalizado = parseInt(desafioCategoria.desafiosRealizados);
+        console.log(finalizado);
         return `
-            <div class="desafio-container">
+            <div class="desafio-container ${finalizado?'desafio-container-success':''}">
                 <div class="row">
-                    <div class="col-3 d-flex align-items-center justify-content-center border-right-primary"  ex-router>
-                        <button class="btn btn-alternate" data-toggle="modal" data-target="#desafioCategoriaModal${desafioCategoria.id}" >Começar</button>
+                    <div class="col-3 d-flex align-items-center justify-content-center ${finalizado?'border-right-success':'border-right-primary'}"  ex-router>
+                        <button class="btn ${finalizado?'btn-success disabled':'btn-alternate'}" ${finalizado?'style="cursor:default"':'data-toggle="modal" data-target="#desafioCategoriaModal'+desafioCategoria.id+'"'}>${finalizado?'Finalizado':'Começar'}</button>
                     </div>
                     <div class="col-1 mr-4 ml-3">
-                        <div class="score-box col-1 ">
-                            ${desafioCategoria.pontosConquistados?desafioCategoria.pontosConquistados:'-'} / ${desafioCategoria.pontosADesbloquear} Pontos
+                        <div class="score-box ${finalizado?'score-box-success':''} col-1 ">
+                            ${finalizado?desafioCategoria.pontosConquistados:'-'} / ${desafioCategoria.pontosADesbloquear} Pontos
                         </div>
                     </div>
-                    <div class="col-7 ">
+                    <div class="col-7 ml-2">
                         <div class="texto-desafio">
-                            <h3 class="desafio-title text-primary">${desafioCategoria.titulo}</h3>
+                            <h3 class="desafio-title ${finalizado?'text-success':'text-primary'} ">${desafioCategoria.titulo}</h3>
                             <p class="text-secondary desafio-description">${desafioCategoria.descricao}</p>
                         </div>
                         <div class="small ">

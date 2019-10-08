@@ -1,6 +1,7 @@
 export class Formater {
     static diaMes(strDate) {
         const data = new Date(strDate);
+        data.setDate(data.getDate() + 1);
         return `${Formater._duasCasas(data.getDate())}/${Formater._duasCasas(data.getMonth()+1)}`
     }
 

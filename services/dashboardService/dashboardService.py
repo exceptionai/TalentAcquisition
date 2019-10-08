@@ -33,7 +33,7 @@ class DashboardService:
         desempenho_dias_dict = []
         for desempenho_dia in desempenho_dias:
             desempenho_dias_dict.append({
-                "pontuacao": desempenho_dia[0], 
+                "pontuacao": int(desempenho_dia[0]), 
                 "data": str(desempenho_dia[1]),
             })
         return json.dumps(desempenho_dias_dict)

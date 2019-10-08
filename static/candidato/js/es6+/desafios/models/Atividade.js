@@ -1,9 +1,14 @@
 export class Atividade {
 
-    constructor(titulo, descricao, alternativas) {
+    constructor(atividadeID, titulo, descricao, alternativas) {
+        this._id = atividadeID;
         this._titulo = titulo;
         this._descricao = descricao;
         this._alternativas = alternativas;
+    }
+
+    get atividadeID() {
+        return this._id;
     }
 
     get titulo() {

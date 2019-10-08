@@ -24,14 +24,13 @@ export class DashboardService {
         dataInicio.setMinutes(0);
         dataInicio.setSeconds(0);
         dataInicio.setDate(dataInicio.getDate() - dataInicio.getDay());
-        dataInicio.setDate(dataInicio.getDate() - 1);
+        // dataInicio.setDate(dataInicio.getDate() - 1);
         const dataFinal = new Date();
         dataFinal.setHours(23);
         dataFinal.setMinutes(59);
         dataFinal.setSeconds(59);
-        if (new Date().getDay()) {
-            dataFinal.setDate(dataFinal.getDate() - 1);
-        }
+        dataFinal.setDate(dataInicio.getDate() + 6);
+
         return fetch(`/service/candidato/desempenho?candidatoID=${this.dadosRequisicao.candidatoID}&dataInicial=${dataInicio.toISOString().substr(0,10)}&dataFinal=${dataFinal.toISOString().substr(0,10)}&token=${this.dadosRequisicao.token}`)
             .then(res => res.json())
             .then(dados => {
@@ -61,7 +60,7 @@ export class DashboardService {
     }
 
     _adicionarDatas(destino, dataInicio, dataFinal, dado) {
-        for (var i = new Date(dataInicio); i.getDay() <= new Date(dataFinal).getDay(); i.setDate(i.getDate() + 1)) {
+        for (var i = new Date(dataInicio); i.getDate() <= new Date(dataFinal).getDate(); i.setDate(i.getDate() + 1)) {
             if (i.getDate() == new Date(dataFinal).getDate()) {
                 destino.push(dado.pontuacao);
             } else {
@@ -70,14 +69,15 @@ export class DashboardService {
         }
     }
 
-    _parsePontuacoesChart(dados, dataInicio, dataFinal) {
 
+    _parsePontuacoesChart(dados, dataInicio, dataFinal) {
         const datas = [];
         let proxData = new Date(dataInicio);
-        proxData.setDate(proxData.getDate() + 1);
+        // proxData.setDate(proxData.getDate() - proxData.getDay());
 
         dados.forEach(dado => {
             const data = new Date(parseInt(dado.data.match(/\d{4}/g)) - 1, parseInt(dado.data.match(/(\d{2})/g)[1]) + 1, parseInt(dado.data.match(/\d{2}$/g)))
+
             if (data.getDate() !== proxData.getDate()) {
                 this._adicionarDatas(datas, proxData, data, dado);
             } else {
@@ -86,12 +86,12 @@ export class DashboardService {
             proxData = new Date(data);
             proxData.setDate(proxData.getDate() + 1);
         })
-        console.log(datas)
+
         const uData = dados[dados.length - 1];
         const data = new Date(parseInt(uData.data.match(/\d{4}/g)) - 1, parseInt(uData.data.match(/(\d{2})/g)[1]) + 1, parseInt(uData.data.match(/\d{2}$/g)))
 
         this._adicionarDatas(datas, data, dataFinal, uData)
-
+        datas.pop();
         return [{
             name: "Pontos",
             data: datas

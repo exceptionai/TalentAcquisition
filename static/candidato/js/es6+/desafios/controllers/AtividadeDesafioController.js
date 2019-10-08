@@ -1,12 +1,12 @@
 import { AtividadeDesafioView } from '../views/AtividadeDesafioView.js';
 import { AtividadeDesafioService } from '../services/AtividadeDesafioService.js';
+import { NotificacaoService } from '../../curriculo/services/NotificacaoService.js';
+import { UsuarioService } from '../../shared/usuario/services/UsuarioService.js';
 
 let contador;
 export class AtividadeDesafioController {
     constructor() {
-
         this._service = new AtividadeDesafioService();
-
         this._init();
     }
 
@@ -17,6 +17,7 @@ export class AtividadeDesafioController {
     }
 
     buscarQuestoes() {
+
         this._service.buscarQuestoes()
             .then(({ questoes, tempoRestante, titulo, atividadeDesafioID }) => {
                 this._atividadeDesafioID = atividadeDesafioID;
@@ -42,7 +43,9 @@ export class AtividadeDesafioController {
                 this._view.renderCircles(questoes.length);
                 this._view.render(
                     this._perguntaAtual,
-                    this._indicePergunta
+                    this._indicePergunta,
+                    null,
+                    this._questoes[0]
                 )
 
                 if (this._proximaPergunta)
@@ -56,9 +59,20 @@ export class AtividadeDesafioController {
 
                 this._contagemTempoDesafio(tempoRestante);
 
+                $("#confirmar").click(this.salvarQuestoes.bind(this))
                 this._confirmarAoSair();
+                this._view.mensagemFinalizar(titulo);
 
             })
+    }
+
+    async salvarQuestoes() {
+        const { pontosObtidos } = await this._service.salvarQuestoes(this._questoes)
+        NotificacaoService.sucesso(pontosObtidos + " pontos foram obtidos", "Teste Finalizado");
+        const usuarioService = new UsuarioService();
+        usuarioService.atualizarPontos(pontosObtidos);
+        $(".sidebar a").off('click');
+        carregarPagina("#/candidato/desafios");
     }
 
     _navegaEntreQuestoes() {
@@ -87,6 +101,7 @@ export class AtividadeDesafioController {
 
     _confirmarAoSair() {
         $(".sidebar a").click(e => {
+
             window.interceptarCliques = true;
             const self = e.target;
             if ($(e.target).attr("href") != "#" && window.interceptarCliques) {
@@ -130,7 +145,8 @@ export class AtividadeDesafioController {
         this._view.render(
             this._perguntaAtual,
             this._indicePergunta,
-            this._questoes[this._indicePergunta].respostaSelecionada
+            this._questoes[this._indicePergunta].respostaSelecionada,
+            this._questoes[this._indicePergunta]
         )
 
         if (this._proximaPergunta) this._proximaPerguntaButton.removeClass("d-none")
@@ -157,7 +173,9 @@ export class AtividadeDesafioController {
         this._view.render(
             this._perguntaAtual,
             this._indicePergunta,
-            this._questoes[this._indicePergunta].respostaSelecionada
+            this._questoes[this._indicePergunta].respostaSelecionada,
+            this._questoes[this._indicePergunta]
+
         )
         $(`#atividadeAtividadedesafio${this._atividadeDesafioID} .flow-question`)[this._indicePergunta].classList.add('text-alternate');
 

@@ -36,10 +36,10 @@ export class DashboardController {
 
     async _buscarEvolucaoProgressiva() {
         const evolucaoProgressiva = await this._service.getDadosEvolucaoProgressiva();
-        const { series, labels } = evolucaoProgressiva;
-
-        let options = {}
-        if (series.length == 1) options = {
+        let { series, labels } = evolucaoProgressiva;
+        const [dados] = series;
+        let options = null;
+        if (dados.data.length == 1) options = {
             chart: {
                 type: 'bar',
                 height: 170,
@@ -77,6 +77,7 @@ export class DashboardController {
                 }
             }
         };
+        console.log(series)
 
         this._chartFactory.create('#evolucaoProgressiva', series, labels, options);
         this._view.preencherDataDesempenhoProgressivo("#dataDesempenhoSemanal", "Última Hora")

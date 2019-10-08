@@ -14,6 +14,11 @@ export class UsuarioService {
         this._obterDesbloqueaveis();
     }
 
+    atualizarPontos(pontos_consumiveis) {
+        const pontosAnteriores = parseInt($(".qntPontos").html()) ? parseInt($(".qntPontos").html()) : 0;
+        $(".qntPontos").html(pontosAnteriores + pontos_consumiveis)
+    }
+
     _obterDesbloqueaveis() {
         this._temaAnterior = this._tema;
         return fetch(`/service/candidato/desbloqueaveis_candidato?candidatoID=${this.candidatoID}`)

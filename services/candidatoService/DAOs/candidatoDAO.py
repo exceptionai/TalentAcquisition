@@ -17,6 +17,11 @@ class CandidatoDAO:
         pontuacao = ConnectionFactory.fetchone()
         return pontuacao
 
+    def aumentar_pontos(self, pontos):
+        query = f'UPDATE candidato SET pontos_consumiveis = pontos_consumiveis + {pontos} WHERE candidato_id = {self.candidato_id}'
+        ConnectionFactory.execute(query)
+        return ConnectionFactory.get_cursor().lastrowid
+
     def diminuir_pontos(self, pontos):
         query = f'UPDATE candidato SET pontos_consumiveis = pontos_consumiveis - {pontos} WHERE candidato_id = {self.candidato_id}'
         ConnectionFactory.execute(query)

@@ -11,6 +11,13 @@ class CandidatoService:
         self.dao = CandidatoDAO(self.candidato_id)
         self.token = '123'
 
+    def ganhar_pontos(self, pontos):
+        self.dao.aumentar_pontos(pontos)
+        mensagem_dict = {
+            "mensagem":  "Pontuação alterada com sucesso"
+        }
+        return json.dumps(mensagem_dict)
+
     def diminuir_pontos(self,pontos):
         self.dao.diminuir_pontos(pontos)
         mensagem_dict = {
