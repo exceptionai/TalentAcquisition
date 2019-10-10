@@ -8,12 +8,18 @@ export class DetalhesOportunidadeService {
     }
 
     buscarDetalhesOportunidade() {
+        console.log('teste')
         return new Promise((resolve, reject) => {
             setTimeout(() => {
                 const vagaID = /vaga\/(\d+)/g.exec(window.location.hash)[1];
-                resolve(new Oportunidade("são paulo", "desenvolvedor front-end", "Tecnologia", "2019-05-02", "Excel Avançado", "HTML5", "Desenvolver sistemas de grande porte", 1900, "vale refeição", vagaID))
-            }, 300)
-        });
+                const candidatoID = this._userService.dadosRequisicao.candidatoID;
+                resolve(fetch(`/service/vaga/detalhes?candidatoID=${candidatoID}&vagaID=${vagaID}`)
+                    .then(res => res.json())
+                    .then(res => new Oportunidade("são paulo", res.cargo, res.areaAtuacao, res.dataAbertura, res.requisitosDesejaveis, res.requisitosObrigatorios, res.principaisAtividades, res.salario, res.beneficios, res.vagaID))
+                );
+            }, 400)
+        })
+
     }
 
     candidatarOportunidade() {

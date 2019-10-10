@@ -24,7 +24,7 @@ class DesafioDAO:
         return quantidade
 
     def buscar_resposta_correta(self, atividade_id):
-        query = f"SELECT correta FROM resposta_atividade WHERE atividade_id = {atividade_id} and correta = 1"
+        query = f"SELECT resposta_atividade_id FROM resposta_atividade WHERE atividade_id = {atividade_id} and correta = 1"
         ConnectionFactory.execute(query)
         resposta_correta = ConnectionFactory.fetchone()
         if resposta_correta:

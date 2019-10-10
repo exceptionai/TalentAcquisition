@@ -7,6 +7,7 @@ class CandidatoDAO:
 
     def buscar_dados_candidato(self):
         query = f'SELECT nome, pontos_consumiveis FROM candidato c WHERE c.candidato_id = {self.candidato_id}'
+        print(query)
         ConnectionFactory.execute(query)
         dados = ConnectionFactory.fetchone()
         return dados

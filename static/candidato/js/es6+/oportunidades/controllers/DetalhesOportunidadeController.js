@@ -16,6 +16,7 @@ export class DetalhesOportunidadeController {
     async buscarDetalhes() {
         this._service = new DetalhesOportunidadeService();
         const vaga = await this._service.buscarDetalhesOportunidade()
+        console.log(vaga);
         $(`.selecionar_vaga`).off('click');
         $(`#oportunidade${vaga.oportunidadeID} #selecionar_vaga`).click(this.candidatarVaga.bind(this))
         this._view = new DetalhesOportunidadeView(`#oportunidade${vaga.oportunidadeID} #cargo_vaga`, `#oportunidade${vaga.oportunidadeID} #area_atuacao`, `#oportunidade${vaga.oportunidadeID} #requisitos_desejaveis`, `#oportunidade${vaga.oportunidadeID} #requisitos_obrigatorios`, `#oportunidade${vaga.oportunidadeID} #atividade`, `#oportunidade${vaga.oportunidadeID} #salario_vaga`, `#oportunidade${vaga.oportunidadeID} #beneficios_vaga`, `#oportunidade${vaga.oportunidadeID} #selecionar_vaga`);

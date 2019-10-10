@@ -10,6 +10,10 @@
     opacity: 0;
 }
 
+.apexcharts-svg {
+    overflow: visible!important;
+}
+
 #futuristic-theme {
     z-index: 0;
 }
@@ -74,7 +78,8 @@ footer {
     color: #624862!important;
 }
 
-.btn-high-danger {
+.btn-high-danger,
+#btnExcluir {
     background-color: #D7263D!important;
     color: var(--white)!important;
 }

@@ -16,8 +16,8 @@ class PontuacaoService:
     
     def aumentar_pontuacao_canditado(self,pontos):
 
-        level = self.dao.buscar_level(pontos)
-        pontuacao_candidato_id = self.dao.aumentar_pontuacao_canditado(pontos)
+        level = self.dao.buscar_level_soma(pontos)
+        pontuacao_candidato_id = self.dao.aumentar_pontuacao_canditado(pontos,level)
         pontuacao_candidato_dict = {
             "pontuacao_candidato_id": pontuacao_candidato_id
         }

@@ -83,7 +83,7 @@ $(document).ready(function() {
                     $validator.focusInvalid();
                     return false;
                 } else if (index === 1 && !window.emailEnviado) {
-                    toastr.success('Enviamos um email de confrmação, por favor verifique e valide seu acesso', 'Confirmação Email')
+                    toastr.success('70 Pontos conquistados', 'Pontos Conquistados')
                     emailEnviado = true;
                 } else if (index === 3 && !window.pontosObtidos) {
                     toastr.success('70 Pontos desbloqueados ao seu usuário', 'Pontos Adquiridos')

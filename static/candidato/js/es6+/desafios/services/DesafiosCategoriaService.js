@@ -8,6 +8,7 @@ export class DesafiosCategoriaService {
     buscarDesafiosCategoria() {
         const usuarioService = new UsuarioService();
         const candidatoID = usuarioService.dadosRequisicao.candidatoID;
+        console.log('a')
         return new Promise((resolve, reject) => {
             setTimeout(() => {
                 const categoriaID = /categoria\/(\d+)/g.exec(window.location.hash)[1];

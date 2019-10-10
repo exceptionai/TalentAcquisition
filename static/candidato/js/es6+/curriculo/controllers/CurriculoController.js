@@ -30,6 +30,7 @@ export class CurriculoController {
         const curriculo = await this._service.buscarCurriculo();
         this._curriculoView.preencherFormulario(curriculo)
         $("#btnEditar").click(this.habilitarEdicao.bind(this));
+        $("#btnExcluir").click(this.removerCurriculo.bind(this));
 
     }
 
@@ -181,13 +182,21 @@ export class CurriculoController {
         });
     }
 
+    removerCurriculo() {
+        this._service.remover().then(() => {
+            window.location.reload();
+        })
+    }
+
     enviarCurriculo() {
 
         if (ValidacaoFormularioController.valida(this._form)) {
             let curriculoObj = FormHelper.paraObjeto(this._form);
             let curriculoJSON = JSON.stringify(curriculoObj);
             const userService = new UsuarioService();
-            this._service.enviar("/service/candidato/curriculo/inserir?token=" + userService.dadosRequisicao.token, curriculoJSON)
+            const candidatoID = userService.dadosRequisicao.candidatoID;
+            const curriculoID = candidatoID;
+            this._service.enviar(`/service/candidato/curriculo/inserir?candidatoID=${candidatoID}&token=${userService.dadosRequisicao.token}&curriculoID=${curriculoID}`, curriculoJSON)
                 .then(resposta => {
                     NotificacaoService.sucesso(resposta, 'Sucesso')
                     this._curriculoView.bloquearCampos();

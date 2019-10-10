@@ -9,6 +9,8 @@
                         <div id="fotoCarreiras"></div>
                         <form class="m-3" id="formularioCurriculo">
                             <div class="row">
+                                <input type="hidden" name="curriculoID" id="curriculoID" class="form-control" id="nome" maxlength="50" value="" required>
+
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label class="bmd-label-floating">Nome completo*</label>
@@ -172,6 +174,9 @@
                                     </button>
                                     <button type="button" class="btn btn-outline-success pull-right d-none" id="btnEnviar">
                                         Salvar
+                                    </button>
+                                    <button type="button" class="btn pull-right ml-2" id="btnExcluir">
+                                        Apagar Currículo
                                     </button>
 
                                 </div>

@@ -11,6 +11,12 @@ class ConnectionFactory:
         return cls._connection
     
     @classmethod
+    def close_connection(cls):
+        cls._connection.close()
+        cls._connection = None
+        cls._cursor = None
+
+    @classmethod
     def get_cursor(cls):
         if cls._cursor is None:
             cls._cursor = cls.get_connection().cursor(buffered=True)

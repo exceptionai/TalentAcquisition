@@ -59,6 +59,11 @@ def candidato():
         return render_template('candidato/dashboard.html')
     return json.dumps({"message": "Token Invalido", "location":"/login"}), 401
     
+@app.route('/service/candidato/funcionalidade_x')
+def funcionalidade_x():
+    service = XService(request.json["candidatoID"])
+    mensagem = service.salvar/atualizar/deletar/listar()
+    return mensagem
 
 @app.route('/service/candidato/atividade_desafio',methods=["POST"])
 def salvar_desafio():
@@ -66,12 +71,14 @@ def salvar_desafio():
     dados = service.salvar(request.json)
     pontos = json.loads(dados)["pontosObtidos"]
 
-    pontuacao_service = PontuacaoService()
+    pontuacao_service = PontuacaoService(request.json["candidatoID"])
     pontuacao_service.inserir_pontuacao_candidato(pontos)
     pontuacao_service.inserir_historico(pontos,request.json["candidatoID"])
 
     candidato_service = CandidatoService(request.json["candidatoID"])
-    candidato_service.ganhar_pontos(json.loads(dados)["pontosObtidos"])
+    candidato_service.ganhar_pontos(pontos)
+
+    pontuacao_service.aumentar_pontuacao_canditado(pontos)
     return dados
 
 def candidato_service_post():
@@ -178,14 +185,19 @@ def desafios_service():
     desafios = service.buscar_categorias()
     return desafios
 
-@app.route('/service/candidato/curriculo')
+@app.route('/service/candidato/curriculo',methods=['GET','DELETE'])
 def curriculo_service():
     token = request.args.get("token")
-    if(decode_auth_token(token)):
-        if request.method == 'GET':
+    if request.method == 'GET':
+        if(decode_auth_token(token)):
             service = CurriculoService(request.args.get("candidatoID"))
             curriculo = service.buscar()
             return curriculo
+    if request.method == 'DELETE':
+        service = CurriculoService(request.args.get("candidatoID"), request.args.get("curriculoID"))
+        mensagem = service.remover()
+        return mensagem
+
     return json.dumps({"mensagem": "Token Invalido"}), 401
 
 @app.route('/candidato/vaga/<id_vaga>')
@@ -277,140 +289,135 @@ def atividade(id_categoria, id_atividade):
         return render_template('candidato/desafiosCategoriaAtividade.html')
     return json.dumps({"mensagem": "Token Invalido"}), 401
 
+
 @app.route('/service/candidato/curriculo/inserir', methods=['POST', ])
 def inserir():
-    try:
-        curriculo_request = request.json
+    curriculo_request = request.json
 
-        cursos_complementares_requisicao = []
-        experiencias_anteriores_requisicao = []
-        idiomas_requisicao = []
-        formacoes_academicas_requisicao = []
+    cursos_complementares_requisicao = []
+    experiencias_anteriores_requisicao = []
+    idiomas_requisicao = []
+    formacoes_academicas_requisicao = []
 
-        if 'cursosComplementares' in curriculo_request:
-            cursos_complementares_requisicao = curriculo_request['cursosComplementares']
+    if 'cursosComplementares' in curriculo_request:
+        cursos_complementares_requisicao = curriculo_request['cursosComplementares']
 
-        if 'experienciasAnteriores' in curriculo_request:
-            experiencias_anteriores_requisicao = curriculo_request['experienciasAnteriores']
+    if 'experienciasAnteriores' in curriculo_request:
+        experiencias_anteriores_requisicao = curriculo_request['experienciasAnteriores']
 
-        if 'idiomas' in curriculo_request:
-            idiomas_requisicao = curriculo_request['idiomas']
+    if 'idiomas' in curriculo_request:
+        idiomas_requisicao = curriculo_request['idiomas']
+    
+    if 'formacaoAcademica' in curriculo_request:
+        formacoes_academicas_requisicao = curriculo_request['formacaoAcademica']
+
+    candidato_requisicao = curriculo_request['candidato'][0]
+
+    cursos_complementares = []
+    idiomas = []
+    experiencias_anteriores =[]
+    formacoes_academicas =[]
+
+
+    print('teste0')
+    #CURSO COMPLEMENTARES
+
+    #CursoExtraCurricular.parse_request(cursos_complementares_requisicao)
+    for curso  in cursos_complementares_requisicao:
+        curso_obj = CursoExtraCurricular(
+            curso['nome'],
+            curso['instituicao'],
+            curso['duracao'],
+            curso['dataInicial'],
+            curso['descricao'],
+            curso['situacao'])
+        cursoDAO = CursoExtraCurricularDAO(curso_obj)
+        curso_id = cursoDAO.insere()
+        curso_obj.id = curso_id
+
+        cursos_complementares.append(curso_obj)
         
-        if 'formacaoAcademica' in curriculo_request:
-            formacoes_academicas_requisicao = curriculo_request['formacaoAcademica']
+    
+    #EXPERIENCIAS
+    for experiencia_anterior in experiencias_anteriores_requisicao:
+        experiencia_obj = ExperienciaAnterior(
+            experiencia_anterior['empresa'], 
+            experiencia_anterior['cargo'], 
+            experiencia_anterior['salario'], 
+            experiencia_anterior['entrada'],
+            experiencia_anterior['saida'],
+            experiencia_anterior['trabalhoAtual'],
+            experiencia_anterior['principais_atividades'])
 
-        candidato_requisicao = curriculo_request['candidato'][0]
-
-        cursos_complementares = []
-        idiomas = []
-        experiencias_anteriores =[]
-        formacoes_academicas =[]
-
-
-        print('teste0')
-        #CURSO COMPLEMENTARES
-
-        # CursoExtraCurricular.parse_request(cursos_complementares_requisicao)
-        for curso  in cursos_complementares_requisicao:
-            curso_obj = CursoExtraCurricular(
-                curso['nome'],
-                curso['instituicao'],
-                curso['duracao'],
-                curso['dataInicial'],
-                curso['descricao'],
-                curso['situacao'])
-            cursoDAO = CursoExtraCurricularDAO(curso_obj)
-            curso_id = cursoDAO.insere()
-            curso_obj.id = curso_id
-
-            cursos_complementares.append(curso_obj)
-            
+        experienciaDAO = ExperienciaAnteriorDAO(experiencia_obj)
+        experiencia_id = experienciaDAO.insere()
         
-        #EXPERIENCIAS
-        for experiencia_anterior in experiencias_anteriores_requisicao:
-            experiencia_obj = ExperienciaAnterior(
-                experiencia_anterior['nomeEmpresa'], 
-                experiencia_anterior['cargo'], 
-                experiencia_anterior['salario'], 
-                experiencia_anterior['dataEntrada'],
-                experiencia_anterior['dataSaida'],
-                experiencia_anterior['trabalhoAtual'],
-                experiencia_anterior['principais_atividades'])
-
-            experienciaDAO = ExperienciaAnteriorDAO(experiencia_obj)
-            experiencia_id = experienciaDAO.insere()
-            
-            experiencia_obj.id = experiencia_id
-            experiencias_anteriores.append(experiencia_obj)
+        experiencia_obj.id = experiencia_id
+        experiencias_anteriores.append(experiencia_obj)
 
 
+    
+    # IDIOMAS
+    for idioma in idiomas_requisicao:
+        proeficiencia = Proeficiencia(
+            idioma['nivelFala'], 
+            idioma['nivelLeitura'], 
+            idioma['nivelEscrita'])
+        proficienciaDAO = ProficienciaDAO(proeficiencia)
+        proficiencia_id = proficienciaDAO.insere()
+
+        idioma_obj = Idioma(idioma['idioma'],proeficiencia)
+        idiomaDAO = IdiomaDAO(idioma_obj)
+        idioma_id = idiomaDAO.insere()
+        idiomaDAO.insere_proficiencia(idioma_id, proficiencia_id)
+        idioma_obj.id = idioma_id
+        idiomas.append(idioma_obj)
+
+    
+    #FORMAÇÃO ACADEMICA
+    for formacao_academica in formacoes_academicas_requisicao:
+        formacao_obj = FormacaoAcademica(
+            formacao_academica['instituicao'],
+            formacao_academica['nome_curso'],
+            formacao_academica['situacaoFormacao'],
+            formacao_academica['nivel'])
+        formacaoDAO = FormacaoAcademicaDAO(formacao_obj)
+        formacao_id = formacaoDAO.insere()
+
+        formacao_obj.id = formacao_id
+        formacoes_academicas.append(formacao_obj)
         
-        # IDIOMAS
-        for idioma in idiomas_requisicao:
-            proeficiencia = Proeficiencia(
-                idioma['nivelFala'], 
-                idioma['nivelLeitura'], 
-                idioma['nivelEscrita'])
-            proficienciaDAO = ProficienciaDAO(proeficiencia)
-            proficiencia_id = proficienciaDAO.insere()
 
-            idioma_obj = Idioma(idioma['idioma'],proeficiencia)
-            idiomaDAO = IdiomaDAO(idioma_obj)
-            idioma_id = idiomaDAO.insere()
-            idiomaDAO.insere_proficiencia(idioma_id, proficiencia_id)
-            idioma_obj.id = idioma_id
-            idiomas.append(idioma_obj)
+    endereco_requisicao = curriculo_request['endereco'][0]
+    endereco = (Endereco(endereco_requisicao['cep'],endereco_requisicao['rua'],endereco_requisicao['numero'],endereco_requisicao['cidade'],endereco_requisicao['uf'],endereco_requisicao['realocar']))
+    enderecoDAO = EnderecoDAO(endereco)
+    endereco_id = enderecoDAO.insere()
 
-        
-        #FORMAÇÃO ACADEMICA
-        for formacao_academica in formacoes_academicas_requisicao:
-            formacao_obj = FormacaoAcademica(
-                formacao_academica['nomeInstituicao'],
-                formacao_academica['curso'],
-                formacao_academica['situacaoFormacao'],
-                formacao_academica['nivelCurso'])
-            formacaoDAO = FormacaoAcademicaDAO(formacao_obj)
-            formacao_id = formacaoDAO.insere()
+    candidato = Candidato(candidato_requisicao['nome'],candidato_requisicao['idade'],candidato_requisicao['email'],candidato_requisicao['telefone_residencial'],candidato_requisicao['telefone_celular'],endereco)
+    candidatoDAO = CandidatoDAO(candidato)
+    candidato_id = candidatoDAO.insere(endereco_id,endereco.realocar, request.args.get("candidatoID"))
 
-            formacao_obj.id = formacao_id
-            formacoes_academicas.append(formacao_obj)
-            
+    curriculo = Curriculo(curriculo_request['objetivo_profissional'],experiencias_anteriores,cursos_complementares,idiomas,formacoes_academicas,curriculo_request['salarioExpectativa'],curriculo_request['resumo'],{})
+    curriculoDAO = CurriculoDAO(curriculo)
+    curriculo_id = curriculoDAO.insere(request.args.get("candidatoID"))
+    curriculo.id = curriculo_id
 
-        endereco_requisicao = curriculo_request['endereco'][0]
-        endereco = (Endereco(endereco_requisicao['cep'],endereco_requisicao['rua'],endereco_requisicao['numero'],endereco_requisicao['cidade'],endereco_requisicao['uf'],endereco_requisicao['realocar']))
-        enderecoDAO = EnderecoDAO(endereco)
-        endereco_id = enderecoDAO.insere()
+    for curso in cursos_complementares:
+        curriculoDAO.insere_curso(curso.id)
 
-        print('teste11')
+    for experiencia_anterior in experiencias_anteriores:
+        curriculoDAO.insere_experiencia(experiencia_anterior.id)
 
-        # candidato = Candidato(candidato_requisicao['nome'],candidato_requisicao['idade'],candidato_requisicao['email'],candidato_requisicao['telefone_residencial'],candidato_requisicao['telefone_celular'],endereco)
-        # candidatoDAO = CandidatoDAO(candidato)
-        # candidato_id = candidatoDAO.insere(endereco_id,endereco.realocar)
+    for idioma in idiomas:
+        curriculoDAO.insere_idioma(idioma.id)
 
-        curriculo = Curriculo(curriculo_request['objetivo_profissional'],experiencias_anteriores,cursos_complementares,idiomas,formacoes_academicas,curriculo_request['salarioExpectativa'],curriculo_request['resumo'],{})
-        curriculoDAO = CurriculoDAO(curriculo)
-        print('teste12')
-        curriculo_id = curriculoDAO.insere(1)
-        print('teste13')
-        curriculo.id = curriculo_id
+    for formacao in formacoes_academicas:
+        curriculoDAO.insere_formacao(formacao.id)
 
-        for curso in cursos_complementares:
-            curriculoDAO.insere_curso(curso.id)
 
-        for experiencia_anterior in experiencias_anteriores:
-            curriculoDAO.insere_experiencia(experiencia_anterior.id)
 
-        for idioma in idiomas:
-            curriculoDAO.insere_idioma(idioma.id)
-
-        for formacao in formacoes_academicas:
-            curriculoDAO.insere_formacao(formacao.id)
-
-        resposta = {
-            "curiculo_id" : 1
-        }
-        
-        return json.dumps(resposta), 201
-    except Exception as error:
-        print(f'erro: {error}')
-        return '',500
+    resposta = {
+        "curiculo_id" : curriculo_id
+    }
+    
+    return json.dumps(resposta), 201

@@ -3,11 +3,17 @@ from flask import render_template, request, send_from_directory
 
 from main import app
 
+@app.route('/service/vaga/detalhes')
+def detalhes_vagas_service():
+    service = VagaService(request.args.get("candidatoID")) 
+    vagas = service.buscar_detalhes_vagas(request.args.get("vagaID"))
+    return vagas
+
 
 @app.route('/service/resumo_vaga')
 def resumo_vagas_service():
   
-    service = VagaService() 
+    service = VagaService(request.args.get("candidatoID")) 
     vagas = service.buscar_resumo_vagas()
     return vagas
 

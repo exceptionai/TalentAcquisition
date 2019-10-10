@@ -16,6 +16,7 @@ export class CategoriasController {
 
     async gerarCategorias() {
         const categorias = await this.obterCategorias();
+        if (window.callbacks) window.callbacks[0]()
         this._view.renderAll(categorias);
     }
 

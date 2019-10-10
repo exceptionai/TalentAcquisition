@@ -6,8 +6,8 @@ class CurriculoDAO:
 
     def insere(self,candidato_id):
         salario = self.curriculo.expectativa_salario if self.curriculo.expectativa_salario else "null"
-        query = f'REPLACE INTO curriculo (curriculo_id, objetivo_profissional, expectativa_salario, resumo, candidato_id) VALUES (1,"{self.curriculo.objetivo_profissional}", {salario}, "{self.curriculo.resumo}", {candidato_id})'
-        
+        query = f'REPLACE INTO curriculo (curriculo_id, objetivo_profissional, expectativa_salario, resumo, candidato_id) VALUES ({candidato_id},"{self.curriculo.objetivo_profissional}", {salario}, "{self.curriculo.resumo}", {candidato_id})'
+        print(query)
         ConnectionFactory.execute(query)
         return ConnectionFactory.get_cursor().lastrowid
 

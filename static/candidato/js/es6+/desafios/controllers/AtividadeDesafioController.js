@@ -72,7 +72,7 @@ export class AtividadeDesafioController {
         const usuarioService = new UsuarioService();
         usuarioService.atualizarPontos(pontosObtidos);
         $(".sidebar a").off('click');
-        carregarPagina("#/candidato/desafios");
+        window.location.reload()
     }
 
     _navegaEntreQuestoes() {

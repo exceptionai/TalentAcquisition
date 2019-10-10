@@ -23,10 +23,10 @@ export class IdiomasView extends CurriculoView {
                             </select>
                         </div>
                     </div>
-                    <div class="col-md-2">
+                    <div class="d-none">
                         <div class="form-group">
                             <label class="bmd-label-floating">Nível Fala*</label>
-                            <select required class="form-control" data-style="btn btn-link" name="nivelFala" data-parent="idiomas" >
+                            <select class="form-control" data-style="btn btn-link" name="nivelFala" data-parent="idiomas" >
                                 <option value="" selected disabled>Nível</option>
                                 <option value="basico">Básico</option>
                                 <option value="intermediario">Intermediário</option>
@@ -36,10 +36,10 @@ export class IdiomasView extends CurriculoView {
                             </select>
                         </div>
                     </div>
-                    <div class="col-md-2">
+                    <div class="d-none">
                         <div class="form-group">
                             <label class="bmd-label-floating">Nível Leitura*</label>
-                            <select required class="form-control" data-style="btn btn-link" name="nivelLeitura" data-parent="idiomas" >
+                            <select class="form-control" data-style="btn btn-link" name="nivelLeitura" data-parent="idiomas" >
                                 <option value="" selected disabled>Nível</option>
                                 <option value="basico">Básico</option>
                                 <option value="intermediario">Intermediário</option>
@@ -49,10 +49,10 @@ export class IdiomasView extends CurriculoView {
                             </select>
                         </div>
                     </div>
-                    <div class="col-md-2">
+                    <div class="d-none">
                         <div class="form-group">
                             <label class="bmd-label-floating">Nível Escrita*</label>
-                            <select required class="form-control" data-style="btn btn-link" name="nivelEscrita" data-parent="idiomas" >
+                            <select class="form-control" data-style="btn btn-link" name="nivelEscrita" data-parent="idiomas" >
                                 <option value="" selected disabled>Nível</option>
                                 <option value="basico">Básico</option>
                                 <option value="intermediario">Intermediário</option>

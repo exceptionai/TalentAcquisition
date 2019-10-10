@@ -13,7 +13,7 @@ export class ExperienciasAnterioresView extends CurriculoView {
                 <div class="col-md-4">
                     <div class="form-group">
                         <label class="bmd-label-floating">Nome da empresa*</label>
-                        <input type="text" data-parent="experienciasAnteriores" class="form-control" name="nomeEmpresa" placeholder="Ex: Bayer" required>
+                        <input type="text" data-parent="experienciasAnteriores" class="form-control" name="empresa" placeholder="Ex: Bayer" required>
                     </div>
                 </div>
                 <div class="col-md-4">
@@ -33,13 +33,13 @@ export class ExperienciasAnterioresView extends CurriculoView {
                 <div class="col-md-4">
                     <div class="form-group">
                         <label class="bmd-label-floating">Data de entrada*</label>
-                        <input type="date" min="1900-01-01" data-parent="experienciasAnteriores" class="form-control" name="dataEntrada" id="dataEntrada${this._dinamicoCampoContador}" data-valida="data" required>
+                        <input type="date" min="1900-01-01" data-parent="experienciasAnteriores" class="form-control" name="entrada" id="dataEntrada${this._dinamicoCampoContador}" data-valida="data" required>
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="form-group">
                         <label class="bmd-label-floating">Data de saída*</label>
-                        <input type="date" min="1900-01-01" data-parent="experienciasAnteriores" class="form-control" name="dataSaida" id="dataSaida${this._dinamicoCampoContador}" data-valida="data" required>
+                        <input type="date" min="1900-01-01" data-parent="experienciasAnteriores" class="form-control" name="saida" id="dataSaida${this._dinamicoCampoContador}" data-valida="data" required>
                     </div>
                 </div>
                 <div class="col-md-4">

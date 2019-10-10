@@ -15,7 +15,7 @@ export class ChartFactory {
             chart: {
 
                 foreColor: '#fff',
-                height: 170,
+                height: 200,
                 type: 'line',
                 zoom: {
                     enabled: false

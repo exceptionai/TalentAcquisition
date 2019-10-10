@@ -12,13 +12,13 @@ export class FormacoesAcademicasView extends CurriculoView {
                     <div class="col-md-6">
                         <div class="form-group">
                             <label class="bmd-label-floating">Nome do curso*</label>
-                            <input type="text" required data-parent="formacaoAcademica" class="form-control" id="nomeFormacao${this._dinamicoCampoContador}" name="curso">
+                            <input type="text" required data-parent="formacaoAcademica" class="form-control" id="nomeFormacao${this._dinamicoCampoContador}" name="nome_curso">
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
                             <label class="bmd-label-floating">Nível*</label>
-                            <select required class="form-control" data-parent="formacaoAcademica" data-style="btn btn-link" name="nivelCurso" >
+                            <select required class="form-control" data-parent="formacaoAcademica" data-style="btn btn-link" name="nivel" >
                                 <option value="" selected disabled>Nível</option>
                                 <option value="ensinoMedio">Ensino Médio</option>
                                 <option value="tecnico">Técnico</option>
@@ -37,7 +37,7 @@ export class FormacoesAcademicasView extends CurriculoView {
                     <div class="col-md-6">
                         <div class="form-group">
                             <label class="bmd-label-floating">Nome da instituição*</label>
-                            <input type="text" required data-parent="formacaoAcademica" class="form-control" id="nomeInstituicao" name="nomeInstituicao">
+                            <input type="text" required data-parent="formacaoAcademica" class="form-control" id="nomeInstituicao" name="instituicao">
                         </div>
                     </div>
                     <div class="col-md-6">

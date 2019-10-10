@@ -2,8 +2,23 @@ from connections.connectionFactory import ConnectionFactory
 
 class VagaDAO:
 
+    def __init__(self,candidato_id = None):
+        self.candidato_id = candidato_id
+
+    def buscar_detalhes_vaga(self,vaga_id):
+        query = f"select cargo, area_atuacao, requisitos_desejaveis, requisitos_obrigatorios, principais_atividades, salario, beneficios, created_at, vaga_id  FROM vaga WHERE vaga_id = {vaga_id}"
+        ConnectionFactory.execute(query)
+        vaga = ConnectionFactory.fetchone()
+        return vaga
+
+    def buscar_vaga_selecionada(self, vaga_id):
+        query = f"select 1 from candidato_vaga where vaga_id = {vaga_id} and candidato_id ={self.candidato_id}"
+        ConnectionFactory.execute(query)
+        vaga = ConnectionFactory.fetchone()
+        return vaga
+
     def buscar_resumo_vagas(self):
-        query = "SELECT v.cargo, v.area_atuacao, e.cidade, v.created_at,v.vaga_id FROM vaga v INNER JOIN endereco e on e.endereco_id = v.endereco_id"
+        query = f"SELECT v.cargo, v.area_atuacao, e.cidade, v.created_at,v.vaga_id,(SELECT cv.candidato_id FROM candidato_vaga cv WHERE v.vaga_id = cv.vaga_id AND cv.candidato_id = {self.candidato_id}) FROM vaga v INNER JOIN endereco e on e.endereco_id = v.endereco_id"
         ConnectionFactory.execute(query)
         vagas = ConnectionFactory.fetchall()
         return vagas

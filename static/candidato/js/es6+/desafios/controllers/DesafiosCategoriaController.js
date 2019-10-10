@@ -11,7 +11,7 @@ export class DesafiosCategoriaController {
     _init() {
         this.buscarDesafiosCategoria();
         $(".categoriasContainer [ex-router] a").click(this.buscarDesafiosCategoria.bind(this));
-
+        $("[ex-route-name=desafios]").click(() => { window.location.reload() })
     }
 
     async buscarDesafiosCategoria() {
