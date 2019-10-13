@@ -8,9 +8,37 @@ from main import app
 def sistema_base():
     return render_template('recrutador/dashboard.html')
 
+
 @app.route('/service/recrutador/candidatos_potenciais')
-def candidatos_potenciais_service():
-    pass
+def buscar_candidatos_potenciais():
+    service = CandidatoService()
+    candidatos = service.buscar_candidatos_potenciais()
+    return candidatos
+
+@app.route('/service/recrutador/candidatos_ultimo_ano')
+def buscar_candidatos_ultimo_ano():
+    service = CandidatoService()
+    candidatos = service.buscar_candidatos_ultimo_ano()
+    return candidatos
+
+@app.route('/service/recrutador/candidatos_destaque')
+def buscar_candidatos_destaque():
+    service = CandidatoService()
+    candidatos = service.buscar_candidatos_destaque()
+    return candidatos
+
+
+@app.route('/service/recrutador/candidato_potencial/quantidade')
+def quantidade_potenciais():
+    service = CandidatoService()
+    quantidade = service.quantidade_potenciais()
+    return quantidade
+
+@app.route('/service/recrutador/todos_candidatos')
+def buscar_todos_candidatos():
+    service = CandidatoService()
+    candidatos = service.buscar_todos_candidatos(request.args.get('vagaID'))
+    return candidatos
 
 @app.route('/service/recrutador/resumo_vagas')
 def resumo_vagas():

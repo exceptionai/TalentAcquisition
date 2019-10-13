@@ -18,7 +18,7 @@ export class VagasAbertoView {
 
     }
 
-    _template(vaga) {
+    _template(vaga, descricaoBotao) {
         const dataAbertura = Formater.stringData(vaga.abertura);
         return `
             <div class="card" style="width: 19rem;">
@@ -45,7 +45,7 @@ export class VagasAbertoView {
 
                     </div>
                     <div class="d-flex justify-content-center mt-3 border-top">
-                        <a class="btn btn-primary mt-3" href="/recrutador/vagasAberto/${vaga.id}">Detalhes da Vaga</a>
+                        <a class="btn btn-primary mt-3" href="/recrutador/vagasAberto/${vaga.id}">${descricaoBotao}</a>
 
                     </div>
                 </div>
@@ -58,10 +58,10 @@ export class VagasAbertoView {
         this._container.append(template);
     }
 
-    renderAll(vagas) {
+    renderAll(vagas, descricaoBotao = "Detalhes da Vaga") {
         const vagasContainer = $("<div id='containerCardsVagas' class='d-flex flex-wrap flex-row '></div>");
         for (let vaga of vagas) {
-            const template = this._template(vaga);
+            const template = this._template(vaga, descricaoBotao);
             vagasContainer.append(template);
         }
         if (!vagas.length) vagasContainer.html("<h2 class='font-white'>Não há novas vagas cadastradas</h2>");

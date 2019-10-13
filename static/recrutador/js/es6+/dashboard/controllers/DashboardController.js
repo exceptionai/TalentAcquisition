@@ -53,8 +53,8 @@ export class DashboardController {
     }
 
     async buscarDetalhesCandidatosPotenciais() {
-        // const { nome, pontuacaoAlcancada, vagaDesejada, StatusVaga } = await this._service.getDetalhesCandidatosPotenciais();
-        // this._view.renderDetalhesCandidatos(nome, pontuacaoAlcancada, vagaDesejada, StatusVaga);
+        const candidatos = await this._service.getDetalhesCandidatosPotenciais();
+        this._view.renderAllDetalhesCandidatos(candidatos);
     }
 
 

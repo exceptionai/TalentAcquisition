@@ -1,6 +1,6 @@
 import nltk
 
-from services.pontuacaoService.analises.analise import Analise
+from analises.analise import Analise
 from services.pontuacaoService.pontuadores.pontuadorRadicais import PontuadorRadicais
 
 

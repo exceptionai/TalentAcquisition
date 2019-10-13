@@ -1,4 +1,4 @@
-from services.pontuacaoService.analises.analiseTituloCursoExtraCurricular import AnaliseTituloCursoExtraCurricular
+from analises.analiseTituloCursoExtraCurricular import AnaliseTituloCursoExtraCurricular
 
 
 class AnaliseCursosExtraCurriculares:

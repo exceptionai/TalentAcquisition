@@ -33,6 +33,5 @@ class CurriculoService:
             "formacaoAcademica": formacao_academica, 
             "idiomas": idiomas
         }
-        ConnectionFactory.close_connection()
         return json.dumps(curriculo_dict, indent=4, sort_keys=True, default=str)
     

@@ -45,3 +45,28 @@ class CandidatoDAO:
         query = f'SELECT COUNT(*) FROM candidato'
         ConnectionFactory.execute(query)
         return ConnectionFactory.fetchone()
+
+    def buscar_quantidade_potenciais(self):
+        query = f'select count(cv.candidato_id) from candidato_vaga cv INNER JOIN vaga v ON v.vaga_id = cv.vaga_id WHERE cv.pontuacao_alcancada >= pontuacao_minima'
+        ConnectionFactory.execute(query)
+        return ConnectionFactory.fetchone()[0]
+
+    def buscar_todos_candidatos(self,vaga_id):
+        query = f'select c.nome,v.cargo,v.pontuacao_minima, cv.pontuacao_alcancada, sc.descricao,cr.curriculo_id, (select cd2.titulo from categoria_desafio cd2 inner join atividade_desafio ad2 on ad2.categoria_desafio_id = cd2.categoria_desafio_id INNER JOIN atividade_desafio_candidato adc2 ON adc2.atividade_desafio_id = ad2.atividade_desafio_id WHERE adc2.pontos_atividade IS NOT NULL and adc2.pontos_atividade != 0 and adc2.candidato_id = c.candidato_id group by cd2.categoria_desafio_id,adc2.candidato_id ORDER BY adc2.pontos_atividade DESC LIMIT 1) from candidato c INNER join status_candidatura sc on sc.status_candidatura_id = c.status_candidatura_id LEFT JOIN curriculo cr ON cr.candidato_id = c.candidato_id INNER JOIN candidato_vaga cv ON cv.candidato_id = c.candidato_id INNER JOIN vaga v WHERE cv.vaga_id = {vaga_id} GROUP BY c.candidato_id'
+        ConnectionFactory.execute(query)
+        return ConnectionFactory.fetchall()
+
+    def buscar_candidatos_potenciais(self):
+        query = f'select c.nome,v.cargo,v.pontuacao_minima, cv.pontuacao_alcancada, sc.descricao,cr.curriculo_id, (select cd2.titulo from categoria_desafio cd2 inner join atividade_desafio ad2 on ad2.categoria_desafio_id = cd2.categoria_desafio_id INNER JOIN atividade_desafio_candidato adc2 ON adc2.atividade_desafio_id = ad2.atividade_desafio_id WHERE adc2.pontos_atividade IS NOT NULL and adc2.pontos_atividade != 0 and adc2.candidato_id = c.candidato_id group by cd2.categoria_desafio_id,adc2.candidato_id ORDER BY adc2.pontos_atividade DESC LIMIT 1) from candidato c INNER join status_candidatura sc on sc.status_candidatura_id = c.status_candidatura_id LEFT JOIN curriculo cr ON cr.candidato_id = c.candidato_id INNER JOIN candidato_vaga cv ON cv.candidato_id = c.candidato_id INNER JOIN vaga v WHERE cv.pontuacao_alcancada >= v.pontuacao_minima GROUP BY c.candidato_id'
+        ConnectionFactory.execute(query)
+        return ConnectionFactory.fetchall()
+
+    def buscar_candidatos_destaque(self):
+        query = f'select c.nome, cv.pontuacao_alcancada, v.cargo, sc.descricao FROM candidato c INNER JOIN candidato_vaga cv ON cv.candidato_id = c.candidato_id INNER JOIN vaga v ON v.vaga_id = cv.vaga_id INNER JOIN status_candidatura sc ON sc.status_candidatura_id = c.status_candidatura_id LIMIT 4'
+        ConnectionFactory.execute(query)
+        return ConnectionFactory.fetchall()
+
+    def buscar_candidatos_ultimo_ano(self):
+        query = f'select count(candidato_id), created_at from candidato group by MONTH(created_at)'
+        ConnectionFactory.execute(query)
+        return ConnectionFactory.fetchall()

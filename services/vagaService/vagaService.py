@@ -37,8 +37,7 @@ class VagaService:
                 "candidatosPotenciais": vaga[2],
                 "fase": vaga[3] if vaga[3] else "",
                 "abertura": str(vaga[4]) if vaga[4] else "",
-                "id": vaga[5],
-                "selecionado": vaga[6]
+                "id": vaga[5]
             })
         return json.dumps(vagas_dict)
 
