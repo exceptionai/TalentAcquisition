@@ -81,6 +81,10 @@ def vagas_aberto():
 def cadastrar_selecao():
     return render_template('recrutador/cadastrarSelecao.html')
 
+@app.route('/recrutador/vagasAberto/<id_vaga>')
+def vagas_aberto_detalhes(id_vaga):
+    return render_template('recrutador/detalhesVagaRecrutador.html')
+
 @app.route('/recrutador/candidatosTotais/<id_candidato>')
 def detalhes_candidato(id_candidato):
     return render_template('recrutador/detalhesCandidato.html')

@@ -62,7 +62,7 @@ class CandidatoDAO:
         return ConnectionFactory.fetchall()
 
     def buscar_candidatos_destaque(self):
-        query = f'select c.nome, cv.pontuacao_alcancada, v.cargo, sc.descricao FROM candidato c INNER JOIN candidato_vaga cv ON cv.candidato_id = c.candidato_id INNER JOIN vaga v ON v.vaga_id = cv.vaga_id INNER JOIN status_candidatura sc ON sc.status_candidatura_id = c.status_candidatura_id LIMIT 4'
+        query = f'select c.nome, cv.pontuacao_alcancada, v.cargo, sc.descricao FROM candidato c INNER JOIN candidato_vaga cv ON cv.candidato_id = c.candidato_id INNER JOIN vaga v ON v.vaga_id = cv.vaga_id INNER JOIN status_candidatura sc ON sc.status_candidatura_id = c.status_candidatura_id ORDER BY cv.pontuacao_alcancada DESC LIMIT 4'
         ConnectionFactory.execute(query)
         return ConnectionFactory.fetchall()
 
